@@ -2,9 +2,12 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
+import Drawer from './Drawer'
+import { themes, color } from '../color';
 
 
 const Stack = createStackNavigator();
@@ -28,6 +31,16 @@ function Navigate() {
 	        	options={{ 
 	        		title: null,
 	        		headerTransparent: true
+	        	}}
+	        />
+	        <Stack.Screen 
+	        	name="Drawer" 
+	        	component={Drawer} 
+	        	options={{ 
+	        		//headerTitle: () => <Ionicons name={"grid-outline"} size={25} color={color.primary}/>,
+	        		headerTransparent: true,
+	        		headerLeft: null,
+	        		title: null
 	        	}}
 	        />
         </Stack.Navigator>

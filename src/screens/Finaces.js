@@ -6,10 +6,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
 import { themes } from '../color';
+import Head from '../components/Head'
 
-export default function RegisterScreen({navigation}){
+
+export default function Finaces({navigation}){
 	return(
 		<View>
+			<Head screen={"Mes Finace"} n={navigation}/>
 			<Text>To be replace with register content</Text>
 		</View>
 	)

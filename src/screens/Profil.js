@@ -7,9 +7,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
 import { themes } from '../color';
 
-export default function RegisterScreen({navigation}){
+import Head from '../components/Head'
+
+export default function Profil({navigation}){
 	return(
 		<View>
+			<Head screen={"Mon Profile"} n={navigation}/>
 			<Text>To be replace with register content</Text>
 		</View>
 	)

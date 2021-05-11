@@ -78,6 +78,7 @@ export default function LoginScreen({navigation}){
 	                    <View style={styles.button}>
 	                    	<Button
 							  title="Connexion"
+							  onPress={()=>navigation.navigate('Drawer')}
 							/>
 	                    </View>
 	                    <View style={{...styles.logo, ...styles.bottom}}>
