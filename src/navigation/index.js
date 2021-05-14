@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
+import Preparation from '../screens/Preparation'
 import Drawer from './Drawer'
 import { themes, color } from '../color';
 
@@ -31,6 +32,14 @@ function Navigate() {
 	        	options={{ 
 	        		title: null,
 	        		headerTransparent: true
+	        	}}
+	        />
+	        <Stack.Screen 
+	        	name="Preparation" 
+	        	component={Preparation} 
+	        	options={{ 
+	        		title: "Préparation",
+	        		headerTransparent: false
 	        	}}
 	        />
 	        <Stack.Screen 

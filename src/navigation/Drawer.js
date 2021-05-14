@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
+import { View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Accueil from '../screens/Accueil'
 import Activites from '../screens/Activites'
 import Annonces from '../screens/Annonces'
@@ -14,6 +14,7 @@ import RendezVous from '../screens/RendezVous'
 import { Text, Input, Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { themes, color } from '../color';
+import {logo} from "../assets"
 
 const ARG__ = createDrawerNavigator();
 
@@ -29,7 +30,9 @@ export default function Drawer() {
           //inactiveTintColor: 'black',
           //itemStyle: { alignItems:'flex-end' },
         }}
+        //drawerContent={(props) => <Image source={logo} />}
       >
+      	
         <ARG__.Screen 
         	name="Accueil" 
         	component={Accueil} 

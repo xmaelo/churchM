@@ -6,15 +6,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function Head({n, screen}){
 	return(
 		<Header
-		  leftComponent={()=>
-		  	<TouchableOpacity
-		  		onPress={()=>n.toggleDrawer()}
-		  	>
-		  		<Ionicons name={"menu-outline"} size={25} color={"#fff"} style={{marginLeft: 10}}/>
-		  	</TouchableOpacity>
-		  }
+		  placement="left"
+		  leftComponent={{ icon: 'menu', color: '#fff', onPress:  ()=>n.toggleDrawer()}}
 		  centerComponent={{ text: screen, style: { color: '#fff' } }}
-		  //rightComponent={{ icon: 'home', color: '#fff' }}
+		  rightComponent={{ icon: 'home', color: '#fff' }}
 		/>
 	)
 }
