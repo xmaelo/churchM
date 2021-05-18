@@ -10,6 +10,9 @@ import Preparation from '../screens/Preparation'
 import Drawer from './Drawer'
 import { themes, color } from '../color';
 import Mediatheques from '../screens/Mediatheques';
+import Recovery from '../screens/Recovery';
+import Annonces from '../screens/Annonces';
+import AnnonceDetails from '../screens/AnnonceDetails';
 
 
 const Stack = createStackNavigator();
@@ -17,7 +20,7 @@ const Stack = createStackNavigator();
 function Navigate() {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Annonces">
 	        <Stack.Screen 
 	        	name="Login" 
 	        	component={LoginScreen} 
@@ -43,6 +46,30 @@ function Navigate() {
 	        		headerTransparent: true
 	        	}}
 	        />
+			<Stack.Screen
+				name="Recovery"
+				component={Recovery}
+				options={{ 
+	        		title: null,
+	        		headerTransparent: true
+	        	}}
+			/>
+			<Stack.Screen
+				name="Annonces"
+				component={Annonces}
+				options={{ 
+	        		title: null,
+	        		headerTransparent: true
+	        	}}
+			/>
+			<Stack.Screen
+				name="AnnonceDetails"
+				component={AnnonceDetails}
+				options={({route})=> ({ 
+	        		title: route.params.param.title,
+	        		headerTransparent: false
+	        	})}
+			/>
 	        <Stack.Screen 
 	        	name="Preparation" 
 	        	component={Preparation} 

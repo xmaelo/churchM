@@ -177,139 +177,139 @@ export default function RegisterScreen({navigation}){
 				</View>
 			</View>
 		</ScrollView>,
-	<ScrollView contentContainerStyle={{flexGrow:1}}>
-	<StatusBar backgroundColor="#019CD9" />
-	<View style={styles.container}>
-		<View style={styles.top}>
-			<View style={styles.logo}>
-				<Image source={logo} style={styles.img}/>
-				<Text h4 >État Civil</Text>
-				{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
-			</View>
-			<View style={styles.form}>
-				<View style={styles.input}>
-					<Input
-					   placeholder="Père"
-					   label="Nom(s) du Père" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"man"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
-
-					<Input
-					   placeholder="Mère"
-					   label="Nom(s) de la Mère" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"woman"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
-
-					<Text style={styles.label}>
-								Situation Matrimoniale
-					</Text>
-					<Picker
-					selectedValue={selectedZone}
-					onValueChange={(itemValue, itemIndex) =>
-						setSelectedZone(itemValue)
-					}>
-					<Picker.Item label="Célibataire" value="celibataire" />
-					<Picker.Item label="Marié(e)" value="marie" />
-					<Picker.Item label="Fiancé(e)" value="fiance" />
-					<Picker.Item label="Divorcé(e)" value="divorce" />
-					</Picker>
-
-					<Text style={styles.label}>
-								Region d'Origine
-					</Text>
-					<Picker
-					selectedValue={selectedZone}
-					onValueChange={(itemValue, itemIndex) =>
-						setSelectedZone(itemValue)
-					}>
-					<Picker.Item label="Nord" value="Nord" />
-					<Picker.Item label="Centre" value="Centre" />
-					<Picker.Item label="Sud" value="Sud" />
-					<Picker.Item label="Ouest" value="Ouest" />
-					</Picker>
-
-					<Text style={styles.label}>
-								Département d'origine
-					</Text>
-					<Picker
-					selectedValue={selectedZone}
-					onValueChange={(itemValue, itemIndex) =>
-						setSelectedZone(itemValue)
-					}>
-					<Picker.Item label="Menoua" value="Menoua" />
-					<Picker.Item label="Mbam et Kim" value="Mbam et Kim" />
-					<Picker.Item label="Sanaga" value="Sanaga" />
-					<Picker.Item label="Ndé" value="Ndé" />
-					</Picker>
-
-					<Text style={styles.label}>
-								Arrondissement d'origine
-					</Text>
-					<Picker
-					selectedValue={selectedZone}
-					onValueChange={(itemValue, itemIndex) =>
-						setSelectedZone(itemValue)
-					}>
-					<Picker.Item label="Bangangté" value="Bangangté" />
-					<Picker.Item label="Tonga" value="Tonga" />
-					<Picker.Item label="Dschang" value="Dschang" />
-					<Picker.Item label="Faro" value="Faro" />
-					</Picker>
-
-					<Input
-					   placeholder="Ville"
-					   label="Ville de Résidence" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"location"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
-
-					<Input
-					   placeholder="Combien d'enfants avez vous?"
-					   label="Nombre d'enfants" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"people"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
-
-				   </View>
-				   <View style={styles.button}>
-					 <Button
-					  title="Suivant"
-					  onPress={()=>navigation.navigate('Drawer')}
-					/>
+		<ScrollView contentContainerStyle={{flexGrow:1}}>
+		<StatusBar backgroundColor="#019CD9" />
+		<View style={styles.container}>
+			<View style={styles.top}>
+				<View style={styles.logo}>
+					<Image source={logo} style={styles.img}/>
+					<Text h4 >État Civil</Text>
+					{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
 				</View>
-				<View style={styles.end2}>
+				<View style={styles.form}>
+					<View style={styles.input}>
+						<Input
+						placeholder="Père"
+						label="Nom(s) du Père" 
+						labelStyle={styles.thelabel}
+						leftIcon={
+							<Ionicons 
+								name={"man"} 
+								size={18}   
+							/>
+						}
+						//    onChangeText={value => defineUsername(value)}
+						/>
+
+						<Input
+						placeholder="Mère"
+						label="Nom(s) de la Mère" 
+						labelStyle={styles.thelabel}
+						leftIcon={
+							<Ionicons 
+								name={"woman"} 
+								size={18}   
+							/>
+						}
+						//    onChangeText={value => defineUsername(value)}
+						/>
+
+						<Text style={styles.label}>
+									Situation Matrimoniale
+						</Text>
+						<Picker
+						selectedValue={selectedZone}
+						onValueChange={(itemValue, itemIndex) =>
+							setSelectedZone(itemValue)
+						}>
+						<Picker.Item label="Célibataire" value="celibataire" />
+						<Picker.Item label="Marié(e)" value="marie" />
+						<Picker.Item label="Fiancé(e)" value="fiance" />
+						<Picker.Item label="Divorcé(e)" value="divorce" />
+						</Picker>
+
+						<Text style={styles.label}>
+									Region d'Origine
+						</Text>
+						<Picker
+						selectedValue={selectedZone}
+						onValueChange={(itemValue, itemIndex) =>
+							setSelectedZone(itemValue)
+						}>
+						<Picker.Item label="Nord" value="Nord" />
+						<Picker.Item label="Centre" value="Centre" />
+						<Picker.Item label="Sud" value="Sud" />
+						<Picker.Item label="Ouest" value="Ouest" />
+						</Picker>
+
+						<Text style={styles.label}>
+									Département d'origine
+						</Text>
+						<Picker
+						selectedValue={selectedZone}
+						onValueChange={(itemValue, itemIndex) =>
+							setSelectedZone(itemValue)
+						}>
+						<Picker.Item label="Menoua" value="Menoua" />
+						<Picker.Item label="Mbam et Kim" value="Mbam et Kim" />
+						<Picker.Item label="Sanaga" value="Sanaga" />
+						<Picker.Item label="Ndé" value="Ndé" />
+						</Picker>
+
+						<Text style={styles.label}>
+									Arrondissement d'origine
+						</Text>
+						<Picker
+						selectedValue={selectedZone}
+						onValueChange={(itemValue, itemIndex) =>
+							setSelectedZone(itemValue)
+						}>
+						<Picker.Item label="Bangangté" value="Bangangté" />
+						<Picker.Item label="Tonga" value="Tonga" />
+						<Picker.Item label="Dschang" value="Dschang" />
+						<Picker.Item label="Faro" value="Faro" />
+						</Picker>
+
+						<Input
+						placeholder="Ville"
+						label="Ville de Résidence" 
+						labelStyle={styles.thelabel}
+						leftIcon={
+							<Ionicons 
+								name={"location"} 
+								size={18}   
+							/>
+						}
+						//    onChangeText={value => defineUsername(value)}
+						/>
+
+						<Input
+						placeholder="Combien d'enfants avez vous?"
+						label="Nombre d'enfants" 
+						labelStyle={styles.thelabel}
+						leftIcon={
+							<Ionicons 
+								name={"people"} 
+								size={18}   
+							/>
+						}
+						//    onChangeText={value => defineUsername(value)}
+						/>
+
+					</View>
+					<View style={styles.button}>
+						<Button
+						title="Suivant"
+						onPress={()=>navigation.navigate('Drawer')}
+						/>
+					</View>
+					<View style={styles.end2}>
+					</View>
 				</View>
 			</View>
 		</View>
-	</View>
-</ScrollView>,
-<ScrollView contentContainerStyle={{flexGrow:1}}>
+	</ScrollView>,
+		<ScrollView contentContainerStyle={{flexGrow:1}}>
 	<StatusBar backgroundColor="#019CD9" />
 	<View style={styles.container}>
 		<View style={styles.top}>
