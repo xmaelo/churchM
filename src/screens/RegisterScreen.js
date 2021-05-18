@@ -162,12 +162,12 @@ export default function RegisterScreen({navigation}){
 							/>
 	                    </View>
 	                    <View style={styles.end}>
-	                    	<TouchableOpacity>
+	                    	<TouchableOpacity style={styles.links}>
 	                    		<Text style={themes.secondary}>
 	                    			Avez-vous déjà un compte?
 	                    		</Text>
 	                    	</TouchableOpacity>
-	                    	<TouchableOpacity
+	                    	<TouchableOpacity style={styles.links}
 	                    		onPress={()=>navigation.navigate('Login')}
 	                    	>
 	                    		<Text style={themes.primary}>Connexion</Text>
@@ -303,12 +303,140 @@ export default function RegisterScreen({navigation}){
 					  onPress={()=>navigation.navigate('Drawer')}
 					/>
 				</View>
-				<View style={styles.end}>
+				<View style={styles.end2}>
 				</View>
 			</View>
 		</View>
 	</View>
 </ScrollView>,
+<ScrollView contentContainerStyle={{flexGrow:1}}>
+	<StatusBar backgroundColor="#019CD9" />
+	<View style={styles.container}>
+		<View style={styles.top}>
+			<View style={styles.logo}>
+				<Image source={logo} style={styles.img}/>
+				<Text h4 >Statut professionnel et paroissial</Text>
+				{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
+			</View>
+			<View style={styles.form}>
+				<View style={styles.input}>
+
+					<Text style={styles.label}>
+					Statut Professionnel:
+					</Text>
+					<Picker
+					selectedValue={selectedZone}
+					onValueChange={(itemValue, itemIndex) =>
+						setSelectedZone(itemValue)
+					}>
+					<Picker.Item label="Etudiant/Elève" value="Etudiant/Elève" />
+					<Picker.Item label="Travailleur" value="Travailleur" />
+					<Picker.Item label="Activité Libérale" value="Activité Libérale" />
+					<Picker.Item label="Sans emploi" value="Sans emploi" />
+					</Picker>
+
+					<Input
+					   placeholder="Que faites-vous dans la vie?"
+					   label="Profession:" 
+					   labelStyle={styles.thelabel}
+					   leftIcon={
+						<Ionicons 
+							name={"build"} 
+							size={18}   
+						/>
+					   }
+					//    onChangeText={value => defineUsername(value)}
+					/>
+
+					<Input
+					   placeholder="Dans quel secteur d'activité?"
+					   label="Domaine:" 
+					   labelStyle={styles.thelabel}
+					   leftIcon={
+						<Ionicons 
+							name={"bulb"} 
+							size={18}   
+						/>
+					   }
+					//    onChangeText={value => defineUsername(value)}
+					/>
+
+					<Input
+					   placeholder="Qui vous emploi?"
+					   label="Employeur:" 
+					   labelStyle={styles.thelabel}
+					   leftIcon={
+						<Ionicons 
+							name={"business"} 
+							size={18}   
+						/>
+					   }
+					//    onChangeText={value => defineUsername(value)}
+					/>
+
+					<Input
+					   placeholder="Dernier diplôme obtenu"
+					   label="Dernier Diplôme:" 
+					   labelStyle={styles.thelabel}
+					   leftIcon={
+						<Ionicons 
+							name={"library"} 
+							size={18}   
+						/>
+					   }
+					//    onChangeText={value => defineUsername(value)}
+					/>
+					
+					<Text style={styles.label}>
+							Malade ?
+					</Text>
+					<CheckBox
+					title='Oui'
+					checked={checked}
+					/>
+					<CheckBox
+					title='Non'
+					checked={checked}
+					/>
+
+
+					<Text style={styles.label}>
+					Chrétien Communiant ?
+					</Text>
+					<CheckBox
+					title='Oui'
+					checked={checked}
+					/>
+					<CheckBox
+					title='Non'
+					checked={checked}
+					/>
+
+					<Text style={styles.label}>
+					Membre de Groupe ?
+					</Text>
+					<CheckBox
+					title='Oui'
+					checked={checked}
+					/>
+					<CheckBox
+					title='Non'
+					checked={checked}
+					/>
+
+				   </View>
+				   <View style={styles.button}>
+					 <Button
+					  title="Terminer"
+					  onPress={()=>navigation.navigate('Drawer')}
+					/>
+				</View>
+				<View style={styles.end2}>
+				</View>
+			</View>
+		</View>
+	</View>
+</ScrollView>
 	// {
 	//   key: 'somethun1',
 	//   title: 'Rocket guy',
@@ -340,158 +468,6 @@ export default function RegisterScreen({navigation}){
 	  } else {
 		return (<AppIntroSlider renderItem={_renderItem} slides={slides} onDone={_onDone}/>);
 	  }
-	// return(
-	// 	<ScrollView contentContainerStyle={{flexGrow:1}}>
-	// 		<StatusBar backgroundColor="#019CD9" />
-	// 		<View style={styles.container}>
-	// 			<View style={styles.top}>
-	// 				<View style={styles.logo}>
-	// 					<Image source={logo} style={styles.img}/>
-	// 					<Text h4 >Créer un Compte</Text>
-	// 					{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
-	// 				</View>
-	// 				<View style={styles.form}>
-	// 					<View style={styles.input}>
-	// 						<Input
-	//                            placeholder="Votre nom"
-	//                            label="Nom(s) de Famille" 
-	//                            labelStyle={styles.thelabel}
-	//                            leftIcon={
-	//                             <Ionicons 
-	//                                 name={"person"} 
-	//                                 size={18}   
-	//                             />
-	//                            }
-	//                         //    onChangeText={value => defineUsername(value)}
-	//                         />
-
-	// 						<Input
-	//                            placeholder="Prénom(s)"
-	//                            label="Prénom(s)" 
-	//                            labelStyle={styles.thelabel}
-	//                            leftIcon={
-	//                             <Ionicons 
-	//                                 name={"person"} 
-	//                                 size={18}   
-	//                             />
-	//                            }
-	//                         //    onChangeText={value => defineUsername(value)}
-	//                         />
-
-	// 						<DatePicker
-	// 							style={styles.datePickerStyle}
-	// 							date={date} // Initial date from state
-	// 							mode="date" // The enum of date, datetime and time
-	// 							placeholder="select date"
-	// 							format="DD-MM-YYYY"
-	// 							maxDate={date}
-	// 							confirmBtnText="Confirm"
-	// 							cancelBtnText="Cancel"
-	// 							customStyles={{
-	// 								dateIcon: {
-	// 								//display: 'none',
-	// 								position: 'absolute',
-	// 								left: 0,
-	// 								top: 4,
-	// 								marginLeft: 0,
-	// 								},
-	// 								dateInput: {
-	// 								marginLeft: 36,
-	// 								},
-	// 							}}
-	// 							onDateChange={(date) => {
-	// 								setDate(date);
-	// 							}}
-	// 						/>
-
-	// 						<Input
-	//                            placeholder="Date de naissance"
-	//                            label="Date de naissance" 
-	//                            labelStyle={styles.thelabel}
-	//                            leftIcon={
-	//                             <Ionicons 
-	//                                 name={"calendar"} 
-	//                                 size={18}   
-	//                             />
-	//                            }
-	//                         //    onChangeText={value => defineUsername(value)}
-	//                         />
-
-	// 						<Input
-	//                            placeholder="Email"
-	//                            label="Votre adresse email" 
-	//                            labelStyle={styles.thelabel}
-	//                            leftIcon={
-	//                             <Ionicons 
-	//                                 name={"mail"} 
-	//                                 size={18}   
-	//                             />
-	//                            }
-	//                         //    onChangeText={value => defineUsername(value)}
-	//                         />
-
-	// 						<Input
-	//                            placeholder="Numéro"
-	//                            label="Votre numéro de Téléphone" 
-	//                            labelStyle={styles.thelabel}
-	//                            leftIcon={
-	//                             <Ionicons 
-	//                                 name={"call"} 
-	//                                 size={18}   
-	//                             />
-	//                            }
-	//                         //    onChangeText={value => defineUsername(value)}
-	//                         />
-
-	                        {/* <Input
-	                           placeholder="Mot de passe"
-	                           label="Mot de passe"
-	                           labelStyle={themes.primary}
-	                           leftIcon={
-	                                <Ionicons 
-	                                    name={"lock-closed"} 
-	                                    size={24}   
-	                                />
-	                            }
-	                            // value={password}
-	                            // onChangeText={value => setPassword(value)}
-	                            rightIcon={
-		                            <TouchableOpacity
-		                                style={{padding: 4}}
-		                                onPress={()=>setPinSecure(!pinSecure)}
-		                            >
-		                                <Ionicons 
-		                                    name={pinSecure ? "eye": "eye-off"} 
-		                                    size={24}   
-		                                />
-		                            </TouchableOpacity>
-	                            }
-	                            secureTextEntry={!pinSecure}
-	                        /> */}
-	//                       </View>
-	//                       <View style={styles.button}>
-	//                      	<Button
-	// 						  title="Soumettre"
-	// 						  onPress={()=>navigation.navigate('Drawer')}
-	// 						/>
-	//                     </View>
-	//                     <View style={styles.end}>
-	//                     	<TouchableOpacity>
-	//                     		<Text style={themes.secondary}>
-	//                     			Avez-vous déjà un compte?
-	//                     		</Text>
-	//                     	</TouchableOpacity>
-	//                     	<TouchableOpacity
-	//                     		onPress={()=>navigation.navigate('Login')}
-	//                     	>
-	//                     		<Text style={themes.primary}>Connexion</Text>
-	//                     	</TouchableOpacity>
-	//                     </View>
-	// 				</View>
-	// 			</View>
-	// 		</View>
-	// 	</ScrollView>
-	// )
 }
 
 const styles = StyleSheet.create({
@@ -502,7 +478,15 @@ const styles = StyleSheet.create({
 	end: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		marginTop: hp('4%')
+		marginTop: hp('2.5%')
+	},
+	end2: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginTop: hp('7%')
+	},
+	links : {
+		marginBottom: hp('2%')
 	},
 	penser: {
 		fontStyle: 'italic',

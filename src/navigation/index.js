@@ -9,6 +9,7 @@ import RegisterScreen from '../screens/RegisterScreen'
 import Preparation from '../screens/Preparation'
 import Drawer from './Drawer'
 import { themes, color } from '../color';
+import Mediatheques from '../screens/Mediatheques';
 
 
 const Stack = createStackNavigator();
@@ -16,7 +17,7 @@ const Stack = createStackNavigator();
 function Navigate() {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Register">
+        <Stack.Navigator initialRouteName="Login">
 	        <Stack.Screen 
 	        	name="Login" 
 	        	component={LoginScreen} 
@@ -29,6 +30,14 @@ function Navigate() {
 	        <Stack.Screen 
 	        	name="Register" 
 	        	component={RegisterScreen} 
+	        	options={{ 
+	        		title: null,
+	        		headerTransparent: true
+	        	}}
+	        />
+			<Stack.Screen 
+	        	name="Mediatheque" 
+	        	component={Mediatheques} 
 	        	options={{ 
 	        		title: null,
 	        		headerTransparent: true
