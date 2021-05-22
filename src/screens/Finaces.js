@@ -56,7 +56,7 @@ export default function Finaces({navigation}){
 		<View>
 			<ScrollView>
 				<View style={styles.container} >
-					<Head screen={"Mes Finace"} n={navigation}/>
+					<Head screen={"Mes Finances"} n={navigation}/>
 					<View style={styles.container2}>
 						<View style={styles.text} >
 							<Text style={{fontSize: 15}} >Mes Contributions et Dons</Text>
@@ -164,7 +164,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container2: {
-    paddingHorizontal: wp('2%')
+    paddingHorizontal: wp('2%'),
+    paddingTop: hp('2%')
   },
   ProgressBar: {
     paddingRight: wp('3%'),

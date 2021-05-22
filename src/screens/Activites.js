@@ -14,11 +14,11 @@ export default function Activites({navigation}){
 			<Head screen={"Activités Paroissiales"} n={navigation}/>
 			<Text>To be replace with register content</Text>
 		</View>
-	)
-}
-
+	)  
+} 
+ 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     paddingHorizontal: wp('8%'),
     flex: 1
   }

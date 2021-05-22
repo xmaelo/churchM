@@ -7,6 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import Preparation from '../screens/Preparation'
+import ContactEglise from '../screens/ContactEglise'
+import Chat from '../screens/Chat'
 import Drawer from './Drawer'
 import { themes, color } from '../color';
 
@@ -39,6 +41,22 @@ function Navigate() {
 	        	component={Preparation} 
 	        	options={{ 
 	        		title: "Préparation",
+	        		headerTransparent: false
+	        	}}
+	        />
+	        <Stack.Screen 
+	        	name="Chat" 
+	        	component={Chat} 
+	        	options={{ 
+	        		title: "Chat",
+	        		headerTransparent: false
+	        	}}
+	        />
+	        <Stack.Screen 
+	        	name="ContactEglise" 
+	        	component={ContactEglise} 
+	        	options={{ 
+	        		title: "Contacter l'Eglise",
 	        		headerTransparent: false
 	        	}}
 	        />
