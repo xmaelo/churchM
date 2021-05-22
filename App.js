@@ -17,14 +17,14 @@ import {
   View,
 } from 'react-native';
 
-import Navigate from './src/navigation';
+import Drawer from './src/navigation/Drawer';
 
 
 
 const App: () => Node = () => {
   return (
     <>
-      <Navigate/>
+      <Drawer/>
     </>
   );
 };

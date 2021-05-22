@@ -5,114 +5,107 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import {logo} from "../assets"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
-import { themes } from '../color';
+import { themes, color } from '../color';
 import DatePicker from 'react-native-date-picker';
 import { CheckBox } from 'react-native-elements'
 import AppIntroSlider from '@lomelidev/react-native-walkthrough';
 //import Walkthrough from '@lomelidev/react-native-walkthrough';
 
+function Header({text}){
+	return(
+		<View style={styles.logo}>
+			<Image source={logo} style={styles.img}/>
+			<Text h4 >{text}</Text>
+		</View>
+	)
+}
+
+function TextInput({placeholder, icon, label}){
+	return(
+		<Input
+				 placeholder={placeholder}
+				 label={label}
+				 labelStyle={styles.thelabel}
+				 leftIcon={
+					<Ionicons
+							name={icon}
+							size={18}
+					/>
+				 }
+			//onChangeText={value => defineUsername(value)}
+			/>
+	)
+}
+
+const _renderNextButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="arrow-forward-outline"
+          color={'white'}
+          size={24}
+          //style={{ backgroundColor: color.primary }}
+        />
+      </View>
+    );
+  };
+const _renderPrevButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="arrow-back-outline"
+          color={'white'}
+          size={24}
+          //style={{ backgroundColor: color.primary }}
+        />
+      </View>
+    );
+  };
+const _keyExtractor = (item, index) => index.toString()
+
+const  _renderDoneButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="md-checkmark"
+          color={'white'}
+          size={24}
+          //style={{ backgroundColor: color.primary }}
+        />
+      </View>
+    );
+  };
+
 export default function RegisterScreen({navigation}){
 	const [pinSecure, setPinSecure] = useState(false);
 	const [date, setDate] = useState(new Date());
 	const [selectedZone, setSelectedZone] = useState();
+	const [showRealApp, modOfShowRealApp] = useState(false)
 	const checked = false;
-	const slides = [
-		<ScrollView contentContainerStyle={{flexGrow:1}}>
-			<StatusBar backgroundColor="#019CD9" />
+
+	  const slides = [
+		<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
 			<View style={styles.container}>
 				<View style={styles.top}>
-					<View style={styles.logo}>
-						<Image source={logo} style={styles.img}/>
-						<Text h4 >Créer un Compte</Text>
-						{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
-					</View>
+					<Header text="Créer un compte"/>
 					<View style={styles.form}>
 						<View style={styles.input}>
-							<Input
-	                           placeholder="Votre nom"
-	                           label="Nom(s) de Famille" 
-	                           labelStyle={styles.thelabel}
-	                           leftIcon={
-	                            <Ionicons 
-	                                name={"person"} 
-	                                size={18}   
-	                            />
-	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
+							<TextInput placeholder="Votre nom" icon="person" label="Nom(s) de Famille" />
+							<TextInput placeholder="Prénom(s)" icon="person" label="Prénom(s)" />
+							<TextInput placeholder="Date de naissance" icon="calendar" label="Date de naissance" />
+							<TextInput placeholder="Lieu" icon="person" label="Lieu de Naissance" />
+							<TextInput placeholder="Email" icon="mail" label="Votre adresse email" />
+							<TextInput placeholder="Numéro 1" icon="call" label="Votre numéro de Téléphone" />
 
-							<Input
-	                           placeholder="Prénom(s)"
-	                           label="Prénom(s)" 
-	                           labelStyle={styles.thelabel}
-	                           leftIcon={
-	                            <Ionicons 
-	                                name={"person"} 
-	                                size={18}   
-	                            />
-	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
-							<Input
-	                           placeholder="Date de naissance"
-	                           label="Date de naissance" 
-	                           labelStyle={styles.thelabel}
-	                           leftIcon={
-	                            <Ionicons 
-	                                name={"calendar"} 
-	                                size={18}   
-	                            />
-	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
-
-							<Input
-	                           placeholder="Lieu"
-	                           label="Lieu de Naissance" 
-	                           labelStyle={styles.thelabel}
-	                           leftIcon={
-	                            <Ionicons 
-	                                name={"person"} 
-	                                size={18}   
-	                            />
-	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
-
-							<Input
-	                           placeholder="Email"
-	                           label="Votre adresse email" 
-	                           labelStyle={styles.thelabel}
-	                           leftIcon={
-	                            <Ionicons 
-	                                name={"mail"} 
-	                                size={18}   
-	                            />
-	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
-
-							<Input
-	                           placeholder="Numéro 1"
-	                           label="Votre numéro de Téléphone" 
-	                           labelStyle={styles.thelabel}
-	                           leftIcon={
-	                            <Ionicons 
-	                                name={"call"} 
-	                                size={18}   
-	                            />
-	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
 
 							<Input
 	                           placeholder="Numéro 2"
-	                           label="Autre numéro de Téléphone" 
+	                           label="Autre numéro de Téléphone"
 	                           labelStyle={styles.thelabel}
 	                           leftIcon={
-	                            <Ionicons 
-	                                name={"call"} 
-	                                size={18}   
+	                            <Ionicons
+	                                name={"call"}
+	                                size={18}
 	                            />
 	                           }
 	                        //    onChangeText={value => defineUsername(value)}
@@ -120,12 +113,12 @@ export default function RegisterScreen({navigation}){
 
 							<Input
 	                           placeholder="Date d'Adhésion"
-	                           label="Date d'Adhésion" 
+	                           label="Date d'Adhésion"
 	                           labelStyle={styles.thelabel}
 	                           leftIcon={
-	                            <Ionicons 
-	                                name={"calendar"} 
-	                                size={18}   
+	                            <Ionicons
+	                                name={"calendar"}
+	                                size={18}
 	                            />
 	                           }
 	                        //    onChangeText={value => defineUsername(value)}
@@ -177,25 +170,22 @@ export default function RegisterScreen({navigation}){
 				</View>
 			</View>
 		</ScrollView>,
-		<ScrollView contentContainerStyle={{flexGrow:1}}>
-		<StatusBar backgroundColor="#019CD9" />
+
+		<ScrollView contentContainerStyle={{flexGrow:1}} key={2}>
 		<View style={styles.container}>
 			<View style={styles.top}>
-				<View style={styles.logo}>
-					<Image source={logo} style={styles.img}/>
-					<Text h4 >État Civil</Text>
-					{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
-				</View>
+
+				<Header text="État Civil"/>
 				<View style={styles.form}>
 					<View style={styles.input}>
 						<Input
 						placeholder="Père"
-						label="Nom(s) du Père" 
+						label="Nom(s) du Père"
 						labelStyle={styles.thelabel}
 						leftIcon={
-							<Ionicons 
-								name={"man"} 
-								size={18}   
+							<Ionicons
+								name={"man"}
+								size={18}
 							/>
 						}
 						//    onChangeText={value => defineUsername(value)}
@@ -203,12 +193,12 @@ export default function RegisterScreen({navigation}){
 
 						<Input
 						placeholder="Mère"
-						label="Nom(s) de la Mère" 
+						label="Nom(s) de la Mère"
 						labelStyle={styles.thelabel}
 						leftIcon={
-							<Ionicons 
-								name={"woman"} 
-								size={18}   
+							<Ionicons
+								name={"woman"}
+								size={18}
 							/>
 						}
 						//    onChangeText={value => defineUsername(value)}
@@ -272,12 +262,12 @@ export default function RegisterScreen({navigation}){
 
 						<Input
 						placeholder="Ville"
-						label="Ville de Résidence" 
+						label="Ville de Résidence"
 						labelStyle={styles.thelabel}
 						leftIcon={
-							<Ionicons 
-								name={"location"} 
-								size={18}   
+							<Ionicons
+								name={"location"}
+								size={18}
 							/>
 						}
 						//    onChangeText={value => defineUsername(value)}
@@ -285,12 +275,12 @@ export default function RegisterScreen({navigation}){
 
 						<Input
 						placeholder="Combien d'enfants avez vous?"
-						label="Nombre d'enfants" 
+						label="Nombre d'enfants"
 						labelStyle={styles.thelabel}
 						leftIcon={
-							<Ionicons 
-								name={"people"} 
-								size={18}   
+							<Ionicons
+								name={"people"}
+								size={18}
 							/>
 						}
 						//    onChangeText={value => defineUsername(value)}
@@ -308,165 +298,153 @@ export default function RegisterScreen({navigation}){
 				</View>
 			</View>
 		</View>
-	</ScrollView>,
-		<ScrollView contentContainerStyle={{flexGrow:1}}>
-	<StatusBar backgroundColor="#019CD9" />
-	<View style={styles.container}>
-		<View style={styles.top}>
-			<View style={styles.logo}>
-				<Image source={logo} style={styles.img}/>
-				<Text h4 >Statut professionnel et paroissial</Text>
-				{/* <Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text> */}
-			</View>
-			<View style={styles.form}>
-				<View style={styles.input}>
+		</ScrollView>,
+		<ScrollView contentContainerStyle={{flexGrow:1}} key={3}>
+			<View style={styles.container}>
+				<View style={styles.top}>
+					<Header text="Statut professionnel et paroissial"/>
+					<View style={styles.form}>
+						<View style={styles.input}>
 
-					<Text style={styles.label}>
-					Statut Professionnel:
-					</Text>
-					<Picker
-					selectedValue={selectedZone}
-					onValueChange={(itemValue, itemIndex) =>
-						setSelectedZone(itemValue)
-					}>
-					<Picker.Item label="Etudiant/Elève" value="Etudiant/Elève" />
-					<Picker.Item label="Travailleur" value="Travailleur" />
-					<Picker.Item label="Activité Libérale" value="Activité Libérale" />
-					<Picker.Item label="Sans emploi" value="Sans emploi" />
-					</Picker>
+							<Text style={styles.label}>
+							Statut Professionnel:
+							</Text>
+							<Picker
+							selectedValue={selectedZone}
+							onValueChange={(itemValue, itemIndex) =>
+								setSelectedZone(itemValue)
+							}>
+							<Picker.Item label="Etudiant/Elève" value="Etudiant/Elève" />
+							<Picker.Item label="Travailleur" value="Travailleur" />
+							<Picker.Item label="Activité Libérale" value="Activité Libérale" />
+							<Picker.Item label="Sans emploi" value="Sans emploi" />
+							</Picker>
 
-					<Input
-					   placeholder="Que faites-vous dans la vie?"
-					   label="Profession:" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"build"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
+							<Input
+							   placeholder="Que faites-vous dans la vie?"
+							   label="Profession:"
+							   labelStyle={styles.thelabel}
+							   leftIcon={
+								<Ionicons
+									name={"build"}
+									size={18}
+								/>
+							   }
+							//    onChangeText={value => defineUsername(value)}
+							/>
 
-					<Input
-					   placeholder="Dans quel secteur d'activité?"
-					   label="Domaine:" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"bulb"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
+							<Input
+							   placeholder="Dans quel secteur d'activité?"
+							   label="Domaine:"
+							   labelStyle={styles.thelabel}
+							   leftIcon={
+								<Ionicons
+									name={"bulb"}
+									size={18}
+								/>
+							   }
+							//    onChangeText={value => defineUsername(value)}
+							/>
 
-					<Input
-					   placeholder="Qui vous emploi?"
-					   label="Employeur:" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"business"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
+							<Input
+							   placeholder="Qui vous emploi?"
+							   label="Employeur:"
+							   labelStyle={styles.thelabel}
+							   leftIcon={
+								<Ionicons
+									name={"business"}
+									size={18}
+								/>
+							   }
+							//    onChangeText={value => defineUsername(value)}
+							/>
 
-					<Input
-					   placeholder="Dernier diplôme obtenu"
-					   label="Dernier Diplôme:" 
-					   labelStyle={styles.thelabel}
-					   leftIcon={
-						<Ionicons 
-							name={"library"} 
-							size={18}   
-						/>
-					   }
-					//    onChangeText={value => defineUsername(value)}
-					/>
-					
-					<Text style={styles.label}>
-							Malade ?
-					</Text>
-					<CheckBox
-					title='Oui'
-					checked={checked}
-					/>
-					<CheckBox
-					title='Non'
-					checked={checked}
-					/>
+							<Input
+							   placeholder="Dernier diplôme obtenu"
+							   label="Dernier Diplôme:"
+							   labelStyle={styles.thelabel}
+							   leftIcon={
+								<Ionicons
+									name={"library"}
+									size={18}
+								/>
+							   }
+							//    onChangeText={value => defineUsername(value)}
+							/>
+
+							<Text style={styles.label}>
+									Malade ?
+							</Text>
+							<CheckBox
+							title='Oui'
+							checked={checked}
+							/>
+							<CheckBox
+							title='Non'
+							checked={checked}
+							/>
 
 
-					<Text style={styles.label}>
-					Chrétien Communiant ?
-					</Text>
-					<CheckBox
-					title='Oui'
-					checked={checked}
-					/>
-					<CheckBox
-					title='Non'
-					checked={checked}
-					/>
+							<Text style={styles.label}>
+							Chrétien Communiant ?
+							</Text>
+							<CheckBox
+							title='Oui'
+							checked={checked}
+							/>
+							<CheckBox
+							title='Non'
+							checked={checked}
+							/>
 
-					<Text style={styles.label}>
-					Membre de Groupe ?
-					</Text>
-					<CheckBox
-					title='Oui'
-					checked={checked}
-					/>
-					<CheckBox
-					title='Non'
-					checked={checked}
-					/>
+							<Text style={styles.label}>
+							Membre de Groupe ?
+							</Text>
+							<CheckBox
+							title='Oui'
+							checked={checked}
+							/>
+							<CheckBox
+							title='Non'
+							checked={checked}
+							/>
 
-				   </View>
-				   <View style={styles.button}>
-					 <Button
-					  title="Terminer"
-					  onPress={()=>navigation.navigate('Drawer')}
-					/>
-				</View>
-				<View style={styles.end2}>
+						   </View>
+						   <View style={styles.button}>
+							 <Button
+							  title="Terminer"
+							  onPress={()=>navigation.navigate('Drawer')}
+							/>
+						</View>
+						<View style={styles.end2}>
+						</View>
+					</View>
 				</View>
 			</View>
-		</View>
-	</View>
-</ScrollView>
-	// {
-	//   key: 'somethun1',
-	//   title: 'Rocket guy',
-	//   text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
-	//   image: logo,
-	//   backgroundColor: '#22bcb5',
-	// }
+		</ScrollView>
   ];
 
-
-	const state = {
-		showRealApp: false
-	  }
 	  const _renderItem = ({ item }) => {
-		return (
-		  item
-		);
+			return ( item	);
 	  }
 	  const _onDone = () => {
-		// User finished the introduction. Show real app through
-		// navigation or simply by controlling state
-		//this.setState({ showRealApp: true });
-		state = {
-			showRealApp: true
-		  }
+			modOfShowRealApp(true);
 	  }
-	  if (state.showRealApp) {
-		return (<App />);
+
+	  if (showRealApp) {
+			return (<RegisterScreen />);
 	  } else {
-		return (<AppIntroSlider renderItem={_renderItem} slides={slides} onDone={_onDone}/>);
+			return (
+				<AppIntroSlider
+					renderItem={_renderItem}
+					slides={slides}
+					onDone={_onDone}
+					renderDoneButton={_renderDoneButton}
+          renderNextButton={_renderNextButton}
+          renderPrevButton={_renderPrevButton}
+					showPrevButton={true}
+				/>
+			);
 	  }
 }
 
@@ -504,26 +482,37 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	  alignItems: 'center',
 	},
-	img: { 
-		width: wp("23%"), 
+	img: {
+		width: wp("23%"),
 		height: hp("11%")
 	},
 	top: { marginTop: hp('3%') },
 	subtitle: { fontSize: 17 },
 	form: { marginTop: hp('2%') },
 	input: {
-		marginLeft: -10, 
+		marginLeft: -10,
 		marginTop: hp('3%')
 	},
-	thelabel: { 
+	thelabel: {
 		fontSize: 15,
-		color: "#0866C6" 
+		color: "#0866C6"
 	},
 	label: {
 		fontSize: 15,
 		color: "#0866C6",
 		marginLeft: 8,
 		fontWeight: 'bold'
-	}
+	},
+	buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: color.primary,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 320,
+    height: 320,
+  },
   });
-

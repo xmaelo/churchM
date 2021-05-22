@@ -9,28 +9,23 @@ import {
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Appbar } from 'react-native-paper';
+import { themes, color } from '../color';
 
 export default function Head({n, screen}){
+
+  const _goBack = () =>n.toggleDrawer();
+
+  const _handleSearch = () => console.log('Searching');
+
+  const _handleMore = () => console.log('Shown more');
+
 	return(
-		<View style={styles.container}>
-			<TouchableOpacity
-				onPress={()=>n.toggleDrawer()}
-				style={{position: 'absolute', left: wp('7%'), width: wp('50%')}}
-			>
-				<Ionicons name="menu" size={30}/>
-			</TouchableOpacity>
-			<View>
-				<Text style={{fontSize: 18}}>{screen}</Text>
-			</View>
-			<View style={{position: 'absolute', right: wp('7%')}}>
-				 <Avatar
-				    title={"IS"}
-				    rounded
-				    size="small"
-				    source={{ uri: "https://randomuser.me/api/portraits/women/62.jpg" }}
-				  />
-			</View>
-		</View>
+    <Appbar.Header style={{backgroundColor: color.primary}}>
+      <Appbar.Action  icon="menu"  onPress={()=>n.openDrawer()} />
+      <Appbar.Content title={screen} />
+    </Appbar.Header>
+
 	)
 }
 
