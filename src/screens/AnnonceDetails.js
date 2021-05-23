@@ -8,7 +8,7 @@ import { Text, Input, ListItem, Avatar, Button } from 'react-native-elements';
 import { themes } from '../color';
 import Head from '../components/Head'
 
-export default function AnnonceDetails({navigation, route}){
+export default function AnnonceDetails({route}){
 	const data = route.params.param;
 	return(
 		<ScrollView>

@@ -4,7 +4,6 @@ import { View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-nat
 import Accueil from '../screens/Accueil'
 import Activites from '../screens/Activites'
 import Annonces from '../screens/Annonces'
-import Candiques from '../screens/Candiques'
 import Mediatheques from '../screens/Mediatheques'
 import Finaces from '../screens/Finaces'
 import SainteScene from '../screens/SainteScene'
@@ -15,6 +14,7 @@ import { Text, Input, Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { themes, color } from '../color';
 import {logo} from "../assets"
+import LectureBiblique from '../screens/LectureBiblique';
 
 const ARG__ = createDrawerNavigator();
 
@@ -76,10 +76,10 @@ export default function Drawer() {
         />
 
         <ARG__.Screen 
-        	name="Candiques" 
-        	component={Candiques} 
+        	name="LectureBiblique" 
+        	component={LectureBiblique} 
         	options={{
-	           title: ()=><Title display={"Candiques/Bible"}/>,
+	           title: ()=><Title display={"Lecture Biblique"}/>,
 	           drawerIcon: ({focused}) => (
 	               <DrawIcon name={"book-outline"} f={focused}/>
 	           ),

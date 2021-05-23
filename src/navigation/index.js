@@ -13,6 +13,9 @@ import Mediatheques from '../screens/Mediatheques';
 import Recovery from '../screens/Recovery';
 import Annonces from '../screens/Annonces';
 import AnnonceDetails from '../screens/AnnonceDetails';
+import Profil from '../screens/Profil';
+import LectureBiblique from '../screens/LectureBiblique';
+import DetailLecture from '../screens/DetailLecture';
 
 
 const Stack = createStackNavigator();
@@ -20,7 +23,7 @@ const Stack = createStackNavigator();
 function Navigate() {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Annonces">
+        <Stack.Navigator initialRouteName="LectureBiblique">
 	        <Stack.Screen 
 	        	name="Login" 
 	        	component={LoginScreen} 
@@ -78,6 +81,30 @@ function Navigate() {
 	        		headerTransparent: false
 	        	}}
 	        />
+			<Stack.Screen 
+	        	name="Profil" 
+	        	component={Profil} 
+	        	options={{ 
+	        		title: "Profil",
+	        		headerTransparent: false
+	        	}}
+	        />
+			<Stack.Screen 
+	        	name="LectureBiblique" 
+	        	component={LectureBiblique} 
+	        	options={{ 
+	        		title: "Lecture biblique",
+	        		headerTransparent: false
+	        	}}
+	        />
+			<Stack.Screen
+				name="DetailLecture"
+				component={DetailLecture}
+				options={({route})=> ({ 
+	        		title: 'Lecture du '+route.params.param.jour,
+	        		headerTransparent: false
+	        	})}
+			/>
 	        <Stack.Screen 
 	        	name="Drawer" 
 	        	component={Drawer} 
