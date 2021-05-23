@@ -143,13 +143,13 @@ const FirstRoute = () => (
 				    />
 				</DataTable>
 	  		</View>
-		</ScrollView> 
-	  	<FAB 
-	  		buttonColor={color.primary} 
-	  		iconTextColor="#FFFFFF" 
-	  		onClickAction={() => {console.log("FAB pressed"); n.push("Preparation")}} 
-	  		visible={true} 
-	  		iconTextComponent={<Ionicons name="add"/>} 
+		</ScrollView>
+	  	<FAB
+	  		buttonColor={color.primary}
+	  		iconTextColor="#FFFFFF"
+	  		onClickAction={() => {console.log("FAB pressed"); n.navigate("Preparation")}} 
+	  		visible={true}
+	  		iconTextComponent={<Ionicons name="add"/>}
 	  	/>
   	</View>
 );
@@ -164,10 +164,10 @@ const SecondRoute = () => {
 	  <View style={{ flex: 1}}>
 	  		<View style={styles.progressCircle} >
 	  			<Text style={styles.titleP}>Mois Préparés</Text>
-		  		<Progress.Circle 
-					size={123} 
-					progress={percent} 
-					showsText 
+		  		<Progress.Circle
+					size={123}
+					progress={percent}
+					showsText
 					formatText={(val) =>  parseInt(val*100) +"%"}
 					color={color.primary}
 				/>
@@ -234,7 +234,7 @@ export default function SainteScene({navigation}){
 		</>
 	)
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: wp('8%'),
@@ -285,4 +285,3 @@ const styles = StyleSheet.create({
   },
   h1: {fontSize: 18, fontWeight: 'bold', color: color.textSeconday}
 })
-
