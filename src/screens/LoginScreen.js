@@ -4,8 +4,9 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import {logo} from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Text, Input, Button } from 'react-native-elements';
-import { themes } from '../color';
+import { Text, Input } from 'react-native-elements';
+import { Button, Snackbar  } from 'react-native-paper';
+import { themes, color } from '../color';
 import {api} from '../statefull/api'
 
 export default function LoginScreen({navigation}){
@@ -14,19 +15,26 @@ export default function LoginScreen({navigation}){
 		const [username, defineUsername] = useState("admin");
 		const [disabled, setDisabled] = useState(false);
 		const [pinSecure, setPinSecure] = useState(false);
+		const [loading, setLoan] = useState(false);
+		const [visible, setVisible] = useState(false);
+
+		const onToggleSnackBar = () => setVisible(!visible);
+  	const onDismissSnackBar = () => setVisible(false);
+
 		useEffect(() => {
 			BackHandler.addEventListener('hardwareBackPress', () => true)
 			return () => BackHandler.removeEventListener('hardwareBackPress', () => true)
 		}, [])
 
-		const get_token = async () => {
+		const get_token =  async() => {
 			 try {
-				 console.log(username, password)
-			 	 //const token = await api.login(username, password);
-				 console.log('atte here =================>>>>', token)
-				 navigation.navigate('Accueil');
+				 if(!loading){
+					 setLoan(true)
+				 	 const personne = await api.login(username, password);
+					 navigation.navigate('Accueil', {personne: personne});
+				 }
 			 } catch (e) {
-
+				 console.log('error==>>',e)
 			 } finally {
 
 			 }
@@ -89,9 +97,15 @@ export default function LoginScreen({navigation}){
 											</View>
 											<View style={styles.button}>
 												<Button
-													title="Connexion"
-													onPress={()=>navigation.navigate('Accueil')}
-												/>
+													//title="Connexion"
+													icon={()=><Ionicons name="log-in-outline" size={30} color={'white'}/> }
+													mode="contained"
+													color={color.primary}
+													loading={loading}
+													onPress={()=>get_token()}
+												>
+													Connexion
+ 												</Button>
 											</View>
 											<View style={{...styles.logo, ...styles.bottom}}>
 												<Text style={themes.secondary}>Votre paroise, votre maison</Text>
@@ -115,6 +129,17 @@ export default function LoginScreen({navigation}){
 					</View>
 				</View>
 			</View>
+			<Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Fermer',
+          onPress: () => {
+            // Do something
+          },
+        }}>
+        Hey there! I'm a Snackbar.
+      </Snackbar>
 		</ScrollView>
 	)
 }

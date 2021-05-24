@@ -5,10 +5,12 @@ import {logo} from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
-import { themes } from '../color';
+import { themes, color } from '../color';
 import Head from '../components/Head'
 import { Surface } from 'react-native-paper';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import {api} from '../statefull/api'
+import { Snackbar  } from 'react-native-paper';
 
 const _renderItem = ({item, index}) => {
 	return (
@@ -16,39 +18,35 @@ const _renderItem = ({item, index}) => {
 					backgroundColor:'floralwhite',
 					borderRadius: 5,
 					height: hp('26%'),
-					padding: 50
 				 }}>
-				<Text style={{fontSize: 30}}>{item.title}</Text>
-				<Text>{item.text}</Text>
+				 <Image source={item}  style={{width: wp('99%'), height: hp('26%')}}/>
 			</View>
 
 		)
   }
+
 	const carouselItems = [
-          {
-              title:"Item 1",
-              text: "Text 1",
-          },
-          {
-              title:"Item 2",
-              text: "Text 2",
-          },
-          {
-              title:"Item 3",
-              text: "Text 3",
-          },
-          {
-              title:"Item 4",
-              text: "Text 4",
-          },
-          {
-              title:"Item 5",
-              text: "Text 5",
-          },
-        ]
-export default function Accueil({navigation}){
+		require('../../assets/imgs/1.jpg'),
+    require('../../assets/imgs/2.jpg')
+	];
+
+const IconPart = ({name}) => <Ionicons name={name} size={30} color={color.primary}/>
+
+export default function Accueil({navigation, route}){
 	const [carousel, setCarousel] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [personne, setPersone] = useState(null);
+
+	const [visible, setVisible] = useState(false);
+
+	const onToggleSnackBar = () => setVisible(!visible);
+	const onDismissSnackBar = () => setVisible(false);
+
+	useEffect(() => {
+		setVisible(true)
+		setPersone(route.params?.personne);
+		return () => console.log('Um mount')
+	}, [])
 	const Page = () => {
         return (
             <Pagination
@@ -71,40 +69,100 @@ export default function Accueil({navigation}){
         );
     }
 	return(
-		<View>
-			<Head screen={"Accueil"} n={navigation}/>
-			<View style={{...styles.container_card_main, justifyContent: 'center', alignItems: "center"}}>
-          <Carousel
-            layout={'tinder'}
-						layoutCardOffset={9}
-						ref={ref => setCarousel(ref)}
-            onSnapToItem = { index => setActiveIndex(index) }
-            data={carouselItems}
-            sliderWidth={wp('100%')}
-            itemWidth={wp('100%')}
-            renderItem={_renderItem}
-					 />
-					 <Text style={{fontSize: 18, fontWeight: 'bold', padding: 15}}>Bienvenue Pauline</Text>
-      </View>
+		<View style={styles.container}>
+			<ScrollView>
+				<View>
+					<Head screen={"Accueil"} n={navigation}/>
+					<View style={{...styles.container_card_main, justifyContent: 'center', alignItems: "center"}}>
+		          <Carousel
+		            layout={'tinder'}
+								layoutCardOffset={9}
+								ref={ref => setCarousel(ref)}
+		            onSnapToItem = { index => setActiveIndex(index) }
+		            data={carouselItems}
+		            sliderWidth={wp('100%')}
+		            itemWidth={wp('100%')}
+		            renderItem={_renderItem}
+								//loop={false}
+		            autoplay={true}
+		            autoplayInterval={5000}
+		            autoplayDelay={1000}
+							 />
+							 <Text style={{fontSize: 18, fontWeight: 'bold', padding: 15}}>Bienvenue {personne?.nom}</Text>
+		      </View>
+					<View style={styles.fatherSurface}>
+						<View style={styles.row}>
+								<Surface style={styles.surface}>
+									<IconPart name='logo-usd'/>
+									<Text>Finances</Text>
+								</Surface>
+								<Surface style={styles.surface}>
+									<IconPart name='musical-notes-outline'/>
+									<Text>Médiathèques</Text>
+								</Surface>
+						</View>
+						<View style={styles.row}>
+								<Surface style={styles.surface}>
+									<IconPart name='logo-react'/>
+									<Text>Activités Paroissiales</Text>
+								</Surface>
+								<Surface style={styles.surface}>
+									<IconPart name='restaurant-outline'/>
+									<Text>Sainte Cène</Text>
+								</Surface>
+						</View>
+						<View style={styles.row}>
+								<Surface style={styles.surface}>
+									<IconPart name='stopwatch-outline'/>
+									<Text>Rendez-Vous</Text>
+								</Surface>
+								<Surface style={styles.surface}>
+									<IconPart name='cog-outline'/>
+									<Text>Mes Paramètres</Text>
+								</Surface>
+						</View>
+					</View>
+				</View>
+			</ScrollView>
 
-
+			<Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Fermer',
+          onPress: () => {
+            // Do something
+          },
+        }}>
+        Ravie de vous revoir, vous etes connecté !
+      </Snackbar>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: wp('8%'),
-    flex: 1
+		flex: 1,
+    justifyContent: 'space-between',
   },
 	surface: {
 	 padding: 8,
 	 height: 80,
-	 width: 80,
+	 width: wp('45%'),
 	 borderRadius: 10,
 	 alignItems: 'center',
 	 justifyContent: 'center',
 	 elevation: 6,
+ },
+ fatherSurface: {
+	 paddingHorizontal:  wp('3%'),
+	 paddingTop: hp('2%')
+ },
+ row: {
+	 flexDirection: 'row',
+	 justifyContent: 'space-between',
+	 alignItems: 'center',
+	 paddingBottom: hp('2%')
  },
  container_card_main: {
 	 backgroundColor: 'white',
