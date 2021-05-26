@@ -82,18 +82,18 @@ export function StackNav(){
           headerTransparent: false
         }}
       />
-	  <Stack.Screen 
-	        	name="Profil" 
-	        	component={Profil} 
-	        	options={{ 
+	  <Stack.Screen
+	        	name="Profil"
+	        	component={Profil}
+	        	options={{
 	        		title: "Profil",
 	        		headerTransparent: false
 	        	}}
 	        />
-			<Stack.Screen 
-	        	name="LectureBiblique" 
-	        	component={LectureBiblique} 
-	        	options={{ 
+			<Stack.Screen
+	        	name="LectureBiblique"
+	        	component={LectureBiblique}
+	        	options={{
 	        		title: "Lecture biblique",
 	        		headerTransparent: false
 	        	}}
@@ -101,7 +101,7 @@ export function StackNav(){
 			<Stack.Screen
 				name="DetailLecture"
 				component={DetailLecture}
-				options={({route})=> ({ 
+				options={({route})=> ({
 	        		title: 'Lecture du '+route.params.param.jour,
 	        		headerTransparent: false
 	        	})}
@@ -122,7 +122,7 @@ export function StackNav(){
           headerTransparent: false
         }}
       />
-    
+
     </Stack.Navigator>
   )
 }

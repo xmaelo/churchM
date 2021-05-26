@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, ScrollView, useWindowDimensions, StyleSheet, StatusBar, Image, TouchableOpacity, BackHandler } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {logo, sukuna } from "../assets"
+import {logo } from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
@@ -55,7 +55,7 @@ const FirstRoute = () => (
 					<Text style={{marginRight: 65, fontSize: 17}}>MENDONG</Text>
 				</View>
 			</View>
-	  </ScrollView> 
+	  </ScrollView>
 	</View>
 );
 
@@ -201,7 +201,7 @@ export default function Profil({navigation}){
 			<Head screen={"Mon Profile"} n={navigation}/>
 			<View style={styles.display}>
 				<Text h2> Mon Profil</Text>
-				<Image source={sukuna} style={styles.img}/>
+				<Image source={logo} style={styles.img}/>
 			</View>
 			<TabView
 			  renderTabBar={renderTabBar}
@@ -224,8 +224,8 @@ const styles = StyleSheet.create({
 	justifyContent: 'space-around',
 	alignItems: 'center',
 },
-img: { 
-	width: wp("23%"), 
+img: {
+	width: wp("23%"),
 	height: hp("11%")
 },
 display: {
@@ -250,4 +250,3 @@ textStyle: {
 	justifyContent: 'space-between',
 }
 })
-

@@ -11,6 +11,8 @@ import * as Progress from 'react-native-progress';
 import PureChart from 'react-native-pure-chart';
 import { ListItem, Icon } from 'react-native-elements'
 import FAB from 'react-native-fab'
+import {finance} from '../statefull/finance'
+import { showChart2 } from '../constante';
 
 const list = [
   {
@@ -26,31 +28,31 @@ const list = [
 let sampleData = [
     {
     	seriesName: 'test2',
-		data:[
-	      {x: 'JAN', y: 30},
-	      {x: 'FEV', y: 200},
-	      {x: 'MAR', y: 170},
-	      {x: 'AVR', y: 100},
-	      {x: 'MAI', y: 48},
-	      {x: 'JUN', y: 89},
-	      {x: 'JUL', y: 10},
-	      {x: 'AOU', y: 50},
-	      {x: 'SEP', y: 34},
-	      {x: 'OCT', y: 130},
-	      {x: 'NOV', y: 9},
-	      {x: 'DEC', y: 92}
-	    ],
+		  data:[],
 	    color: color.primary
     }
   ]
-  
+
 export default function Finaces({navigation}){
 
 	const [percent1, setPercent1] = useState(0)
-	useEffect(()=>{
-		setPercent1(0.8)
-		setPercent1(0.7)
-	}, [])
+  const [chart, setChart] =  useState(sampleData);
+  const [p1, setP1] =  useState(0);
+  const [p2, setP2] =  useState(0);
+  const [p0, setA] =  useState(0);
+
+  useEffect(() => {
+    (async()  => {
+      const autreFinaces = await finance.getAutreEntreeUser();
+      const d = showChart2(autreFinaces);
+      console.log('chart chart', d)
+      setChart(d.chart);
+      setP1(d.p1);
+      setP2(d.p2);
+      setA(d.p0);
+    })();
+    return;
+  }, [])
 
 	return(
 		<View>
@@ -62,39 +64,39 @@ export default function Finaces({navigation}){
 							<Text style={{fontSize: 15}} >Mes Contributions et Dons</Text>
 						</View>
 						<View style={styles.ProgressBar}>
-							<ProgressBar 
-								progress={0.63} 
-								color={"#C1C1C1"} 
+							<ProgressBar
+								progress={0.63}
+								color={"#C1C1C1"}
 								style={{backgroundColor: "#394247"}}
 							/>
 						</View>
 						<View style={styles.circle}>
 							<View style={styles.progressCircle} >
 				  				<Text style={styles.titleP}>Mois actuel</Text>
-						  		<Progress.Circle 
-									size={wp('25%')} 
-									progress={percent1} 
-									showsText 
+						  		<Progress.Circle
+									size={wp('25%')}
+									progress={p0}
+									showsText
 									formatText={(val) =>  parseInt(val*100) +"%"}
 									color={color.green}
 								/>
 						    </View>
 						    <View style={styles.progressCircle} >
 				  				<Text style={styles.titleP}>Trimestre</Text>
-						  		<Progress.Circle 
-									size={wp('29%')} 
-									progress={percent1} 
-									showsText 
+						  		<Progress.Circle
+									size={wp('29%')}
+									progress={p1}
+									showsText
 									formatText={(val) =>  parseInt(val*100) +"%"}
 									color={color.red}
 								/>
 						    </View>
 						    <View style={styles.progressCircle} >
 				  				<Text style={styles.titleP}>Année entière</Text>
-						  		<Progress.Circle 
-									size={wp('25%')} 
-									progress={percent1} 
-									showsText 
+						  		<Progress.Circle
+									size={wp('25%')}
+									progress={p2}
+									showsText
 									formatText={(val) =>  parseInt(val*100) +"%"}
 									color={color.primary}
 								/>
@@ -105,23 +107,23 @@ export default function Finaces({navigation}){
 							<Text style={{fontSize: 15}} >Evoluation de mes contributions</Text>
 						</View>
 						<View style={styles.ProgressBar}>
-							<ProgressBar 
-								progress={0.53} 
-								color={"#C1C1C1"} 
+							<ProgressBar
+								progress={0.53}
+								color={"#C1C1C1"}
 								style={{backgroundColor: "#394247"}}
 							/>
 						</View>
 						<View style={{paddingTop: hp('5%'), paddingHorizontal: wp('2%')}} >
-							<PureChart data={sampleData} type='bar' height={hp('30%')} />
+							<PureChart data={chart ? chart : sampleData} type='bar' height={hp('30%')} />
 						</View>
 
 						<View style={{...styles.text, paddingTop: hp('3%')}} >
 							<Text style={{fontSize: 15}} >Faire un Don</Text>
 						</View>
 						<View style={styles.ProgressBar}>
-							<ProgressBar 
-								progress={0.83} 
-								color={"#C1C1C1"} 
+							<ProgressBar
+								progress={0.83}
+								color={"#C1C1C1"}
 								style={{backgroundColor: "#394247"}}
 							/>
 						</View>
@@ -148,12 +150,12 @@ export default function Finaces({navigation}){
 				</View>
 				<View style={{height: 60}} />
 			</ScrollView>
-			<FAB 
-		  		buttonColor={color.primary} 
-		  		iconTextColor="#FFFFFF" 
-		  		onClickAction={() => {console.log("FAB pressed")}} 
-		  		visible={true} 
-		  		iconTextComponent={<Ionicons name="add"/>} 
+			<FAB
+		  		buttonColor={color.primary}
+		  		iconTextColor="#FFFFFF"
+		  		onClickAction={() => {console.log("FAB pressed")}}
+		  		visible={true}
+		  		iconTextComponent={<Ionicons name="add"/>}
 		  	/>
 		</View>
 	)
@@ -184,4 +186,3 @@ const styles = StyleSheet.create({
     paddingTop: hp('2%')
    }
 })
-

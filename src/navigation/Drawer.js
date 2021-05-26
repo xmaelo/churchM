@@ -116,9 +116,9 @@ export default function Drawer() {
           }}
         />
 
-        <ARG__.Screen 
-        	name="LectureBiblique" 
-        	component={LectureBiblique} 
+        <ARG__.Screen
+        	name="LectureBiblique"
+        	component={LectureBiblique}
         	options={{
 	           title: ()=><Title display={"Lecture Biblique"}/>,
 	           drawerIcon: ({focused}) => (

@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input } from 'react-native-elements';
 import { Button, Snackbar  } from 'react-native-paper';
 import { themes, color } from '../color';
-import {api} from '../statefull/api'
+import {login} from '../statefull/login'
 
 export default function LoginScreen({navigation}){
 
@@ -30,7 +30,8 @@ export default function LoginScreen({navigation}){
 			 try {
 				 if(!loading){
 					 setLoan(true)
-				 	 const personne = await api.login(username, password);
+				 	 const personne = await login.auth(username, password);
+					 setLoan(false)
 					 navigation.navigate('Accueil', {personne: personne});
 				 }
 			 } catch (e) {

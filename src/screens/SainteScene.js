@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
+import { showChart } from '../constante';
 import Head from '../components/Head'
 import FAB from 'react-native-fab'
 import { LinearProgress } from 'react-native-elements';
@@ -13,6 +14,7 @@ import * as Progress from 'react-native-progress';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { DataTable } from 'react-native-paper';
 import PureChart from 'react-native-pure-chart';
+import {finance} from '../statefull/finance'
 
 let n = null;
 
@@ -20,145 +22,110 @@ let n = null;
 let sampleData = [
         {
         	seriesName: 'test2',
-			data:[
-		      {x: 'JAN', y: 30},
-		      {x: 'FEV', y: 200},
-		      {x: 'MAR', y: 170},
-		      {x: 'AVR', y: 100},
-		      {x: 'MAI', y: 48},
-		      {x: 'JUN', y: 89},
-		      {x: 'JUL', y: 10},
-		      {x: 'AOU', y: 50},
-		      {x: 'SEP', y: 34},
-		      {x: 'OCT', y: 130},
-		      {x: 'NOV', y: 9},
-		      {x: 'DEC', y: 92}
-		    ],
+    			data:[
+            {x: 'JAN', y: 0},
+            {x: 'FEV', y: 0},
+            {x: 'MAR', y: 0},
+            {x: 'AVR', y: 0},
+            {x: 'MAI', y: 0},
+            {x: 'JUN', y: 0},
+            {x: 'JUL', y: 0},
+            {x: 'AOU', y: 0},
+            {x: 'SEP', y: 0},
+            {x: 'OCT', y: 0},
+            {x: 'NOV', y: 0},
+            {x: 'DEC', y: 0}
+    		    ],
 		    color: color.primary
 	    }
   ]
-const FirstRoute = () => (
-  	<View style={{ flex: 1}}>
-  		<ScrollView>
-	  		<View style={{
-	  				...styles.DataTable,
-	  				...styles.container_card_main
-	  			}}
-	  		>
-	  			<DataTable>
-	  				<DataTable.Row>
-	  					<View style={{justifyContent: "center", alignItems: "center"}} >
-					      	<Text style={{
-					      			...styles.datTitle,
-					      			color: color.primary
-					      		}}
-					      	>
-					      		Janvier 2021
-					      	</Text>
-					    </View>
-				    </DataTable.Row>
-				    <DataTable.Header>
-				      	<DataTable.Title>
-				      		<Text style={styles.datTitle}>Jour</Text>
-				      	</DataTable.Title>
-				      	<DataTable.Title numeric>
-				      		<Text style={styles.datTitle}>Type</Text>
-				      	</DataTable.Title>
-				      	<DataTable.Title numeric>
-				      		<Text style={styles.datTitle}>Montant</Text>
-				      	</DataTable.Title>
-				    </DataTable.Header>
+  let prepas = [];
+const FirstRoute = () => {
+  return(
+    	<View style={{ flex: 1}}>
+    		<ScrollView>
+          {prepas && prepas.length == 0 ?
+    	  		<View style={{
+    	  				...styles.DataTable,
+    	  				...styles.container_card_main,
+                height: hp('10%'),
+                alignItems: 'center',
+                justifyContent: 'center'
+    	  			}}
+    	  		>
+              <Text style={{color: color.primary}} h4>Aucune Contribution Faite !</Text>
+    	  		</View>
 
-				    <DataTable.Row>
-				      	<DataTable.Cell>01</DataTable.Cell>
-				      	<DataTable.Cell numeric>Offrande</DataTable.Cell>
-				      	<DataTable.Cell numeric>5000 fcfa</DataTable.Cell>
-				    </DataTable.Row>
+            :
+            <View>
+              {prepas.map((allprepa, i) =>
+        	  		<View style={{
+        	  				...styles.DataTable,
+        	  				...styles.container_card_main
+        	  			}}
+        	  		>
+        	  			<DataTable>
+        	  				<DataTable.Row>
+        	  					<View style={{justifyContent: "center", alignItems: "center"}} >
+        					      	<Text style={{
+        					      			...styles.datTitle,
+        					      			color: color.primary
+        					      		}}
+        					      	>
+        					      		{allprepa.intitule}
+        					      	</Text>
+        					    </View>
+        				    </DataTable.Row>
+        				    <DataTable.Header>
+        				      	<DataTable.Title>
+        				      		<Text style={styles.datTitle}>Jour</Text>
+        				      	</DataTable.Title>
+        				      	<DataTable.Title numeric>
+        				      		<Text style={styles.datTitle}>Type</Text>
+        				      	</DataTable.Title>
+        				      	<DataTable.Title numeric>
+        				      		<Text style={styles.datTitle}>Montant</Text>
+        				      	</DataTable.Title>
+        				    </DataTable.Header>
 
-				    <DataTable.Row>
-				      	<DataTable.Cell>07</DataTable.Cell>
-				      	<DataTable.Cell numeric>Dons</DataTable.Cell>
-				      	<DataTable.Cell numeric>7000 fcfa</DataTable.Cell>
-				    </DataTable.Row>
-
-				    <DataTable.Pagination
-				      page={1}
-				      numberOfPages={1}
-				      onPageChange={page => {
-				        console.log(page);
-				      }}
-				      label="1-1 of 1"
-				    />
-				</DataTable>
-	  		</View>
-
-	  		<View style={{
-	  				...styles.DataTable,
-	  				...styles.container_card_main
-	  			}}
-	  		>
-	  			<DataTable>
-	  				<DataTable.Row>
-	  					<View style={{justifyContent: "center", alignItems: "center"}} >
-					      	<Text style={{
-					      			...styles.datTitle,
-					      			color: color.primary
-					      		}}
-					      	>
-					      		Fevrier 2021
-					      	</Text>
-					    </View>
-				    </DataTable.Row>
-				    <DataTable.Header>
-				      	<DataTable.Title>
-				      		<Text style={styles.datTitle}>Jour</Text>
-				      	</DataTable.Title>
-				      	<DataTable.Title numeric>
-				      		<Text style={styles.datTitle}>Type</Text>
-				      	</DataTable.Title>
-				      	<DataTable.Title numeric>
-				      		<Text style={styles.datTitle}>Montant</Text>
-				      	</DataTable.Title>
-				    </DataTable.Header>
-
-				    <DataTable.Row>
-				      	<DataTable.Cell>01</DataTable.Cell>
-				      	<DataTable.Cell numeric>Offrande</DataTable.Cell>
-				      	<DataTable.Cell numeric>5000 fcfa</DataTable.Cell>
-				    </DataTable.Row>
-
-				    <DataTable.Row>
-				      	<DataTable.Cell>07</DataTable.Cell>
-				      	<DataTable.Cell numeric>Dons</DataTable.Cell>
-				      	<DataTable.Cell numeric>7000 fcfa</DataTable.Cell>
-				    </DataTable.Row>
-
-				    <DataTable.Pagination
-				      page={1}
-				      numberOfPages={1}
-				      onPageChange={page => {
-				        console.log(page);
-				      }}
-				      label="1-1 of 1"
-				    />
-				</DataTable>
-	  		</View>
-		</ScrollView>
-	  	<FAB
-	  		buttonColor={color.primary}
-	  		iconTextColor="#FFFFFF"
-	  		onClickAction={() => {console.log("FAB pressed"); n.navigate("Preparation")}} 
-	  		visible={true}
-	  		iconTextComponent={<Ionicons name="add"/>}
-	  	/>
-  	</View>
-);
+                    {allprepa.entreePreparation.map((entreePrepa, k)=>
+          				    <DataTable.Row key={k}>
+          				      	<DataTable.Cell>{entreePrepa.createdAt? new Date(entreePrepa.createdAt).getDate() : ''}</DataTable.Cell>
+          				      	<DataTable.Cell numeric>{entreePrepa?.intitule}</DataTable.Cell>
+          				      	<DataTable.Cell numeric>{entreePrepa?.montant} fcfa</DataTable.Cell>
+          				    </DataTable.Row>
+                    )}
+        				    <DataTable.Pagination
+        				      page={1}
+        				      numberOfPages={allprepa.entreePreparation ? (allprepa.entreePreparation.length / 5) : 1}
+        				      onPageChange={page => {
+        				        console.log(page);
+        				      }}
+        				      label={"1-1 of "+1}
+        				    />
+        				  </DataTable>
+        	  		</View>
+              )}
+            </View>
+          }
+  		</ScrollView>
+  	  	<FAB
+  	  		buttonColor={color.primary}
+  	  		iconTextColor="#FFFFFF"
+  	  		onClickAction={() => {console.log("FAB pressed"); n.navigate("Preparation")}}
+  	  		visible={true}
+  	  		iconTextComponent={<Ionicons name="add"/>}
+  	  	/>
+    	</View>
+    );
+};
 
 const SecondRoute = () => {
 	const [percent, setPercent] = useState(0)
 	//setPercent(0)
 	useEffect(()=>{
-		setPercent(0.7)
+		setPercent((parseInt(new Date(Date.now()).getMonth())/12))
+    console.log('personne widthPercentageToDP====>>>', percent)
 	}, [])
 	return(
 	  <View style={{ flex: 1}}>
@@ -175,7 +142,7 @@ const SecondRoute = () => {
 
 		    <View style={styles.progressCircle} >
 		    	<Text style={styles.titleP}>Evolution de mes préparations</Text>
-		    	<Progress.Bar progress={0.6} width={220} />
+		    	<Progress.Bar progress={percent} width={220} />
 		    	<View style={{paddingHorizontal: wp('6%')}}>
 					<PureChart data={sampleData} type='bar' height={hp('30%')} />
 		    	</View>
@@ -208,10 +175,13 @@ const renderTabBar = props => (
 
 
 export default function SainteScene({navigation}){
+
 	n = navigation;
 	const layout = useWindowDimensions();
 
     const [index, setIndex] = React.useState(0);
+    const [chart1, setChart1] = React.useState([]);
+    const [prepass, setPrepa] = React.useState([]);
     const [routes] = React.useState([
     	{ key: 'first', title: 'Historique' },
     	{ key: 'second', title: 'Evolution' },
@@ -221,6 +191,30 @@ export default function SainteScene({navigation}){
     	first: FirstRoute,
     	second: SecondRoute,
     });
+
+    useEffect(() => {
+      (async()  => {
+        const preparations = await finance.getIdPreparations();
+        if(preparations){
+          let rangePrepa = [];
+          for (let i = 0; i < preparations.length; i++) {
+               let historique = await finance.getHistorique(preparations[i].id);
+               historique = historique || [{intitule: '', montant: 0, createAt: new Date(Date.now())}];
+               rangePrepa.push({
+                    'id': preparations[i].id,
+                    'intitule': preparations[i].intitule,
+                    'entreePreparation': historique
+                });
+            }
+            prepas = rangePrepa;
+            setPrepa(prepas);
+            sampleData = showChart(rangePrepa);
+            setChart1(sampleData);
+        }
+      })();
+      return;
+    }, [])
+
 	return(
 		<>
 			<Head screen={"Sainte Cène"} n={navigation}/>
@@ -266,7 +260,7 @@ const styles = StyleSheet.create({
     marginLeft: hp('2%'),
     marginRight: hp('2%'),
     borderRadius: 10,
-    height: hp('35%'),
+    minHeight: hp('5%'),
     marginTop: hp('2%'),
     shadowColor: "#000",
     shadowOffset: {
