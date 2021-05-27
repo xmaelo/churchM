@@ -14,7 +14,6 @@ import Finaces from '../screens/Finaces'
 import SainteScene from '../screens/SainteScene'
 import Profil from '../screens/Profil'
 import Parametres from '../screens/Parametres'
-import RendezVous from '../screens/RendezVous'
 import ListChatRoom from '../screens/ListChatRoom'
 import { Text, Input, Button, Badge } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -24,6 +23,7 @@ import LectureBiblique from '../screens/LectureBiblique';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import {StackNav} from '../navigation';
+import Rendezvous from '../screens/Rendezvous';
 
 const ARG__ = createDrawerNavigator();
 
@@ -160,8 +160,8 @@ export default function Drawer() {
         />
 
         <ARG__.Screen
-        	name="RendezVous"
-        	component={RendezVous}
+        	name="Rendezvous"
+        	component={Rendezvous}
         	options={{
              title: ()=><Title display={"Rendez-Vous"}/>,
              drawerIcon: ({focused}) => (

@@ -18,6 +18,8 @@ import AnnonceDetails from '../screens/AnnonceDetails';
 import Profil from '../screens/Profil';
 import LectureBiblique from '../screens/LectureBiblique';
 import DetailLecture from '../screens/DetailLecture';
+import ActivitesDetails from '../screens/ActivitesDetails';
+import Rendezvous from '../screens/Rendezvous';
 
 
 const Stack = createStackNavigator();
@@ -67,8 +69,24 @@ export function StackNav(){
         }}
   />
   <Stack.Screen
+    name="Rendezvous"
+    component={Rendezvous}
+    options={{
+          title: null,
+          headerTransparent: true
+        }}
+  />
+  <Stack.Screen
     name="AnnonceDetails"
     component={AnnonceDetails}
+    options={({route})=> ({
+          title: route.params.param.title,
+          headerTransparent: false
+        })}
+  />
+  <Stack.Screen
+    name="ActivitesDetails"
+    component={ActivitesDetails}
     options={({route})=> ({
           title: route.params.param.title,
           headerTransparent: false

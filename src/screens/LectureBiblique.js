@@ -127,7 +127,7 @@ export default function LectureBiblique({navigation}){
 				<ScrollView style={{ flex: 1}}>
 				{
 					list.map((l, i) => (
-					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l})}>
+					<ListItem style={{backgroundColor: 'transparent'}} key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l})}>
 						<ListItem.Content>
 						<View style={styles.textStyle}>
 							<Text>{l.jour}</Text>
