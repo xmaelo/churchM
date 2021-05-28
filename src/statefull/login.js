@@ -29,6 +29,8 @@ class login_check{
     const userInfo = await this.getUserInfo(decode?.username);
     const personne = await this.getPersonne(userInfo.id);
     user.setUserId(userInfo.id);
+    user.setUserOjt(decode);
+    user.setUserInfos(personne);
     return personne;
   }
 

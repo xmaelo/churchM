@@ -3,13 +3,21 @@ const apibaselink = 'https://api2.eec-messamokolo.net/api';
 
 let userId = null;
 let token = null;
+let userInfo = {};
 
+let userObj = {};
 class user_class {
   getUserId = () => userId;
   setUserId = (id) =>{ userId = id};
 
   getToken = () => token;
   setToken = (t) => {token = t};
+
+  getUserInfo = () => userInfo;
+  setUserInfos = (u) => {userInfo = u};
+
+  setUserOjt = (u) => {userObj = u};
+  get = () => userObj;
 }
 
 export const user = new user_class();
@@ -35,15 +43,15 @@ export function request_post(body, route){
   )
   return r;
 }
-export function request_get(route){
+export function request_get(route, cle){
   console.log('route route route', route)
   const r = fetch(apibaselink+route, {
        method: 'GET',
        headers: {
          'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
-         'cle': 'ame-index',
+         'cle': cle ? cle : 'ame-index',
          'database': 'churchv3M_2021',
-         'authorization': 'Bearer '+user.getToken(),
+         'authorization': !cle ? 'Bearer '+user.getToken(): null,
          'Content-Type': 'application/json'
     }
   }).then(

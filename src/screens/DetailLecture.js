@@ -9,13 +9,13 @@ import { themes } from '../color';
 import Head from '../components/Head'
 
 export default function DetailLecture({route}){
-    const data = route.params.param;
+    const data = route.params?.param;
 	return(
 		<ScrollView style={{ flex: 1}}>
 			<View>
 				{/* <Head screen={data.title} n={navigation}/> */}
                 {
-                    data.passages.map(el => 
+                    data && data.passages.map(el => 
                         <View style={styles.texte}>
                             <Text style={styles.passage}>{el.passage}</Text>
                             <Text style={styles.contenu}>{el.contenu}</Text>
@@ -50,4 +50,3 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   }
 })
-

@@ -31,19 +31,19 @@ export default function Rendezvous({navigation}){
 			date: "20/05/2021"
 		},
     ];
-    
+
 	return(
 		<View style={{ flex: 1}}>
 			<Head screen={"Rendez-Vous"} n={navigation}/>
 				<ScrollView style={{ flex: 1}}>
 				{
 					rdv.map((l, i) => (
-					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l})}>
+					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: 1})}>
 						<ListItem.Content>
 						<View style={styles.textStyle}>
 							<View>
-                                {(l.etat == "EN ATTENTE")? <Text style={{fontWeight: 'bold', color: 'blue'}}>{l.etat}</Text>:<Text style={{fontWeight: 'bold', color: 'green'}}>{l.etat}</Text>}
-                                <Text>{l.raison}</Text>
+                  {(l.etat == "EN ATTENTE")? <Text style={{fontWeight: 'bold', color: 'blue'}}>{l.etat}</Text>:<Text style={{fontWeight: 'bold', color: 'green'}}>{l.etat}</Text>}
+                  <Text>{l.raison}</Text>
 							</View>
 							<View style={{marginLeft: 200}}>
                                 {
@@ -57,7 +57,7 @@ export default function Rendezvous({navigation}){
                                 color={color.green}
                             />
                                 }
-								
+
 							</View>
 						</View>
 						</ListItem.Content>
@@ -66,10 +66,10 @@ export default function Rendezvous({navigation}){
 				}
 				</ScrollView>
 
-                <FAB buttonColor={color.primary} 
-		  		iconTextColor="#FFFFFF" 
-		  		onClickAction={() => {console.log("FAB pressed")}} 
-		  		visible={true} 
+                <FAB buttonColor={color.primary}
+		  		iconTextColor="#FFFFFF"
+		  		onClickAction={() => {console.log("FAB pressed")}}
+		  		visible={true}
 		  		iconTextComponent={<Ionicons name="add"/>}/>
 		</View>
 	)
@@ -88,4 +88,3 @@ const styles = StyleSheet.create({
     },
   thecolor: {color: 'green'}
 })
-
