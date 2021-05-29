@@ -13,10 +13,14 @@ import { Button, TextInput, Switch   } from 'react-native-paper';
 import {profil} from '../statefull/profil'
 import { Avatar } from 'react-native-elements';
 import Head from '../components/Head';
+import ImagePicker from 'react-native-image-crop-picker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const OnInput = ({d, l, v, f}) => <TextInput label={d} mode={"outlined"} value={v} style={{height: 35}} onChangeText={text => f(text, l)}/>
 const FirstRoute = ({userInfo, onUpdate}) => {
 	const [edit, setSate] = useState(false)
+	const [pick1, setShowPic1] = useState(false)
+	const [pick2, setShowPic2] = useState(false)
   return(
 		<View style={{ flex: 1}}>
 			<ScrollView>
@@ -68,12 +72,50 @@ const FirstRoute = ({userInfo, onUpdate}) => {
 							<View>
 								<OnInput d={'Nom'} l={'nom'} v={userInfo.nom} f={onUpdate}/>
 								<OnInput d={'Prenom'} l={'prenom'} v={userInfo.prenom} f={onUpdate}/>
-								<OnInput d={'Lieu de Naissance'} l={'datenaiss'} v={userInfo.datenaiss} f={onUpdate}/>
-								<OnInput d={'Date de Naissance'} l={'lieunaiss'} v={userInfo.lieunaiss} f={onUpdate}/>
+								<OnInput d={'Lieu de Naissance'} l={'lieunaiss'} v={userInfo.lieunaiss} f={onUpdate}/>
+
+								<View>
+										<TextInput
+											label={"Date de Naissance"}
+											mode={"outlined"}
+											value={userInfo.datenaiss ? new Date(userInfo.datenaiss).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
+											style={{height: 35}}
+											onFocus = {()=>setShowPic2(true)}
+											onBlur = {()=>setShowPic2(true)}
+											//onChangeText={text => f(text, 'dateInscription')}
+										/>
+										<DateTimePickerModal
+											testID="dateTimePicker"
+											display={"calendar"}
+											isVisible={pick2}
+											date={userInfo.datenaiss ? new Date(userInfo.datenaiss) :  new Date()}
+											onConfirm={(date)=>{setShowPic2(false); onUpdate(date, 'datenaiss'); console.log("nnnnnnn", userInfo.datenaiss)}}
+											onCancel={()=>setShowPic2(false)}
+										/>
+								</View>
+
 								<OnInput d={'Tel 1'} l={'telephone'} v={userInfo.telephone} f={onUpdate}/>
 								<OnInput d={'Tel 2'} l={'telephone2'} v={userInfo.telephone2} f={onUpdate}/>
 								<OnInput d={'Email'} l={'email'} v={userInfo.email} f={onUpdate}/>
-								<OnInput d={"Date d'Adhésion"} l={'dateInscription'} v={userInfo.dateInscription} f={onUpdate}/>
+								<View>
+										<TextInput
+											label={"Date d'Adhésion"}
+											mode={"outlined"}
+											value={userInfo.dateInscription ? new Date(userInfo.dateInscription).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
+											style={{height: 35}}
+											onFocus = {()=>setShowPic1(true)}
+											onBlur = {()=>setShowPic1(true)}
+											//onChangeText={text => f(text, 'dateInscription')}
+										/>
+										<DateTimePickerModal
+											testID="dateTimePicker"
+											display={"calendar"}
+											isVisible={pick1}
+											date={userInfo.dateInscription ? new Date(userInfo.dateInscription) :  new Date()}
+											onConfirm={(date)=>{setShowPic1(false); onUpdate(date, 'dateInscription'); console.log("nnnnnnn", userInfo.dateInscription)}}
+											onCancel={()=>setShowPic1(false)}
+										/>
+								</View>
 								<OnInput d={'Genre'} l={'genre'} v={userInfo.genre} f={onUpdate}/>
 								<OnInput d={"Zone d'habitation"} l={'zone'} v={userInfo.zone} f={onUpdate}/>
 							</View>
@@ -376,6 +418,20 @@ const lab2 = {
 export default function Profil({navigation}){
 	const layout = useWindowDimensions();
 
+	const onPickImage = () => {
+    return ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+			includeBase64: true,
+      cropping: true
+    }).then(async image => {
+			console.log('image image image', image)
+			let res =  await profil.postPhoto(image);
+			console.log('resssssssssssssssssssss', res);
+      return
+    })
+  }
+
 	const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
     	{ key: 'first', title: 'Info. Perso' },
@@ -419,10 +475,9 @@ export default function Profil({navigation}){
 					size={wp("23%")}
 					rounded
 				  source={logo}
-					icon={()=><Ionicons name="create" size={25} color={color.primary}/>}
-					onPress={() => console.log("Works!")}
+					onPress={() => onPickImage()}
 				  >
-				  <Avatar.Accessory  />
+				  <Avatar.Accessory style={{width: 100}} />
 				</Avatar>
 
 			</View>

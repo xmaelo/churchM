@@ -3,7 +3,7 @@ import {request_get, request_post, user} from './query';
 class finance_api {
   getUserPreparation = async() => {
       try {
-        let res = await request_get("/preparations?personne="+user.getUserId())
+        let res = await request_get("/preparations?personne="+user.getUserId(), 'preparation-index')
         console.log('>>> result getUserPreparation', res['hydra:member'])
         return res['hydra:member'];//hydra:member
       } catch (error) {
@@ -13,7 +13,7 @@ class finance_api {
 
   getHistorique = async(idPrepa) => {
     try {
-      let res = await request_get("/personnes/preparationbyfidele/"+user.getUserId()+"/"+idPrepa)
+      let res = await request_get("/personnes/preparationbyfidele/"+user.getUserId()+"/"+idPrepa, 'preparation-index')
       console.log('>>> result getHistorique', res["hydra:member"])
       return res["hydra:member"];//hydra:member
     } catch (error) {
@@ -23,9 +23,9 @@ class finance_api {
 
   getIdPreparations = async() => {
     try {
-      let res = await request_get("/personnes/allpreparationid")
+      let res = await request_get("/personnes/allpreparationid", 'preparation-index')
       console.log('>>> result getIdPreparations', res)
-      return res["hydra:member"];//hydra:member
+      return res;//hydra:member
     } catch (error) {
       console.error(error);
     }
@@ -33,7 +33,7 @@ class finance_api {
 
    getTypeContribution = async() => {
     try {
-      let res = await request_get("/type_contributions?page="+user.getUserId())
+      let res = await request_get("/type_contributions?page="+user.getUserId(), 'preparation-index')
       console.log('>>> result getTypeContribution', res)
       return res;
     } catch (error) {

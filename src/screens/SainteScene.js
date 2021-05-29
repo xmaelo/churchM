@@ -63,6 +63,7 @@ const FirstRoute = () => {
         	  				...styles.DataTable,
         	  				...styles.container_card_main
         	  			}}
+                  key={i}
         	  		>
         	  			<DataTable>
         	  				<DataTable.Row>

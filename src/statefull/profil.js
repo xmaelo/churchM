@@ -1,4 +1,4 @@
-import {request_get, request_post, user} from './query';
+import {request_get, request_post, user, request_file, request_put} from './query';
 
 class onInfos{
    userData = () => user.getUserInfo();
@@ -14,6 +14,49 @@ class onInfos{
       } catch (error) {
         console.log('Erreur de Récupération des Regions',error);
       }
+  }
+
+  postFotos = async (base) => {
+    try {
+       let tofd =  await request_put(base, "/personnes/"+user.getUserId(), 'fidele-add');
+    } catch (error) {
+      console.log('Erreur de Récupération des Regions',error);
+    }
+  }
+
+
+  convertBase64ToBlob = (img) => {
+    const sliceSize = 512;
+    const byteCharacters = window.atob(img.data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      byteArrays.push(new Uint8Array(byteNumbers));
+    }
+    return new Blob(byteArrays, { type: img.mime });
+  }
+
+  postPhoto = async(ob) => {
+    try{
+      let bl = await this.convertBase64ToBlob(ob)
+      let ext = ob.path.split('.')
+      ext = ext[ext.length-1];
+      console.log('exxxxxxxxxxxxxxxxxxxx', user.getUserInfo().code)
+      let formdata = new FormData();
+      formdata.append('image', bl, user.getUserInfo().code+'.'+ext);
+      let res =  await request_file(formdata, "/personnes/photo", 'photo-edit');
+      return res;
+    }catch(e){
+      console.log('error pot photo', e)
+    }
+
   }
 }
 

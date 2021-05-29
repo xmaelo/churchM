@@ -10,66 +10,48 @@ import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
 import Head from '../components/Head'
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
+import { Card, Title, Paragraph } from 'react-native-paper';
+import {activite} from '../statefull/activites'
 
+const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 export default function Activites({navigation}){
+	const [p0, setA] =  useState(0);
 
-	const list = [
-		{
-			id: 13,
-			title: "Excursion à Buea",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: img1,
-			debut: "15 Juin 2021",
-			fin: "22 Juin 2021"
-		},
-		{
-			id: 15,
-			title: "Formation Croix Rouge",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: img2,
-			debut: "10 Juin 2021",
-			fin: "22 Juin 2021"
-		},
-		{
-			id: 16,
-			title: "Visite",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: img1,
-			debut: "17 Juin 2021",
-			fin: "18 Juin 2021"
-		},
-		{
-			id: 17,
-			title: "Voyage En Israël",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: img1,
-			debut: "23 Juin 2021",
-			fin: "28 Juillet 2021"
-		},
-	];
+  useEffect(() => {
+    (async()  => {
+      const acts = await activite.getdetailcategorues();
+      console.log('acts acts agin', acts)
+    })();
+    return;
+  }, [])
+
 
 	return(
 		<View style={{flex: 1}}>
 			<Head screen={"Activités Paroissiales"} n={navigation}/>
 			<ScrollView>
-			{
-				list.map((l, i) => (
-					<TouchableOpacity key={i} style={styles.container_card_main} onPress={()=>navigation.navigate('ActivitesDetails', {param: l})}>
-						<View style={styles.image}>
-							<Image source={l.avatar_url} style={styles.img}/>
-						</View>
-						<View style={styles.container_all_dec}>
-							<Text style={styles.h1}>{l.title}</Text>
-							<Text>{l.description}</Text>
-						</View>
-					</TouchableOpacity>
-				))
-			}
+				<View style={{ paddingHorizontal: wp('2%'), paddingTop: hp('2%')}}>
+					<Card>
+						<Card.Title title="Card Title" subtitle="Card Subtitle" />
+						<Card.Content>
+							<Paragraph>
+								Resting elevation of the card which controls the drop shadow.
+								Resting elevation of the card which controls the drop shadow.
+							</Paragraph>
+						</Card.Content>
+						<Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+						<Card.Actions>
+							<Button>Cancel</Button>
+							<Button>Ok</Button>
+						</Card.Actions>
+					</Card>
+
+				</View>
 			</ScrollView>
 		</View>
-	)  
-} 
- 
+	)
+}
+
 const styles = StyleSheet.create({
 	container: {
 	  paddingHorizontal: wp('8%'),
@@ -85,23 +67,23 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	container_card_main: {
-	  backgroundColor: 'white',
-	  marginLeft: hp('2%'),
-	  marginRight: hp('2%'),
-	  borderRadius: 10,
-	  height: hp('20%'),
-	  marginTop: hp('2%'),
-	  shadowColor: "#000",
-	  shadowOffset: {
-		width: 0,
-		height: 6,
-	  },
-	  shadowOpacity: 0.39,
-	  shadowRadius: 8.30,
-  
-	  elevation: 5,
-	  display: 'flex',
-	  flexDirection: 'row'
+		backgroundColor: 'white',
+		marginLeft: wp('1.7%'),
+		marginRight: wp('1.7%'),
+		padding: hp('2%'),
+		paddingHorizontal: wp('4%'),
+		borderRadius: 10,
+		minHeight: hp('5%'),
+		marginTop: hp('2%'),
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 6,
+		},
+		shadowOpacity: 0.39,
+		shadowRadius: 8.30,
+
+		elevation: 2,
 	},
 	container_all_dec: {
 	  // alignItems: 'left',
@@ -110,8 +92,8 @@ const styles = StyleSheet.create({
 	},
 	h1: {fontSize: 18, fontWeight: 'bold', color: color.textSeconday},
 	img: {
-		width: wp("40%"), 
-		height: hp("20%"),
+		width: wp("30%"),
+		height: hp("15%"),
 		borderRadius: wp('3px'),
 	},
 	image: {
@@ -119,4 +101,3 @@ const styles = StyleSheet.create({
 		width: wp('40%'),
 	}
   })
-

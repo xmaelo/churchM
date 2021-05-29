@@ -9,15 +9,14 @@ import { themes } from '../color';
 import Head from '../components/Head'
 
 export default function AnnonceDetails({route}){
-	const data = route.params.param;
+	const data = route.params?.param;
 	return(
 		<ScrollView>
 			<View>
 				{/* <Head screen={data.title} n={navigation}/> */}
 				<View>
-                    <Image source={data.avatar_url} style={styles.img}/>
-                    <Text>{data.description}</Text>
-                </View>
+                  
+        </View>
 			</View>
 		</ScrollView>
 	)
@@ -29,4 +28,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 })
-
