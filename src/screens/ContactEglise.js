@@ -6,49 +6,54 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button, Divider } from 'react-native-elements';
 import { themes, color} from '../color';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
+import Head from '../components/Head'
+import Head2 from '../components/Head'
 
 export default function ContactEglise({navigation}){
 	return(
-		<ScrollView>
-			<View style={styles.container}>
-				<View style={{...styles.end2, marginTop: hp('2%')}} >
-        			<Ionicons name={"logo-facebook"} size={24} color={color.primary}/>
-        			<Text>{" facebook@eglise.com"}</Text>
-        		</View>
-        		<View style={{...styles.end2, marginTop: hp('2%')}} >
-        			<Ionicons name={"logo-twitter"} size={24} color={color.primary}/>
-        			<Text>{" tweeter eec cameroon"}</Text>
-        		</View>
-        		<View style={{...styles.end2, marginTop: hp('2%')}} >
-        			<Ionicons name={"mail"} size={24} color={color.primary}/>
-        			<Text>{" info@ecc.comaroon"}</Text>
-        		</View>
-        		<Divider style={{ backgroundColor: "#898A8F", marginTop: hp('1%'), height: 3 }} />
-			
-				<View style={styles.container_card_main}>
-		        	<View style={styles.container_all_dec}>
-		        		<Input
-	                      label="Objet"
-						/>
-						<AutoGrowingTextInput
-			              style={styles.textInput}
-			              placeholder="Message..."
-			              //placeholderTextColor="grey"
-			              //value={messageText}
-			              //onChangeText={this.onTypeMessage}
-			              maxHeight={170}
-			              minHeight={70}
-			              enableScrollToCaret
-			            />
-			            <View style={{height: 20}}/>
-			            <Button
-						  title="Envoyer"
-						  type="outline"
-						/>
-		        	</View>
-		        </View>
-			</View>
-		</ScrollView>
+		<View>
+			<Head screen={"Contactez l'Eglise"} n={navigation} second/>
+			<ScrollView>
+				<View style={styles.container}>
+					<View style={{...styles.end2, marginTop: hp('2%')}} >
+	        			<Ionicons name={"logo-facebook"} size={24} color={color.primary}/>
+	        			<Text>{" facebook@eglise.com"}</Text>
+	        		</View>
+	        		<View style={{...styles.end2, marginTop: hp('2%')}} >
+	        			<Ionicons name={"logo-twitter"} size={24} color={color.primary}/>
+	        			<Text>{" tweeter eec cameroon"}</Text>
+	        		</View>
+	        		<View style={{...styles.end2, marginTop: hp('2%')}} >
+	        			<Ionicons name={"mail"} size={24} color={color.primary}/>
+	        			<Text>{" info@ecc.comaroon"}</Text>
+	        		</View>
+	        		<Divider style={{ backgroundColor: "#898A8F", marginTop: hp('1%'), height: 3 }} />
+
+					<View style={styles.container_card_main}>
+			        	<View style={styles.container_all_dec}>
+			        		<Input
+		                      label="Objet"
+							/>
+							<AutoGrowingTextInput
+				              style={styles.textInput}
+				              placeholder="Message..."
+				              //placeholderTextColor="grey"
+				              //value={messageText}
+				              //onChangeText={this.onTypeMessage}
+				              maxHeight={170}
+				              minHeight={70}
+				              enableScrollToCaret
+				            />
+				            <View style={{height: 20}}/>
+				            <Button
+							  title="Envoyer"
+							  type="outline"
+							/>
+			        	</View>
+			        </View>
+				</View>
+			</ScrollView>
+		</View>
 	)
 }
 

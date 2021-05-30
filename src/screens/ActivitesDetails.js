@@ -6,30 +6,33 @@ import { themes, color } from '../color';
 import Head from '../components/Head'
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 
-export default function ActivitesDetails({route}){
+export default function ActivitesDetails({route, navigation}){
 
     const data = route.params.param;
 
 	return(
-		<ScrollView>
-			<View>
-				<View>
-                    <Image source={data.avatar_url} style={styles.img}/>
-                    <View style={styles.content}>
-                        <Text>Debut:</Text>
-                        <Text>{data.debut}</Text>
-                    </View>
-                    <View style={styles.content}>
-                        <Text>Fin:</Text>
-                        <Text>{data.fin}</Text>
-                    </View>
-                    <Text style={{textAlign: 'center', marginTop: hp("3px"),}}>{data.description}</Text>
-                </View>
-			</View>
-		</ScrollView>
-	)  
-} 
- 
+    <View>
+      <Head screen={+route?.params?.param?.title} n={navigation} second/>
+  		<ScrollView>
+  			<View>
+  				<View>
+              <Image source={data.avatar_url} style={styles.img}/>
+              <View style={styles.content}>
+                  <Text>Debut:</Text>
+                  <Text>{data.debut}</Text>
+              </View>
+              <View style={styles.content}>
+                  <Text>Fin:</Text>
+                  <Text>{data.fin}</Text>
+              </View>
+              <Text style={{textAlign: 'center', marginTop: hp("3px"),}}>{data.description}</Text>
+          </View>
+  			</View>
+  		</ScrollView>
+    </View>
+	)
+}
+
 const styles = StyleSheet.create({
 	container: {
 	  paddingHorizontal: wp('8%'),
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     },
 	h1: {fontSize: 18, fontWeight: 'bold', color: color.textSeconday},
 	img: {
-		width: wp("80%"), 
+		width: wp("80%"),
 		height: hp("40%"),
         borderRadius: wp('3px'),
         marginTop: hp("2px"),
@@ -52,4 +55,3 @@ const styles = StyleSheet.create({
         marginRight: "auto",
 	},
   })
-

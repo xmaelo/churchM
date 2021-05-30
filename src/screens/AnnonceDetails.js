@@ -8,17 +8,20 @@ import { Text, Input, ListItem, Avatar, Button } from 'react-native-elements';
 import { themes } from '../color';
 import Head from '../components/Head'
 
-export default function AnnonceDetails({route}){
+export default function AnnonceDetails({route, navigation}){
 	const data = route.params?.param;
 	return(
-		<ScrollView>
-			<View>
-				{/* <Head screen={data.title} n={navigation}/> */}
+		<View>
+      <Head screen={+route?.params?.param?.title} n={navigation} second/>
+			<ScrollView>
 				<View>
-                  
-        </View>
-			</View>
-		</ScrollView>
+					{/* <Head screen={data.title} n={navigation}/> */}
+					<View>
+
+	        </View>
+				</View>
+			</ScrollView>
+		</View>
 	)
 }
 

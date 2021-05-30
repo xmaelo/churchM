@@ -23,16 +23,20 @@ class login_check{
      }
   }
   auth = async (username, password) => {
-    const response = await request_post({username: username, password: password}, '/login_check');
-    const decode =  jwt_decode(response.token);
-    user.setToken(response.token);
-    const userInfo = await this.getUserInfo(decode?.username);
-    console.log('userInfo.id userInfo.id userInfo.id', userInfo.id)
-    const personne = await this.getPersonne(userInfo.personne.id);
-    user.setUserId(userInfo.personne.id);
-    user.setUserOjt(decode);
-    user.setUserInfos(personne);
-    return personne;
+    try{
+      const response = await request_post({username: username, password: password}, '/login_check');
+      const decode =  jwt_decode(response.token);
+      user.setToken(response.token);
+      const userInfo = await this.getUserInfo(decode?.username);
+      console.log('userInfo.id userInfo.id userInfo.id', userInfo.id)
+      const personne = await this.getPersonne(userInfo.personne.id);
+      user.setUserId(userInfo.personne.id);
+      user.setUserOjt(decode);
+      user.setUserInfos(personne);
+      return personne;
+    }catch(e){
+      console.log('errrrrr log', e)
+    }
   }
 
 }

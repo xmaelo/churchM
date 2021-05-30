@@ -17,14 +17,15 @@ import {
   View,
 } from 'react-native';
 
-import Drawer from './src/navigation/Drawer';
+import Drawers from './src/navigation/Drawer';
 
 
 
 const App: () => Node = () => {
   return (
     <>
-      <Drawer/>
+      <StatusBar backgroundColor="#019CD9" />
+      <Drawers/>
     </>
   );
 };

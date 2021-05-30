@@ -11,19 +11,22 @@ import Head from '../components/Head'
 export default function DetailLecture({route}){
     const data = route.params?.param;
 	return(
-		<ScrollView style={{ flex: 1}}>
-			<View>
-				{/* <Head screen={data.title} n={navigation}/> */}
-                {
-                    data && data.passages.map(el => 
-                        <View style={styles.texte}>
-                            <Text style={styles.passage}>{el.passage}</Text>
-                            <Text style={styles.contenu}>{el.contenu}</Text>
-                        </View>
-                    )
-                }
-			</View>
-		</ScrollView>
+    <View style={{ flex: 1}}>
+      <Head screen={'Lecture du '+route.params?.param?.jour} n={this.props.navigation} second/>
+  		<ScrollView>
+  			<View>
+  				{/* <Head screen={data.title} n={navigation}/> */}
+                  {
+                      data && data.passages.map(el =>
+                          <View style={styles.texte}>
+                              <Text style={styles.passage}>{el.passage}</Text>
+                              <Text style={styles.contenu}>{el.contenu}</Text>
+                          </View>
+                      )
+                  }
+  			</View>
+  		</ScrollView>
+    </View>
 	)
 }
 

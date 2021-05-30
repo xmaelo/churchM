@@ -14,7 +14,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import AttachmentIcon from 'react-native-vector-icons/Entypo'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
-
+import Head from '../components/Head'
 //import ChatService from '../../../services/chat-service'
 //import UsersService from '../../../services/users-service'
 
@@ -135,12 +135,13 @@ export class Chat extends PureComponent {
     const { history } = [];
     const { messageText, activIndicator } = this.state
     return (
+
       <KeyboardAvoidingView
         style={{ flex: 1, backgroundColor: 'white' }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 100}
       >
-        <StatusBar barStyle="dark-content" />
+        <Head screen={"Conversation"} n={this.props.navigation} second/>
         {activIndicator &&
           (
             <View style={styles.indicator}>

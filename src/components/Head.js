@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Appbar } from 'react-native-paper';
 import { themes, color } from '../color';
 
-export default function Head({n, screen}){
+export default function Head({n, screen, second}){
 
   const _goBack = () =>n.toggleDrawer();
 
@@ -21,10 +21,22 @@ export default function Head({n, screen}){
   const _handleMore = () => console.log('Shown more');
 
 	return(
-    <Appbar.Header style={{backgroundColor: color.primary}}>
-      <Appbar.Action  icon="menu"  onPress={()=>n.openDrawer()} />
-      <Appbar.Content title={screen} />
-    </Appbar.Header>
+    <Header
+    leftComponent={
+      !second ?
+      {
+        icon:'menu',
+        color: '#fff',
+        onPress: ()=>n.toggleDrawer()
+      }
+      :
+      ()=>
+        <TouchableOpacity onPress={()=>n.goBack(null)}>
+          <Ionicons name={"chevron-back-outline"} size={24} color={"#fff"}/>
+        </TouchableOpacity>
+      }
+      centerComponent={()=><Text style={{fontSize: 18, fontWeight: 'bold', fontStyle: 'italic', color: "white"}}>{screen}</Text>}
+  />
 
 	)
 }

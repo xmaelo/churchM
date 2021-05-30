@@ -42,7 +42,6 @@ export default function LoginScreen({navigation}){
 		}
 	return(
 		<ScrollView>
-			<StatusBar backgroundColor="#019CD9" />
 			<View style={styles.container}>
 				<View style={styles.top}>
 					<View style={styles.logo}>

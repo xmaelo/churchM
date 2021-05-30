@@ -92,34 +92,46 @@ export default function Accueil({navigation, route}){
 		      </View>
 					<View style={styles.fatherSurface}>
 						<View style={styles.row}>
-								<Surface style={styles.surface}>
-									<IconPart name='logo-usd'/>
-									<Text>Finances</Text>
-								</Surface>
+							<TouchableOpacity onPress={()=>navigation.navigate('Finances')}>
+									<Surface style={styles.surface}>
+										<IconPart name='logo-usd'/>
+										<Text>Finances</Text>
+									</Surface>
+							</TouchableOpacity>
+							<TouchableOpacity onPress={()=>navigation.navigate('Mediatheques')}>
 								<Surface style={styles.surface}>
 									<IconPart name='musical-notes-outline'/>
 									<Text>Médiathèques</Text>
 								</Surface>
+							</TouchableOpacity>
 						</View>
 						<View style={styles.row}>
+							<TouchableOpacity onPress={()=>navigation.navigate('Activites')}>
 								<Surface style={styles.surface}>
 									<IconPart name='logo-react'/>
 									<Text>Activités Paroissiales</Text>
 								</Surface>
+							</TouchableOpacity>
+							<TouchableOpacity onPress={()=>navigation.navigate('SainteScene')}>
 								<Surface style={styles.surface}>
 									<IconPart name='restaurant-outline'/>
 									<Text>Sainte Cène</Text>
 								</Surface>
+							</TouchableOpacity>
 						</View>
 						<View style={styles.row}>
+							<TouchableOpacity onPress={()=>navigation.navigate('Rendezvous')}>
 								<Surface style={styles.surface}>
 									<IconPart name='stopwatch-outline'/>
 									<Text>Rendez-Vous</Text>
 								</Surface>
+							</TouchableOpacity>
+							<TouchableOpacity onPress={()=>navigation.navigate('Parametres')}>
 								<Surface style={styles.surface}>
 									<IconPart name='cog-outline'/>
 									<Text>Mes Paramètres</Text>
 								</Surface>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</View>

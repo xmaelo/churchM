@@ -6,6 +6,17 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import { View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
+
+import LoginScreen from '../screens/LoginScreen'
+import RegisterScreen from '../screens/RegisterScreen'
+import Preparation from '../screens/Preparation'
+import ContactEglise from '../screens/ContactEglise'
+import Chat from '../screens/Chat'
+import Recovery from '../screens/Recovery';
+import AnnonceDetails from '../screens/AnnonceDetails';
+import DetailLecture from '../screens/DetailLecture';
+import ActivitesDetails from '../screens/ActivitesDetails';
+
 import Accueil from '../screens/Accueil'
 import Activites from '../screens/Activites'
 import Annonces from '../screens/Annonces'
@@ -24,13 +35,55 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { NavigationContainer } from '@react-navigation/native';
 import {StackNav} from '../navigation';
 import Rendezvous from '../screens/Rendezvous';
-
+import {
+  Drawer,
+} from 'react-native-paper';
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
 const DrawIcon = ({name, f}) => <Ionicons name={name} size={25} color={f ? color.primary : '#ccc'}/>
 
+const DrawerItemsData = [
+  { label: 'Accueil', icon: 'home-outline', key: 0, name:"Accueil" },
+  { label: 'Mes Finances', icon: 'logo-usd', key: 1 , name: "Finances"},
+  { label: 'Mon Profil', icon: 'person-circle-outline', key: 2, name: "Profil" },
+  { label: 'Messages', icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
+  { label: 'Annonces', icon: 'newspaper-outline', key: 4, name: "Annonces" },
+  { label: "Lecture Biblique", name: "LectureBiblique", icon: 'book-outline', key: 5 },
+  { label: 'Mediathèque', icon: 'musical-notes-outline', key: 6, name: "Mediatheques" },
+  { label: "Sainte Cène", name: "SainteScene", icon: 'restaurant-outline', key: 7 },
+  { label: "Rendez-Vous", name: "Rendezvous", icon: 'stopwatch-outline', key: 8 },
+  { label: 'Activités Paroissiales', icon: 'logo-react', key: 9, name: "Activites" },
+  { label: 'Mes Paramètres', icon: 'cog-outline', key: 10, name: "Parametres" }
+];
+
+const stacks = [
+  { composant: Accueil, name:"Accueil" },
+  { composant: Finaces, name: "Finances"},
+  { composant: Profil, name: "Profil" },
+  { composant: ListChatRoom,  name: "ChatRoom" },
+  { composant: Annonces,  name: "Annonces" },
+  { composant: LectureBiblique, name: "LectureBiblique" },
+  { composant: Mediatheques, name: "Mediatheques" },
+  { composant: SainteScene, name: "SainteScene" },
+  { composant: Rendezvous, name: "Rendezvous"},
+  { composant: Activites, name: "Activites" },
+  { composant: Parametres, name: "Parametres" },
+  { composant: LoginScreen, name: "Login", swipe: true },
+  { composant: RegisterScreen, name: "Register", swipe: true },
+  { composant: Recovery, name: "Recovery", swipe: true },
+  { composant: AnnonceDetails, name: "AnnonceDetails", swipe: true },
+  { composant: ActivitesDetails, name: "ActivitesDetails", swipe: true },
+  { composant: Preparation, name: "Preparation", swipe: true },
+  { composant: DetailLecture, name: "DetailLecture", swipe: true },
+  { composant: Chat, name: "Chat", swipe: true },
+  { composant: ContactEglise, name: "ContactEglise", swipe: true }
+];
+
 function CustomDrawerContent(props) {
+  const [drawerItemIndex, setDrawerItemIndex] = React.useState(0);
+  const _setDrawerItem = (index) => setDrawerItemIndex(index);
+
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem label={()=>
@@ -41,153 +94,43 @@ function CustomDrawerContent(props) {
             </Text>
           </View>
         }/>
-      <DrawerItemList {...props} />
+
+          {DrawerItemsData.map((item, index) => (
+            <DrawerItem
+              key={item.key}
+              icon={({ focused, color, size }) => <DrawIcon f={focused} name={item.icon}/>}
+              label={({ focused, color }) => <Title display={item.label}/>}
+              focused={drawerItemIndex === index}
+              onPress={() => {_setDrawerItem(index); props.navigation.navigate(item.name)}}
+            />
+          ))}
     </DrawerContentScrollView>
   );
 }
 
-
-export default function Drawer() {
+export default function Drawers() {
   return (
     <NavigationContainer>
       <ARG__.Navigator
-      	initialRouteName="AllStack"
+      	initialRouteName="Login"
       	drawerContentOptions={{
           //activeTintColor: 'black',
           //inactiveTintColor: 'black',
           //itemStyle: { alignItems:'flex-end' },
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}
-        //drawerContent={(props) => <Image source={logo} />}
       >
-        <ARG__.Screen
-        	name="Accueil"
-        	component={Accueil}
-        	options={{
-             title: ()=><Title display={"Accueil"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"home-outline"} f={focused}/>
-             ),
-             swipeEnabled: true
-          }}
-        />
-        <ARG__.Screen
-        	name="Finances"
-        	component={Finaces}
-        	options={{
-             title: ()=><Title display={"Mes Finaces"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"logo-usd"} f={focused}/>
-             ),
-          }}
-        />
-        <ARG__.Screen
-        	name="Profil"
-        	component={Profil}
-        	options={{
-             title: ()=><Title display={"Mon Profile"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"person-circle-outline"} f={focused}/>
-             ),
-          }}
-        />
-        <ARG__.Screen
-            name="ChatRoom"
-            component={ListChatRoom}
+        {stacks.map((screen, key)=>
+          <ARG__.Screen
+            key={key}
+            name={screen.name}
+            component={screen.composant}
             options={{
-               title: ()=><View style={{flexDirection: 'row', alignItems:'center'}}>
-                            <Title display={"Messages"}/>
-                            <Badge status="success" value="+55"/>
-                         </View>,
-               drawerIcon: ({focused}) => (
-                   <DrawIcon name={"chatbubble-outline"} f={focused}/>
-               ),
+              swipeEnabled: !screen.swipe,
             }}
-        />
+          />
+        )}
 
-        <ARG__.Screen
-        	name="Annonces"
-        	component={Annonces}
-        	options={{
-             title: ()=><Title display={"Annonces"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"newspaper-outline"} f={focused}/>
-             ),
-          }}
-        />
-
-        <ARG__.Screen
-        	name="LectureBiblique"
-        	component={LectureBiblique}
-        	options={{
-	           title: ()=><Title display={"Lecture Biblique"}/>,
-	           drawerIcon: ({focused}) => (
-	               <DrawIcon name={"book-outline"} f={focused}/>
-	           ),
-	        }}
-        />
-        <ARG__.Screen
-        	name="Mediatheques"
-        	component={Mediatheques}
-        	options={{
-             title: ()=><Title display={"Médiathèque"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"musical-notes-outline"} f={focused}/>
-             ),
-          }}
-        />
-
-        <ARG__.Screen
-        	name="Activites"
-        	component={Activites}
-        	options={{
-             title: ()=><Title display={"Activités Paroissiales"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"logo-react"} f={focused}/>
-             ),
-          }}
-        />
-
-        <ARG__.Screen
-        	name="SainteScene"
-        	component={SainteScene}
-        	options={{
-             title: ()=><Title display={"Sainte Cène"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"restaurant-outline"} f={focused}/>
-             ),
-          }}
-        />
-
-        <ARG__.Screen
-        	name="Rendezvous"
-        	component={Rendezvous}
-        	options={{
-             title: ()=><Title display={"Rendez-Vous"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"stopwatch-outline"} f={focused}/>
-             ),
-          }}
-        />
-        <ARG__.Screen
-        	name="Parametres"
-        	component={Parametres}
-        	options={{
-             title: ()=><Title display={"Mes Paramètres"}/>,
-             drawerIcon: ({focused}) => (
-                 <DrawIcon name={"cog-outline"} f={focused}/>
-             ),
-          }}
-        />
-        <ARG__.Screen
-        	name="AllStack"
-        	component={StackNav}
-        	options={{
-             title: ()=>null,
-             drawerIcon: ()=>null,
-             swipeEnabled: false,
-          }}
-        />
       </ARG__.Navigator>
     </NavigationContainer>
   );

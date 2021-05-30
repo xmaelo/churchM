@@ -19,7 +19,8 @@ export default function Activites({navigation}){
 
   useEffect(() => {
     (async()  => {
-      const acts = await activite.getdetailcategorues();
+      let acts = await activite.getdetailcategorues();
+
       console.log('acts acts agin', acts)
     })();
     return;
