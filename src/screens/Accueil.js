@@ -71,7 +71,7 @@ export default function Accueil({navigation, route}){
 	return(
 		<View style={styles.container}>
 			<ScrollView>
-				<View>
+				<View style={{paddingBottom: hp('5%')}}>
 					<Head screen={"Accueil"} n={navigation}/>
 					<View style={{...styles.container_card_main, justifyContent: 'center', alignItems: "center"}}>
 		          <Carousel
@@ -126,10 +126,24 @@ export default function Accueil({navigation, route}){
 									<Text>Rendez-Vous</Text>
 								</Surface>
 							</TouchableOpacity>
-							<TouchableOpacity onPress={()=>navigation.navigate('Parametres')}>
+							<TouchableOpacity onPress={()=>navigation.navigate('Annonces')}>
 								<Surface style={styles.surface}>
-									<IconPart name='cog-outline'/>
-									<Text>Mes Paramètres</Text>
+									<IconPart name='newspaper-outline'/>
+									<Text>Annonces</Text>
+								</Surface>
+							</TouchableOpacity>
+						</View>
+						<View style={styles.row}>
+							<TouchableOpacity onPress={()=>navigation.navigate('ChatRoom')}>
+								<Surface style={styles.surface}>
+									<IconPart name='chatbubble-outline'/>
+									<Text>Messages</Text>
+								</Surface>
+							</TouchableOpacity>
+							<TouchableOpacity onPress={()=>navigation.navigate('LectureBiblique')}>
+								<Surface style={styles.surface}>
+									<IconPart name='book-outline'/>
+									<Text>Lecture Biblique</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>

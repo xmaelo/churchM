@@ -12,16 +12,25 @@ import Head from '../components/Head'
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import {activite} from '../statefull/activites'
+import { List } from 'react-native-paper';
+import { ActivityIndicator, Divider} from 'react-native-paper';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 export default function Activites({navigation}){
-	const [p0, setA] =  useState(0);
+	const [acts, setA] =  useState(null);
 
   useEffect(() => {
     (async()  => {
       let acts = await activite.getdetailcategorues();
-
-      console.log('acts acts agin', acts)
+			setA(acts)
+			let tab = [];
+			for(let i = 0; i< acts.length; i++){
+				let arr = await activite.getAllActivitybycategorie(acts[i].id)
+				console.log('subca===>>>', acts[i], arr)
+				tab.push({ ...acts[i], supActivity: arr})
+			}
+			setA(tab)
+			console.log("sx========>>>>", tab)
     })();
     return;
   }, [])
@@ -32,21 +41,26 @@ export default function Activites({navigation}){
 			<Head screen={"Activités Paroissiales"} n={navigation}/>
 			<ScrollView>
 				<View style={{ paddingHorizontal: wp('2%'), paddingTop: hp('2%')}}>
-					<Card>
-						<Card.Title title="Card Title" subtitle="Card Subtitle" />
-						<Card.Content>
-							<Paragraph>
-								Resting elevation of the card which controls the drop shadow.
-								Resting elevation of the card which controls the drop shadow.
-							</Paragraph>
-						</Card.Content>
-						<Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-						<Card.Actions>
-							<Button>Cancel</Button>
-							<Button>Ok</Button>
-						</Card.Actions>
-					</Card>
-
+					{acts && acts.map((a, i) => (
+						<View key={i}>
+								<List.Accordion
+									title={a.intitule? a.intitule: ""}
+									description={a.description?.trim() !=="" ? a.description+" " : null}
+									//{a.description&&a.description.trim() !==""? "...acts" : null}
+									//left={props => <Avatar source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}} />}
+									style={null}
+									//left={props => <Avatar source={logo} />}
+								>
+									{a.supActivity&&a.supActivity.map((sub, k) =>
+										<TouchableOpacity key={k} onPress={()=>navigation.navigate('ActivitesDetails', {id: sub.id})} style={{flexDirection: 'row'}}>
+											<Ionicons name="arrow-forward-outline" size={23} />
+											<Text style={{fontStyle: 'italic', color: color.primary, paddingBottom: 8}}>{sub.intitule}</Text>
+										</TouchableOpacity>
+									)}
+								</List.Accordion>
+								<Divider />
+						</View>
+					))}
 				</View>
 			</ScrollView>
 		</View>
