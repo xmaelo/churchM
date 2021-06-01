@@ -16,19 +16,22 @@ export default function Rendezvous({navigation}){
 			id: 1,
 			etat: "EN ATTENTE",
 			raison: "jzzl dzfejndj kelnd",
-			date: "20/05/2021"
+            date: "20/05/2021",
+            heure: "12:00"
 		},
 		{
 			id: 2,
 			etat: "EN ATTENTE",
 			raison: "jzzl dzfejndj kelnd",
-			date: "20/06/2021"
+            date: "20/06/2021",
+            heure: "10:00"
 		},
 		{
 			id: 3,
 			etat: "ACCEPTER",
 			raison: "jzzl dzfejndj kelnd",
-			date: "20/05/2021"
+            date: "20/05/2021",
+            heure: "14:30"
 		},
     ];
 
@@ -38,7 +41,7 @@ export default function Rendezvous({navigation}){
 				<ScrollView style={{ flex: 1}}>
 				{
 					rdv.map((l, i) => (
-					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: 1})}>
+					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailRdv', {param: l})}>
 						<ListItem.Content>
 						<View style={styles.textStyle}>
 							<View>
@@ -68,7 +71,7 @@ export default function Rendezvous({navigation}){
 
                 <FAB buttonColor={color.primary}
 		  		iconTextColor="#FFFFFF"
-		  		onClickAction={() => {console.log("FAB pressed")}}
+		  		onClickAction={() => navigation.navigate('NewRendezVous')}
 		  		visible={true}
 		  		iconTextComponent={<Ionicons name="add"/>}/>
 		</View>

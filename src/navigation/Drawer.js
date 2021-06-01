@@ -38,6 +38,8 @@ import Rendezvous from '../screens/Rendezvous';
 import {
   Drawer,
 } from 'react-native-paper';
+import NewRendezVous from '../screens/NewRendezVous';
+import DetailRdv from '../screens/DetailRdv';
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
@@ -77,7 +79,9 @@ const stacks = [
   { composant: Preparation, name: "Preparation", swipe: true },
   { composant: DetailLecture, name: "DetailLecture", swipe: true },
   { composant: Chat, name: "Chat", swipe: true },
-  { composant: ContactEglise, name: "ContactEglise", swipe: true }
+  { composant: ContactEglise, name: "ContactEglise", swipe: true },
+  { composant: NewRendezVous, name: "NewRendezVous", swipe: true },
+  { composant: DetailRdv, name: "DetailRdv", swipe: true },
 ];
 
 function CustomDrawerContent(props) {

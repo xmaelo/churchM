@@ -8,11 +8,11 @@ import { Text, Input, Button } from 'react-native-elements';
 import { themes } from '../color';
 import Head from '../components/Head'
 
-export default function DetailLecture({route}){
+export default function DetailLecture({route, navigation}){
     const data = route.params?.param;
 	return(
     <View style={{ flex: 1}}>
-      <Head screen={'Lecture du '+route.params?.param?.jour} n={this.props.navigation} second/>
+      <Head screen={'Lecture du '+route.params?.param?.jour} n={navigation} second/>
   		<ScrollView>
   			<View>
   				{/* <Head screen={data.title} n={navigation}/> */}
