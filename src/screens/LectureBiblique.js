@@ -120,7 +120,7 @@ export default function LectureBiblique({navigation}){
 			style={{
 				height: '100%',
 				width: '100%',
-				position: 'relative', 
+				position: 'relative',
 				top: 0,
 				left: 0
 			}}>
@@ -161,4 +161,3 @@ const styles = StyleSheet.create({
 	alignItems: 'center',
 }
 })
-
