@@ -22,12 +22,12 @@ class user_class {
 
 export const user = new user_class();
 
-export function request_post(body, route){
+export function request_post(route, body, cle){
   const r = fetch(apibaselink+route, {
        method: 'POST',
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
-        'cle': 'user-show',
+        'cle': cle,
         'database': 'churchv3M2_2021',
         'authorization': 'Bearer '+user.getToken(),
         'Content-Type': 'application/json'

@@ -24,7 +24,7 @@ class login_check{
   }
   auth = async (username, password) => {
     try{
-      const response = await request_post({username: username, password: password}, '/login_check');
+      const response = await request_post('/login_check', {username: username, password: password}, 'user-show');
       const decode =  jwt_decode(response.token);
       user.setToken(response.token);
       const userInfo = await this.getUserInfo(decode?.username);

@@ -14,29 +14,33 @@ import { List } from 'react-native-paper';
 import { ActivityIndicator, Divider} from 'react-native-paper';
 
 export default function Annonces({navigation}){
-const [list, setlist] = useState(null);
+const [list, setlist] = useState([]);
  useEffect(()=>{
 	 (async()  => {
 		 let list = await annonce.getAnnonce();
-		 setlist(list)
+		 //setlist(list)
 		 console.log('------------------->>>list', list)
+		 getAnnonceImg(list);
 	 })();
 	 return;
- })
- const getAnnonceImg = (element) => {
+ }, [])
+ const getAnnonceImg = (lst) => {
     const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
 			let img;
-			let ob = {};
-			while ((img = imgRex.exec(element.content?.rendered))) {
-				ob['imgL'] = img[1];
-      }
-      if(!(img = imgRex.exec(element.content?.rendered))){
-        element['imgL'] = logo
-        element['noImg'] = true
-      }
-      console.log("ob", ob);
-			return ob;
+
+			lst.forEach(element => {
+				while ((img = imgRex.exec(element.content.rendered))) {
+					element['img'] = img[1];
+        }
+        
+        if(!(img = imgRex.exec(element.content.rendered))){
+          element['img'] = logo
+        }
+      });
+	  console.log("Annonces ------->:",lst);
+	  setlist(lst);
   }
+
 	return(
 		<ScrollView>
 			<View>
@@ -46,12 +50,12 @@ const [list, setlist] = useState(null);
 							<View key={i}>
 									<List.Accordion
 										title={l.title?.rendered}
-										description={"Ajouter le "+new Date(l.modified).toISOString().split("T")[0]}
+										description={"Ajoutée le "+new Date(l.modified).toISOString().split("T")[0]}
 										//left={props => <Avatar source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}} />}
 										style={null}
-										left={props => <Avatar source={logo} />}
+										left={props => <Avatar source={l.img} />}
 									>
-										<TouchableOpacity onPress={()=>navigation.navigate('AnnonceDetails', {param: l})}>
+										<TouchableOpacity onPress={()=>navigation.navigate('AnnonceDetails', {param: l.title})}>
 											<Text style={{fontStyle: 'italic', textDecorationLine: 'underline', color: color.primary, paddingBottom: 8}}>lire l'annonce</Text>
 										</TouchableOpacity>
 									</List.Accordion>

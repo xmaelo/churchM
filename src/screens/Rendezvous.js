@@ -8,57 +8,53 @@ import { Text, Input, Button, ListItem } from 'react-native-elements';
 import { themes, color } from '../color';
 import Head from '../components/Head';
 import FAB from 'react-native-fab'
+import { rendezvous } from '../statefull/rendezvous';
 
 export default function Rendezvous({navigation}){
+	const [rdzvous, setRdzvous] = useState([]);
 
-	const rdv = [
-		{
-			id: 1,
-			etat: "EN ATTENTE",
-			raison: "jzzl dzfejndj kelnd",
-            date: "20/05/2021",
-            heure: "12:00"
-		},
-		{
-			id: 2,
-			etat: "EN ATTENTE",
-			raison: "jzzl dzfejndj kelnd",
-            date: "20/06/2021",
-            heure: "10:00"
-		},
-		{
-			id: 3,
-			etat: "ACCEPTER",
-			raison: "jzzl dzfejndj kelnd",
-            date: "20/05/2021",
-            heure: "14:30"
-		},
-    ];
-
+    useEffect(() => {
+		(async () => {
+			var rdzv = await rendezvous.getAll();
+			setRdzvous(rdzv);
+			console.log('Rendez-Vous: ',rdzv);
+		})();
+        return;
+      }, [])
+	
 	return(
 		<View style={{ flex: 1}}>
 			<Head screen={"Rendez-Vous"} n={navigation}/>
 				<ScrollView style={{ flex: 1}}>
-				{
-					rdv.map((l, i) => (
+				{   (!rdzvous)? <View><Text style={{fontSize: 20}}> Aucun Rendez-Vous demandé</Text></View>:
+					rdzvous.map((l, i) => (
 					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailRdv', {param: l})}>
 						<ListItem.Content>
 						<View style={styles.textStyle}>
 							<View>
-                  {(l.etat == "EN ATTENTE")? <Text style={{fontWeight: 'bold', color: 'blue'}}>{l.etat}</Text>:<Text style={{fontWeight: 'bold', color: 'green'}}>{l.etat}</Text>}
+                  {(l.etat == "EN ATTENTE")? <Text style={{fontWeight: 'bold', color: 'blue'}}>{l.etat}</Text>:(l.etat == "ACCEPTER")?<Text style={{fontWeight: 'bold', color: 'green'}}>{l.etat}</Text>: 
+				  (l.etat == "REPORTER")?<Text style={{fontWeight: 'bold', color: 'rgb(255, 94, 0)'}}>{l.etat}</Text>: <Text style={{fontWeight: 'bold', color: 'red'}}>{l.etat}</Text>}
                   <Text>{l.raison}</Text>
 							</View>
-							<View style={{marginLeft: 200}}>
+							<View style={{marginLeft: 300, position: 'absolute'}}>
                                 {
                                     (l.etat == "EN ATTENTE")?<Ionicons
 									name={"time-outline"}
                                     size={30}
                                     color={color.primary}
-								/> : <Ionicons
+								/> : (l.etat == "ACCEPTER")? <Ionicons
                                 name={"checkmark-done-sharp"}
                                 size={30}
                                 color={color.green}
-                            />
+                            />: (l.etat == "REPORTER")? <Ionicons
+								name={"calendar-outline"}
+								size={30}
+								color={color.green}
+							/>: <Ionicons
+								name={"close-circle-outline"}
+								size={30}
+								color={color.green}
+							/>
                                 }
 
 							</View>
