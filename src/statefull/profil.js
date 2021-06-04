@@ -58,6 +58,17 @@ class onInfos{
     }
 
   }
+
+  updatePersonne = async (data) => {
+    try {
+      console.log('acts start activite acts')
+      let acts =  await request_put(data, "/personnes/"+user.getUserId(), "fidele-add");
+      console.log('acts acts acts', acts)
+      return acts;
+    } catch (error) {
+      console.warn(error);
+    }
+  }
 }
 
 
