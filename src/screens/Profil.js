@@ -17,10 +17,18 @@ import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const OnInput = ({d, l, v, f}) => <TextInput label={d} mode={"outlined"} value={v} style={{height: 35}} onChangeText={text => f(text, l)}/>
-const FirstRoute = ({userInfo, onUpdate}) => {
+const FirstRoute = (props) => {
 	const [edit, setSate] = useState(false)
 	const [pick1, setShowPic1] = useState(false)
 	const [pick2, setShowPic2] = useState(false)
+	const [userInfo, setUserIn] = useState(props.userInfo)
+	const onUpdate = (tex, key) => {
+			console.log('keyyyy=====>>', key, tex)
+			userInfo[key] = tex
+			setUserIn(userInfo)
+			console.log("=========>>>>", userInfo[key])
+			props.onUpdate(tex, key);
+	}
   return(
 		<View style={{ flex: 1}}>
 			<ScrollView>
@@ -146,9 +154,17 @@ const FirstRoute = ({userInfo, onUpdate}) => {
 	)
 };
 
-const SecondRoute = ({userInfo, onUpdate}) => {
+const SecondRoute = (props) => {
 
 	const [edit, setSate] = useState(false)
+	const [userInfo, setUserIn] = useState(props.userInfo)
+	const onUpdate = (tex, key) => {
+			console.log('keyyyy=====>>', key, tex)
+			userInfo[key] = tex
+			setUserIn(userInfo)
+			console.log("=========>>>>", userInfo[key])
+			props.onUpdate(tex, key);
+	}
 	return(
 	  <View style={{ flex: 1}}>
 			<ScrollView>
@@ -230,8 +246,17 @@ const SecondRoute = ({userInfo, onUpdate}) => {
 	)
 };
 
-const ThirdRoute = ({userInfo, onUpdate}) => {
+const ThirdRoute = (props) => {
 	const [edit, setSate] = useState(false)
+	const [userInfo, setUserIn] = useState(props.userInfo)
+	const onUpdate = (tex, key) => {
+			console.log('keyyyy=====>>', key, tex)
+			userInfo[key] = tex
+			setUserIn(userInfo)
+			console.log("=========>>>>", userInfo[key])
+			props.onUpdate(tex, key);
+	}
+	
 	return(
 	  <View style={{ flex: 1}}>
 			<ScrollView>
@@ -305,12 +330,20 @@ const ThirdRoute = ({userInfo, onUpdate}) => {
 	)
 };
 
-const FourthRoute = ({userInfo, onUpdate}) => {
+const FourthRoute = (props) => {
 
 	const [edit, setSate] = useState(false)
 	const [isSwitchOn, setIsSwitchOn] = React.useState(false);
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
+	const [userInfo, setUserIn] = useState(props.userInfo)
+	const onUpdate = (tex, key) => {
+			console.log('keyyyy=====>>', key, tex)
+			userInfo[key] = tex
+			setUserIn(userInfo)
+			console.log("=========>>>>", userInfo[key])
+			props.onUpdate(tex, key);
+	}
 	return(
 	  <View style={{ flex: 1}}>
 			<ScrollView>
