@@ -10,15 +10,15 @@ import Head from '../components/Head'
 
 export default function AnnonceDetails({route, navigation}){
 	const data = route.params?.param;
+
 	return(
-		<View>
-      <Head screen={+route?.params?.param?.title} n={navigation} second/>
+		<View style={{ flex: 1}}>
+      		<Head screen={"Details"} n={navigation} second/>
 			<ScrollView>
 				<View>
-					{/* <Head screen={data.title} n={navigation}/> */}
 					<View>
 
-	        </View>
+	        		</View>
 				</View>
 			</ScrollView>
 		</View>

@@ -58,6 +58,15 @@ class onInfos{
     }
 
   }
+
+  getAllUser = async (status) => {
+    try {
+      let res = await request_get("/personnes?status="+status, 'fidele-index');
+      return res["hydra:member"];
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 

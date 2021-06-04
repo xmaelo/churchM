@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { View, ScrollView, StyleSheet, StatusBar, Image, TouchableOpacity,BackHandler } from 'react-native';
+import { View, ScrollView, StyleSheet, ToastAndroid,StatusBar, Image, TouchableOpacity,BackHandler } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {logo} from "../assets"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
-import DatePicker from 'react-native-date-picker';
 import { CheckBox } from 'react-native-elements'
 import AppIntroSlider from '@lomelidev/react-native-walkthrough';
 //import Walkthrough from '@lomelidev/react-native-walkthrough';
@@ -80,8 +79,143 @@ export default function RegisterScreen({navigation}){
 	const [pinSecure, setPinSecure] = useState(false);
 	const [date, setDate] = useState(new Date());
 	const [selectedZone, setSelectedZone] = useState();
+	const [nom, setNom] = useState("");
+	const [prenom, setPrenom] = useState("");
+	const [dateNaiss, setDateNaiss] = useState();
+	const [lieu, setLieu] = useState("");
+	const [email, setEmail] = useState("");
+	const [telephone1, setTelephone1] = useState();
+	const [telephone2, setTelephone2] = useState();
+	const [dateAdhesion, setDateAdhesion] = useState();
+	const [genre, setGenre] = useState();
+	const [zone, setZone] = useState();
+	const [nomPere, setNomPere] = useState();
+	const [nomMere, setNomMere] = useState();
+	const [mati, setMatri] = useState();
+	const [region, setRegion] = useState();
+	const [departement, setDepartement] = useState();
+	const [arrondis, setArrondis] = useState();
+	const [ville, setVille] = useState();
+	const [nbreEnfant, setNbreEnfant] = useState();
+	const [statutPro, setStatutPro] = useState();
+	const [professsion, setProfesssion] = useState();
+	const [domaine, setDomaine] = useState();
+	const [employeur, setEmployeur] = useState();
+	const [dernierDiplome, setDernierDiplome] = useState();
+	const [etabliss, setEtabliss] = useState();
+	const [classeNiveau, setClasseNiveau] = useState();
+	const [serieFiliere, setSerieFilière] = useState();
+	const [statutParoi, setstatutParoi] = useState();
+	const [malade, setMalade] = useState();
+	const [chretienCom, setChretienCom] = useState();
+	const [membreGroupe, setMembreGroupe] = useState();
 	const [showRealApp, modOfShowRealApp] = useState(false)
 	const checked = false;
+
+
+	const checkForm = (slideNumber) => {
+		var regexp = new RegExp(/\S+@\S+\.\S+/);
+		var err = '';
+		if (slideNumber == 1) {
+      if (!nom) {
+        err = 'Le nom est requis';
+      } else if (!prenom) {
+        err = 'Le prenom est requis';
+      } 
+      // else if (!this.credentials.datenaiss) {
+      //   err = 'La date de naissance est requise';
+      // } 
+      else if (!lieu) {
+        err = 'Le lieu de naissance est requis';
+      } else if (!telephone1) {
+        err = 'Le numéro de telephone est requis';
+      } else if (!email) {
+        err = 'L\'email est requis';
+      } else if (!regexp.test(email)) {
+        err = 'L\'email n\'est pas conforme';
+      } 
+    } else if (slideNumber == 2){
+      if (!nomPere) {
+        err = 'Le nom du père est requis';
+      } else if (!nomMere) {
+        err = 'Le nom de la mère est requis';
+      } else if (!mati) {
+        err = 'La situation matrimoniale est requise';
+      } else if (!region) {
+        err = 'La region d\'origine est requise';
+      } else if (!departement) {
+        err = 'Le departement est requis';
+      } else if (!arrondis) {
+        err = 'L\'arrondissement est requis';
+      } else if (!ville) {
+        err = 'La ville est requise';
+      } 
+      // else if (this.credentials.nbreEnfant == null) {
+      //   err = 'Le nombre d\'enfants est requis';
+      // } 
+    } else if(slideNumber == 3) {
+      if (!statutPro) {
+        err = 'L\'activité est requise';
+      } else {
+        if(statusPro == "Etudiant/Elève") {
+          if (!etabliss) {
+            err = 'L\'etablissement est requis';
+          } else if (!serieFiliere) {
+            err = 'La Serie ou Filière est requise';
+          } else if (!classeNiveau) {
+            err = 'La classe ou niveau est requis';
+          } else if (!statutParoi) {
+            err = 'Le statut paroisial est requis';
+          } 
+          // else if (!this.credentials.malade) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // } else if (!this.credentials.communiant) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // } else if (!this.credentials.membre) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // }
+        } else if (statutPro == "Travailleur" || statutPro == "Activité Libérale") {
+          if (!professsion) {
+            err = 'La profession est requise';
+          } else if (!employeur) {
+            err = 'L\'employeur est requis';
+          } else if (!dernierDiplome) {
+            err = 'Le dernier diplôme est requis';
+          } else if (!domaine) {
+            err = 'Le domaine est requis';
+          } else if (!statutParoi) {
+            err = 'Le statut paroisial est requis';
+          } 
+          // else if (!this.credentials.malade) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // } else if (!this.credentials.communiant) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // } else if (!this.credentials.membre) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // }
+        } else if (statutPro == "Sans emploi") {
+          if (!dernierDiplome) {
+            err = 'Le dernier diplôme est requis';
+          } else if (!statutParoi) {
+            err = 'Le statut paroisial est requis';
+          } 
+          // else if (!this.credentials.malade) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // } else if (!this.credentials.communiant) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // } else if (!this.credentials.membre) {
+          //   err = 'Veuillez selectionner oui ou non';
+          // }
+        }
+      } 
+	}
+	if (err.length) {
+		this.showToast(err, 'top');
+		return false;
+	} else {
+		return true;
+	}
+	}
 
 	  const slides = [
 		<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
@@ -90,18 +224,67 @@ export default function RegisterScreen({navigation}){
 					<Header text="Créer un compte"/>
 					<View style={styles.form}>
 						<View style={styles.input}>
-							<TextInput placeholder="Votre nom" icon="person" label="Nom(s) de Famille" />
-							<TextInput placeholder="Prénom(s)" icon="person" label="Prénom(s)" />
-							<TextInput placeholder="Date de naissance" icon="calendar" label="Date de naissance" />
-							<TextInput placeholder="Lieu" icon="person" label="Lieu de Naissance" />
-							<TextInput placeholder="Email" icon="mail" label="Votre adresse email" />
-							<TextInput placeholder="Numéro 1" icon="call" label="Votre numéro de Téléphone" />
+							<Input placeholder="Votre nom"labelStyle={styles.thelabel} label="Nom(s) de Famille" value={nom}
+                        	onChangeText={value => setNom(value)} leftIcon={
+							<Ionicons
+								name={"person"}
+								size={18}
+							/>
+						   }/>
 
+							<Input placeholder="Prénom(s)"labelStyle={styles.thelabel} label="Prénom(s)" value={prenom}
+							onChangeText={value => setPrenom(value)} leftIcon={
+							<Ionicons
+								name={"person"}
+								size={18}
+							/>
+						   }/>
+
+							<Input placeholder="Date de naissance" labelStyle={styles.thelabel} label="Date de naissance" value={dateNaiss}
+							onChangeText={value => setDateNaiss(value)} leftIcon={
+							<Ionicons
+								name={"calendar"}
+								size={18}
+							/>
+						   }/>
+
+						   <Input placeholder="Lieu" labelStyle={styles.thelabel} label="Lieu de Naissance" value={lieu}
+							onChangeText={value => setLieu(value)} leftIcon={
+							<Ionicons
+								name={"locate"}
+								size={18}
+							/>
+						   }/>
+
+							<Input placeholder="Email" labelStyle={styles.thelabel} label="Votre adresse email" value={email}
+							onChangeText={value => setEmail(value)} leftIcon={
+							<Ionicons
+								name={"mail"}
+								size={18}
+							/>
+						   }/>
+							
+							<Input
+	                           placeholder="Numéro 1"
+	                           label="Votre numéro de Téléphone"
+							   labelStyle={styles.thelabel}
+							   onChangeText={value => setTelephone1(value)}
+							   value={telephone1}
+	                           leftIcon={
+	                            <Ionicons
+	                                name={"call"}
+	                                size={18}
+	                            />
+	                           }
+	                        //    onChangeText={value => defineUsername(value)}
+	                        />
 
 							<Input
 	                           placeholder="Numéro 2"
 	                           label="Autre numéro de Téléphone"
-	                           labelStyle={styles.thelabel}
+							   labelStyle={styles.thelabel}
+							   onChangeText={value => setTelephone2(value)}
+							   value={telephone2}
 	                           leftIcon={
 	                            <Ionicons
 	                                name={"call"}
@@ -114,7 +297,9 @@ export default function RegisterScreen({navigation}){
 							<Input
 	                           placeholder="Date d'Adhésion"
 	                           label="Date d'Adhésion"
-	                           labelStyle={styles.thelabel}
+							   labelStyle={styles.thelabel}
+							   value={dateAdhesion}
+							   onChangeText={value => setDateAdhesion(value)}
 	                           leftIcon={
 	                            <Ionicons
 	                                name={"calendar"}
@@ -138,9 +323,9 @@ export default function RegisterScreen({navigation}){
 	                    			Zone d'habitation
 	                    	</Text>
 						<Picker
-						selectedValue={selectedZone}
+						selectedValue={zone}
 						onValueChange={(itemValue, itemIndex) =>
-							setSelectedZone(itemValue)
+							setZone(itemValue)
 						}>
 						<Picker.Item label="Mendong" value="Mendong" />
 						<Picker.Item label="Accacia" value="Accacia" />
@@ -182,6 +367,8 @@ export default function RegisterScreen({navigation}){
 						placeholder="Père"
 						label="Nom(s) du Père"
 						labelStyle={styles.thelabel}
+						value={nomPere}
+						onChangeText={value => setNomPere(value)}
 						leftIcon={
 							<Ionicons
 								name={"man"}
@@ -195,6 +382,8 @@ export default function RegisterScreen({navigation}){
 						placeholder="Mère"
 						label="Nom(s) de la Mère"
 						labelStyle={styles.thelabel}
+						value={nomMere}
+						onChangeText={value => setNomMere(value)}
 						leftIcon={
 							<Ionicons
 								name={"woman"}
@@ -208,9 +397,9 @@ export default function RegisterScreen({navigation}){
 									Situation Matrimoniale
 						</Text>
 						<Picker
-						selectedValue={selectedZone}
+						selectedValue={mati}
 						onValueChange={(itemValue, itemIndex) =>
-							setSelectedZone(itemValue)
+							setMatri(itemValue)
 						}>
 						<Picker.Item label="Célibataire" value="celibataire" />
 						<Picker.Item label="Marié(e)" value="marie" />
@@ -222,9 +411,9 @@ export default function RegisterScreen({navigation}){
 									Region d'Origine
 						</Text>
 						<Picker
-						selectedValue={selectedZone}
+						selectedValue={region}
 						onValueChange={(itemValue, itemIndex) =>
-							setSelectedZone(itemValue)
+							setRegion(itemValue)
 						}>
 						<Picker.Item label="Nord" value="Nord" />
 						<Picker.Item label="Centre" value="Centre" />
@@ -236,9 +425,9 @@ export default function RegisterScreen({navigation}){
 									Département d'origine
 						</Text>
 						<Picker
-						selectedValue={selectedZone}
+						selectedValue={departement}
 						onValueChange={(itemValue, itemIndex) =>
-							setSelectedZone(itemValue)
+							setDepartement(itemValue)
 						}>
 						<Picker.Item label="Menoua" value="Menoua" />
 						<Picker.Item label="Mbam et Kim" value="Mbam et Kim" />
@@ -250,9 +439,9 @@ export default function RegisterScreen({navigation}){
 									Arrondissement d'origine
 						</Text>
 						<Picker
-						selectedValue={selectedZone}
+						selectedValue={arrondis}
 						onValueChange={(itemValue, itemIndex) =>
-							setSelectedZone(itemValue)
+							setArrondis(itemValue)
 						}>
 						<Picker.Item label="Bangangté" value="Bangangté" />
 						<Picker.Item label="Tonga" value="Tonga" />
@@ -264,6 +453,8 @@ export default function RegisterScreen({navigation}){
 						placeholder="Ville"
 						label="Ville de Résidence"
 						labelStyle={styles.thelabel}
+						value={ville}
+						onChangeText={value => setVille(value)}
 						leftIcon={
 							<Ionicons
 								name={"location"}
@@ -277,6 +468,8 @@ export default function RegisterScreen({navigation}){
 						placeholder="Combien d'enfants avez vous?"
 						label="Nombre d'enfants"
 						labelStyle={styles.thelabel}
+						value={nbreEnfant}
+						onChangeText={value => setNbreEnfant(value)}
 						leftIcon={
 							<Ionicons
 								name={"people"}
@@ -310,9 +503,9 @@ export default function RegisterScreen({navigation}){
 							Statut Professionnel:
 							</Text>
 							<Picker
-							selectedValue={selectedZone}
+							selectedValue={statutPro}
 							onValueChange={(itemValue, itemIndex) =>
-								setSelectedZone(itemValue)
+								setStatutPro(itemValue)
 							}>
 							<Picker.Item label="Etudiant/Elève" value="Etudiant/Elève" />
 							<Picker.Item label="Travailleur" value="Travailleur" />
@@ -324,6 +517,8 @@ export default function RegisterScreen({navigation}){
 							   placeholder="Que faites-vous dans la vie?"
 							   label="Profession:"
 							   labelStyle={styles.thelabel}
+							   value={professsion}
+							   onChangeText={value => setProfesssion(value)}
 							   leftIcon={
 								<Ionicons
 									name={"build"}
@@ -337,6 +532,8 @@ export default function RegisterScreen({navigation}){
 							   placeholder="Dans quel secteur d'activité?"
 							   label="Domaine:"
 							   labelStyle={styles.thelabel}
+							   value={domaine}
+							   onChangeText={value => setDomaine(value)}
 							   leftIcon={
 								<Ionicons
 									name={"bulb"}
@@ -350,6 +547,8 @@ export default function RegisterScreen({navigation}){
 							   placeholder="Qui vous emploi?"
 							   label="Employeur:"
 							   labelStyle={styles.thelabel}
+							   value={employeur}
+							   onChangeText={value => setEmployeur(value)}
 							   leftIcon={
 								<Ionicons
 									name={"business"}
@@ -363,6 +562,23 @@ export default function RegisterScreen({navigation}){
 							   placeholder="Dernier diplôme obtenu"
 							   label="Dernier Diplôme:"
 							   labelStyle={styles.thelabel}
+							   value={dernierDiplome}
+							   onChangeText={value => setDernierDiplome(value)}
+							   leftIcon={
+								<Ionicons
+									name={"library"}
+									size={18}
+								/>
+							   }
+							//    onChangeText={value => defineUsername(value)}
+							/>
+
+							<Input
+							   placeholder="Quel titre avez vous en paroisse?"
+							   label="Statut Paroissiale:"
+							   labelStyle={styles.thelabel}
+							   value={dernierDiplome}
+							   onChangeText={value => setDernierDiplome(value)}
 							   leftIcon={
 								<Ionicons
 									name={"library"}
