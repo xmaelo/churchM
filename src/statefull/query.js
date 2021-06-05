@@ -45,7 +45,7 @@ export function request_post(route, body, cle){
 }
 export function request_put(body, route, cle){
   const r = fetch(apibaselink+route, {
-       method: 'POST',
+       method: 'PUT',
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
         'cle': cle ? cle : 'user-show',

@@ -32,115 +32,122 @@ export default function LoginScreen({navigation}){
 					 setLoan(true)
 				 	 const personne = await login.auth(username, password);
 					 setLoan(false)
-					 navigation.navigate('Accueil', {personne: personne});
+					 if (personne) {
+ 						 navigation.navigate('Accueil', {personne: personne});
+					 }else{
+						 setVisible(true)
+						 setLoan(false)
+					 }
 				 }
 			 } catch (e) {
 				 console.log('error==>>',e)
-			 } finally {
-
+				 setVisible(true)
+				 setLoan(false)
 			 }
 		}
 	return(
-		<ScrollView>
-			<View style={styles.container}>
-				<View style={styles.top}>
-					<View style={styles.logo}>
-						<Image source={logo} style={styles.img}/>
-						<Text h4 style={themes.primary}>EEC</Text>
-						<Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text>
-					</View>
-					<View style={styles.form}>
-						<Text h4>Connexion</Text>
-						<Text style={{...themes.secondary, ...styles.mt}}>
-							Bonjour ! Heureux de vous revoir.
-						</Text>
-						<View style={styles.input}>
-							<Input
-														 placeholder="Votre Identifiant"
-														 label="FIDELE ID / Nr. Tel"
-														 labelStyle={themes.primary}
-														 leftIcon={
-															<Ionicons
-																	name={"person"}
-																	size={24}
-															/>
-														 }
-														 value={username}
-														 onChangeText={value => defineUsername(value)}
-													/>
+		<View style={{flex: 1}}>
+			<ScrollView>
+				<View style={styles.container}>
+					<View style={styles.top}>
+						<View style={styles.logo}>
+							<Image source={logo} style={styles.img}/>
+							<Text h4 style={themes.primary}>EEC</Text>
+							<Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text>
+						</View>
+						<View style={styles.form}>
+							<Text h4>Connexion</Text>
+							<Text style={{...themes.secondary, ...styles.mt}}>
+								Bonjour ! Heureux de vous revoir.
+							</Text>
+							<View style={styles.input}>
+								<Input
+															 placeholder="Votre Identifiant"
+															 label="FIDELE ID / Nr. Tel"
+															 labelStyle={themes.primary}
+															 leftIcon={
+																<Ionicons
+																		name={"person"}
+																		size={24}
+																/>
+															 }
+															 value={username}
+															 onChangeText={value => defineUsername(value)}
+														/>
 
-													<Input
-														 placeholder="Mot de passe"
-														 label="Mot de passe"
-														 labelStyle={themes.primary}
-														 leftIcon={
-																	<Ionicons
-																			name={"lock-closed"}
-																			size={24}
-																	/>
-															}
-															value={password}
-															onChangeText={value => setPassword(value)}
-															rightIcon={
-																<TouchableOpacity
-																		style={{padding: 4}}
-																		onPress={()=>setPinSecure(!pinSecure)}
-																>
+														<Input
+															 placeholder="Mot de passe"
+															 label="Mot de passe"
+															 labelStyle={themes.primary}
+															 leftIcon={
 																		<Ionicons
-																				name={pinSecure ? "eye": "eye-off"}
+																				name={"lock-closed"}
 																				size={24}
 																		/>
-																</TouchableOpacity>
-															}
-															secureTextEntry={!pinSecure}
-													/>
-											</View>
-											<View style={styles.button}>
-												<Button
-													//title="Connexion"
-													icon={()=><Ionicons name="log-in-outline" size={30} color={'white'}/> }
-													mode="contained"
-													color={color.primary}
-													loading={loading}
-													onPress={()=>get_token()}
-												>
-													Connexion
- 												</Button>
-											</View>
-											<View style={{...styles.logo, ...styles.bottom}}>
-												<Text style={themes.secondary}>Votre paroise, votre maison</Text>
-												<Text style={{...themes.secondary, ...styles.penser}}>
-													Confiez-vous en l'Eternel, votre Dieu, et vous serez affermis (...)
-													2 Chroniques 20.20
-												</Text>
-											</View>
-											<View style={styles.end}>
-												<TouchableOpacity>
-													<Text style={themes.secondary}>
-														Mot de passe oublié
+																}
+																value={password}
+																onChangeText={value => setPassword(value)}
+																rightIcon={
+																	<TouchableOpacity
+																			style={{padding: 4}}
+																			onPress={()=>setPinSecure(!pinSecure)}
+																	>
+																			<Ionicons
+																					name={pinSecure ? "eye": "eye-off"}
+																					size={24}
+																			/>
+																	</TouchableOpacity>
+																}
+																secureTextEntry={!pinSecure}
+														/>
+												</View>
+												<View style={styles.button}>
+													<Button
+														//title="Connexion"
+														icon={()=><Ionicons name="log-in-outline" size={30} color={'white'}/> }
+														mode="contained"
+														color={color.primary}
+														loading={loading}
+														onPress={()=>get_token()}
+													>
+														Connexion
+	 												</Button>
+												</View>
+												<View style={{...styles.logo, ...styles.bottom}}>
+													<Text style={themes.secondary}>Votre paroise, votre maison</Text>
+													<Text style={{...themes.secondary, ...styles.penser}}>
+														Confiez-vous en l'Eternel, votre Dieu, et vous serez affermis (...)
+														2 Chroniques 20.20
 													</Text>
-												</TouchableOpacity>
-												<TouchableOpacity
-													onPress={()=>navigation.navigate('Register')}
-												>
-													<Text style={themes.primary}>S'incrire</Text>
-												</TouchableOpacity>
-											</View>
+												</View>
+												<View style={styles.end}>
+													<TouchableOpacity>
+														<Text style={themes.secondary}>
+															Mot de passe oublié
+														</Text>
+													</TouchableOpacity>
+													<TouchableOpacity
+														onPress={()=>navigation.navigate('Register')}
+													>
+														<Text style={themes.primary}>S'incrire</Text>
+													</TouchableOpacity>
+												</View>
+						</View>
 					</View>
 				</View>
-			</View>
+			</ScrollView>
 			<Snackbar
-        visible={visible}
-        onDismiss={onDismissSnackBar}
-        action={{
-          label: 'Fermer',
-          onPress: () => {
-            // Do something
-          },
-        }}>
-        Hey there! I'm a Snackbar.
-      </Snackbar>
-		</ScrollView>
+				visible={visible}
+				onDismiss={onDismissSnackBar}
+				action={{
+					label: 'Fermer',
+					onPress: () => {
+						// Do something
+					},
+				}}>
+				Problème de connexion ou identifiant incorrect !
+			</Snackbar>
+		</View>
 	)
 }
 

@@ -16,14 +16,17 @@ import Head from '../components/Head';
 import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from '@react-native-picker/picker';
+import { ActivityIndicator} from 'react-native-paper';
 
-const OnInput = ({d, l, v, f}) => <TextInput label={d} mode={"outlined"} value={v} style={{height: 35}} onChangeText={text => f(text)}/>
+const OnInput = ({d, l, v, f}) => {
+	return <TextInput label={d} mode={"outlined"} value={v && typeof v !== 'function' ? String(v) : ""} style={{height: 35}} onChangeText={text => f(text)}/>
+}
 const FirstRoute = (props) => {
 	const [edit, setSate] = useState(false)
 	const [pick1, setShowPic1] = useState(false)
 	const [pick2, setShowPic2] = useState(false)
 	const [userInfo, setUserIn] = useState(props.userInfo)
-
+	const [updating, setUpdating] = useState(false)
 	const [code, setCode] = useState(props.userInfo.code)
   const [nom, setNom] = useState(props.userInfo.nom)
   const [prenom, setPrenom] = useState(props.userInfo.prenom)
@@ -36,7 +39,7 @@ const FirstRoute = (props) => {
 
 	 const [dateInscription, setDateInscription] = useState(userInfo.dateInscription)
 	 const [datenaiss, setDatenaiss] = useState(userInfo.datenaiss)
-	const onUpdate = () => {
+	const onUpdate = async () => {
 			let u = props.userInfo
 			u.code = code;
       u.nom = nom;
@@ -48,7 +51,12 @@ const FirstRoute = (props) => {
       u.telephone2 = telephone2;
       u.email = email;
       u.sexe = sexe;
-			props.onUpdate(u);
+			console.log('_____________Update_________________', u)
+			setUpdating(true)
+			await props.onUpdate(u);
+			setUserIn(u)
+			setSate(false)
+			setUpdating(false)
 	}
   return(
 		<View style={{ flex: 1}}>
@@ -101,7 +109,7 @@ const FirstRoute = (props) => {
 							<View>
 								<OnInput d={'Nom'} l={'nom'} v={nom} f={setNom}/>
 								<OnInput d={'Prenom'} l={'prenom'} v={prenom} f={setPrenom}/>
-								<OnInput d={'Lieu de Naissance'} l={'lieunaiss'} v={setLieunaiss} f={onUpdate}/>
+								<OnInput d={'Lieu de Naissance'} l={'lieunaiss'} v={lieunaiss} f={setLieunaiss}/>
 
 								<View>
 										<TextInput
@@ -110,7 +118,7 @@ const FirstRoute = (props) => {
 											value={datenaiss ? new Date(datenaiss).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
 											style={{height: 35}}
 											onFocus = {()=>setShowPic2(true)}
-											onBlur = {()=>setShowPic2(true)}
+											//onBlur = {()=>setShowPic2(true)}
 											//onChangeText={text => f(text, 'dateInscription')}
 										/>
 										<DateTimePickerModal
@@ -133,7 +141,7 @@ const FirstRoute = (props) => {
 											value={dateInscription ? new Date(dateInscription).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
 											style={{height: 35}}
 											onFocus = {()=>setShowPic1(true)}
-											onBlur = {()=>setShowPic1(true)}
+											//onBlur = {()=>setShowPic1(true)}
 											//onChangeText={text => f(text, 'dateInscription')}
 										/>
 										<DateTimePickerModal
@@ -180,6 +188,7 @@ const FirstRoute = (props) => {
 									icon={()=><Ionicons name="save" size={25} color={color.primary}/>}
 									mode="outlined"
 									color={color.primary}
+									loading={updating}
 									onPress={() => onUpdate()}
 								>
 									Sauvegarder
@@ -194,7 +203,7 @@ const FirstRoute = (props) => {
 };
 
 const SecondRoute = (props) => {
-
+	const [updating, setUpdating] = useState(false)
 	const [edit, setSate] = useState(false)
 	const [userInfo, setUserIn] = useState(props.userInfo)
 
@@ -205,13 +214,17 @@ const SecondRoute = (props) => {
   const [situationMatrimoniale, setSituationMatrimoniale] = useState(userInfo.situationMatrimoniale)
   const [nbreEnfant, setNbreEnfant] = useState(userInfo.nbreEnfant)
 
-	const onUpdate = () => {
+	const onUpdate = async () => {
 		let u = userInfo;
 		u.situationMatrimoniale = situationMatrimoniale
-		u.nbreEnfant = nbreEnfant
+		u.nbreEnfant = parseInt(nbreEnfant)
 		u.nomPere = nomPere
 		u.nomMere = nomMere
-		props.onUpdate(u);
+		setUpdating(true)
+		await props.onUpdate(u);
+		setUserIn(u)
+		setSate(false)
+		setUpdating(false)
 	}
 	return(
 	  <View style={{ flex: 1}}>
@@ -225,9 +238,11 @@ const SecondRoute = (props) => {
 								<Text style={styles.Text}>Statut Matrimonial:</Text>
 								<Text style={styles.Text}>Nom du Père:</Text>
 								<Text style={styles.Text}>Nom de la mère:</Text>
+								{/*
 								<Text style={styles.Text}>Region d'origine:</Text>
 								<Text style={styles.Text}>Département:</Text>
 								<Text style={styles.Text}>Arrondissement:</Text>
+								*/}
 								<Text style={styles.Text}>Ville de Résidence:</Text>
 								<Text style={styles.Text}>Nombre d'enfants:</Text>
 							</View>
@@ -236,10 +251,11 @@ const SecondRoute = (props) => {
 								<Text style={styles.Text2}>{userInfo.situationMatrimoniale}</Text>
 								<Text style={styles.Text2}>{userInfo.nomPere}</Text>
 								<Text style={styles.Text2}>{userInfo.nomMere}</Text>
-								<Text style={styles.Text2}>{userInfo.situationMatrimoniale}</Text>
-								<Text style={styles.Text2}>{userInfo.situationMatrimoniale}</Text>
-								<Text style={styles.Text2}>{userInfo.situationMatrimoniale}</Text>
-								<Text style={styles.Text2}>{userInfo.villeOrigine}</Text>
+								{/*
+								<Text style={styles.Text2}>{userInfo.arrondissementOrigine?.idDe?.idRe?.nom}</Text>
+								<Text style={styles.Text2}>{userInfo.arrondissementOrigine?.idDe?.nom}</Text>
+								<Text style={styles.Text2}>{userInfo.arrondissementOrigine?.nom}</Text>
+								*/}
 								<Text style={styles.Text2}>{userInfo.nbreEnfant}</Text>
 							</View>
 						</View>
@@ -262,11 +278,8 @@ const SecondRoute = (props) => {
 								<OnInput d={'Statut Matrimonial'} l={'situationMatrimoniale'} v={situationMatrimoniale} f={setSituationMatrimoniale}/>
 								<OnInput d={'Nom du Pere'} l={'nomPere'} v={nomPere} f={setNomPere}/>
 								<OnInput d={'Nom de la Mere'} l={'situationMatrimoniale'} v={nomMere} f={setNomMere}/>
-								<OnInput d={"Region d'origine"} l={'situationMatrimoniale'} v={situationMatrimoniale} f={onUpdate}/>
-								<OnInput d={'Département'} l={'situationMatrimoniale'} v={situationMatrimoniale} f={onUpdate}/>
-								<OnInput d={'Arrondissement'} l={'situationMatrimoniale'} v={situationMatrimoniale} f={onUpdate}/>
 								{/*<OnInput d={'Ville de Résidence'} l={'villeOrigine'} v={villeOrigine} f={setV}/>*/}
-								<OnInput d={"Nombre d'enfants"} l={'nbreEnfant'} v={nbreEnfant} f={setNbreEnfant}/>
+								<OnInput d={"Nombre d'enfants"} l={'nbreEnfant'} v={String(nbreEnfant)} f={setNbreEnfant}/>
 							</View>
 							<View style={{paddingTop: hp('2%'), flexDirection: 'row', justifyContent: 'space-around'}}>
 								<Button
@@ -282,6 +295,7 @@ const SecondRoute = (props) => {
 									icon={()=><Ionicons name="save" size={25} color={color.primary}/>}
 									mode="outlined"
 									color={color.primary}
+									loading={updating}
 									onPress={() =>onUpdate()}
 								>
 									Sauvegarder
@@ -295,6 +309,7 @@ const SecondRoute = (props) => {
 };
 
 const ThirdRoute = (props) => {
+	const [updating, setUpdating] = useState(false)
 	const [edit, setSate] = useState(false)
 	const [userInfo, setUserIn] = useState(props.userInfo)
 
@@ -304,13 +319,17 @@ const ThirdRoute = (props) => {
   const [serieFiliere, setSerieFiliere] = useState(userInfo.serieFiliere)
 	const [profession, setProfession] = useState(props.userInfo.profession)
 
-	const onUpdate = () => {
+	const onUpdate = async () => {
 		let u = userInfo;
 		u.profession = profession
 		u.etablissement = etablissement
 	  u.classeNiveau = classeNiveau
 	  u.serieFiliere = serieFiliere
-			props.onUpdate(u);
+		setUpdating(true)
+		await props.onUpdate(u);
+		setUserIn(u)
+		setSate(false)
+		setUpdating(false)
 	}
 
 	return(
@@ -374,6 +393,7 @@ const ThirdRoute = (props) => {
 									icon={()=><Ionicons name="save" size={25} color={color.primary}/>}
 									mode="outlined"
 									color={color.primary}
+									loading={updating}
 									onPress={() => onUpdate()}
 								>
 									Sauvegarder
@@ -389,7 +409,10 @@ const ThirdRoute = (props) => {
 const FourthRoute = (props) => {
 
 	const [edit, setSate] = useState(false)
-	const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+	const [updating, setUpdating] = useState(false)
+	const [isMalade, setIsMamade] = useState(props.userInfo.isMalade);
+	const [communiant, setCommunian] = useState(props.userInfo.setCommunian);
+
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 	const [adresse, setAdresse] = useState(props.userInfo.adresse)
 	const [status, setStatus] = useState(props.userInfo.status)
@@ -400,10 +423,16 @@ const FourthRoute = (props) => {
 	const [employeur, setEmployeur] = useState(props.userInfo.employeur)
 
 	const [userInfo, setUserIn] = useState(props.userInfo)
-	const onUpdate = () => {
+	const onUpdate = async () => {
 			let u = userInfo
 			u.status = status
-			props.onUpdate(u);
+			u.communiant = communiant
+			u.isMalade = isMalade
+			setUpdating(true)
+			await props.onUpdate(u);
+			setUserIn(u)
+			setSate(false)
+			setUpdating(false)
 	}
 	return(
 	  <View style={{ flex: 1}}>
@@ -449,11 +478,11 @@ const FourthRoute = (props) => {
 							<OnInput d={'Statut'} l={'status'} v={status} f={setStatus}/>
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: hp('1.5%')}}>
 								<Text style={styles.Text}>Malade</Text>
-								<Switch value={userInfo.isMalade} onValueChange={()=>onUpdate(!userInfo.isMalade, 'isMalade')} />
+								<Switch value={isMalade} onValueChange={()=>setIsMamade(!isMalade)} />
 							</View>
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: hp('1.5%')}}>
 								<Text style={styles.Text}>Chrétien Communiant?</Text>
-								<Switch value={!userInfo.isMalade} onValueChange={()=>onUpdate(userInfo.isMalade, 'isMalade')} />
+								<Switch value={communiant} onValueChange={()=>setCommunian(!communiant)} />
 							</View>
 						</View>
 						<View style={{paddingTop: hp('2%'), flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -470,6 +499,7 @@ const FourthRoute = (props) => {
 								icon={()=><Ionicons name="save" size={25} color={color.primary}/>}
 								mode="outlined"
 								color={color.primary}
+								loading={updating}
 								onPress={() => onUpdate()}
 							>
 								Sauvegarder
@@ -537,11 +567,22 @@ export default function Profil({navigation}){
 		const [userInfo, setUserInfos] = useState({})
 		const [zone, setSone] = useState({})
 
+
 		const updateUserInfo = (u) => {
 			setUserInfos(u);
 		}
-		const onUpdate = async() => {
-			let k = await profil.updatePersonne(userInfo)
+		const onUpdate = async(u) => {
+			console.log('_____________>>><<<<________________',userInfo, userInfo.zone.id)
+			setUserInfos(u);
+			try{
+				delete u.user
+				u.arrondissementOrigine = userInfo?.arrondissementOrigine["@id"]
+				u.zone = "/api/zones/"+userInfo?.zone?.id?.toString();
+				let k = await profil.updatePersonne(u)
+				if(k) {setUserInfos(k)}
+			}catch(e){
+				console.log('error updating userInfo', e)
+			}
 		}
 		useEffect(()=>{
 			(async()=>{
@@ -554,10 +595,10 @@ export default function Profil({navigation}){
 		}, [])
 
     const renderScene = SceneMap({
-    	first: () => <FirstRoute userInfo={userInfo} onUpdate={updateUserInfo} u={onUpdate}/>,
-    	second: () => <SecondRoute userInfo={userInfo} onUpdate={updateUserInfo} u={onUpdate}/>,
-    	third: () => <ThirdRoute userInfo={userInfo} onUpdate={updateUserInfo} u={onUpdate}/>,
-    	fourth: () => <FourthRoute userInfo={userInfo} onUpdate={updateUserInfo} u={onUpdate}/>,
+    	first: () => <FirstRoute userInfo={userInfo} onUpdate={onUpdate} u={onUpdate}/>,
+    	second: () => <SecondRoute userInfo={userInfo} onUpdate={onUpdate} u={onUpdate}/>,
+    	third: () => <ThirdRoute userInfo={userInfo} onUpdate={onUpdate} u={onUpdate}/>,
+    	fourth: () => <FourthRoute userInfo={userInfo} onUpdate={onUpdate} u={onUpdate}/>,
     });
 	return(
 		<>
@@ -571,7 +612,6 @@ export default function Profil({navigation}){
 				  source={logo}
 					onPress={() => onPickImage()}
 				  >
-				  <Avatar.Accessory style={{width: 100}} />
 				</Avatar>
 
 			</View>
