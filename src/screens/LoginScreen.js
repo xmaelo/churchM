@@ -124,7 +124,8 @@ export default function LoginScreen({navigation}){
 												</View>
 												<View style={styles.end}>
 													<TouchableOpacity>
-														<Text style={themes.secondary}>
+														<Text style={themes.secondary}
+														onPress={()=>navigation.navigate('Recovery')}>
 															Mot de passe oublié
 														</Text>
 													</TouchableOpacity>

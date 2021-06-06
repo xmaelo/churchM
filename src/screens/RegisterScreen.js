@@ -8,6 +8,11 @@ import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
 import { CheckBox } from 'react-native-elements'
 import AppIntroSlider from '@lomelidev/react-native-walkthrough';
+import { params } from '../statefull/params';
+import RadioButtonRN from 'radio-buttons-react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { profil } from '../statefull/profil';
+import { login } from '../statefull/login';
 //import Walkthrough from '@lomelidev/react-native-walkthrough';
 
 function Header({text}){
@@ -76,7 +81,7 @@ const  _renderDoneButton = () => {
   };
 
 export default function RegisterScreen({navigation}){
-	const [pinSecure, setPinSecure] = useState(false);
+
 	const [date, setDate] = useState(new Date());
 	const [selectedZone, setSelectedZone] = useState();
 	const [nom, setNom] = useState("");
@@ -107,10 +112,68 @@ export default function RegisterScreen({navigation}){
 	const [serieFiliere, setSerieFilière] = useState();
 	const [statutParoi, setstatutParoi] = useState();
 	const [malade, setMalade] = useState();
+	const [groupes, setGroupes] = useState([]);
 	const [chretienCom, setChretienCom] = useState();
 	const [membreGroupe, setMembreGroupe] = useState();
-	const [showRealApp, modOfShowRealApp] = useState(false)
+	const [showRealApp, modOfShowRealApp] = useState(false);
+
+	const [lesZones, setLesZones] = useState([]);
+	const [zonesGroupes, setZonesGroupes] = useState([]);
+	const [lesRegions, setLesRegions] = useState([]);
+	const [lesDepartements, setLesDepartements] = useState([]);
+	const [lesArrondis, setLesArrondis] = useState([]);
+	const [pick1, setShowPic1] = useState(false);
+	const [pick2, setShowPic2] = useState(false);
+
+	const [loading, setLoan] = useState(false);
+	var [deptm, setDeptm] = useState();
+	var [changeView1, setChangeView1] = useState(1);
+
 	const checked = false;
+	const sexe = [
+		{
+			label: "Masculin"
+		},
+		{
+			label: "Féminin"
+		}
+	];
+	const ismalade = [
+		{
+			label: "Oui",
+			value: true
+		},
+		{
+			label: "Non",
+			value: false
+		}
+	]
+
+	const communuant = [
+		{
+			label: "Oui",
+			value: true
+		},
+		{
+			label: "Non",
+			value: false
+		}
+	]
+
+	const membre = [
+		{
+			label: "Oui",
+			value: true
+		},
+		{
+			label: "Non",
+			value: false
+		}
+	]
+
+	const showToast = (message) => {
+		ToastAndroid.show(message, ToastAndroid.SHORT, ToastAndroid.TOP);
+	  };
 
 
 	const checkForm = (slideNumber) => {
@@ -157,7 +220,7 @@ export default function RegisterScreen({navigation}){
       if (!statutPro) {
         err = 'L\'activité est requise';
       } else {
-        if(statusPro == "Etudiant/Elève") {
+        if(statutPro == "Etudiant/Elève") {
           if (!etabliss) {
             err = 'L\'etablissement est requis';
           } else if (!serieFiliere) {
@@ -210,15 +273,86 @@ export default function RegisterScreen({navigation}){
       } 
 	}
 	if (err.length) {
-		this.showToast(err, 'top');
+		showToast(err);
 		return false;
 	} else {
 		return true;
 	}
 	}
 
-	  const slides = [
-		<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	const createFidele =  async() => {
+		console.log('ENregistrement!!!!!');
+		// try {
+			if(!loading){
+				var fidele = {
+					"nom": nom,
+					"prenom": prenom,
+					"datenaiss": dateNaiss,
+					"lieunaiss": lieu,
+					"sexe": genre,
+					"cni": "",
+					"code": "",
+					"telephone": telephone1,
+					"telephone2": telephone2,
+					"email": email,
+					"adresse": "",
+					"status": statutParoi,
+					"dateInscription": dateAdhesion,
+					"profession": professsion,
+					"nomPere": nomPere,
+					"nomMere": nomMere,
+					"domaine": domaine,
+					"dernierDiplome": dernierDiplome,
+					"statusPro": statutPro,
+					"employeur": employeur,
+					"regionOrigine": region,
+					"departementOrigine": departement,
+					"villeOrigine": ville,
+					"arrondissementOrigine": arrondis,
+					"etablissement": etabliss,
+					"classeNiveau": classeNiveau,
+					"serieFiliere": serieFiliere,
+					"situationMatrimoniale": mati,
+					"nbreEnfant": nbreEnfant,
+					"grade": "",
+					zone: "",
+					"deleted": false,
+					"isactif": false,
+					"isMalade": malade,
+					"isDefault": true,
+					"groupes": []
+						}
+				setLoan(true)
+				 profil.createPersonne(fidele).then(() => {
+					setLoan(false)
+					showToast('Enregistrement terminé avec succès');
+					navigation.navigate('Login');
+				 }).catch(() => showToast("Erreur d'enregistrement"));
+			}
+		// } catch (e) {
+		// 	console.log('error==>>',e)
+		// } finally {
+
+		// }
+   }
+
+
+	  useEffect(() => {
+        (async()  => {
+			var zn = await params.getAll();
+			var reg = await params.getAll2();
+			setLesRegions(reg);
+			setZonesGroupes(zn[2]);
+			setLesZones(zn[0]);
+			console.log('ZOnes:', zn[0]);
+			console.log('Groupes:', zn[2]);
+			console.log('Regions:', reg);
+        })();
+        return;
+      }, [])
+
+	const slide1 =
+		<ScrollView contentContainerStyle={{flexGrow:1}}>
 			<View style={styles.container}>
 				<View style={styles.top}>
 					<Header text="Créer un compte"/>
@@ -246,7 +380,19 @@ export default function RegisterScreen({navigation}){
 								name={"calendar"}
 								size={18}
 							/>
-						   }/>
+						   }
+						   value={dateNaiss ? new Date(dateNaiss).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
+                            // onChangeText={value => setDate(value)}
+                            onFocus = {()=>setShowPic1(true)}/>
+
+							<DateTimePickerModal
+								testID="dateTimePicker"
+								display={"calendar"}
+								isVisible={pick1}
+								date={dateNaiss ? new Date(dateNaiss) :  new Date()}
+								onConfirm={(ChooseDate)=>{setShowPic1(false); setDateNaiss(ChooseDate); console.log("choosen date:", ChooseDate);}}
+								onCancel={()=>setShowPic1(false)}
+							/>
 
 						   <Input placeholder="Lieu" labelStyle={styles.thelabel} label="Lieu de Naissance" value={lieu}
 							onChangeText={value => setLieu(value)} leftIcon={
@@ -306,19 +452,26 @@ export default function RegisterScreen({navigation}){
 	                                size={18}
 	                            />
 	                           }
-	                        //    onChangeText={value => defineUsername(value)}
-	                        />
+							   value={dateAdhesion ? new Date(dateAdhesion).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
+							   // onChangeText={value => setDate(value)}
+							   onFocus = {()=>setShowPic2(true)}/>
+   
+							   <DateTimePickerModal
+								   testID="dateTimePicker"
+								   display={"calendar"}
+								   isVisible={pick2}
+								   date={dateAdhesion ? new Date(dateAdhesion) :  new Date()}
+								   onConfirm={(ChooseDate)=>{setShowPic2(false); setDateAdhesion(ChooseDate); console.log("choosen date:", ChooseDate);}}
+								   onCancel={()=>setShowPic2(false)}
+							   />
 							<Text style={styles.label}>
 	                    			Votre genre
 	                    	</Text>
-							<CheckBox
-							title='Masculin'
-							checked={checked}
-							/>
-							<CheckBox
-							title='Féminin'
-							checked={checked}
-							/>
+							<RadioButtonRN
+                            data={sexe}
+                            selectedBtn={(e) => {console.log(e); setGenre(e.label);}}
+                            />
+
 						<Text style={styles.label}>
 	                    			Zone d'habitation
 	                    	</Text>
@@ -327,16 +480,21 @@ export default function RegisterScreen({navigation}){
 						onValueChange={(itemValue, itemIndex) =>
 							setZone(itemValue)
 						}>
-						<Picker.Item label="Mendong" value="Mendong" />
-						<Picker.Item label="Accacia" value="Accacia" />
-						<Picker.Item label="Jouvence" value="Jouvence" />
-						<Picker.Item label="Tam-Tam" value="Tam-Tam" />
+						{
+							lesZones.map((l,i) => (
+								<Picker.Item key={i} label={l.nom} value={l.nom} />
+								))
+						}
 						</Picker>
 						</View>
 	                       <View style={styles.button}>
 	                     	<Button
 							  title="Suivant"
-							  onPress={()=>navigation.navigate('Drawer')}
+							  onPress={()=>{if (checkForm(1)) {
+								//   setTheSlide(slide2);
+								//   AppIntroSlider.goToSlide(2);
+								setChangeView1(2);
+							  };}}
 							/>
 	                    </View>
 	                    <View style={styles.end}>
@@ -354,291 +512,395 @@ export default function RegisterScreen({navigation}){
 					</View>
 				</View>
 			</View>
-		</ScrollView>,
+		</ScrollView>
+  ;
 
-		<ScrollView contentContainerStyle={{flexGrow:1}} key={2}>
-		<View style={styles.container}>
-			<View style={styles.top}>
+  const slide2 = [
+	<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	<View style={styles.container}>
+		<View style={styles.top}>
 
-				<Header text="État Civil"/>
-				<View style={styles.form}>
-					<View style={styles.input}>
-						<Input
-						placeholder="Père"
-						label="Nom(s) du Père"
-						labelStyle={styles.thelabel}
-						value={nomPere}
-						onChangeText={value => setNomPere(value)}
-						leftIcon={
-							<Ionicons
-								name={"man"}
-								size={18}
-							/>
+			<Header text="État Civil"/>
+			<View style={styles.form}>
+				<View style={styles.input}>
+					<Input
+					placeholder="Père"
+					label="Nom(s) du Père"
+					labelStyle={styles.thelabel}
+					onChangeText={value => {setNomPere(value); console.log('Pere:', value)}}
+					value={nomPere}
+					leftIcon={
+						<Ionicons
+							name={"man"}
+							size={18}
+						/>
+					}
+					//    onChangeText={value => defineUsername(value)}
+					/>
+
+					<Input
+					placeholder="Mère"
+					label="Nom(s) de la Mère"
+					labelStyle={styles.thelabel}
+					onChangeText={value => setNomMere(value)}
+					value={nomMere}
+					leftIcon={
+						<Ionicons
+							name={"woman"}
+							size={18}
+						/>
+					}
+					//    onChangeText={value => defineUsername(value)}
+					/>
+
+					<Text style={styles.label}>
+								Situation Matrimoniale
+					</Text>
+					<Picker
+					selectedValue={mati}
+					onValueChange={(itemValue, itemIndex) =>
+						setMatri(itemValue)
+					}>
+					<Picker.Item label="Célibataire" value="celibataire" />
+					<Picker.Item label="Marié(e)" value="marie" />
+					<Picker.Item label="Fiancé(e)" value="fiance" />
+					<Picker.Item label="Divorcé(e)" value="divorce" />
+					</Picker>
+
+					<Text style={styles.label}>
+								Region d'Origine
+					</Text>
+					<Picker
+					selectedValue={region}
+					onValueChange={(itemValue, itemIndex) =>
+						{setRegion(itemValue['@id']); setLesDepartements(itemValue.departements); console.log('Regions: ', lesDepartements)}
+					}>
+						{
+							lesRegions.map((l,i) => (
+
+							<Picker.Item key={i} label={l.nom} value={l} />
+							))
 						}
-						//    onChangeText={value => defineUsername(value)}
-						/>
+					</Picker>
 
-						<Input
-						placeholder="Mère"
-						label="Nom(s) de la Mère"
-						labelStyle={styles.thelabel}
-						value={nomMere}
-						onChangeText={value => setNomMere(value)}
-						leftIcon={
-							<Ionicons
-								name={"woman"}
-								size={18}
-							/>
+					<Text style={styles.label}>
+								Département d'origine
+					</Text>
+					<Picker
+					selectedValue={departement}
+					onValueChange={(itemValue, itemIndex) =>
+						{setDepartement(itemValue['@id']); setLesArrondis(itemValue.arrondissements);}
+					}>
+						{
+							lesDepartements.map((l,i) => (
+
+							<Picker.Item key={i} label={l.nom} value={l} />
+							))
 						}
-						//    onChangeText={value => defineUsername(value)}
-						/>
+					</Picker>
 
-						<Text style={styles.label}>
-									Situation Matrimoniale
-						</Text>
-						<Picker
-						selectedValue={mati}
-						onValueChange={(itemValue, itemIndex) =>
-							setMatri(itemValue)
-						}>
-						<Picker.Item label="Célibataire" value="celibataire" />
-						<Picker.Item label="Marié(e)" value="marie" />
-						<Picker.Item label="Fiancé(e)" value="fiance" />
-						<Picker.Item label="Divorcé(e)" value="divorce" />
-						</Picker>
+					<Text style={styles.label}>
+								Arrondissement d'origine
+					</Text>
+					<Picker
+					selectedValue={arrondis}
+					onValueChange={(itemValue, itemIndex) =>
+						setArrondis(itemValue)
+					}>
+						{
+							lesArrondis.map((l,i) => (
 
-						<Text style={styles.label}>
-									Region d'Origine
-						</Text>
-						<Picker
-						selectedValue={region}
-						onValueChange={(itemValue, itemIndex) =>
-							setRegion(itemValue)
-						}>
-						<Picker.Item label="Nord" value="Nord" />
-						<Picker.Item label="Centre" value="Centre" />
-						<Picker.Item label="Sud" value="Sud" />
-						<Picker.Item label="Ouest" value="Ouest" />
-						</Picker>
-
-						<Text style={styles.label}>
-									Département d'origine
-						</Text>
-						<Picker
-						selectedValue={departement}
-						onValueChange={(itemValue, itemIndex) =>
-							setDepartement(itemValue)
-						}>
-						<Picker.Item label="Menoua" value="Menoua" />
-						<Picker.Item label="Mbam et Kim" value="Mbam et Kim" />
-						<Picker.Item label="Sanaga" value="Sanaga" />
-						<Picker.Item label="Ndé" value="Ndé" />
-						</Picker>
-
-						<Text style={styles.label}>
-									Arrondissement d'origine
-						</Text>
-						<Picker
-						selectedValue={arrondis}
-						onValueChange={(itemValue, itemIndex) =>
-							setArrondis(itemValue)
-						}>
-						<Picker.Item label="Bangangté" value="Bangangté" />
-						<Picker.Item label="Tonga" value="Tonga" />
-						<Picker.Item label="Dschang" value="Dschang" />
-						<Picker.Item label="Faro" value="Faro" />
-						</Picker>
-
-						<Input
-						placeholder="Ville"
-						label="Ville de Résidence"
-						labelStyle={styles.thelabel}
-						value={ville}
-						onChangeText={value => setVille(value)}
-						leftIcon={
-							<Ionicons
-								name={"location"}
-								size={18}
-							/>
+							<Picker.Item key={i} label={l.nom} value={l['@id']} />
+							))
 						}
-						//    onChangeText={value => defineUsername(value)}
-						/>
+					</Picker>
 
-						<Input
-						placeholder="Combien d'enfants avez vous?"
-						label="Nombre d'enfants"
-						labelStyle={styles.thelabel}
-						value={nbreEnfant}
-						onChangeText={value => setNbreEnfant(value)}
-						leftIcon={
-							<Ionicons
-								name={"people"}
-								size={18}
-							/>
-						}
-						//    onChangeText={value => defineUsername(value)}
+					<Input
+					placeholder="Ville"
+					label="Ville de Résidence"
+					labelStyle={styles.thelabel}
+					value={ville}
+					onChangeText={value => setVille(value)}
+					leftIcon={
+						<Ionicons
+							name={"location"}
+							size={18}
 						/>
+					}
+					//    onChangeText={value => defineUsername(value)}
+					/>
 
-					</View>
-					<View style={styles.button}>
-						<Button
-						title="Suivant"
-						onPress={()=>navigation.navigate('Drawer')}
+					<Input
+					placeholder="Combien d'enfants avez vous?"
+					label="Nombre d'enfants"
+					labelStyle={styles.thelabel}
+					onChangeText={value => setNbreEnfant(value)}
+					value={nbreEnfant}
+					leftIcon={
+						<Ionicons
+							name={"people"}
+							size={18}
 						/>
-					</View>
-					<View style={styles.end2}>
-					</View>
+					}
+					//    onChangeText={value => defineUsername(value)}
+					/>
+
+				</View>
+				<View style={styles.button}>
+					<Button
+					title="Suivant"
+					onPress={()=>{if (checkForm(2)) {
+						setChangeView1(3);
+					  //   AppIntroSlider.goToSlide(2);
+					};}}
+					/>
+				</View>
+				<View style={styles.end2}>
 				</View>
 			</View>
 		</View>
-		</ScrollView>,
-		<ScrollView contentContainerStyle={{flexGrow:1}} key={3}>
-			<View style={styles.container}>
-				<View style={styles.top}>
-					<Header text="Statut professionnel et paroissial"/>
-					<View style={styles.form}>
-						<View style={styles.input}>
+	</View>
+	</ScrollView>
+  ];
 
-							<Text style={styles.label}>
-							Statut Professionnel:
-							</Text>
-							<Picker
-							selectedValue={statutPro}
-							onValueChange={(itemValue, itemIndex) =>
-								setStatutPro(itemValue)
-							}>
-							<Picker.Item label="Etudiant/Elève" value="Etudiant/Elève" />
-							<Picker.Item label="Travailleur" value="Travailleur" />
-							<Picker.Item label="Activité Libérale" value="Activité Libérale" />
-							<Picker.Item label="Sans emploi" value="Sans emploi" />
-							</Picker>
+  const slide3 = [
+	<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	<View style={styles.container}>
+		<View style={styles.top}>
+			<Header text="Statut professionnel et paroissial"/>
+			<View style={styles.form}>
+				<View style={styles.input}>
 
+					<Text style={styles.label}>
+					Statut Professionnel:
+					</Text>
+					<Picker
+					selectedValue={statutPro}
+					onValueChange={(itemValue, itemIndex) =>
+						setStatutPro(itemValue)
+					}>
+					<Picker.Item label="Sans emploi" value="Sans emploi" />
+					<Picker.Item label="Etudiant/Elève" value="Etudiant/Elève" />
+					<Picker.Item label="Travailleur" value="Travailleur" />
+					<Picker.Item label="Activité Libérale" value="Activité Libérale" />
+					</Picker>
+					{
+						(statutPro == "Etudiant/Elève")?
+						<View>
 							<Input
-							   placeholder="Que faites-vous dans la vie?"
-							   label="Profession:"
-							   labelStyle={styles.thelabel}
-							   value={professsion}
-							   onChangeText={value => setProfesssion(value)}
-							   leftIcon={
-								<Ionicons
-									name={"build"}
-									size={18}
-								/>
-							   }
-							//    onChangeText={value => defineUsername(value)}
-							/>
-
-							<Input
-							   placeholder="Dans quel secteur d'activité?"
-							   label="Domaine:"
-							   labelStyle={styles.thelabel}
-							   value={domaine}
-							   onChangeText={value => setDomaine(value)}
-							   leftIcon={
-								<Ionicons
-									name={"bulb"}
-									size={18}
-								/>
-							   }
-							//    onChangeText={value => defineUsername(value)}
-							/>
-
-							<Input
-							   placeholder="Qui vous emploi?"
-							   label="Employeur:"
-							   labelStyle={styles.thelabel}
-							   value={employeur}
-							   onChangeText={value => setEmployeur(value)}
-							   leftIcon={
+							placeholder="Quel Etablissement fréquentez-vous?"
+							label="Etablissement:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setEtabliss(value)}
+							value={etabliss}
+							leftIcon={
 								<Ionicons
 									name={"business"}
 									size={18}
 								/>
-							   }
+							}
 							//    onChangeText={value => defineUsername(value)}
 							/>
 
 							<Input
-							   placeholder="Dernier diplôme obtenu"
-							   label="Dernier Diplôme:"
-							   labelStyle={styles.thelabel}
-							   value={dernierDiplome}
-							   onChangeText={value => setDernierDiplome(value)}
-							   leftIcon={
+							placeholder="Quelle est votre Serie/Filière?"
+							label="Serie/Filiere:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setSerieFilière(value)}
+							value={serieFiliere}
+							leftIcon={
 								<Ionicons
-									name={"library"}
+									name={"bulb"}
 									size={18}
 								/>
-							   }
+							}
 							//    onChangeText={value => defineUsername(value)}
 							/>
 
 							<Input
-							   placeholder="Quel titre avez vous en paroisse?"
-							   label="Statut Paroissiale:"
-							   labelStyle={styles.thelabel}
-							   value={dernierDiplome}
-							   onChangeText={value => setDernierDiplome(value)}
-							   leftIcon={
+							placeholder="Quelle Classe/Niveau faitez-vous?"
+							label="Classe/Niveau:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setClasseNiveau(value)}
+							value={classeNiveau}
+							leftIcon={
+								<Ionicons
+									name={"school"}
+									size={18}
+								/>
+							}
+							//    onChangeText={value => defineUsername(value)}
+							/>
+
+						</View> :
+						(statutPro == "Travailleur" || statutPro == "Activité Libérale")?
+						<View>
+							<Input
+							placeholder="Que faites-vous dans la vie?"
+							label="Profession:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setProfesssion(value)}
+							value={professsion}
+							leftIcon={
+								<Ionicons
+									name={"build"}
+									size={18}
+								/>
+							}
+							//    onChangeText={value => defineUsername(value)}
+							/>
+
+							<Input
+							placeholder="Dans quel secteur d'activité?"
+							label="Domaine:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setDomaine(value)}
+							value={domaine}
+							leftIcon={
+								<Ionicons
+									name={"bulb"}
+									size={18}
+								/>
+							}
+							//    onChangeText={value => defineUsername(value)}
+							/>
+
+							<Input
+							placeholder="Qui vous emploi?"
+							label="Employeur:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setEmployeur(value)}
+							value={employeur}
+							leftIcon={
+								<Ionicons
+									name={"business"}
+									size={18}
+								/>
+							}
+							//    onChangeText={value => defineUsername(value)}
+							/>
+
+							<Input
+							placeholder="Dernier diplôme obtenu"
+							label="Dernier Diplôme:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setDernierDiplome(value)}
+							value={dernierDiplome}
+							leftIcon={
 								<Ionicons
 									name={"library"}
 									size={18}
 								/>
-							   }
+							}
 							//    onChangeText={value => defineUsername(value)}
 							/>
-
-							<Text style={styles.label}>
-									Malade ?
-							</Text>
-							<CheckBox
-							title='Oui'
-							checked={checked}
-							/>
-							<CheckBox
-							title='Non'
-							checked={checked}
-							/>
-
-
-							<Text style={styles.label}>
-							Chrétien Communiant ?
-							</Text>
-							<CheckBox
-							title='Oui'
-							checked={checked}
-							/>
-							<CheckBox
-							title='Non'
-							checked={checked}
-							/>
-
-							<Text style={styles.label}>
-							Membre de Groupe ?
-							</Text>
-							<CheckBox
-							title='Oui'
-							checked={checked}
-							/>
-							<CheckBox
-							title='Non'
-							checked={checked}
-							/>
-
-						   </View>
-						   <View style={styles.button}>
-							 <Button
-							  title="Terminer"
-							  onPress={()=>navigation.navigate('Drawer')}
+						</View>:
+						<View>
+							<Input
+							placeholder="Dernier diplôme obtenu"
+							label="Dernier Diplôme:"
+							labelStyle={styles.thelabel}
+							onChangeText={value => setDernierDiplome(value)}
+							value={dernierDiplome}
+							leftIcon={
+								<Ionicons
+									name={"library"}
+									size={18}
+								/>
+							}
+							//    onChangeText={value => defineUsername(value)}
 							/>
 						</View>
-						<View style={styles.end2}>
-						</View>
-					</View>
+					}
+
+
+					<Text style={styles.label}>
+						Statut Paroissiale:
+						</Text>
+						<Picker
+						selectedValue={statutParoi}
+						onValueChange={(itemValue, itemIndex) =>
+							setstatutParoi(itemValue)
+						}>
+						<Picker.Item label="FIDELE" value="FIDELE" />
+						<Picker.Item label="ANCIEN" value="ANCIEN" />
+						<Picker.Item label="ANCIEN HONORAIRE" value="ANCIEN HONORAIRE" />
+						<Picker.Item label="CONSEILLER" value="CONSEILLER" />
+						<Picker.Item label="DIACRE" value="DIACRE" />
+						<Picker.Item label="MONITEUR" value="MONITEUR" />
+						<Picker.Item label="DIASPORA" value="DIASPORA" />
+						<Picker.Item label="CATECHUMENE" value="CATECHUMENE" />
+						<Picker.Item label="CULTE D'ENFANT" value="CULTE D'ENFANT" />
+						<Picker.Item label="PERSONNEL EMPLOYE" value="PERSONNEL EMPLOYE" />
+					</Picker>
+
+					<Text style={styles.label}>
+							Malade ?
+					</Text>
+					<RadioButtonRN
+					data={ismalade}
+					selectedBtn={(e) => {console.log(e); setMalade(e.value);}}
+					/>
+
+
+					<Text style={styles.label}>
+					Chrétien Communiant ?
+					</Text>
+					<RadioButtonRN
+					data={communuant}
+					selectedBtn={(e) => {console.log(e); setChretienCom(e.value);}}
+					/>
+
+					<Text style={styles.label}>
+					Membre de Groupe ?
+					</Text>
+					<RadioButtonRN
+					data={membre}
+					selectedBtn={(e) => {console.log(e); setMembreGroupe(e.label); }}
+					/>
+					{
+						(membreGroupe)?
+						<Picker
+					selectedValue={groupes}
+					onValueChange={(itemValue, itemIndex) =>
+						setGroupes([itemValue])
+					}>
+						{
+							zonesGroupes.map((l,i) => (
+
+							<Picker.Item key={i} label={l.nom} value={l['@id']} />
+							))
+						}
+					</Picker>:
+						<View></View>
+					}
+				   </View>
+				   <View style={styles.button}>
+	
+					<Button
+						title="Terminer"
+						mode="contained"
+						color={color.primary}
+						loading={loading}
+						onPress={()=>{
+							if (checkForm(3)) {
+								createFidele().then( value => {
+									console.log(value);
+								}, error => console.log(error));
+							//   AppIntroSlider.goToSlide(2);
+						  }
+							}}
+					/>
+				</View>
+				<View style={styles.end2}>
 				</View>
 			</View>
-		</ScrollView>
+		</View>
+	</View>
+</ScrollView>
   ];
+
+	const [theSlide, setTheSlide] = useState(slide1);
 
 	  const _renderItem = ({ item }) => {
 			return ( item	);
@@ -647,21 +909,11 @@ export default function RegisterScreen({navigation}){
 			modOfShowRealApp(true);
 	  }
 
-	  if (showRealApp) {
-			return (<RegisterScreen />);
-	  } else {
-			return (
-				<AppIntroSlider
-					renderItem={_renderItem}
-					slides={slides}
-					onDone={_onDone}
-					renderDoneButton={_renderDoneButton}
-          renderNextButton={_renderNextButton}
-          renderPrevButton={_renderPrevButton}
-					showPrevButton={true}
-				/>
-			);
-	  }
+
+	  
+	return (
+		(changeView1 == 1)? slide1: (changeView1==2)? slide2: slide3
+	);
 }
 
 const styles = StyleSheet.create({

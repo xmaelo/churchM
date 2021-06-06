@@ -1,4 +1,4 @@
-import {request_get, request_post, user, request_file, request_put} from './query';
+import {request_get, request_post, request_put_notkn, request_post_notkn, user, request_file, request_put} from './query';
 
 class onInfos{
    userData = () => user.getUserInfo();
@@ -69,6 +69,19 @@ class onInfos{
     } catch (error) {
       console.warn(error);
     }
+  }
+
+  createPersonne = async (data) => {
+      var res = await request_post_notkn("/fidele/inscription", data, 'inscription-save');
+      return res;
+  }
+
+  passChange = async (data) => {
+    return await request_post_notkn("/users/passchange", data,'pass-change');
+  }
+
+  smsConfirm =  async (data) => {
+    return request_put_notkn("/users/smsconfirm", data,'sms-confirm');
   }
 }
 
