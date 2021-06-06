@@ -59,12 +59,15 @@ class onInfos{
 
   }
 
-  getAllUser = async (status) => {
+  updatePersonne = async (data) => {
     try {
-      let res = await request_get("/personnes?status="+status, 'fidele-index');
-      return res["hydra:member"];
+      console.log('acts start activite acts')
+      let acts =  await request_put(data, "/personnes/"+user.getUserId(), "fidele-add");
+      console.log('acts acts acts', acts)
+      if(acts){user.setUserInfos(acts);}
+      return acts;
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
   }
 
