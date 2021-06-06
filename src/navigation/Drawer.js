@@ -120,24 +120,32 @@ function CustomDrawerContent(props) {
 
 export default function Drawers() {
   const [isLoaded, setIsLoaded] = useState(true);
+  const [user, setUser] = useState({});
   const [initialRouteName, setInitialRoute] = useState(null);
+
+  const connect = async (u) => {
+    const user = u || user
+    let res = await login.auth(user.username, user.password);
+    if (res) {
+      setIsLoaded(false)
+    }else{
+      Alert.alert(
+        "Problème survenu",
+        "Rassurez vous d'avoir accès a internet",
+        [
+          { text: "Réessayer", onPress: async() =>  {await connect(user)}}
+        ]
+      )
+    }
+    return res;
+  }
   useEffect(() => {
     (async()=>{
       let user = await getData();
+      setUser(user);
       if(user){
         setInitialRoute('Accueil')
-        let res = await login.auth(user.username, user.password);
-        if (res) {
-          setIsLoaded(false)
-        }else{
-          Alert.alert(
-            "Probleme survenu",
-            "Rassurez vous d'avoir accès a internet",
-            [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
-            ]
-          )
-        }
+        const res = await connect(user);
       }else {
         setInitialRoute('Login')
         setIsLoaded(false)
