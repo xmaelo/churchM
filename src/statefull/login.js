@@ -39,5 +39,7 @@ class login_check{
     }
   }
 
+  personne = () => user.getUserInfo()
+
 }
 export const login = new login_check();

@@ -16,13 +16,15 @@ import {
   Text,
   View,
 } from 'react-native';
-
 import Drawers from './src/navigation/Drawer';
-import AnimatedSplash from "react-native-animated-splash-screen";
+import SplashScreen from "react-native-lottie-splash-screen";
 import {logo} from "./src/assets"
 
 const App: () => Node = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+      SplashScreen.hide();
+    }, []);
 
   return (
       <>
