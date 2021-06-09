@@ -142,8 +142,16 @@ export default function Accueil({navigation, route}){
 							</TouchableOpacity>
 							<TouchableOpacity onPress={()=>navigation.navigate('LectureBiblique')}>
 								<Surface style={styles.surface}>
-									<IconPart name='book-outline'/>
+									<IconPart name='reader-outline'/>
 									<Text>Lecture Biblique</Text>
+								</Surface>
+							</TouchableOpacity>
+						</View>
+						<View style={styles.row}>
+							<TouchableOpacity onPress={()=>navigation.navigate('TheBible')}>
+								<Surface style={styles.surface}>
+									<IconPart name='book-outline'/>
+									<Text>Ma Bible</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>

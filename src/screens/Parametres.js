@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
 import { themes, color} from '../color';
 import Head from '../components/Head'
+import Lang from '../components/Lang';
 
 export default function Parametres({navigation}){
 	return(
@@ -28,7 +29,7 @@ export default function Parametres({navigation}){
 		        	</View>
 		        </View>
 
-		        <View style={styles.container_card_main}>
+		        <View style={styles.container_card_main2}>
 		        	<View style={styles.container_all_dec}>
 		        		<Text style={styles.h1}>Application</Text>
 
@@ -41,6 +42,11 @@ export default function Parametres({navigation}){
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"help-circle-outline"} size={27} color={color.primary}/>
 		        			<Text>{" A Propos de l'application"}</Text>
+		        		</View>
+						<View style={{...styles.end2, marginTop: hp('1%')}} >
+		        			<Ionicons name={"language-outline"} size={27} color={color.primary}/>
+		        			{/* <Text>{" A Propos de l'application"}</Text> */}
+							<Lang/>
 		        		</View>
 		        	</View>
 		        </View>
@@ -70,6 +76,23 @@ const styles = StyleSheet.create({
     marginRight: hp('2%'),
     borderRadius: 10,
     height: hp('20%'),
+    marginTop: hp('2%'),
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.39,
+    shadowRadius: 8.30,
+
+    elevation: 5,
+  },
+  container_card_main2: {
+    backgroundColor: 'white',
+    marginLeft: hp('2%'),
+    marginRight: hp('2%'),
+    borderRadius: 10,
+    height: hp('30%'),
     marginTop: hp('2%'),
     shadowColor: "#000",
     shadowOffset: {
