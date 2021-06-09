@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import { View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, ScrollView, StyleSheet, Image, TouchableOpacity, Alert  } from 'react-native';
 
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
@@ -35,6 +35,9 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { NavigationContainer } from '@react-navigation/native';
 import {StackNav} from '../navigation';
 import Rendezvous from '../screens/Rendezvous';
+import { getData } from '../statefull/asyncStorage'
+import {login} from '../statefull/login'
+import { ActivityIndicator} from 'react-native-paper';
 import {
   Drawer,
 } from 'react-native-paper';
@@ -47,6 +50,9 @@ const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
 const DrawIcon = ({name, f}) => <Ionicons name={name} size={25} color={f ? color.primary : '#ccc'}/>
+
+
+
 
 const DrawerItemsData = [
   { label: 'Accueil', icon: 'home-outline', key: 0, name:"Accueil" },
@@ -120,30 +126,73 @@ function CustomDrawerContent(props) {
 }
 
 export default function Drawers() {
-  return (
-    <NavigationContainer>
-      <ARG__.Navigator
-      	initialRouteName="Login"
-      	drawerContentOptions={{
-          //activeTintColor: 'black',
-          //inactiveTintColor: 'black',
-          //itemStyle: { alignItems:'flex-end' },
-        }}
-        drawerContent={props => <CustomDrawerContent {...props} />}
-      >
-        {stacks.map((screen, key)=>
-          <ARG__.Screen
-            key={key}
-            name={screen.name}
-            component={screen.composant}
-            options={{
-              swipeEnabled: !screen.swipe,
-            }}
-          />
-        )}
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [user, setUser] = useState({});
+  const [initialRouteName, setInitialRoute] = useState(null);
 
-      </ARG__.Navigator>
-    </NavigationContainer>
+  const connect = async (u) => {
+    const user = u || user
+    let res = await login.auth(user.username, user.password);
+    if (res) {
+      setIsLoaded(false)
+    }else{
+      Alert.alert(
+        "Problème survenu",
+        "Rassurez vous d'avoir accès a internet",
+        [
+          { text: "Réessayer", onPress: async() =>  {await connect(user)}}
+        ]
+      )
+    }
+    return res;
+  }
+  useEffect(() => {
+    (async()=>{
+      let user = await getData();
+      setUser(user);
+      if(user){
+        setInitialRoute('Accueil')
+        const res = await connect(user);
+      }else {
+        setInitialRoute('Login')
+        setIsLoaded(false)
+      }
+    })()
+    }, []);
+
+  return (
+    <>
+      {!isLoaded &&
+        <NavigationContainer>
+          <ARG__.Navigator
+          	initialRouteName={initialRouteName}
+          	drawerContentOptions={{
+              //activeTintColor: 'black',
+              //inactiveTintColor: 'black',
+              //itemStyle: { alignItems:'flex-end' },
+            }}
+            drawerContent={props => <CustomDrawerContent {...props} />}
+          >
+            {stacks.map((screen, key)=>
+              <ARG__.Screen
+                key={key}
+                name={screen.name}
+                component={screen.composant}
+                options={{
+                  swipeEnabled: !screen.swipe,
+                }}
+              />
+            )}
+
+          </ARG__.Navigator>
+        </NavigationContainer>
+      }
+      {isLoaded &&
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator animating={true} color={color.primary} size={"large"}/>
+        </View>
+      }
+    </>
   );
 }
 

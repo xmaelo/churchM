@@ -8,6 +8,7 @@ import { Text, Input } from 'react-native-elements';
 import { Button, Snackbar  } from 'react-native-paper';
 import { themes, color } from '../color';
 import {login} from '../statefull/login'
+import { storeData } from '../statefull/asyncStorage'
 
 export default function LoginScreen({navigation}){
 
@@ -34,6 +35,7 @@ export default function LoginScreen({navigation}){
 					 setLoan(false)
 					 if (personne) {
  						 navigation.navigate('Accueil', {personne: personne});
+						 storeData({username: username, password: password})
 					 }else{
 						 setVisible(true)
 						 setLoan(false)

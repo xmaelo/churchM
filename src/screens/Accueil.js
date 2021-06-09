@@ -9,7 +9,8 @@ import { themes, color } from '../color';
 import Head from '../components/Head'
 import { Surface } from 'react-native-paper';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import {api} from '../statefull/api'
+//import {api} from '../statefull/api'
+import {user} from '../statefull/query';
 import { Snackbar  } from 'react-native-paper';
 
 const _renderItem = ({item, index}) => {
@@ -44,7 +45,8 @@ export default function Accueil({navigation, route}){
 
 	useEffect(() => {
 		setVisible(true)
-		setPersone(route.params?.personne);
+		const pers = route.params?.personne || user.getUserInfo();
+		setPersone(pers);
 		return () => console.log('Um mount')
 	}, [])
 	const Page = () => {
