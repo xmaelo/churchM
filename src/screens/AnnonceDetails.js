@@ -13,7 +13,7 @@ export default function AnnonceDetails({route, navigation}){
 
 	return(
 		<View style={{ flex: 1}}>
-      		<Head screen={"Details"} n={navigation} second/>
+      		<Head screen={"Préparation"} n={navigation} second/>
 			<ScrollView>
 				<View>
 					<View>

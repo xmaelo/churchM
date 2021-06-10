@@ -29,6 +29,7 @@
     "react-native": "0.64.1",
     "react-native-animated-loader": "0.0.9",
     "react-native-autogrow-textinput": "^5.4.0",
+    "react-native-custom-tabs": "^0.1.7",
     "react-native-elements": "^3.4.1",
     "react-native-fab": "^1.0.17",
     "react-native-fast-image": "^8.3.4",

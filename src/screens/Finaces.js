@@ -153,7 +153,7 @@ export default function Finaces({navigation}){
 			<FAB
 		  		buttonColor={color.primary}
 		  		iconTextColor="#FFFFFF"
-		  		onClickAction={() => {console.log("FAB pressed")}}
+		  		onClickAction={() => {navigation.navigate('Constributions')}}
 		  		visible={true}
 		  		iconTextComponent={<Ionicons name="add"/>}
 		  	/>

@@ -16,6 +16,7 @@ import Recovery from '../screens/Recovery';
 import AnnonceDetails from '../screens/AnnonceDetails';
 import DetailLecture from '../screens/DetailLecture';
 import ActivitesDetails from '../screens/ActivitesDetails';
+import Constributions from '../screens/Constributions';
 
 import Accueil from '../screens/Accueil'
 import Activites from '../screens/Activites'
@@ -88,6 +89,7 @@ const stacks = [
   { composant: ContactEglise, name: "ContactEglise", swipe: true },
   { composant: NewRendezVous, name: "NewRendezVous", swipe: true },
   { composant: DetailRdv, name: "DetailRdv", swipe: true },
+  { composant: Constributions, name: "Constributions", swipe: true },
 ];
 
 function CustomDrawerContent(props) {
