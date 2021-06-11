@@ -44,6 +44,9 @@ import {
 } from 'react-native-paper';
 import NewRendezVous from '../screens/NewRendezVous';
 import DetailRdv from '../screens/DetailRdv';
+import TheBible from '../screens/TheBible';
+import ChapBible from '../screens/ChapBible';
+import VersetBible from '../screens/VersetBible';
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
@@ -58,7 +61,8 @@ const DrawerItemsData = [
   { label: 'Mon Profil', icon: 'person-circle-outline', key: 2, name: "Profil" },
   { label: 'Messages', icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
   { label: 'Annonces', icon: 'newspaper-outline', key: 4, name: "Annonces" },
-  { label: "Lecture Biblique", name: "LectureBiblique", icon: 'book-outline', key: 5 },
+  { label: 'Ma Bible', icon: 'book-outline', key: 4, name: "TheBible" },
+  { label: "Lecture Biblique", name: "LectureBiblique", icon: 'reader-outline', key: 5 },
   { label: 'Mediathèque', icon: 'musical-notes-outline', key: 6, name: "Mediatheques" },
   { label: "Sainte Cène", name: "SainteScene", icon: 'restaurant-outline', key: 7 },
   { label: "Rendez-Vous", name: "Rendezvous", icon: 'stopwatch-outline', key: 8 },
@@ -90,6 +94,9 @@ const stacks = [
   { composant: NewRendezVous, name: "NewRendezVous", swipe: true },
   { composant: DetailRdv, name: "DetailRdv", swipe: true },
   { composant: Constributions, name: "Constributions", swipe: true },
+  { composant: TheBible, name: "TheBible", swipe: true },
+  { composant: ChapBible, name: "ChapBible", swipe: true },
+  { composant: VersetBible, name: "VersetBible", swipe: true },
 ];
 
 function CustomDrawerContent(props) {

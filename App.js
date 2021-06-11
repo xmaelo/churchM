@@ -19,6 +19,7 @@ import {
 import Drawers from './src/navigation/Drawer';
 import SplashScreen from "react-native-lottie-splash-screen";
 import {logo} from "./src/assets"
+import SplashScreen from 'react-native-splash-screen';
 
 const App: () => Node = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,11 +27,27 @@ const App: () => Node = () => {
       SplashScreen.hide();
     }, []);
 
+  useEffect(() => {
+    SplashScreen.hide()
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 1500);
+  }, []);
+
   return (
+    <AnimatedSplash
+      translucent={true}
+      isLoaded={isLoaded}
+      logoImage={logo}
+      backgroundColor={"#0866C6"}
+      logoHeight={150}
+      logoWidth={150}
+    >
       <>
         <StatusBar backgroundColor="#019CD9" />
         <Drawers/>
       </>
+    </AnimatedSplash>
   );
 };
 

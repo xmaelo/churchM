@@ -17,6 +17,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from '@react-native-picker/picker';
 import { ActivityIndicator} from 'react-native-paper';
+import { event } from 'react-native-reanimated';
 
 const OnInput = ({d, l, v, f}) => {
 	return <TextInput label={d} mode={"outlined"} value={v && typeof v !== 'function' ? String(v) : ""} style={{height: 35}} onChangeText={text => f(text)}/>
@@ -542,6 +543,8 @@ const lab2 = {
 export default function Profil({navigation}){
 	const layout = useWindowDimensions();
 
+	const [profilPhoto, setProfilPhoto] = useState()
+
 	const onPickImage = () => {
     return ImagePicker.openPicker({
       width: 300,
@@ -549,11 +552,63 @@ export default function Profil({navigation}){
 			includeBase64: true,
       cropping: true
     }).then(async image => {
-			console.log('image image image', image)
-			let res =  await profil.postPhoto(image);
+			console.log('image image image', image.path)
+			// var uri = image.path.replace("file:///", "file:/");
+			let fd = imageFormData(uri);
+			console.log('Form Data:', fd);
+			profil.postPhoto(fd.fd).then(res => {
 			console.log('resssssssssssssssssssss', res);
+				profil.updatePersonne({image: userInfo.code+'.'+fd.ext}).then(data => {
+					console.log('Updated:', data);
+				}, error => console.log(error))
+			}, error => console.log(error));
       return
     })
+  }
+
+  const imageFormData = (event = "") => {
+	  console.log('kffdkjjdnskf: ', event);
+	const blob = convertBase64ToBlob(event);
+    const ext = event.match(/[^:/]\w+(?=;|,)/)[0];
+    const fd = new FormData();
+	fd.append('image', blob, userInfo.code+'.'+ext);
+	return {fd: fd, ext: ext};
+  }
+
+  const convertBase64ToBlob = (base64 = "") => {
+	const info = getInfoFromBase64(base64);
+	console.log('convertBase64To:', info);
+    const sliceSize = 512;
+    const byteCharacters = window.atob(info.rawBase64);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      byteArrays.push(new Uint8Array(byteNumbers));
+    }
+
+    return new Blob(byteArrays, { type: info.mime });
+  }
+
+  const getInfoFromBase64 = (base64 = "") => {
+	//   console.log('getInfoFromBase64: ', base64);
+    const meta = base64.split(',')[0];
+    const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
+    const mime = /:([^;]+);/.exec(meta)[1];
+    const extension = /\/([^;]+);/.exec(meta)[1];
+
+    return {
+      mime,
+      extension,
+      meta,
+      rawBase64
+    };
   }
 
 	const [index, setIndex] = React.useState(0);
@@ -609,7 +664,7 @@ export default function Profil({navigation}){
 				<Avatar
 					size={wp("23%")}
 					rounded
-				  source={logo}
+				  source={(profilPhoto)?profilPhoto:logo}
 					onPress={() => onPickImage()}
 				  >
 				</Avatar>

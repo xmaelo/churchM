@@ -44,18 +44,18 @@ class onInfos{
   }
 
   postPhoto = async(ob) => {
-    try{
-      let bl = await this.convertBase64ToBlob(ob)
-      let ext = ob.path.split('.')
-      ext = ext[ext.length-1];
-      console.log('exxxxxxxxxxxxxxxxxxxx', user.getUserInfo().code)
-      let formdata = new FormData();
-      formdata.append('image', bl, user.getUserInfo().code+'.'+ext);
-      let res =  await request_file(formdata, "/personnes/photo", 'photo-edit');
+    // try{
+      // let bl = await this.convertBase64ToBlob(ob)
+      // let ext = ob.path.split('.')
+      // ext = ext[ext.length-1];
+      console.log('exxxxxxxxxxxxxxxxxxxx', ob);
+      // let formdata = new FormData();
+      // formdata.append('image', bl, user.getUserInfo().code+'.'+ext);
+      let res =  await request_file(ob, "/personnes/photo", 'photo-edit');
       return res;
-    }catch(e){
-      console.log('error pot photo', e)
-    }
+    // }catch(e){
+    //   console.log('error pot photo', e)
+    // }
 
   }
 
