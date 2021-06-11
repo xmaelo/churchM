@@ -48,7 +48,7 @@ export default function TheBible({navigation}){
 
     return (
         <View style={{ flex: 1}}>
-            <Head screen={"La Bible"} n={navigation}/>
+            <Head screen={t('common.app.my')+" "+t('common.app.my_bible')} n={navigation}/>
             <ScrollView>                
                 
                 {

@@ -15,11 +15,14 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { DataTable } from 'react-native-paper';
 import PureChart from 'react-native-pure-chart';
 import {finance} from '../statefull/finance'
+import { useTranslation } from 'react-i18next';
 
-let n = null;
 
+export default function SainteScene({navigation}){
+	const {t} = useTranslation();
+	let n = null;
 
-let sampleData = [
+	let sampleData = [
         {
         	seriesName: 'test2',
     			data:[
@@ -53,7 +56,7 @@ const FirstRoute = () => {
                 justifyContent: 'center'
     	  			}}
     	  		>
-              <Text style={{color: color.primary}} h4>Aucune Contribution Faite !</Text>
+              <Text style={{color: color.primary}} h4>{t('common.app.no_contrib')} !</Text>
     	  		</View>
 
             :
@@ -79,13 +82,13 @@ const FirstRoute = () => {
         				    </DataTable.Row>
         				    <DataTable.Header>
         				      	<DataTable.Title>
-        				      		<Text style={styles.datTitle}>Jour</Text>
+        				      		<Text style={styles.datTitle}>{t('common.app.day')}</Text>
         				      	</DataTable.Title>
         				      	<DataTable.Title numeric>
-        				      		<Text style={styles.datTitle}>Type</Text>
+        				      		<Text style={styles.datTitle}>{t('common.app.type')}</Text>
         				      	</DataTable.Title>
         				      	<DataTable.Title numeric>
-        				      		<Text style={styles.datTitle}>Montant</Text>
+        				      		<Text style={styles.datTitle}>{t('common.app.amount')}</Text>
         				      	</DataTable.Title>
         				    </DataTable.Header>
 
@@ -131,7 +134,7 @@ const SecondRoute = () => {
 	return(
 	  <View style={{ flex: 1}}>
 	  		<View style={styles.progressCircle} >
-	  			<Text style={styles.titleP}>Mois Préparés</Text>
+	  			<Text style={styles.titleP}>{t('common.app.prepared_month')}</Text>
 		  		<Progress.Circle
 					size={123}
 					progress={percent}
@@ -142,7 +145,7 @@ const SecondRoute = () => {
 		    </View>
 
 		    <View style={styles.progressCircle} >
-		    	<Text style={styles.titleP}>Evolution de mes préparations</Text>
+		    	<Text style={styles.titleP}>{t('common.app.progress_prepa')}</Text>
 		    	<Progress.Bar progress={percent} width={220} />
 		    	<View style={{paddingHorizontal: wp('6%')}}>
 					<PureChart data={sampleData} type='bar' height={hp('30%')} />
@@ -174,9 +177,6 @@ const renderTabBar = props => (
   />
 );
 
-
-export default function SainteScene({navigation}){
-
 	n = navigation;
 	const layout = useWindowDimensions();
 
@@ -184,7 +184,7 @@ export default function SainteScene({navigation}){
     const [chart1, setChart1] = React.useState([]);
     const [prepass, setPrepa] = React.useState([]);
     const [routes] = React.useState([
-    	{ key: 'first', title: 'Historique' },
+    	{ key: 'first', title: t('common.app.history') },
     	{ key: 'second', title: 'Evolution' },
     ]);
 
@@ -218,7 +218,7 @@ export default function SainteScene({navigation}){
 
 	return(
 		<>
-			<Head screen={"Sainte Cène"} n={navigation}/>
+			<Head screen={t('common.app.sainte_cene')} n={navigation}/>
 			<TabView
 			  renderTabBar={renderTabBar}
 		      navigationState={{ index, routes }}

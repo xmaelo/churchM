@@ -12,9 +12,12 @@ import Head from '../components/Head'
 import {annonce} from '../statefull/annonces'
 import { List } from 'react-native-paper';
 import { ActivityIndicator, Divider} from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 export default function Annonces({navigation}){
 const [list, setlist] = useState([]);
+const {t} = useTranslation();
+
  useEffect(()=>{
 	 (async()  => {
 		 let list = await annonce.getAnnonce();
@@ -44,13 +47,13 @@ const [list, setlist] = useState([]);
 	return(
 		<ScrollView>
 			<View>
-				<Head screen={"Annonces"} n={navigation}/>
+				<Head screen={t('common.app.annonce')} n={navigation}/>
 					<View style={null}>
 						{list && list.map((l, i) => (
 							<View key={i}>
 									<List.Accordion
 										title={l.title?.rendered}
-										description={"Ajoutée le "+new Date(l.modified).toISOString().split("T")[0]}
+										description={t('common.app.add_the')+" "+new Date(l.modified).toISOString().split("T")[0]}
 										//left={props => <Avatar source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}} />}
 										style={null}
 										left={props => <Avatar source={l.img} />}

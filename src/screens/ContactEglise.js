@@ -8,11 +8,13 @@ import { themes, color} from '../color';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import Head from '../components/Head'
 import Head2 from '../components/Head'
+import { useTranslation } from 'react-i18next';
 
 export default function ContactEglise({navigation}){
+	const {t} = useTranslation();
 	return(
 		<View>
-			<Head screen={"Contactez l'Eglise"} n={navigation} second/>
+			<Head screen={t('common.app.contact_church')} n={navigation} second/>
 			<ScrollView>
 				<View style={styles.container}>
 					<View style={{...styles.end2, marginTop: hp('2%')}} >
@@ -32,7 +34,7 @@ export default function ContactEglise({navigation}){
 					<View style={styles.container_card_main}>
 			        	<View style={styles.container_all_dec}>
 			        		<Input
-		                      label="Objet"
+		                      label={t('common.app.object')}
 							/>
 							<AutoGrowingTextInput
 				              style={styles.textInput}
@@ -46,7 +48,7 @@ export default function ContactEglise({navigation}){
 				            />
 				            <View style={{height: 20}}/>
 				            <Button
-							  title="Envoyer"
+							  title={t('common.app.send')}
 							  type="outline"
 							/>
 			        	</View>

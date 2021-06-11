@@ -47,28 +47,11 @@ import DetailRdv from '../screens/DetailRdv';
 import TheBible from '../screens/TheBible';
 import ChapBible from '../screens/ChapBible';
 import VersetBible from '../screens/VersetBible';
+import { useTranslation } from 'react-i18next';
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
 const DrawIcon = ({name, f}) => <Ionicons name={name} size={25} color={f ? color.primary : '#ccc'}/>
-
-
-
-
-const DrawerItemsData = [
-  { label: 'Accueil', icon: 'home-outline', key: 0, name:"Accueil" },
-  { label: 'Mes Finances', icon: 'logo-usd', key: 1 , name: "Finances"},
-  { label: 'Mon Profil', icon: 'person-circle-outline', key: 2, name: "Profil" },
-  { label: 'Messages', icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
-  { label: 'Annonces', icon: 'newspaper-outline', key: 4, name: "Annonces" },
-  { label: 'Ma Bible', icon: 'book-outline', key: 4, name: "TheBible" },
-  { label: "Lecture Biblique", name: "LectureBiblique", icon: 'reader-outline', key: 5 },
-  { label: 'Mediathèque', icon: 'musical-notes-outline', key: 6, name: "Mediatheques" },
-  { label: "Sainte Cène", name: "SainteScene", icon: 'restaurant-outline', key: 7 },
-  { label: "Rendez-Vous", name: "Rendezvous", icon: 'stopwatch-outline', key: 8 },
-  { label: 'Activités Paroissiales', icon: 'logo-react', key: 9, name: "Activites" },
-  { label: 'Mes Paramètres', icon: 'cog-outline', key: 10, name: "Parametres" }
-];
 
 const stacks = [
   { composant: Accueil, name:"Accueil" },
@@ -100,6 +83,21 @@ const stacks = [
 ];
 
 function CustomDrawerContent(props) {
+  const {t} = useTranslation();
+  const DrawerItemsData = [
+    { label: t('common.app.accueil'), icon: 'home-outline', key: 0, name:"Accueil" },
+    { label: t('common.app.mys')+' '+t('common.app.finances'), icon: 'logo-usd', key: 1 , name: "Finances"},
+    { label: t('common.app.my2')+' '+t('common.app.profil'), icon: 'person-circle-outline', key: 2, name: "Profil" },
+    { label: t('common.app.message'), icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
+    { label: t('common.app.annonce'), icon: 'newspaper-outline', key: 4, name: "Annonces" },
+    { label: t('common.app.my')+' '+t('common.app.my_bible'), icon: 'book-outline', key: 4, name: "TheBible" },
+    { label: t('common.app.lecture_biblic'), name: "LectureBiblique", icon: 'reader-outline', key: 5 },
+    { label: t('common.app.mediatheque'), icon: 'musical-notes-outline', key: 6, name: "Mediatheques" },
+    { label: t('common.app.sainte_cene'), name: "SainteScene", icon: 'restaurant-outline', key: 7 },
+    { label: t('common.app.rendez_vous'), name: "Rendezvous", icon: 'stopwatch-outline', key: 8 },
+    { label: t('common.app.activites'), icon: 'logo-react', key: 9, name: "Activites" },
+    { label: t('common.app.settings'), icon: 'cog-outline', key: 10, name: "Parametres" }
+  ];
   const [drawerItemIndex, setDrawerItemIndex] = React.useState(0);
   const _setDrawerItem = (index) => setDrawerItemIndex(index);
 
@@ -109,7 +107,7 @@ function CustomDrawerContent(props) {
           <View style={styles.container} >
             <Image source={logo} style={styles.img} />
             <Text h4 style={styles.name}>
-              EEC Cameroon
+              EEC {t('common.app.cameroon')}
             </Text>
           </View>
         }/>

@@ -13,6 +13,7 @@ import { ListItem, Icon } from 'react-native-elements'
 import FAB from 'react-native-fab'
 import {finance} from '../statefull/finance'
 import { showChart2 } from '../constante';
+import { useTranslation } from 'react-i18next';
 
 const list = [
   {
@@ -35,7 +36,8 @@ let sampleData = [
 
 export default function Finaces({navigation}){
 
-	const [percent1, setPercent1] = useState(0)
+const {t} = useTranslation();
+const [percent1, setPercent1] = useState(0)
   const [chart, setChart] =  useState(sampleData);
   const [p1, setP1] =  useState(0);
   const [p2, setP2] =  useState(0);
@@ -58,10 +60,10 @@ export default function Finaces({navigation}){
 		<View>
 			<ScrollView>
 				<View style={styles.container} >
-					<Head screen={"Mes Finances"} n={navigation}/>
+					<Head screen={t('common.app.mys')+' '+t('common.app.finances')} n={navigation}/>
 					<View style={styles.container2}>
 						<View style={styles.text} >
-							<Text style={{fontSize: 15}} >Mes Contributions et Dons</Text>
+							<Text style={{fontSize: 15}} >{t('common.app.contribution_dons')}</Text>
 						</View>
 						<View style={styles.ProgressBar}>
 							<ProgressBar
@@ -72,7 +74,7 @@ export default function Finaces({navigation}){
 						</View>
 						<View style={styles.circle}>
 							<View style={styles.progressCircle} >
-				  				<Text style={styles.titleP}>Mois actuel</Text>
+				  				<Text style={styles.titleP}>{t('common.app.mois_actuel')}</Text>
 						  		<Progress.Circle
 									size={wp('25%')}
 									progress={p0}
@@ -82,7 +84,7 @@ export default function Finaces({navigation}){
 								/>
 						    </View>
 						    <View style={styles.progressCircle} >
-				  				<Text style={styles.titleP}>Trimestre</Text>
+				  				<Text style={styles.titleP}>{t('common.app.trimestre')}</Text>
 						  		<Progress.Circle
 									size={wp('29%')}
 									progress={p1}
@@ -92,7 +94,7 @@ export default function Finaces({navigation}){
 								/>
 						    </View>
 						    <View style={styles.progressCircle} >
-				  				<Text style={styles.titleP}>Année entière</Text>
+				  				<Text style={styles.titleP}>{t('common.app.annee_cours')}</Text>
 						  		<Progress.Circle
 									size={wp('25%')}
 									progress={p2}
@@ -104,7 +106,7 @@ export default function Finaces({navigation}){
 						</View>
 
 						<View style={{...styles.text, paddingTop: hp('3%')}} >
-							<Text style={{fontSize: 15}} >Evoluation de mes contributions</Text>
+							<Text style={{fontSize: 15}} >{t('common.app.contribution_evolution')}</Text>
 						</View>
 						<View style={styles.ProgressBar}>
 							<ProgressBar
@@ -118,7 +120,7 @@ export default function Finaces({navigation}){
 						</View>
 
 						<View style={{...styles.text, paddingTop: hp('3%')}} >
-							<Text style={{fontSize: 15}} >Faire un Don</Text>
+							<Text style={{fontSize: 15}} >{t('common.app.do_donation')}</Text>
 						</View>
 						<View style={styles.ProgressBar}>
 							<ProgressBar
@@ -139,7 +141,7 @@ export default function Finaces({navigation}){
 
 							        <View style={{flexDirection: 'row', alignItems: "center", justifyContent: "center"}} >
 							        	<Text>{"FCFA 3000 "}</Text>
-							        	<Button title="Don !" type="outline" buttonStyle={{padding: 2, paddingHorizontal: 5}} />
+							        	<Button title={t('common.app.donation')} type="outline" buttonStyle={{padding: 2, paddingHorizontal: 5}} />
 							        </View>
 							      </ListItem>
 							    ))
@@ -153,7 +155,7 @@ export default function Finaces({navigation}){
 			<FAB
 		  		buttonColor={color.primary}
 		  		iconTextColor="#FFFFFF"
-		  		onClickAction={() => {navigation.navigate('Constributions')}}
+		  		onClickAction={() => {console.log("FAB pressed")}}
 		  		visible={true}
 		  		iconTextComponent={<Ionicons name="add"/>}
 		  	/>

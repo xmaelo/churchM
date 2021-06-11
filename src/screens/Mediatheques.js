@@ -10,32 +10,14 @@ import Head from '../components/Head';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { youtube } from '../statefull/youtube';
 import { Pressable } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function Mediatheques({navigation}){
-	const [mainVideo, setMainVideo] = useState("");
+const {t} = useTranslation();
+const [mainVideo, setMainVideo] = useState("");
 	const [videoList, setVideoList] = useState([]);
 	const [modalVisible, setModalVisible] = useState(false);
 	const [modalLink, setModalLink] = useState("");
-	const list = [
-		{
-			id: 13,
-			title: "zrfnkjfns",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: logo
-		},
-		{
-			id: 15,
-			title: "zrfnkjfns",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: logo
-		},
-		{
-			id: 16,
-			title: "zrfnkjfns",
-			description: "khskhd dsndkshd hkj dkhqdnh",
-			avatar_url: logo
-		}
-	];
 
 	useEffect(()=>{
 		(async()  => {
@@ -57,7 +39,7 @@ export default function Mediatheques({navigation}){
 	return(
 		<ScrollView style={{ flex: 1}}>
 			<View>
-				<Head screen={"Médiathèque"} n={navigation}/>
+				<Head screen={t('common.app.mediatheque')} n={navigation}/>
 				<YoutubePlayer
 					height={300}
 					videoId={mainVideo}
@@ -82,7 +64,7 @@ export default function Mediatheques({navigation}){
 						style={[styles.button, styles.buttonClose]}
 						onPress={() => setModalVisible(!modalVisible)}
 						>
-						<Text style={styles.textStyle}>Fermer</Text>
+						<Text style={styles.textStyle}>{t('common.app.close')}</Text>
 						</Pressable>
 					</View>
 					</View>

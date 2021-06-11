@@ -9,8 +9,10 @@ import { themes, color } from '../color';
 import Head from '../components/Head';
 import FAB from 'react-native-fab'
 import { rendezvous } from '../statefull/rendezvous';
+import { useTranslation } from 'react-i18next';
 
 export default function Rendezvous({navigation}){
+	const {t} = useTranslation();
 	const [rdzvous, setRdzvous] = useState([]);
 
     useEffect(() => {
@@ -24,9 +26,9 @@ export default function Rendezvous({navigation}){
 	
 	return(
 		<View style={{ flex: 1}}>
-			<Head screen={"Rendez-Vous"} n={navigation}/>
+			<Head screen={t('common.app.rendez_vous')} n={navigation}/>
 				<ScrollView style={{ flex: 1}}>
-				{   (!rdzvous)? <View><Text style={{fontSize: 20}}> Aucun Rendez-Vous demandé</Text></View>:
+				{   (!rdzvous)? <View><Text style={{fontSize: 20}}> {t('common.app.no_appointment')}</Text></View>:
 					rdzvous.map((l, i) => (
 					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailRdv', {param: l})}>
 						<ListItem.Content>

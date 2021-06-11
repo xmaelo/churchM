@@ -18,7 +18,11 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from '@react-native-picker/picker';
 import { ActivityIndicator} from 'react-native-paper';
 import { event } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 
+export default function Profil({navigation}){
+
+	const {t} = useTranslation();
 const OnInput = ({d, l, v, f}) => {
 	return <TextInput label={d} mode={"outlined"} value={v && typeof v !== 'function' ? String(v) : ""} style={{height: 35}} onChangeText={text => f(text)}/>
 }
@@ -64,20 +68,20 @@ const FirstRoute = (props) => {
 			<ScrollView>
 					{!edit&&
 						<View style={{...styles.theContent, ...styles.container_card_main}}>
-							<Text style={{color: color.primary, paddingBottom: 8}}>INFORMATION PERSONNELLES</Text>
+							<Text style={{color: color.primary, paddingBottom: 8}}>{t('common.app.personal_info')}</Text>
 							<Divider style={{ marginBottom: 8 }} />
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 12}}>
 								<View>
-									<Text style={styles.Text}>Nom:</Text>
-									<Text style={styles.Text}>Prénom:</Text>
-									<Text style={styles.Text}>Date de Naissance:</Text>
-									<Text style={styles.Text}>Lieu de Naissance:</Text>
-									<Text style={styles.Text}>Tel 1:</Text>
-									<Text style={styles.Text}>Tel 2:</Text>
-									<Text style={styles.Text}>Email:</Text>
-									<Text style={styles.Text}>Date d'Adhésion:</Text>
-									<Text style={styles.Text}>Genre:</Text>
-									<Text style={styles.Text}>Zone d'habitation:</Text>
+									<Text style={styles.Text}>{t('common.app.name')}:</Text>
+									<Text style={styles.Text}>{t('common.app.surname')}:</Text>
+									<Text style={styles.Text}>{t('common.app.date_naiss')}:</Text>
+									<Text style={styles.Text}>{t('common.app.lieu_naiss')}:</Text>
+									<Text style={styles.Text}>{t('common.app.tel')} 1:</Text>
+									<Text style={styles.Text}>{t('common.app.tel')} 2:</Text>
+									<Text style={styles.Text}>{t('common.app.email')}:</Text>
+									<Text style={styles.Text}>{t('common.app.date_adhe')}:</Text>
+									<Text style={styles.Text}>{t('common.app.gender')}:</Text>
+									<Text style={styles.Text}>{t('common.app.zone_habit')}:</Text>
 								</View>
 								<View>
 									<Text style={styles.Text2}>{userInfo.nom}</Text>
@@ -98,23 +102,23 @@ const FirstRoute = (props) => {
 								color={color.primary}
 								onPress={() => setSate(true)}
 							>
-								Modifier
+								{t('common.app.edit')}
 							</Button>
 						</View>
 					}
 					{edit&&
 						<View style={{...styles.theContent, ...styles.container_card_main}}>
 							<Text style={{color: color.primary, paddingBottom: 8}}>
-								INFORMATIONS PERSONNELLES
+							{t('common.app.personal_info')}
 							</Text>
 							<View>
-								<OnInput d={'Nom'} l={'nom'} v={nom} f={setNom}/>
-								<OnInput d={'Prenom'} l={'prenom'} v={prenom} f={setPrenom}/>
-								<OnInput d={'Lieu de Naissance'} l={'lieunaiss'} v={lieunaiss} f={setLieunaiss}/>
+								<OnInput d={t('common.app.name')} l={'nom'} v={nom} f={setNom}/>
+								<OnInput d={t('common.app.surname')} l={'prenom'} v={prenom} f={setPrenom}/>
+								<OnInput d={t('common.app.lieu_naiss')} l={'lieunaiss'} v={lieunaiss} f={setLieunaiss}/>
 
 								<View>
 										<TextInput
-											label={"Date de Naissance"}
+											label={t('common.app.date_naiss')}
 											mode={"outlined"}
 											value={datenaiss ? new Date(datenaiss).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
 											style={{height: 35}}
@@ -132,12 +136,12 @@ const FirstRoute = (props) => {
 										/>
 								</View>
 
-								<OnInput d={'Tel 1'} l={'telephone'} v={telephone} f={setTelephone}/>
-								<OnInput d={'Tel 2'} l={'telephone2'} v={telephone2} f={setTelephone2}/>
-								<OnInput d={'Email'} l={'email'} v={email} f={setEmail}/>
+								<OnInput d={t('common.app.tel')+' 1'} l={'telephone'} v={telephone} f={setTelephone}/>
+								<OnInput d={t('common.app.tel')+' 2'} l={'telephone2'} v={telephone2} f={setTelephone2}/>
+								<OnInput d={t('common.app.email')} l={'email'} v={email} f={setEmail}/>
 								<View>
 										<TextInput
-											label={"Date d'Adhésion"}
+											label={t('common.app.date_adhe')}
 											mode={"outlined"}
 											value={dateInscription ? new Date(dateInscription).toISOString().split("T")[0] :  new Date().toISOString().split("T")[0]}
 											style={{height: 35}}
@@ -155,7 +159,7 @@ const FirstRoute = (props) => {
 										/>
 								</View>
 								<View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-									<Text>Genre:</Text>
+									<Text>{t('common.app.gender')}:</Text>
 									<View style={{flexDirection: 'row', alignItems: 'center'}}>
 										<Text>Masculin</Text>
 							      <RadioButton
@@ -182,7 +186,7 @@ const FirstRoute = (props) => {
 									color={color.red}
 									onPress={() => setSate(false)}
 								>
-									Annuler
+									{t('common.app.cancel')}
 								</Button>
 
 								<Button
@@ -192,7 +196,7 @@ const FirstRoute = (props) => {
 									loading={updating}
 									onPress={() => onUpdate()}
 								>
-									Sauvegarder
+									{t('common.app.save')}
 								</Button>
 							</View>
 						</View>
@@ -232,20 +236,20 @@ const SecondRoute = (props) => {
 			<ScrollView>
 					{!edit&&
 					<View style={{...styles.theContent, ...styles.container_card_main}}>
-						<Text style={{color: color.primary, paddingBottom: 8}}>ETAT CIVIL</Text>
+						<Text style={{color: color.primary, paddingBottom: 8}}>{t('common.app.etat_civil')}</Text>
 						<Divider style={{ marginBottom: 8 }} />
 						<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 15}}>
 							<View>
-								<Text style={styles.Text}>Statut Matrimonial:</Text>
-								<Text style={styles.Text}>Nom du Père:</Text>
-								<Text style={styles.Text}>Nom de la mère:</Text>
+								<Text style={styles.Text}>{t('common.app.statut_matri')}:</Text>
+								<Text style={styles.Text}>{t('common.app.nom_pere')}:</Text>
+								<Text style={styles.Text}>{t('common.app.nom_mere')}:</Text>
 								{/*
 								<Text style={styles.Text}>Region d'origine:</Text>
 								<Text style={styles.Text}>Département:</Text>
 								<Text style={styles.Text}>Arrondissement:</Text>
 								*/}
-								<Text style={styles.Text}>Ville de Résidence:</Text>
-								<Text style={styles.Text}>Nombre d'enfants:</Text>
+								<Text style={styles.Text}>{t('common.app.ville_residence')}:</Text>
+								<Text style={styles.Text}>{t('common.app.nbre_enfants')}:</Text>
 							</View>
 
 							<View>
@@ -266,21 +270,21 @@ const SecondRoute = (props) => {
 							color={color.primary}
 							onPress={() =>  setSate(true)}
 						>
-							Modifier
+							{t('common.app.edit')}
 						</Button>
 					</View>
 					}
 					{edit&&
 						<View style={{...styles.theContent, ...styles.container_card_main}}>
 							<Text style={{color: color.primary, paddingBottom: 8}}>
-								ETAT CIVIL
+							{t('common.app.etat_civil')}
 							</Text>
 							<View>
-								<OnInput d={'Statut Matrimonial'} l={'situationMatrimoniale'} v={situationMatrimoniale} f={setSituationMatrimoniale}/>
-								<OnInput d={'Nom du Pere'} l={'nomPere'} v={nomPere} f={setNomPere}/>
-								<OnInput d={'Nom de la Mere'} l={'situationMatrimoniale'} v={nomMere} f={setNomMere}/>
+								<OnInput d={t('common.app.statut_matri')} l={'situationMatrimoniale'} v={situationMatrimoniale} f={setSituationMatrimoniale}/>
+								<OnInput d={t('common.app.nom_pere')} l={'nomPere'} v={nomPere} f={setNomPere}/>
+								<OnInput d={t('common.app.nom_mere')} l={'situationMatrimoniale'} v={nomMere} f={setNomMere}/>
 								{/*<OnInput d={'Ville de Résidence'} l={'villeOrigine'} v={villeOrigine} f={setV}/>*/}
-								<OnInput d={"Nombre d'enfants"} l={'nbreEnfant'} v={String(nbreEnfant)} f={setNbreEnfant}/>
+								<OnInput d={t('common.app.nbre_enfants')} l={'nbreEnfant'} v={String(nbreEnfant)} f={setNbreEnfant}/>
 							</View>
 							<View style={{paddingTop: hp('2%'), flexDirection: 'row', justifyContent: 'space-around'}}>
 								<Button
@@ -289,7 +293,7 @@ const SecondRoute = (props) => {
 									color={color.red}
 									onPress={() => setSate(false)}
 								>
-									Annuler
+									{t('common.app.cancel')}
 								</Button>
 
 								<Button
@@ -299,7 +303,7 @@ const SecondRoute = (props) => {
 									loading={updating}
 									onPress={() =>onUpdate()}
 								>
-									Sauvegarder
+									{t('common.app.save')}
 								</Button>
 							</View>
 						</View>
@@ -339,15 +343,15 @@ const ThirdRoute = (props) => {
 					{!edit &&
 						<View style={{...styles.theContent, ...styles.container_card_main}}>
 								<Text style={{color: color.primary, paddingBottom: 8}}>
-									INFORMATIONS PROFESSIONNELLES
+								{t('common.app.info_prof')}
 								</Text>
 							<Divider style={{ marginBottom: 8 }} />
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 15}}>
 								<View>
-									<Text style={styles.Text}>Profession:</Text>
-									<Text style={styles.Text}>Etablissement:</Text>
-									<Text style={styles.Text}>Serie / Filière:</Text>
-									<Text style={styles.Text}>Classe / Niveau:</Text>
+									<Text style={styles.Text}>{t('common.app.profession')}:</Text>
+									<Text style={styles.Text}>{t('common.app.school')}:</Text>
+									<Text style={styles.Text}>{t('common.app.serie_filiere')}:</Text>
+									<Text style={styles.Text}>{t('common.app.classe_niveau')}:</Text>
 								</View>
 
 								<View>
@@ -364,7 +368,7 @@ const ThirdRoute = (props) => {
 								color={color.primary}
 								onPress={() => setSate(true)}
 							>
-								Modifier
+								{t('common.app.edit')}
 							</Button>
 						</View>
 					}
@@ -372,13 +376,13 @@ const ThirdRoute = (props) => {
 					{edit&&
 						<View style={{...styles.theContent, ...styles.container_card_main}}>
 							<Text style={{color: color.primary, paddingBottom: 8}}>
-								INFORMATIONS PROFESSIONNELLES
+							{t('common.app.info_prof')}
 							</Text>
 							<View>
-								<OnInput d={'Profession'} l={'profession'} v={profession} f={setProfession}/>
-								<OnInput d={'Etablissement'} l={'etablissement'} v={etablissement} f={setEtablissement}/>
-								<OnInput d={'Serie / Filière'} l={'serieFiliere'} v={serieFiliere} f={setSerieFiliere}/>
-								<OnInput d={'Classe / Niveau'} l={'classeNiveau'} v={classeNiveau} f={setClasseNiveau}/>
+								<OnInput d={t('common.app.profession')} l={'profession'} v={profession} f={setProfession}/>
+								<OnInput d={t('common.app.school')} l={'etablissement'} v={etablissement} f={setEtablissement}/>
+								<OnInput d={t('common.app.serie_filiere')} l={'serieFiliere'} v={serieFiliere} f={setSerieFiliere}/>
+								<OnInput d={t('common.app.classe_niveau')} l={'classeNiveau'} v={classeNiveau} f={setClasseNiveau}/>
 							</View>
 							<View style={{paddingTop: hp('2%'), flexDirection: 'row', justifyContent: 'space-around'}}>
 								<Button
@@ -387,7 +391,7 @@ const ThirdRoute = (props) => {
 									color={color.red}
 									onPress={() => setSate(false)}
 								>
-									Annuler
+									{t('common.app.cancel')}
 								</Button>
 
 								<Button
@@ -397,7 +401,7 @@ const ThirdRoute = (props) => {
 									loading={updating}
 									onPress={() => onUpdate()}
 								>
-									Sauvegarder
+									{t('common.app.save')}
 								</Button>
 							</View>
 						</View>
@@ -441,15 +445,15 @@ const FourthRoute = (props) => {
 				{!edit &&
 						<View style={{...styles.theContent, ...styles.container_card_main}}>
 								<Text style={{color: color.primary, paddingBottom: 8}}>
-									INFORMATIONS PAROISSIALLES
+								{t('common.app.info_paroi')}
 								</Text>
 							<Divider style={{ marginBottom: 8 }} />
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 15}}>
 								<View>
-									<Text style={styles.Text}>Statut:</Text>
-									<Text style={styles.Text}>Malade ?</Text>
-									<Text style={styles.Text}>Chrétien Communiant?</Text>
-									<Text style={styles.Text}>Membre de Groupe?</Text>
+									<Text style={styles.Text}>{t('common.app.status')}:</Text>
+									<Text style={styles.Text}>{t('common.app.malade')} ?</Text>
+									<Text style={styles.Text}>{t('common.app.communiant')}?</Text>
+									<Text style={styles.Text}>{t('common.app.groupe_member')}?</Text>
 								</View>
 
 								<View>
@@ -465,7 +469,7 @@ const FourthRoute = (props) => {
 								color={color.primary}
 								onPress={() => setSate(true)}
 							>
-								Modifier
+								{t('common.app.edit')}
 							</Button>
 						</View>
 				}
@@ -473,16 +477,16 @@ const FourthRoute = (props) => {
 				{edit&&
 					<View style={{...styles.theContent, ...styles.container_card_main}}>
 						<Text style={{color: color.primary, paddingBottom: 8}}>
-							INFORMATIONS PAROISSIALLES
+						{t('common.app.info_paroi')}
 						</Text>
 						<View>
-							<OnInput d={'Statut'} l={'status'} v={status} f={setStatus}/>
+							<OnInput d={t('common.app.status')} l={'status'} v={status} f={setStatus}/>
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: hp('1.5%')}}>
-								<Text style={styles.Text}>Malade</Text>
+								<Text style={styles.Text}>{t('common.app.malade')}</Text>
 								<Switch value={isMalade} onValueChange={()=>setIsMamade(!isMalade)} />
 							</View>
 							<View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: hp('1.5%')}}>
-								<Text style={styles.Text}>Chrétien Communiant?</Text>
+								<Text style={styles.Text}>{t('common.app.communiant')}?</Text>
 								<Switch value={communiant} onValueChange={()=>setCommunian(!communiant)} />
 							</View>
 						</View>
@@ -493,7 +497,7 @@ const FourthRoute = (props) => {
 								color={color.red}
 								onPress={() => setSate(false)}
 							>
-								Annuler
+								{t('common.app.cancel')}
 							</Button>
 
 							<Button
@@ -503,7 +507,7 @@ const FourthRoute = (props) => {
 								loading={updating}
 								onPress={() => onUpdate()}
 							>
-								Sauvegarder
+								{t('common.app.save')}
 							</Button>
 						</View>
 					</View>
@@ -540,7 +544,6 @@ const lab2 = {
 	'Stat. Paroiss': 'ribbon',
 }
 
-export default function Profil({navigation}){
 	const layout = useWindowDimensions();
 
 	const [profilPhoto, setProfilPhoto] = useState()
@@ -657,9 +660,9 @@ export default function Profil({navigation}){
     });
 	return(
 		<>
-			<Head screen={"Mon Profile"} n={navigation}/>
+			<Head screen={t('common.app.my2')+" "+t('common.app.profil')} n={navigation}/>
 			<View style={styles.display}>
-				<Text h2> Mon Profil</Text>
+				<Text h2> {t('common.app.my2')+" "+t('common.app.profil')}</Text>
 
 				<Avatar
 					size={wp("23%")}

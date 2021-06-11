@@ -12,6 +12,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 //import {api} from '../statefull/api'
 import {user} from '../statefull/query';
 import { Snackbar  } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 const _renderItem = ({item, index}) => {
 	return (
@@ -34,6 +35,8 @@ const _renderItem = ({item, index}) => {
 const IconPart = ({name}) => <Ionicons name={name} size={30} color={color.primary}/>
 
 export default function Accueil({navigation, route}){
+const {t} = useTranslation();
+	
 	const [carousel, setCarousel] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
   const [personne, setPersone] = useState(null);
@@ -74,7 +77,7 @@ export default function Accueil({navigation, route}){
 		<View style={styles.container}>
 			<ScrollView>
 				<View style={{paddingBottom: hp('5%')}}>
-					<Head screen={"Accueil"} n={navigation}/>
+					<Head screen={t('common.app.accueil')} n={navigation}/>
 					<View style={{...styles.container_card_main, justifyContent: 'center', alignItems: "center"}}>
 		          <Carousel
 		            layout={'tinder'}
@@ -90,20 +93,20 @@ export default function Accueil({navigation, route}){
 		            autoplayInterval={5000}
 		            autoplayDelay={1000}
 							 />
-							 <Text style={{fontSize: 18, fontWeight: 'bold', padding: 15}}>Bienvenue {personne?.nom}</Text>
+							 <Text style={{fontSize: 18, fontWeight: 'bold', padding: 15}}>{t('common.app.welcome')} {personne?.nom}</Text>
 		      </View>
 					<View style={styles.fatherSurface}>
 						<View style={styles.row}>
 							<TouchableOpacity onPress={()=>navigation.navigate('Finances')}>
 									<Surface style={styles.surface}>
 										<IconPart name='logo-usd'/>
-										<Text>Finances</Text>
+										<Text>{t('common.app.finances')}</Text>
 									</Surface>
 							</TouchableOpacity>
 							<TouchableOpacity onPress={()=>navigation.navigate('Mediatheques')}>
 								<Surface style={styles.surface}>
 									<IconPart name='musical-notes-outline'/>
-									<Text>Médiathèques</Text>
+									<Text>{t('common.app.mediatheque')}</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>
@@ -111,13 +114,13 @@ export default function Accueil({navigation, route}){
 							<TouchableOpacity onPress={()=>navigation.navigate('Activites')}>
 								<Surface style={styles.surface}>
 									<IconPart name='logo-react'/>
-									<Text>Activités Paroissiales</Text>
+									<Text>{t('common.app.activites')}</Text>
 								</Surface>
 							</TouchableOpacity>
 							<TouchableOpacity onPress={()=>navigation.navigate('SainteScene')}>
 								<Surface style={styles.surface}>
 									<IconPart name='restaurant-outline'/>
-									<Text>Sainte Cène</Text>
+									<Text>{t('common.app.sainte_cene')}</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>
@@ -125,13 +128,13 @@ export default function Accueil({navigation, route}){
 							<TouchableOpacity onPress={()=>navigation.navigate('Rendezvous')}>
 								<Surface style={styles.surface}>
 									<IconPart name='stopwatch-outline'/>
-									<Text>Rendez-Vous</Text>
+									<Text>{t('common.app.rendez_vous')}</Text>
 								</Surface>
 							</TouchableOpacity>
 							<TouchableOpacity onPress={()=>navigation.navigate('Annonces')}>
 								<Surface style={styles.surface}>
 									<IconPart name='newspaper-outline'/>
-									<Text>Annonces</Text>
+									<Text>{t('common.app.annonce')}</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>
@@ -139,13 +142,13 @@ export default function Accueil({navigation, route}){
 							<TouchableOpacity onPress={()=>navigation.navigate('ChatRoom')}>
 								<Surface style={styles.surface}>
 									<IconPart name='chatbubble-outline'/>
-									<Text>Messages</Text>
+									<Text>{t('common.app.message')}</Text>
 								</Surface>
 							</TouchableOpacity>
 							<TouchableOpacity onPress={()=>navigation.navigate('LectureBiblique')}>
 								<Surface style={styles.surface}>
 									<IconPart name='reader-outline'/>
-									<Text>Lecture Biblique</Text>
+									<Text>{t('common.app.lecture_biblic')}</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>
@@ -153,7 +156,7 @@ export default function Accueil({navigation, route}){
 							<TouchableOpacity onPress={()=>navigation.navigate('TheBible')}>
 								<Surface style={styles.surface}>
 									<IconPart name='book-outline'/>
-									<Text>Ma Bible</Text>
+									<Text>{t('common.app.my_bible')}</Text>
 								</Surface>
 							</TouchableOpacity>
 						</View>
@@ -165,12 +168,12 @@ export default function Accueil({navigation, route}){
         visible={visible}
         onDismiss={onDismissSnackBar}
         action={{
-          label: 'Fermer',
+          label: t('common.app.close'),
           onPress: () => {
             // Do something
           },
         }}>
-        Ravie de vous revoir, vous etes connecté !
+        {t('common.app.happy')}
       </Snackbar>
 		</View>
 	)

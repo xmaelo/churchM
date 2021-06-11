@@ -7,13 +7,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, ListItem, Avatar, Button } from 'react-native-elements';
 import { themes } from '../color';
 import Head from '../components/Head'
+import { useTranslation } from 'react-i18next';
 
 export default function AnnonceDetails({route, navigation}){
-	const data = route.params?.param;
+const {t} = useTranslation();
+const data = route.params?.param;
 
 	return(
 		<View style={{ flex: 1}}>
-      		<Head screen={"Préparation"} n={navigation} second/>
+      		<Head screen={t('common.app.details')} n={navigation} second/>
 			<ScrollView>
 				<View>
 					<View>

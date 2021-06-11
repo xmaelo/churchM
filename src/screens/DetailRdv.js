@@ -6,13 +6,15 @@ import { Text,ListItem } from 'react-native-elements';
 import { color } from '../color';
 import Head from '../components/Head';
 import Moment from 'moment';
+import { useTranslation } from 'react-i18next';
 
 export default function DetailRdv({route, navigation}) {
+	const {t} = useTranslation();
     const data = route.params?.param;
     Moment.locale('fr');
     return (
         <View style={{ flex: 1}}>
-			<Head screen={"Détails du Rendez-Vous"} n={navigation} second/>
+			<Head screen={t('common.app.appointment_detail')} n={navigation} second/>
             <ListItem>
                 <ListItem.Content>
                     <View style={styles.textStyle}>

@@ -6,10 +6,12 @@ import { themes, color } from '../color';
 import Head from '../components/Head'
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import {activite} from '../statefull/activites'
+import { useTranslation } from 'react-i18next';
 
 export default function ActivitesDetails({route, navigation}){
 
-  const [data, setA] =  useState({});
+const {t} = useTranslation();
+const [data, setA] =  useState({});
 
   useEffect(() => {
     (async()  => {
@@ -22,17 +24,17 @@ export default function ActivitesDetails({route, navigation}){
 
 	return(
     <View>
-      <Head screen={"Details de l'Activité"} n={navigation} second/>
+      <Head screen={t('common.app.activity')} n={navigation} second/>
   		<ScrollView>
   			<View>
   				<View>
               {/*<Image source={data.avatar_url} style={styles.img}/>*/}
               <View style={styles.content}>
-                  <Text>{"Debut: "}</Text>
+                  <Text>{t('common.app.begin')}: </Text>
                   <Text>{data.datedebut && new Date(data.datedebut).toISOString().split('T')[0]}</Text>
               </View>
               <View style={styles.content}>
-                  <Text>{"Fin: "}</Text>
+                  <Text>{t('common.app.end')}: </Text>
                   <Text>{data.datefin && new Date(data.datefin).toISOString().split('T')[0]}</Text>
               </View>
               <Text style={{textAlign: 'center', marginTop: hp("3px"),}}>{data.intitule}</Text>

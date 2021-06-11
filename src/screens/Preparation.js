@@ -14,7 +14,7 @@ import {
   ANIMATIONS_FADE,
   CustomTabs
 } from 'react-native-custom-tabs';
-
+import { useTranslation } from 'react-i18next';
 
 const onChrome = (url) => {
   CustomTabs.openURL(url, {
@@ -35,6 +35,7 @@ const onChrome = (url) => {
   });
 }
 export default function Preparation(props){
+  const {t} = useTranslation();
 	const [preparations, setPrepas] = useState([])
 	const [idPrepa, setIdPrepa] = useState(null)
 	const [contributions, setC] = useState(null)
@@ -70,7 +71,7 @@ export default function Preparation(props){
 	              id = contrib.id; number = 4; console.log(contrib);
 	            }
 	          });
-          finalContributions.push({nom: 'Offrandes Chrétiennes', montant: 0, id: id, number: number});
+          finalContributions.push({nom: t('common.app.offering'), montant: 0, id: id, number: number});
           console.log('COntributions:', finalContributions);
 					setCF(finalContributions)
         } else {
@@ -131,16 +132,16 @@ export default function Preparation(props){
 
 	return(
 		<View style={{flex: 1}}>
-				<Head screen={"Préparation"} n={props.navigation} second/>
+				<Head screen={t('common.app.prepa')} n={props.navigation} second/>
 				<View>
 	  			<View style={styles.container_card_main}>
 		        	<View style={styles.container_all_dec}>
-		        		<Text style={styles.h1}>PREPARATION DU 13/05/2021</Text>
-		        		<Text>Liste des contributions</Text>
+		        		<Text style={styles.h1}>{t('common.app.preparation_of')} 13/05/2021</Text>
+		        		<Text>{t('common.app.contrib_list')}</Text>
 								{finalContributions && finalContributions.map((c, i) =>
 									<View key={i}>
 										<TextInput
-											label={"Montant "+c.nom}
+											label={t('common.app.amount')+" "+c.nom}
 											mode={"outlined"}
 											value={c.montant ? String(c.montant) : ""}
 											style={{height: 35}}
@@ -175,7 +176,7 @@ export default function Preparation(props){
 									  iconRight= {true}
 									  containerStyle={{width: wp("45%"), marginLeft: wp('3%')}}
 									  type="outline"
-									  title={"Carte / Paypal  "}
+									  title={t('common.app.card')+" / Paypal  "}
 										onPress = {()=>onPayment('USD')}
 									/>
 		        		</View>

@@ -14,10 +14,12 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 import {activite} from '../statefull/activites'
 import { List } from 'react-native-paper';
 import { ActivityIndicator, Divider} from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 export default function Activites({navigation}){
-	const [acts, setA] =  useState(null);
+const {t} = useTranslation();
+const [acts, setA] =  useState(null);
 
   useEffect(() => {
     (async()  => {
@@ -38,7 +40,7 @@ export default function Activites({navigation}){
 
 	return(
 		<View style={{flex: 1}}>
-			<Head screen={"Activités Paroissiales"} n={navigation}/>
+			<Head screen={t('common.app.activites')} n={navigation}/>
 			<ScrollView>
 				<View style={{ paddingHorizontal: wp('2%'), paddingTop: hp('2%')}}>
 					{acts && acts.map((a, i) => (

@@ -14,8 +14,10 @@ import { rendezvous } from '../statefull/rendezvous';
 import { RadioButton } from 'react-native-paper/lib/typescript/components/RadioButton/RadioButton';
 import RadioButtonRN from 'radio-buttons-react-native';
 import { user } from '../statefull/query';
+import { useTranslation } from 'react-i18next';
 
 export default function NewRendezVous({navigation}) {
+	const {t} = useTranslation();
 	const [selectedPasteur, setSelectedPasteur] = useState("");
     const [date, setDate] = useState();
     const [pick1, setShowPic1] = useState(false)
@@ -89,13 +91,13 @@ export default function NewRendezVous({navigation}) {
     
     return (
         <View style={{ flex: 1}}>
-			<Head screen={"Nouveau Rendez-Vous"} n={navigation} second/>
+			<Head screen={t('common.app.newrendez_vous')} n={navigation} second/>
             <View>
-                <Text style={{textAlign: 'center', fontSize: 23, marginBottom: wp("5%")}}>Prendre un Rendez-Vous</Text>
+                <Text style={{textAlign: 'center', fontSize: 23, marginBottom: wp("5%")}}>{t('common.app.make_appointment')}</Text>
                 <View>
                     <View style={styles.horizontal}>
                         <Text style={styles.label}>
-                                    Pasteur:
+                        {t('common.app.pastor')}:
                         </Text>
                         <Picker style={{width: wp("65%")}}
                             mode="dropdown"
@@ -118,7 +120,7 @@ export default function NewRendezVous({navigation}) {
                     </View>
                     <View>
                         <Input
-                            placeholder="Choisissez une date"
+                            placeholder={t('common.app.choose_date')}
                             label="Date:"
                             labelStyle={styles.thelabel}
                             leftIcon={
@@ -144,20 +146,20 @@ export default function NewRendezVous({navigation}) {
                     {
                         (horaire.length != 0)?
                         <View>
-                            <Text style={{marginLeft: 10}}>Selectionner la tranche horaire</Text>
+                            <Text style={{marginLeft: 10}}>{t('common.app.select_slot')}</Text>
                             <RadioButtonRN
                             data={horaire}
                             selectedBtn={(e) => {console.log(e); setHourVal(e.value);}}
                             />
                         </View>: 
                         <View>
-                            <Text style={{marginLeft: 10}}>Aucune tranche horaire disponible</Text>
+                            <Text style={{marginLeft: 10}}>{t('common.app.no_slot')}</Text>
                         </View>
                     }
 
                     <Input
-                        placeholder="Quel problème avez-vous?"
-                        label="Raison:"
+                        placeholder={t('common.app.which_problem')+"?"}
+                        label={t('common.app.reason')+":"}
                         labelStyle={styles.thelabel}
                         leftIcon={
                         <Ionicons
@@ -173,7 +175,7 @@ export default function NewRendezVous({navigation}) {
 
                     <View>
 						<Button
-						title="Demander"
+						title={t('common.app.ask')}
                         onPress={()=> {
                             createRdv(hourVal);
                             // goBack();

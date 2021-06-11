@@ -8,40 +8,42 @@ import { Text, Input, Button } from 'react-native-elements';
 import { themes, color} from '../color';
 import Head from '../components/Head'
 import Lang from '../components/Lang';
+import { useTranslation } from 'react-i18next';
 
 export default function Parametres({navigation}){
-	return(
+const {t} = useTranslation();
+return(
 		<View>
-			<Head screen={"Paramètres"} n={navigation}/>
+			<Head screen={t('common.app.settings')} n={navigation}/>
 			<View>
 	  			<View style={styles.container_card_main}>
 		        	<View style={styles.container_all_dec}>
-		        		<Text style={styles.h1}>Personnel</Text>
+		        		<Text style={styles.h1}>{t('common.app.personnal')}</Text>
 
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"person-circle-outline"} size={27} color={color.primary}/>
-		        			<Text>{" Mon compte"}</Text>
+		        			<Text>{" "+t('common.app.my2')+" "+t('common.app.account')}</Text>
 		        		</View>
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"log-out-outline"} size={27} color={color.primary}/>
-		        			<Text>{" Deconnexion"}</Text>
+		        			<Text>{" "+t('common.app.logout')}</Text>
 		        		</View>
 		        	</View>
 		        </View>
 
 		        <View style={styles.container_card_main2}>
 		        	<View style={styles.container_all_dec}>
-		        		<Text style={styles.h1}>Application</Text>
+		        		<Text style={styles.h1}>{t('common.app.application')}</Text>
 
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"send-outline"} size={27} color={color.primary}/>
 		        			<TouchableOpacity onPress={()=>navigation.navigate('ContactEglise')}>
-		        				<Text>{" Contacter l'église"}</Text>
+		        				<Text>{" "+t('common.app.contact_church')}</Text>
 		        			</TouchableOpacity>
 		        		</View>
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"help-circle-outline"} size={27} color={color.primary}/>
-		        			<Text>{" A Propos de l'application"}</Text>
+		        			<Text>{" "+t('common.app.about_church')}</Text>
 		        		</View>
 						<View style={{...styles.end2, marginTop: hp('1%')}} >
 		        			<Ionicons name={"language-outline"} size={27} color={color.primary}/>

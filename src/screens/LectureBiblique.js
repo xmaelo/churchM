@@ -7,8 +7,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button, ListItem } from 'react-native-elements';
 import { themes } from '../color';
 import Head from '../components/Head';
+import { useTranslation } from 'react-i18next';
 
 export default function LectureBiblique({navigation}){
+	const {t} = useTranslation();
 	const list = [
 		{
 			jour: "21/05/2021",
@@ -115,7 +117,7 @@ export default function LectureBiblique({navigation}){
 	];
 	return(
 		<View style={{ flex: 1}}>
-			<Head screen={"Calendrier Biblique"} n={navigation}/>
+			<Head screen={t('common.app.lecture_biblic')} n={navigation}/>
 			<ImageBackground source={bible}
 			style={{
 				height: '100%',

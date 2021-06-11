@@ -16,6 +16,15 @@ class onInfos{
       }
   }
 
+  getAllUser = async (status) => {
+    try {
+      var res = await request_get("/personnes?status="+status, 'fidele-index');
+      return res["hydra:member"];
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   postFotos = async (base) => {
     try {
        let tofd =  await request_put(base, "/personnes/"+user.getUserId(), 'fidele-add');
