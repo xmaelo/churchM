@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginLeft: hp('2%'),
     marginRight: hp('2%'),
     borderRadius: 10,
-    height: hp('20%'),
+    height: hp('25%'),
     marginTop: hp('2%'),
     shadowColor: "#000",
     shadowOffset: {
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginLeft: hp('2%'),
     marginRight: hp('2%'),
     borderRadius: 10,
-    height: hp('30%'),
+    height: hp('35%'),
     marginTop: hp('2%'),
     shadowColor: "#000",
     shadowOffset: {
