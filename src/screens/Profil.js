@@ -19,6 +19,7 @@ import { Picker } from '@react-native-picker/picker';
 import { ActivityIndicator} from 'react-native-paper';
 import { event } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 export default function Profil({navigation}){
 
@@ -552,16 +553,24 @@ const lab2 = {
     return ImagePicker.openPicker({
       width: 300,
       height: 400,
-			includeBase64: true,
+	  includeBase64: true,
       cropping: true
     }).then(async image => {
-			console.log('image image image', image.path)
-			// var uri = image.path.replace("file:///", "file:/");
+			console.log('image image image', image.path);
+			var uri = "data:"+image.mime+";base64,"+image.data;
+			console.log('image URI', uri);
 			let fd = imageFormData(uri);
 			console.log('Form Data:', fd);
-			profil.postPhoto(fd.fd).then(res => {
+			var param = {
+				name: 'image',
+				filename: userInfo.code+'.'+fd.ext,
+				type: fd.type,
+				data: RNFetchBlob.wrap(image.path)
+			}
+			profil.postPhoto(param).then(res => {
 			console.log('resssssssssssssssssssss', res);
 				profil.updatePersonne({image: userInfo.code+'.'+fd.ext}).then(data => {
+					setProfilPhoto("https://api.church-digital.net/Uploads/profile/"+userInfo.code+"."+fd.ext);
 					console.log('Updated:', data);
 				}, error => console.log(error))
 			}, error => console.log(error));
@@ -569,16 +578,16 @@ const lab2 = {
     })
   }
 
-  const imageFormData = (event = "") => {
-	  console.log('kffdkjjdnskf: ', event);
+  const imageFormData = (event) => {
 	const blob = convertBase64ToBlob(event);
+	console.log('Blob: ', blob);
     const ext = event.match(/[^:/]\w+(?=;|,)/)[0];
     const fd = new FormData();
 	fd.append('image', blob, userInfo.code+'.'+ext);
-	return {fd: fd, ext: ext};
+	return {fd: fd, ext: ext, type: blob.data.type};
   }
 
-  const convertBase64ToBlob = (base64 = "") => {
+  const convertBase64ToBlob = (base64) => {
 	const info = getInfoFromBase64(base64);
 	console.log('convertBase64To:', info);
     const sliceSize = 512;
@@ -599,7 +608,7 @@ const lab2 = {
     return new Blob(byteArrays, { type: info.mime });
   }
 
-  const getInfoFromBase64 = (base64 = "") => {
+  const getInfoFromBase64 = (base64) => {
 	//   console.log('getInfoFromBase64: ', base64);
     const meta = base64.split(',')[0];
     const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
@@ -647,8 +656,9 @@ const lab2 = {
 				setUserInfos(profil.userData())
 				console.log('===>>>userinfo', userInfo)
 				let z = await profil.getRegion();
-				setSone(z)
-				console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>reg depart', z)
+				setSone(z);
+				setProfilPhoto("https://api.church-digital.net/Uploads/profile/"+profil.userData().image);
+				console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>reg depart', "https://api.church-digital.net/Uploads/profile/"+profil.userData().image)
 			})()
 		}, [])
 
@@ -667,7 +677,7 @@ const lab2 = {
 				<Avatar
 					size={wp("23%")}
 					rounded
-				  source={(profilPhoto)?profilPhoto:logo}
+				  source={{uri: profilPhoto}}
 					onPress={() => onPickImage()}
 				  >
 				</Avatar>

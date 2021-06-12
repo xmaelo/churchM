@@ -9,6 +9,7 @@ import { Button, Snackbar  } from 'react-native-paper';
 import { themes, color } from '../color';
 import {login} from '../statefull/login'
 import { storeData } from '../statefull/asyncStorage'
+import Lang from '../components/Lang';
 
 export default function LoginScreen({navigation}){
 
@@ -56,6 +57,7 @@ export default function LoginScreen({navigation}){
 							<Image source={logo} style={styles.img}/>
 							<Text h4 style={themes.primary}>EEC</Text>
 							<Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text>
+							{/* <Lang/> */}
 						</View>
 						<View style={styles.form}>
 							<Text h4>Connexion</Text>
