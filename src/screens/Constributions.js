@@ -8,9 +8,9 @@ import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
 import Head from '../components/Head'
 import { TextInput, Switch, RadioButton  } from 'react-native-paper';
-import {prepas, auth} from '../statefull/preparation'
 import { List } from 'react-native-paper';
 import { ActivityIndicator, Divider} from 'react-native-paper';
+import {finance} from '../statefull/finance'
 import {
   ANIMATIONS_SLIDE,
   ANIMATIONS_FADE,
@@ -38,123 +38,42 @@ const onChrome = (url) => {
 }
 export default function Constributions(props){
 	const [preparations, setPrepas] = useState([])
+	const [formation, setF] = useState("0")
+	const [construction, setCons] = useState("0")
+	const [cont, setCon] = useState(null)
 
 
 	useEffect(()=>{
 		(async()=>{
+      const mo = await finance.getEntreeFinanciere()
+      setCon(mo['hydra:member'])
+      console.log('getEntreeFinanciere getEntreeFinanciere')
 		})()
 	}, [])
 
 	return(
-		<View style={{flex: 1}}>
-				<Head screen={"Contributions"} n={props.navigation} second/>
-				<View>
-        <View>
-            <List.Accordion
-              title={"Construction"}
-            >
+    <ScrollView>
+  		<View style={{flex: 1}}>
+  				<Head screen={"Contributions"} n={props.navigation} second/>
+  				<View>
+          {cont&&cont.map((t, i)=>
+              <View key={t.id}>
+                  <List.Accordion
+                    title={t.intitule}
+                  >
 
-            <View>
-              <View style={{paddingHorizontal: wp('5%')}}>
-                  <TextInput
-                    label={"Montant "}
-                    mode={"outlined"}
-                    value={"0"}
-                    style={{height: 35}}
-                  //  onChangeText={text => console.log(text)}
-                  />
-                </View>
-                <View style={{...styles.end2, marginTop: hp('2%'), justifyContent: "center", paddingBottom: 20}} >
-                  <Button
-                    icon={
-                      <Ionicons
-                        name="cash-outline"
-                        size={22}
-                        color={color.primary}
-                      />
-                    }
-                    iconRight= {true}
-                    containerStyle={{width: wp('30%')}}
-                    type="outline"
-                    title={"Mobile  "}
-                    //  onPress = {()=>onPayment('XAF')}
-                  />
+                  <TouchableOpacity onPress={()=>props.navigation.navigate('DetailsContribution', {param: t})} style={{flexDirection: 'row', paddingHorizontal: wp('10%')}}>
+                    <Ionicons name="arrow-forward-outline" size={23} color={color.primary} />
+                    <Text style={{fontStyle: 'italic', textDecorationLine: 'underline', color: color.primary, paddingBottom: 8}}>Contribuer</Text>
+                  </TouchableOpacity>
 
-                  <Button
-                    icon={
-                      <Ionicons
-                        name="cash-outline"
-                        size={22}
-                        color={color.primary}
-                      />
-                    }
-                    iconRight= {true}
-                    containerStyle={{width: wp("45%"), marginLeft: wp('3%')}}
-                    type="outline"
-                    title={"Carte / Paypal  "}
-                    //onPress = {()=>onPayment('USD')}
-                  />
-                </View>
-            </View>
-
-            </List.Accordion>
-            <Divider />
-        </View>
-
-        <View>
-            <List.Accordion
-              title={"Formations"}
-            >
-
-            <View>
-              <View style={{paddingHorizontal: wp('5%')}}>
-                  <TextInput
-                    label={"Montant "}
-                    mode={"outlined"}
-                    value={"0"}
-                    style={{height: 35}}
-                  //  onChangeText={text => console.log(text)}
-                  />
-                </View>
-                <View style={{...styles.end2, marginTop: hp('2%'), justifyContent: "center", paddingBottom: 20}} >
-                  <Button
-                    icon={
-                      <Ionicons
-                        name="cash-outline"
-                        size={22}
-                        color={color.primary}
-                      />
-                    }
-                    iconRight= {true}
-                    containerStyle={{width: wp('30%')}}
-                    type="outline"
-                    title={"Mobile  "}
-                    //  onPress = {()=>onPayment('XAF')}
-                  />
-
-                  <Button
-                    icon={
-                      <Ionicons
-                        name="cash-outline"
-                        size={22}
-                        color={color.primary}
-                      />
-                    }
-                    iconRight= {true}
-                    containerStyle={{width: wp("45%"), marginLeft: wp('3%')}}
-                    type="outline"
-                    title={"Carte / Paypal  "}
-                    //onPress = {()=>onPayment('USD')}
-                  />
-                </View>
-            </View>
-
-            </List.Accordion>
-            <Divider />
-        </View>
-
-	  		</View>
-		</View>
+                  </List.Accordion>
+                  <Divider />
+              </View>
+          )}
+          </View>
+  		</View>
+    </ScrollView>
 	)
 }
 

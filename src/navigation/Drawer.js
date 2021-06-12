@@ -23,6 +23,7 @@ import Activites from '../screens/Activites'
 import Annonces from '../screens/Annonces'
 import Mediatheques from '../screens/Mediatheques'
 import Finaces from '../screens/Finaces'
+import DetailsContribution from '../screens/DetailsContribution'
 import SainteScene from '../screens/SainteScene'
 import Profil from '../screens/Profil'
 import Parametres from '../screens/Parametres'
@@ -80,6 +81,7 @@ const stacks = [
   { composant: TheBible, name: "TheBible", swipe: true },
   { composant: ChapBible, name: "ChapBible", swipe: true },
   { composant: VersetBible, name: "VersetBible", swipe: true },
+  { composant: DetailsContribution, name: "DetailsContribution", swipe: true },
 ];
 
 function CustomDrawerContent(props) {

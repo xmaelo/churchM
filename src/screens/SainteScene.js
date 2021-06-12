@@ -18,6 +18,7 @@ import {finance} from '../statefull/finance'
 import { useTranslation } from 'react-i18next';
 
 
+
 export default function SainteScene({navigation}){
 	const {t} = useTranslation();
 	let n = null;
@@ -42,8 +43,8 @@ export default function SainteScene({navigation}){
 		    color: color.primary
 	    }
   ]
-  let prepas = [];
-const FirstRoute = () => {
+
+const FirstRoute = ({prepas}) => {
   return(
     	<View style={{ flex: 1}}>
     		<ScrollView>
@@ -61,7 +62,7 @@ const FirstRoute = () => {
 
             :
             <View>
-              {prepas.map((allprepa, i) =>
+              {prepas && prepas.map((allprepa, i) =>
         	  		<View style={{
         	  				...styles.DataTable,
         	  				...styles.container_card_main
@@ -92,7 +93,7 @@ const FirstRoute = () => {
         				      	</DataTable.Title>
         				    </DataTable.Header>
 
-                    {allprepa.entreePreparation.map((entreePrepa, k)=>
+                    {allprepa.entreePreparation && allprepa.entreePreparation.map((entreePrepa, k)=>
           				    <DataTable.Row key={k}>
           				      	<DataTable.Cell>{entreePrepa.createdAt? new Date(entreePrepa.createdAt).getDate() : ''}</DataTable.Cell>
           				      	<DataTable.Cell numeric>{entreePrepa?.intitule}</DataTable.Cell>
@@ -124,7 +125,7 @@ const FirstRoute = () => {
     );
 };
 
-const SecondRoute = () => {
+const SecondRoute = ({chart1}) => {
 	const [percent, setPercent] = useState(0)
 	//setPercent(0)
 	useEffect(()=>{
@@ -148,7 +149,7 @@ const SecondRoute = () => {
 		    	<Text style={styles.titleP}>{t('common.app.progress_prepa')}</Text>
 		    	<Progress.Bar progress={percent} width={220} />
 		    	<View style={{paddingHorizontal: wp('6%')}}>
-					<PureChart data={sampleData} type='bar' height={hp('30%')} />
+					<PureChart data={chart1} type='bar' height={hp('30%')} />
 		    	</View>
 		    </View>
 	  </View>
@@ -189,8 +190,8 @@ const renderTabBar = props => (
     ]);
 
     const renderScene = SceneMap({
-    	first: FirstRoute,
-    	second: SecondRoute,
+    	first: () => <FirstRoute prepas={prepass} chart1={chart1}/>,
+    	second: () => <SecondRoute prepas={prepass} chart1={chart1}/>,
     });
 
     useEffect(() => {
@@ -200,7 +201,7 @@ const renderTabBar = props => (
           let rangePrepa = [];
           for (let i = 0; i < preparations.length; i++) {
                let historique = await finance.getHistorique(preparations[i].id);
-               historique = historique || [{intitule: '', montant: 0, createAt: new Date(Date.now())}];
+               //historique = !historique ? [{intitule: '', montant: 0, createAt: new Date(Date.now())}] : historique;
                rangePrepa.push({
                     'id': preparations[i].id,
                     'intitule': preparations[i].intitule,
@@ -208,6 +209,7 @@ const renderTabBar = props => (
                 });
             }
             prepas = rangePrepa;
+						console.log(' prepas prepas prepas prepas =========>>>>>>>>>>>>>>>>>>>', prepas)
             setPrepa(prepas);
             sampleData = showChart(rangePrepa);
             setChart1(sampleData);

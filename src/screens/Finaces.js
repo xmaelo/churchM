@@ -16,14 +16,14 @@ import { showChart2 } from '../constante';
 import { useTranslation } from 'react-i18next';
 
 const list = [
-  {
+  /*{
     title: 'Aide au pasteur',
     icon: 'help'
   },
   {
     title: 'Construction',
     icon: 'help'
-  }
+  }*/
 ]
 
 let sampleData = [
@@ -46,6 +46,7 @@ const [percent1, setPercent1] = useState(0)
   useEffect(() => {
     (async()  => {
       const autreFinaces = await finance.getAutreEntreeUser();
+      console.log('autreFinaces autreFinacesautreFinaces', autreFinaces)
       const d = showChart2(autreFinaces);
       console.log('chart chart', d)
       setChart(d.chart);
@@ -84,16 +85,6 @@ const [percent1, setPercent1] = useState(0)
 								/>
 						    </View>
 						    <View style={styles.progressCircle} >
-				  				<Text style={styles.titleP}>{t('common.app.trimestre')}</Text>
-						  		<Progress.Circle
-									size={wp('29%')}
-									progress={p1}
-									showsText
-									formatText={(val) =>  parseInt(val*100) +"%"}
-									color={color.red}
-								/>
-						    </View>
-						    <View style={styles.progressCircle} >
 				  				<Text style={styles.titleP}>{t('common.app.annee_cours')}</Text>
 						  		<Progress.Circle
 									size={wp('25%')}
@@ -118,7 +109,7 @@ const [percent1, setPercent1] = useState(0)
 						<View style={{paddingTop: hp('5%'), paddingHorizontal: wp('2%')}} >
 							<PureChart data={chart ? chart : sampleData} type='bar' height={hp('30%')} />
 						</View>
-
+            {/*
 						<View style={{...styles.text, paddingTop: hp('3%')}} >
 							<Text style={{fontSize: 15}} >{t('common.app.do_donation')}</Text>
 						</View>
@@ -129,6 +120,7 @@ const [percent1, setPercent1] = useState(0)
 								style={{backgroundColor: "#394247"}}
 							/>
 						</View>
+          */}
 						<View style={{paddingTop: hp('5%'), paddingHorizontal: wp('2%')}} >
 							<View>
 							  {
@@ -155,7 +147,7 @@ const [percent1, setPercent1] = useState(0)
 			<FAB
 		  		buttonColor={color.primary}
 		  		iconTextColor="#FFFFFF"
-		  		onClickAction={() => {console.log("FAB pressed")}}
+		  		onClickAction={() => navigation.navigate("Constributions")}
 		  		visible={true}
 		  		iconTextComponent={<Ionicons name="add"/>}
 		  	/>

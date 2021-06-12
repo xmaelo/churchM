@@ -14,7 +14,7 @@ class preparation{
 
   getpaymentlink = async (items) => {
    try {
-     const response = await request_post('/personnes/actifpreparation', items, 'payment-link');
+     const response = await request_post('/payements/linkpayement', items, 'payment-link');
      console.log('>>>>>> response payement ', response)
      return response
    } catch (error) {
