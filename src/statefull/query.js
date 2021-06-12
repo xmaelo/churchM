@@ -1,3 +1,4 @@
+import RNFetchBlob from "react-native-fetch-blob";
 
 const apibaselink = 'https://api.church-digital.net/api';
 
@@ -116,9 +117,9 @@ export function request_file(body, route, cl=cle){
         'cle': cl,
         'database': 'churchv3M2_2021',
         'authorization': 'Bearer '+user.getToken(),
-        'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data'
     },
-    body: JSON.stringify(body)
+    body: body
   }).then(
     (response) => response.json()
   ).then(
@@ -129,6 +130,27 @@ export function request_file(body, route, cl=cle){
   )
   return r;
 }
+
+export function request_file2(body, route, cle) {
+  console.log('route route route', body)
+  const r = RNFetchBlob.fetch('POST', apibaselink+route, {
+    Authorization : 'Bearer '+user.getToken(),
+    pass : "9afac0b31fb7c699ef123aaeefe18cafa7b40921",
+    cle : cle,
+    database : "churchv3M2_2021",
+    'Content-Type' : 'multipart/form-data',
+  }, [
+    // custom content type
+    body
+  ]).then((resp) => {
+    console.log('>>>>>>> Réponse Photo', resp.json())
+    return resp.json()
+  }).catch((err) => {
+    console.log(err);
+  })
+  return r;
+}
+
 
 export function request_get(route, clx=cle){
   const authorization = clx ? 'Bearer '+user.getToken():  null;

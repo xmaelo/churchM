@@ -1,4 +1,4 @@
-import {request_get, request_post, request_put_notkn, request_post_notkn, user, request_file, request_put} from './query';
+import {request_get, request_post, request_put_notkn, request_post_notkn, user, request_file, request_put, request_file2} from './query';
 
 class onInfos{
    userData = () => user.getUserInfo();
@@ -60,7 +60,7 @@ class onInfos{
       console.log('exxxxxxxxxxxxxxxxxxxx', ob);
       // let formdata = new FormData();
       // formdata.append('image', bl, user.getUserInfo().code+'.'+ext);
-      let res =  await request_file(ob, "/personnes/photo", 'photo-edit');
+      let res =  await request_file2(ob, "/personnes/photo", 'photo-edit');
       return res;
     // }catch(e){
     //   console.log('error pot photo', e)
