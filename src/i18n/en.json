@@ -162,7 +162,14 @@
             "offering": "Christian Offerings",
             "preparation_of": "Preparation of",
             "cameroon": "Cameroon",
-            "history": "History"
+            "history": "History",
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday",
+            "saturday": "Saturday",
+            "sunday": "Sunday"
         }
     }
 }

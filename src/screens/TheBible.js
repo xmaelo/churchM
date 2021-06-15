@@ -10,27 +10,6 @@ import { color } from '../color';
 
 export default function TheBible({navigation}){
 
-    const tradBook = (book) => {
-        if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-    }
-
     const {t} = useTranslation();
     const [allBooks, setAllBooks] = useState([]);
 
