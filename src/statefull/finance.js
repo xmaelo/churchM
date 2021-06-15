@@ -41,10 +41,20 @@ class finance_api {
     }
   }
 
+  getEntreeFinanciere = async() => {
+    try {
+      let res = await request_get("/entree_financieres", 'user-show')
+      console.log('>>> result getTypeContribution', res)
+      return res;
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
   getAutreEntreeUser = async () => {
     try {
       let res = await request_get("/autre_entrees?contributeur.personne.id="+user.getUserId())
-      console.log('>>> result getTypeContribution', res["hydra:member"])
+      console.log('>>> result getTypgddhdheContribution', res)
       return res["hydra:member"];
     } catch (error) {
       console.log(error);

@@ -96,11 +96,14 @@ export const showChart  = (lesPrepas2) => {
   }
 
 export const showChart2  = (finaces) => {
+    console.log('################################################""', finaces)
       let montants = sampleData[0].data
       let montant1= 0, montant2 =0, montant3 =0, montant4 =0, montant5 =0, montant6 =0, montant7 =0, montant8 =0,montant9 =0,montant10 =0, montant11 = 0, montant12 =0;
       try {
-        if (finaces.length >0) {
-          for (let finace of finaces) {
+        //if (finaces.length >0) {
+            for (let i = 0; i < finaces.length; i++) {
+                  let finace = finaces[i]
+                  console.log(' #######################""', finace)
                   if(finace.createdAt){
                     const theDate  = new Date(finace.createdAt)
                     console.log('theDate.getMonth() theDate.getMonth()', theDate.getMonth());
@@ -168,14 +171,14 @@ export const showChart2  = (finaces) => {
             }
           });
 
-          let actualMonth = new Date(finaces[finaces.length-1].createdAt);
+          let actualMonth = finaces.length> 0 ? new Date(finaces[finaces.length-1].createdAt) : new Date();
           let p0;
           if (actualMonth.getMonth() != 1) {
-            p0 = (new Date(Date.now()).getDay()*100)/30;
+            p0 = (new Date(Date.now()).getDay()*1)/30;
           } else {
-            p0 = (new Date(Date.now()).getDay()*100)/28;
+            p0 = (new Date(Date.now()).getDay()*1)/28;
           }
-
+          console.log('_______________HGB______________', a)
           let pourcentage1;
           if (a == 3 || a == 6 || a == 9 || a == 12) {
             pourcentage1 = 100;
@@ -185,14 +188,14 @@ export const showChart2  = (finaces) => {
             pourcentage1 = 66;
           }
 
-          let pourcentage2 = (a*100)/12
+          let pourcentage2 = (a)/12
 
           let samp = sampleData.slice();
           samp[0].data = montants;
 
           return {chart: samp, p1: pourcentage1, p2: pourcentage2, p0: p0};
-        }
-        return {chart: sampleData, p1: 0, p2: 0, actualMonth: 0, p0: 0}
+        //}
+        //return {chart: sampleData, p1: 0, p2: 0, actualMonth: 0, p0: 0}
       } catch (e) {
         console.log("errorr=================>>>", e);
         return {chart: sampleData, p1: 0, p2: 0, actualMonth: 0, p0: 0}

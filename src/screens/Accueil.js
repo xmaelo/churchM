@@ -36,7 +36,7 @@ const IconPart = ({name}) => <Ionicons name={name} size={30} color={color.primar
 
 export default function Accueil({navigation, route}){
 const {t} = useTranslation();
-	
+
 	const [carousel, setCarousel] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
   const [personne, setPersone] = useState(null);
@@ -145,14 +145,6 @@ const {t} = useTranslation();
 									<Text>{t('common.app.message')}</Text>
 								</Surface>
 							</TouchableOpacity>
-							<TouchableOpacity onPress={()=>navigation.navigate('LectureBiblique')}>
-								<Surface style={styles.surface}>
-									<IconPart name='reader-outline'/>
-									<Text>{t('common.app.lecture_biblic')}</Text>
-								</Surface>
-							</TouchableOpacity>
-						</View>
-						<View style={styles.row}>
 							<TouchableOpacity onPress={()=>navigation.navigate('TheBible')}>
 								<Surface style={styles.surface}>
 									<IconPart name='book-outline'/>

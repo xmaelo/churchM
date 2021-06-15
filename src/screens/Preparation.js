@@ -4,21 +4,21 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import {logo} from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Text, Input, Button } from 'react-native-elements';
+import { Text, Input } from 'react-native-elements';
 import { themes, color } from '../color';
 import Head from '../components/Head'
-import { TextInput, Switch, RadioButton  } from 'react-native-paper';
+import { TextInput, Button, Snackbar  } from 'react-native-paper';
 import {prepas, auth} from '../statefull/preparation'
 import {
   ANIMATIONS_SLIDE,
   ANIMATIONS_FADE,
   CustomTabs
 } from 'react-native-custom-tabs';
-import { useTranslation } from 'react-i18next';
+
 
 const onChrome = (url) => {
   CustomTabs.openURL(url, {
-    toolbarColor: '#607D8B',
+    toolbarColor: color.primary,
     enableUrlBarHiding: true,
     showPageTitle: false,
     enableDefaultShare: false,
@@ -35,12 +35,20 @@ const onChrome = (url) => {
   });
 }
 export default function Preparation(props){
-  const {t} = useTranslation();
 	const [preparations, setPrepas] = useState([])
 	const [idPrepa, setIdPrepa] = useState(null)
 	const [contributions, setC] = useState(null)
 	const [finalContributions, setCF] = useState(null)
+	const [loadingXAF, setLXaf] = useState(false)
+	const [desabledXaf, setDesabledXaf] = useState(false)
+	const [loadingUSD, setUS] = useState(false)
+	const [desabledUsd, setDesabledUsd] = useState(false)
 
+	const [intinialObj, setInitialObj] = useState({})
+	const [visible, setVisible] = useState(false)
+
+	const onToggleSnackBar = () => setVisible(!visible);
+	const onDismissSnackBar = () => setVisible(false);
 
 	const  getContrib = async() => {
     try {
@@ -71,9 +79,20 @@ export default function Preparation(props){
 	              id = contrib.id; number = 4; console.log(contrib);
 	            }
 	          });
-          finalContributions.push({nom: t('common.app.offering'), montant: 0, id: id, number: number});
-          console.log('COntributions:', finalContributions);
+          finalContributions.push({nom: "Offrandes des Corps d'Elites(Anciens, Diacres, Conseillers)", montant: 0, id: id, number: number});
+          console.log('COntributions ===>>>:', finalContributions);
+
+          let obj = {}
+          finalContributions.map((contrib)=>{
+            obj[contrib.nom] = contrib.montant
+            return;
+          })
+					setInitialObj(obj)
 					setCF(finalContributions)
+
+
+					console.log('obj obj================>>>>>', obj)
+
         } else {
           //this.prepas = true;
         }
@@ -83,45 +102,70 @@ export default function Preparation(props){
   }
 
 	 	const onPayment = async (devise) => {
-    try {
-        let allContrib = [];
-        let item = [];
-        if(contributions[contributions.length-1].number == 1) {
-          contributions[contributions.length-1].nom = "Offrandes des Corps d'Elites(Anciens, Diacres, Conseillers)";
-        } else if(contributions[contributions.length-1].number == 2) {
-          contributions[contributions.length-1].nom = "Offrandes des Hommes";
-        } else if(contributions[contributions.length-1].number == 3) {
-          contributions[contributions.length-1].nom = "Offrandes des Femmes";
-        } else if(contributions[contributions.length-1].number == 4) {
-          contributions[contributions.length-1].nom = "Offrandes des Jeunes(Elèves et Etudiants)";
-        }
-        contributions.forEach(contrib => {
-          allContrib.push(contrib.nom);
-          allContrib.push(contrib.id);
-          allContrib.push(contrib.montant);
-          item.push(allContrib);
-          allContrib = [];
-        });
+			console.log('contributions contributions status')
+			let contributions = finalContributions
+			if (devise === "XAF") {
+				setLXaf(true)
+				setDesabledUsd(true)
+			}
+			else if (devise === "USD"){
+				setUS(true)
+				setDesabledXaf(true)
+			}
+			if(!loadingUSD && !loadingXAF){
+	    	try {
+	        let allContrib = [];
+	        let item = [];
+	        if(contributions[contributions.length-1].number == 1) {
+	          contributions[contributions.length-1].nom = "Offrandes des Corps d'Elites(Anciens, Diacres, Conseillers)";
+	        } else if(contributions[contributions.length-1].number == 2) {
+	          contributions[contributions.length-1].nom = "Offrandes des Hommes";
+	        } else if(contributions[contributions.length-1].number == 3) {
+	          contributions[contributions.length-1].nom = "Offrandes des Femmes";
+	        } else if(contributions[contributions.length-1].number == 4) {
+	          contributions[contributions.length-1].nom = "Offrandes des Jeunes(Elèves et Etudiants)";
+	        }
+					console.log('intinialObj intinialObj intinialObj', intinialObj)
+	        contributions.forEach(contrib => {
+	          allContrib.push(contrib.nom);
+	          allContrib.push(contrib.id);
+						let amount = intinialObj[contrib.nom] !== undefined ? parseInt(intinialObj[contrib.nom]) : 0
+	          allContrib.push(amount);
+	          item.push(allContrib);
+	          allContrib = [];
+	        });
 
-        const data = {
-          "id": auth.getUserInfo().id,
-          "devise": devise,
-          "items":item,
-          "preparation": idPrepa,
-          "type": "PREPARATION"
-        };
-        console.log(item);
-        console.log(data);
-        let payLink = await prepas.getpaymentlink(data)
+					console.log(' auth.getUserInfo()  auth.getUserInfo()')
+	        const data = {
+	          "id": auth.getUserId(),
+	          "devise": devise,
+	          "items":item,
+	          "preparation": idPrepa,
+	          "type": "PREPARATION"
+	        };
+	        console.log(item);
+	        console.log(data);
+	        let payLink = await prepas.getpaymentlink(data)
 
-        console.log('>>>> Paiement:', payLink);
-        console.log("link of payneent");
-        console.log(payLink['payment_url']);
-				//onChrome(payLink['payment_url'])
-
-      } catch (error) {
-        console.warn(error);
-      }
+	        console.log('>>>> Paiement:', payLink);
+	        console.log("link of payneent");
+	        console.log(payLink['payment_url']);
+					setLXaf(false)
+					setUS(false)
+					if(payLink['payment_url']){
+						onChrome(payLink['payment_url'])
+					}else {
+						setVisible(true)
+					}
+	      } catch (error) {
+					console.log('an error ==============>>>', error)
+	        console.warn(error);
+	      }
+				setLXaf(false)
+				setDesabledUsd(false)
+				setUS(false)
+				setDesabledXaf(false)
+			}
   }
 
 	useEffect(()=>{
@@ -132,57 +176,74 @@ export default function Preparation(props){
 
 	return(
 		<View style={{flex: 1}}>
-				<Head screen={t('common.app.prepa')} n={props.navigation} second/>
+				<Head screen={"Préparation"} n={props.navigation} second/>
 				<View>
 	  			<View style={styles.container_card_main}>
 		        	<View style={styles.container_all_dec}>
-		        		<Text style={styles.h1}>{t('common.app.preparation_of')} 13/05/2021</Text>
-		        		<Text>{t('common.app.contrib_list')}</Text>
+		        		<Text style={styles.h1}>PREPARATION DU 13/05/2021</Text>
+		        		<Text>Liste des contributions</Text>
 								{finalContributions && finalContributions.map((c, i) =>
 									<View key={i}>
 										<TextInput
-											label={t('common.app.amount')+" "+c.nom}
+											label={"Montant "+c.nom}
 											mode={"outlined"}
-											value={c.montant ? String(c.montant) : ""}
-											style={{height: 35}}
-											onChangeText={text => console.log(text)}
+											keyboardType="numeric"
+											value={intinialObj && intinialObj[c.nom] !== undefined ? String(intinialObj[c.nom]) : "0"}
+											style={{height: 45, paddingBottom: 10}}
+											onChangeText={text => setInitialObj({...intinialObj, [c.nom]: text})}
 										/>
 									</View>
 								)}
-		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
+		        		<View style={{...styles.end2, marginTop: hp('2%'), alignItems: 'center', justifyContent: 'center'}} >
 		        			<Button
-									  icon={
+									  icon={() =>
 									    <Ionicons
-									      name="cash-outline"
+									      name="logo-usd"
 									      size={22}
 									      color={color.primary}
 									    />
 									  }
-									  iconRight= {true}
-									  containerStyle={{width: wp('30%')}}
-									  type="outline"
-									  title={"Mobile  "}
-											onPress = {()=>onPayment('XAF')}
-									/>
+										disabled={desabledXaf}
+									  //iconRight= {true}
+									  //containerStyle={{width: wp('30%')}}
+									  mode="outlined"
+										loading={loadingXAF}
+										onPress = {()=>onPayment('XAF')}
+									>
+										{"Mobile  "}
+									</Button>
 
 									<Button
-									  icon={
+									  icon={() =>
 									    <Ionicons
-									      name="cash-outline"
+									      name="logo-usd"
 									      size={22}
 									      color={color.primary}
 									    />
 									  }
-									  iconRight= {true}
-									  containerStyle={{width: wp("45%"), marginLeft: wp('3%')}}
-									  type="outline"
-									  title={t('common.app.card')+" / Paypal  "}
+										disabled={desabledUsd}
+										loading={loadingUSD}
+									  mode="outlined"
 										onPress = {()=>onPayment('USD')}
-									/>
+									>
+										{"Carte / Paypal  "}
+									</Button>
 		        		</View>
 		        	</View>
 		        </View>
 	  		</View>
+				<Snackbar
+					visible={visible}
+					onDismiss={onDismissSnackBar}
+					action={{
+						label: 'Fermer',
+						onPress: () => {
+							// Do something
+						},
+					}}>
+					Une erreur est survenu !
+					Verifier si vous avez entré un montant correct ou si vous avez toujours accès a internet
+				</Snackbar>
 		</View>
 	)
 }
