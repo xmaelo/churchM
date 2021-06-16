@@ -4,6 +4,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Head from '../components/Head';
 import {thebible} from "../assets"
+import {kjbible} from "../assets"
 import { Text, Input, Button, ListItem, Card } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import { color } from '../color';

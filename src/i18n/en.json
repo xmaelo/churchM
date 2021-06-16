@@ -169,7 +169,8 @@
             "thursday": "Thursday",
             "friday": "Friday",
             "saturday": "Saturday",
-            "sunday": "Sunday"
+            "sunday": "Sunday",
+            "bible_version": "kjbible"
         }
     }
 }

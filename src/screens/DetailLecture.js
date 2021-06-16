@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
       marginBottom: 7
   },
   contenu: {
-    fontStyle: 'italic',
     paddingLeft: 15,
     paddingRight: 15,
   }

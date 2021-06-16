@@ -169,7 +169,8 @@
             "thursday": "Jeudi",
             "friday": "Vendredi",
             "saturday": "Samedi",
-            "sunday": "Dimanche"
+            "sunday": "Dimanche",
+            "bible_version": "thebible"
         }
     }
 }

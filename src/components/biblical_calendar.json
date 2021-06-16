@@ -215,6 +215,3609 @@
                     "verset_fin": 0
                 }
             ]
+        },
+        {
+            "jour": "2021-06-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 13,
+                    "verset_debut": 26,
+                    "verset_fin": 43
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 143,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-06-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Ezekiel",
+                    "chapitre": 18,
+                    "verset_debut": 21,
+                    "verset_fin": 32
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 34,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                },
+                {
+                    "livre": "2_Corinthians",
+                    "chapitre": 8,
+                    "verset_debut": 7,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Marc",
+                    "chapitre": 5,
+                    "verset_debut": 21,
+                    "verset_fin": 43
+                }
+            ]
+        },
+        {
+            "jour": "2021-06-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 13,
+                    "verset_debut": 24,
+                    "verset_fin": 52
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 33,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-06-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 14,
+                    "verset_debut": 1,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 89,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-06-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 14,
+                    "verset_debut": 20,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 54,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-01T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 15,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 85,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-02T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 15,
+                    "verset_debut": 13,
+                    "verset_fin": 35
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 118,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-03T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 15,
+                    "verset_debut": 36,
+                    "verset_fin": 36
+                },
+                {
+                    "livre": "Acts",
+                    "chapitre": 16,
+                    "verset_debut": 1,
+                    "verset_fin": 5
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 2,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-04T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Ezekiel",
+                    "chapitre": 2,
+                    "verset_debut": 2,
+                    "verset_fin": 5
+                },
+                {
+                    "livre": "2_Corinthians",
+                    "chapitre": 12,
+                    "verset_debut": 7,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 6,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 123,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-05T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 16,
+                    "verset_debut": 6,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 16,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-06T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 16,
+                    "verset_debut": 16,
+                    "verset_fin": 22
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 13,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-07T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 16,
+                    "verset_debut": 23,
+                    "verset_fin": 40
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 10,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-08T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 17,
+                    "verset_debut": 1,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 6,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-09T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 17,
+                    "verset_debut": 16,
+                    "verset_fin": 34
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 61,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-10T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 18,
+                    "verset_debut": 1,
+                    "verset_fin": 22
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 37,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-11T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 1,
+                    "verset_debut": 3,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Amos",
+                    "chapitre": 7,
+                    "verset_debut": 12,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 6,
+                    "verset_debut": 7,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 85,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-12T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 18,
+                    "verset_debut": 23,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Acts",
+                    "chapitre": 19,
+                    "verset_debut": 1,
+                    "verset_fin": 7
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 107,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-13T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 19,
+                    "verset_debut": 8,
+                    "verset_fin": 22
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 47,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-14T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 19,
+                    "verset_debut": 23,
+                    "verset_fin": 40
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 4,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-15T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 20,
+                    "verset_debut": 1,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 71,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-16T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 20,
+                    "verset_debut": 17,
+                    "verset_fin": 38
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 18,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-17T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 21,
+                    "verset_debut": 1,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 32,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-18T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Jeremiah",
+                    "chapitre": 23,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 2,
+                    "verset_debut": 13,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 6,
+                    "verset_debut": 30,
+                    "verset_fin":34
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 23,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-19T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 21,
+                    "verset_debut": 15,
+                    "verset_fin": 26
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 57,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-20T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 21,
+                    "verset_debut": 27,
+                    "verset_fin": 40
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 21,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-21T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 22,
+                    "verset_debut": 1,
+                    "verset_fin": 21
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 20,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-22T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 22,
+                    "verset_debut": 22,
+                    "verset_fin": 30
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 81,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-23T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 23,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 36,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-24T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 23,
+                    "verset_debut": 12,
+                    "verset_fin": 35
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 26,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-25T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 4,
+                    "verset_debut": 42,
+                    "verset_fin": 44
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "John",
+                    "chapitre": 6,
+                    "verset_debut": 1,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 145,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 24,
+                    "verset_debut": 1,
+                    "verset_fin": 27
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 93,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 25,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 80,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 25,
+                    "verset_debut": 13,
+                    "verset_fin": 27
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 64,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 26,
+                    "verset_debut": 1,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 5,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 26,
+                    "verset_debut": 24,
+                    "verset_fin": 32
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 42,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-07-31T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 27,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 4,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-01T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Exodus",
+                    "chapitre": 16,
+                    "verset_debut": 2,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 4,
+                    "verset_debut": 17,
+                    "verset_fin": 24
+                },
+                {
+                    "livre": "John",
+                    "chapitre": 6,
+                    "verset_debut": 24,
+                    "verset_fin": 35
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 78,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-02T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 27,
+                    "verset_debut": 13,
+                    "verset_fin": 44
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 117,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-03T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 28,
+                    "verset_debut": 1,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 91,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-04T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Acts",
+                    "chapitre": 28,
+                    "verset_debut": 17,
+                    "verset_fin": 31
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 34,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-05T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 27,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-06T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 7
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 146,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-07T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 19
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 139,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-08T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Kings",
+                    "chapitre": 19,
+                    "verset_debut": 4,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 4,
+                    "verset_debut": 30,
+                    "verset_fin": 30
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 2
+                },
+                {
+                    "livre": "John",
+                    "chapitre": 6,
+                    "verset_debut": 41,
+                    "verset_fin": 51
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 34,
+                    "verset_debut": 1,
+                    "verset_fin": 9
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-09T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 6,
+                    "verset_debut": 8,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 59,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-10T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 16,
+                    "verset_debut": 1,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 49,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-11T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 17,
+                    "verset_debut": 1,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 83,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-12T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 17,
+                    "verset_debut": 24,
+                    "verset_fin": 41
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 75,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-13T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 18,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 140,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-14T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 18,
+                    "verset_debut": 13,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 22,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-15T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Proverbs",
+                    "chapitre": 9,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 5,
+                    "verset_debut": 15,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "John",
+                    "chapitre": 8,
+                    "verset_debut": 51,
+                    "verset_fin": 59
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 34,
+                    "verset_debut": 10,
+                    "verset_fin": 15
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-16T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 19,
+                    "verset_debut": 1,
+                    "verset_fin": 19
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 136,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-17T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 19,
+                    "verset_debut": 20,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 6,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-18T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 22,
+                    "verset_debut": 1,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 61,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-19T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 22,
+                    "verset_debut": 14,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 23,
+                    "verset_debut": 1,
+                    "verset_fin": 3
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 14,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-20T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 23,
+                    "verset_debut": 4,
+                    "verset_fin": 25
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 97,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-21T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 23,
+                    "verset_debut": 26,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 74,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-22T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Joshua",
+                    "chapitre": 24,
+                    "verset_debut": 1,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Ephesians",
+                    "chapitre": 5,
+                    "verset_debut": 21,
+                    "verset_fin": 32
+                },
+                {
+                    "livre": "John",
+                    "chapitre": 6,
+                    "verset_debut": 68,
+                    "verset_fin": 72
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 34,
+                    "verset_debut": 16,
+                    "verset_fin": 23
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-23T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 24,
+                    "verset_debut": 1,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 90,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-24T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 25,
+                    "verset_debut": 1,
+                    "verset_fin": 21
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 10,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-25T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Kings",
+                    "chapitre": 25,
+                    "verset_debut": 22,
+                    "verset_fin": 30
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 137,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Erza",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 68,
+                    "verset_debut": 1,
+                    "verset_fin": 19
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Erza",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 68,
+                    "verset_debut": 20,
+                    "verset_fin": 38
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Erza",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 24
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 56,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Deuteronomy",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "James",
+                    "chapitre": 1,
+                    "verset_debut": 17,
+                    "verset_fin": 27
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 7,
+                    "verset_debut": 1,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 15,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Erza",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 54,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-08-31T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Erza",
+                    "chapitre": 6,
+                    "verset_debut": 1,
+                    "verset_fin": 22
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 41,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-01T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Erza",
+                    "chapitre": 7,
+                    "verset_debut": 1,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 46,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-02T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Haggai",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 43,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-03T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Haggai",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 9
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 57,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-04T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Haggai",
+                    "chapitre": 2,
+                    "verset_debut": 10,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 40,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-05T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Isaiah",
+                    "chapitre": 35,
+                    "verset_debut": 4,
+                    "verset_fin": 7
+                },
+                {
+                    "livre": "James",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 5
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 7,
+                    "verset_debut": 31,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 148,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-06T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 52,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-07T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 122,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-08T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 83,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-09T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 19
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 58,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-10T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 6,
+                    "verset_debut": 1,
+                    "verset_fin": 7
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 142,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-11T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 8,
+                    "verset_debut": 1,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 78,
+                    "verset_debut": 1,
+                    "verset_fin": 39
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-12T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Isaiah",
+                    "chapitre": 50,
+                    "verset_debut": 5,
+                    "verset_fin": 9
+                },
+                {
+                    "livre": "James",
+                    "chapitre": 2,
+                    "verset_debut": 14,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 8,
+                    "verset_debut": 27,
+                    "verset_fin": 35
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 116,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-13T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 10,
+                    "verset_debut": 1,
+                    "verset_fin": 40
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 78,
+                    "verset_debut": 40,
+                    "verset_fin": 72
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-14T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 12,
+                    "verset_debut": 27,
+                    "verset_fin": 43
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 76,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-15T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Nehemiah",
+                    "chapitre": 13,
+                    "verset_debut": 15,
+                    "verset_fin": 22
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 70,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-16T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 2
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 4
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 19,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-17T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 2,
+                    "verset_debut": 5,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 22,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-18T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 19
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 95,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-19T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Jeremiah",
+                    "chapitre": 11,
+                    "verset_debut": 18,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "James",
+                    "chapitre": 3,
+                    "verset_debut": 16,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "James",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 3
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 9,
+                    "verset_debut": 30,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 54,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-20T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 75,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-21T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 4,
+                    "verset_debut": 14,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 15,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-22T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 5,
+                    "verset_debut": 11,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 6,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 141,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-23T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 6,
+                    "verset_debut": 9,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 58,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-24T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 7,
+                    "verset_debut": 1,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 20,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-25T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 7,
+                    "verset_debut": 11,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 60,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Numbers",
+                    "chapitre": 11,
+                    "verset_debut": 25,
+                    "verset_fin": 29
+                },
+                {
+                    "livre": "James",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 9,
+                    "verset_debut": 38,
+                    "verset_fin": 48
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 19,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 8,
+                    "verset_debut": 1,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 88,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 9,
+                    "verset_debut": 1,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 6,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 9,
+                    "verset_debut": 16,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 103,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-09-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 10,
+                    "verset_debut": 1,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 121,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-01T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 10,
+                    "verset_debut": 19,
+                    "verset_fin": 31
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 17,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-02T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 10,
+                    "verset_debut": 32,
+                    "verset_fin": 39
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 3,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-03T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Genesis",
+                    "chapitre": 2,
+                    "verset_debut": 18,
+                    "verset_fin": 24
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 2,
+                    "verset_debut": 9,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 10,
+                    "verset_debut": 2,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 128,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-04T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 11,
+                    "verset_debut": 1,
+                    "verset_fin": 7
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 69,
+                    "verset_debut": 1,
+                    "verset_fin": 17
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-05T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 11,
+                    "verset_debut": 8,
+                    "verset_fin": 22
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 44,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-06T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 11,
+                    "verset_debut": 23,
+                    "verset_fin": 31
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 69,
+                    "verset_debut": 18,
+                    "verset_fin": 37
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-07T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 11,
+                    "verset_debut": 32,
+                    "verset_fin": 40
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 142,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-08T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 12,
+                    "verset_debut": 1,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 123,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-09T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 12,
+                    "verset_debut": 18,
+                    "verset_fin": 29
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 11,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-10T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Proverbs",
+                    "chapitre": 3,
+                    "verset_debut": 13,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 4,
+                    "verset_debut": 12,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 10,
+                    "verset_debut": 17,
+                    "verset_fin": 30
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 90,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-11T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 13,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 65,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-12T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 13,
+                    "verset_debut": 9,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 18,
+                    "verset_debut": 1,
+                    "verset_fin": 25
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-13T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 13,
+                    "verset_debut": 15,
+                    "verset_fin": 25
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 18,
+                    "verset_debut": 26,
+                    "verset_fin": 51
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-14T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 12,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 49,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-15T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 12,
+                    "verset_debut": 13,
+                    "verset_fin": 21
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 38,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-16T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 12,
+                    "verset_debut": 22,
+                    "verset_fin": 24
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 37,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-17T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Isaiah",
+                    "chapitre": 53,
+                    "verset_debut": 10,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 4,
+                    "verset_debut": 14,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 10,
+                    "verset_debut": 35,
+                    "verset_fin": 45
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 33,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-18T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 12,
+                    "verset_debut": 35,
+                    "verset_fin": 48
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 55,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-19T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 12,
+                    "verset_debut": 49,
+                    "verset_fin": 53
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 148,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-20T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 12,
+                    "verset_debut": 54,
+                    "verset_fin": 59
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 37,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-21T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 13,
+                    "verset_debut": 1,
+                    "verset_fin": 9
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 149,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-22T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 13,
+                    "verset_debut": 10,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 17,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-23T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 13,
+                    "verset_debut": 18,
+                    "verset_fin": 21
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 10,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-24T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Jeremiah",
+                    "chapitre": 31,
+                    "verset_debut": 7,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 10,
+                    "verset_debut": 46,
+                    "verset_fin": 52
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 125,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-25T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 13,
+                    "verset_debut": 22,
+                    "verset_fin": 30
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 7,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 13,
+                    "verset_debut": 31,
+                    "verset_fin": 35
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 67,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 14,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 105,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 14,
+                    "verset_debut": 7,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 138,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 14,
+                    "verset_debut": 15,
+                    "verset_fin": 24
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 82,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 14,
+                    "verset_debut": 25,
+                    "verset_fin": 35
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 123,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-10-31T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Deuteronomy",
+                    "chapitre": 6,
+                    "verset_debut": 2,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 7,
+                    "verset_debut": 23,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 12,
+                    "verset_debut": 28,
+                    "verset_fin": 34
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 119,
+                    "verset_debut": 97,
+                    "verset_fin": 106
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-01T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 15,
+                    "verset_debut": 1,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 23,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-02T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 15,
+                    "verset_debut": 11,
+                    "verset_fin": 32
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 133,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-03T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 16,
+                    "verset_debut": 1,
+                    "verset_fin": 9
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 36,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-04T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 16,
+                    "verset_debut": 10,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 52,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-05T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 16,
+                    "verset_debut": 19,
+                    "verset_fin": 31
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 102,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-06T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 16,
+                    "verset_debut": 19,
+                    "verset_fin": 31
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 102,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-07T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Kings",
+                    "chapitre": 17,
+                    "verset_debut": 10,
+                    "verset_fin": 16
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 9,
+                    "verset_debut": 24,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Marc",
+                    "chapitre": 12,
+                    "verset_debut": 38,
+                    "verset_fin": 44
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 146,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-08T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 17,
+                    "verset_debut": 1,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 62,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-09T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 17,
+                    "verset_debut": 11,
+                    "verset_fin": 19
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 31,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-10T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 17,
+                    "verset_debut": 20,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 39,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-11T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 18,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 12,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-12T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 18,
+                    "verset_debut": 9,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 22,
+                    "verset_debut": 1,
+                    "verset_fin": 17
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-13T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 18,
+                    "verset_debut": 18,
+                    "verset_fin": 30
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 22,
+                    "verset_debut": 18,
+                    "verset_fin": 33
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-14T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Daniel",
+                    "chapitre": 12,
+                    "verset_debut": 1,
+                    "verset_fin": 3
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 10,
+                    "verset_debut": 11,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Mark",
+                    "chapitre": 13,
+                    "verset_debut": 24,
+                    "verset_fin": 32
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 16,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-15T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 134,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-16T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 94,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-17T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 2,
+                    "verset_debut": 13,
+                    "verset_fin": 20
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 34,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-18T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 116,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-19T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 101,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-20T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 4,
+                    "verset_debut": 13,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 130,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-21T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Daniel",
+                    "chapitre": 7,
+                    "verset_debut": 13,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Revelation",
+                    "chapitre": 134,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                },
+                {
+                    "livre": "John",
+                    "chapitre": 18,
+                    "verset_debut": 33,
+                    "verset_fin": 37
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 93,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-22T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 40,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-23T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 5,
+                    "verset_debut": 12,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 141,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-24T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Thessalonians",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 70,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-25T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Thessalonians",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 64,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Thessalonians",
+                    "chapitre": 2,
+                    "verset_debut": 13,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "2_Thessalonians",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 5
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 71,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "2_Thessalonians",
+                    "chapitre": 3,
+                    "verset_debut": 6,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 29,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 3,
+                    "verset_debut": 12,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "1_Thessalonians",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 3
+                },
+                {
+                    "livre": "Jeremiah",
+                    "chapitre": 33,
+                    "verset_debut": 14,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Luke",
+                    "chapitre": 21,
+                    "verset_debut": 25,
+                    "verset_fin": 36
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 25,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 76,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-11-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 1,
+                    "verset_debut": 7,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 112,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-01T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 2,
+                    "verset_debut": 1,
+                    "verset_fin": 9
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 120,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-02T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 2,
+                    "verset_debut": 10,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 21,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-03T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 51,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-04T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 4,
+                    "verset_debut": 1,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 109,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-05T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Isaiah",
+                    "chapitre": 60,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Philemon",
+                    "chapitre": 1,
+                    "verset_debut": 4,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Luke",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 6
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 126,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-06T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 110,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-07T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 6,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 97,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-08T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 6,
+                    "verset_debut": 9,
+                    "verset_fin": 15
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 88,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-09T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 7,
+                    "verset_debut": 1,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 100,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-10T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 8,
+                    "verset_debut": 1,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 30,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-11T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 8,
+                    "verset_debut": 9,
+                    "verset_fin": 19
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 25,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-12T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zephaniah",
+                    "chapitre": 3,
+                    "verset_debut": 14,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Philemon",
+                    "chapitre": 4,
+                    "verset_debut": 4,
+                    "verset_fin": 7
+                },
+                {
+                    "livre": "Luke",
+                    "chapitre": 3,
+                    "verset_debut": 10,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Isaiah",
+                    "chapitre": 12,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-13T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 8,
+                    "verset_debut": 20,
+                    "verset_fin": 23
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 43,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-14T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 9,
+                    "verset_debut": 9,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 124,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-15T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 10,
+                    "verset_debut": 1,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 114,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-16T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 11,
+                    "verset_debut": 4,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 38,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-17T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 12,
+                    "verset_debut": 9,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 60,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-18T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Zechariah",
+                    "chapitre": 14,
+                    "verset_debut": 1,
+                    "verset_fin": 11
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 8,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-19T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Micah",
+                    "chapitre": 5,
+                    "verset_debut": 1,
+                    "verset_fin": 4
+                },
+                {
+                    "livre": "Hebrews",
+                    "chapitre": 10,
+                    "verset_debut": 5,
+                    "verset_fin": 10
+                },
+                {
+                    "livre": "Luke",
+                    "chapitre": 1,
+                    "verset_debut": 39,
+                    "verset_fin": 45
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 80,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-20T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Malachi",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 14
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 52,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-21T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Malachi",
+                    "chapitre": 2,
+                    "verset_debut": 17,
+                    "verset_fin": 17
+                },
+                {
+                    "livre": "Malachi",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 5
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 12,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-22T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Malachi",
+                    "chapitre": 3,
+                    "verset_debut": 6,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 23,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-23T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Malachi",
+                    "chapitre": 3,
+                    "verset_debut": 6,
+                    "verset_fin": 12
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 23,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-24T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Malachi",
+                    "chapitre": 3,
+                    "verset_debut": 13,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 53,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-25T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Luke",
+                    "chapitre": 2,
+                    "verset_debut": 29,
+                    "verset_fin": 32
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 98,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-26T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "1_Samuel",
+                    "chapitre": 1,
+                    "verset_debut": 20,
+                    "verset_fin": 28
+                },
+                {
+                    "livre": "1_John",
+                    "chapitre": 3,
+                    "verset_debut": 1,
+                    "verset_fin": 24
+                },
+                {
+                    "livre": "Luke",
+                    "chapitre": 2,
+                    "verset_debut": 41,
+                    "verset_fin": 52
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 84,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-27T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "John",
+                    "chapitre": 1,
+                    "verset_debut": 1,
+                    "verset_fin": 5
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 125,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-28T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "John",
+                    "chapitre": 1,
+                    "verset_debut": 6,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 70,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-29T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "John",
+                    "chapitre": 1,
+                    "verset_debut": 9,
+                    "verset_fin": 13
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 25,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-30T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "John",
+                    "chapitre": 1,
+                    "verset_debut": 14,
+                    "verset_fin": 18
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 65,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
+        },
+        {
+            "jour": "2021-12-31T00:00:00Z",
+            "passages": [
+                {
+                    "livre": "Philippians",
+                    "chapitre": 4,
+                    "verset_debut": 4,
+                    "verset_fin": 8
+                },
+                {
+                    "livre": "Psalms",
+                    "chapitre": 126,
+                    "verset_debut": 0,
+                    "verset_fin": 0
+                }
+            ]
         }
     ]
 }
