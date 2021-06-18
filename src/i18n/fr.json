@@ -162,7 +162,15 @@
             "offering": "Offrandes Chrétiennes",
             "preparation_of": "Préparation du",
             "cameroon": "Cameroun",
-            "history": "Historique"
+            "history": "Historique",
+            "monday": "Lundi",
+            "tuesday": "Mardi",
+            "wednesday": "Mercredi",
+            "thursday": "Jeudi",
+            "friday": "Vendredi",
+            "saturday": "Samedi",
+            "sunday": "Dimanche",
+            "bible_version": "thebible"
         }
     }
 }

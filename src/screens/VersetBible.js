@@ -17,11 +17,12 @@ export default function VersetBible({route, navigation}) {
             <ScrollView>
                 {
                     data.verses.map((l, i) => (
-                        <Card key={i} containerStyle={styles.cardStyle}>
-                            <Card.Title h4> {t('common.app.verse')} {l.verse}</Card.Title>
-                            <Card.Divider/>
-                            <Text style={styles.text}>{l.text}</Text>
-                        </Card>
+                        // <Card key={i} containerStyle={styles.cardStyle}>
+                        //     <Card.Title h4> {t('common.app.verse')} {l.verse}</Card.Title>
+                        //     <Card.Divider/>
+                        //     <Text style={styles.text}>{l.text}</Text>
+                        // </Card>
+                        <Text key={i} style={{paddingLeft: 15, paddingRight: 15}}><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold', color: color.primary}}>verset {l.verse}:</Text> {l.text}</Text>
                     ))
                 }
             </ScrollView>

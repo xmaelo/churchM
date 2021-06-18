@@ -53,6 +53,7 @@ import AuthService from '../services/auth-service';
 
 
 import { useTranslation } from 'react-i18next';
+import { profil } from '../statefull/profil';
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
@@ -111,7 +112,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <DrawerItem label={()=>
           <View style={styles.container} >
-            <Image source={logo} style={styles.img} />
+            <Image source={{uri: "https://api.church-digital.net/Uploads/profile/"+profil.userData().image}} style={styles.img} />
             <Text h4 style={styles.name}>
               EEC {t('common.app.cameroon')}
             </Text>

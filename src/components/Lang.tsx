@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from "react-native";
 import { Language } from '../Language';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
- 
+
+var changedLang = false;
 const Lang = () => {
     const { i18n } = useTranslation();
     const [lang, setLang] = useState<Language>(i18n.language as Language);
@@ -16,11 +17,13 @@ const Lang = () => {
             case Language.EN:
                 setLang(Language.EN);
                 i18n.changeLanguage(Language.EN);
+                changedLang = true;
                 break;
             case Language.FR:
             default:
                 setLang(Language.FR);
                 i18n.changeLanguage(Language.FR);
+                changedLang = false;
                 break;
         }
     }
@@ -56,5 +59,5 @@ const styles = StyleSheet.create({
         width: wp('50%')
     }
   })
- 
+export {changedLang} 
 export default Lang;

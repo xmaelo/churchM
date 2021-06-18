@@ -4,47 +4,30 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Head from '../components/Head';
 import {thebible} from "../assets"
+import {kjbible} from "../assets"
 import { Text, Input, Button, ListItem, Card } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import { color } from '../color';
+import { changedLang, changedLanguage } from '../components/Lang';
 
 export default function TheBible({navigation}){
-
-    const tradBook = (book) => {
-        if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-        else if(book == "")
-            book = "";
-    }
 
     const {t} = useTranslation();
     const [allBooks, setAllBooks] = useState([]);
 
     useEffect(() => {
-		(async () => {
             var tab = [];
-            console.log('the Bible: ',thebible);
-            thebible.books.forEach(book => {book.name = book.name.replace(/ /g, '_')});
-            tab = thebible.books;
+            var selectBible;
+            console.log('Changed Language', changedLang);
+            if(changedLang)
+                selectBible = kjbible;
+            else
+                selectBible = thebible;
+            selectBible.books.forEach(book => {book.name = book.name.replace(/ /g, '_')});
+            tab = selectBible.books;
             console.log('New Bible: ', tab);
             setAllBooks(tab);
-		})();
-        return;
-      }, [])
+      }, [changedLang])
 
     return (
         <View style={{ flex: 1}}>
