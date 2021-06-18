@@ -11,10 +11,13 @@ import {
   ActivityIndicator
 } from 'react-native'
 //import { connect } from 'react-redux'
+import ConnectyCube from "react-native-connectycube";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import AttachmentIcon from 'react-native-vector-icons/Entypo'
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import Head from '../components/Head'
+import ChatService from '../services/chat-service'
+import { connect } from 'react-redux'
 //import ChatService from '../../../services/chat-service'
 //import UsersService from '../../../services/users-service'
 
@@ -27,7 +30,8 @@ export class Chat extends PureComponent {
     super(props)
     this.state = {
       activIndicator: true,
-      messageText: ''
+      messageText: '',
+      messages: []
     }
   }
 
@@ -68,14 +72,16 @@ export class Chat extends PureComponent {
   //   }
   // }
 
-  componentDidMount() {
-    // const { dialog } = this.props.navigation.state.params
-    // ChatService.getMessages(dialog)
-    //   .catch(e => alert(`Error.\n\n${JSON.stringify(e)}`))
-    //   .then(amountMessages => {
-    //     amountMessages === 100 ? this.needToGetMoreMessage = true : this.needToGetMoreMessage = false
-    //     this.setState({ activIndicator: false })
-    //   })
+  async componentDidMount() {
+    const isConnected = ConnectyCube.chat.isConnected;
+    await ChatService.fetchMessages(this.props?.route?.params?.dialog._id)
+    ConnectyCube.chat.dialog
+    .subscribe(this.props?.route?.params?.dialog._id)
+    .then((dialog) => {
+      console.log('after connect dialog')
+    })
+    .catch((error) => {});
+    console.log('after fetchMessage', isConnected)
   }
 
   componentWillUnmount() {
@@ -99,10 +105,30 @@ export class Chat extends PureComponent {
 
   sendMessage = async () => {
     // const { dialog } = this.props.navigation.state.params
-    // const { messageText } = this.state
+     const { messageText } = this.state
     // if (messageText.length <= 0) return
     // await ChatService.sendMessage(dialog, messageText)
     // this.setState({ messageText: '' })
+    await ConnectyCube.chat.muc.join(this.props?.route?.params?.dialog._id);
+    const date = Math.floor(Date.now() / 1000)
+    const message = {
+      type: "groupchat",
+      body: messageText,
+      extension: {
+        save_to_history: 1,
+        dialog_id: this.props?.route?.params?.dialog._id,
+        sender_id: 4439681,
+        date_sent: date,
+      },
+      markable: 1,
+    };
+    this.setState({ messageText: '' })
+    console.log('this.props?.route?.params?.dialog._id', this.props?.route?.params?.dialog._id)
+    try {
+      message.id = await ConnectyCube.chat.send(this.props?.route?.params?.dialog._id, message);
+    } catch (e) {
+      console.log('errror send', e)
+    }
   }
 
   sendAttachment = async () => {
@@ -124,14 +150,16 @@ export class Chat extends PureComponent {
   _keyExtractor = (item, index) => index.toString()
 
   _renderMessageItem(message) {
+    console.log('message message', message)
     const { user } = this.props.currentUser
-    const isOtherSender = message.sender_id !== user.id ? true : false
+    const isOtherSender = message?.sender_id !== user.id ? true : false
     return (
       <Message otherSender={isOtherSender} message={message} key={message.id} />
     )
   }
 
   render() {
+    console.log('this.propsssss', this.props?.route?.params?.dialog)
     const { history } = [];
     const { messageText, activIndicator } = this.state
     return (
@@ -142,7 +170,7 @@ export class Chat extends PureComponent {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 100}
       >
         <Head screen={"Conversation"} n={this.props.navigation} second/>
-        {activIndicator &&
+        {this.props.activIndicator &&
           (
             <View style={styles.indicator}>
               <ActivityIndicator size="large" color="#0000ff" />
@@ -151,7 +179,7 @@ export class Chat extends PureComponent {
         }
         <FlatList
           inverted
-          data={history}
+          data={this.props.messages}
           keyExtractor={this._keyExtractor}
           renderItem={({ item }) => this._renderMessageItem(item)}
           onEndReachedThreshold={5}
@@ -240,6 +268,6 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = (state) => state
 
-
-export default Chat
+export default connect(mapStateToProps)(Chat)

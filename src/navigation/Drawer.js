@@ -48,6 +48,10 @@ import DetailRdv from '../screens/DetailRdv';
 import TheBible from '../screens/TheBible';
 import ChapBible from '../screens/ChapBible';
 import VersetBible from '../screens/VersetBible';
+
+import AuthService from '../services/auth-service';
+
+
 import { useTranslation } from 'react-i18next';
 const ARG__ = createDrawerNavigator();
 
@@ -135,6 +139,7 @@ export default function Drawers() {
   const connect = async (u) => {
     const user = u || user
     let res = await login.auth(user.username, user.password);
+    AuthService.login(user);
     if (res) {
       setIsLoaded(false)
     }else{

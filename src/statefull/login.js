@@ -5,9 +5,9 @@ class login_check{
 
   getUserInfo = async(username) =>{
       try {
-        console.log('starting get user', username)
+        //console.log('starting get user', username)
         let res = await request_get("/users?username="+username, "user-show")
-        console.log('>>> result getUser', res['hydra:member'][0].id)
+        //console.log('>>> result getUser', res['hydra:member'][0].id)
         return res['hydra:member'][0];
       } catch (error) {
         console.error(error);
@@ -16,7 +16,7 @@ class login_check{
   getPersonne = async (id) => {
      try {
        let res = await request_get("/personnes/"+id.toString(), 'fidele-details')
-       console.log('>>> result getPersonne', res)
+       //console.log('>>> result getPersonne', res)
        return res;
      } catch (error) {
        console.error(error);
@@ -28,14 +28,14 @@ class login_check{
       const decode =  jwt_decode(response.token);
       user.setToken(response.token);
       const userInfo = await this.getUserInfo(decode?.username);
-      console.log('userInfo.id userInfo.id userInfo.id', userInfo.id)
+      //console.log('userInfo.id userInfo.id userInfo.id', userInfo.id)
       const personne = await this.getPersonne(userInfo.personne.id);
       user.setUserId(userInfo.personne.id);
       user.setUserOjt(decode);
       user.setUserInfos(personne);
       return personne;
     }catch(e){
-      console.log('errrrrr log', e)
+      //console.log('errrrrr log', e)
     }
   }
 
