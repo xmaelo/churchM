@@ -8,6 +8,7 @@ import {kjbible} from "../assets"
 import { Text, Input, Button, ListItem, Card } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import { color } from '../color';
+import { changedLang, changedLanguage } from '../components/Lang';
 
 export default function TheBible({navigation}){
 
@@ -15,16 +16,18 @@ export default function TheBible({navigation}){
     const [allBooks, setAllBooks] = useState([]);
 
     useEffect(() => {
-		(async () => {
             var tab = [];
-            console.log('the Bible: ',thebible);
-            thebible.books.forEach(book => {book.name = book.name.replace(/ /g, '_')});
-            tab = thebible.books;
+            var selectBible;
+            console.log('Changed Language', changedLang);
+            if(changedLang)
+                selectBible = kjbible;
+            else
+                selectBible = thebible;
+            selectBible.books.forEach(book => {book.name = book.name.replace(/ /g, '_')});
+            tab = selectBible.books;
             console.log('New Bible: ', tab);
             setAllBooks(tab);
-		})();
-        return;
-      }, [])
+      }, [changedLang])
 
     return (
         <View style={{ flex: 1}}>

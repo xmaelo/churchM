@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, ScrollView, StyleSheet, StatusBar, Image, TouchableOpacity, BackHandler } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {thebible} from "../assets"
+import {kjbible} from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
@@ -9,6 +10,7 @@ import { themes } from '../color';
 import Head from '../components/Head'
 import { useTranslation } from 'react-i18next';
 import { NavigationActions } from 'react-navigation';
+import { changedLang } from '../components/Lang';
 export default function DetailLecture({route, navigation}){
     const {t} = useTranslation();
     const data = route.params?.param;
@@ -17,8 +19,13 @@ export default function DetailLecture({route, navigation}){
       (async () => {
               var tab = [];
               var global = [];
-            thebible.books.forEach(book => {book.name = book.name.replace(/ /g, '_')});
-              thebible.books.forEach(book => {
+              var selectedBible;
+            if(changedLang)
+              selectedBible = kjbible;
+            else
+              selectedBible = thebible;
+              selectedBible.books.forEach(book => {book.name = book.name.replace(/ /g, '_')});
+              selectedBible.books.forEach(book => {
                 book.chapters.forEach(chapter => {
                   for (let i = 0; i < data.passages.length; i++) {
                       // console.log('Versets: ', book.name);
@@ -61,7 +68,7 @@ export default function DetailLecture({route, navigation}){
               // setAllBooks(tab);
       })();
           return;
-        }, [])
+        }, [data, changedLang])
 	return(
     <View style={{ flex: 1}}>
       <Head screen={'Lecture du '+route.params?.day} n={navigation} second/>
