@@ -110,13 +110,13 @@ function CustomDrawerContent(props) {
     { label: t('common.app.my2')+' '+t('common.app.profil'), icon: 'person-circle-outline', key: 2, name: "Profil" },
     { label: t('common.app.message'), icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
     { label: t('common.app.annonce'), icon: 'newspaper-outline', key: 4, name: "Annonces" },
-    { label: t('common.app.my')+' '+t('common.app.my_bible'), icon: 'book-outline', key: 4, name: "TheBible" },
-    { label: t('common.app.lecture_biblic'), name: "LectureBiblique", icon: 'reader-outline', key: 5 },
-    { label: t('common.app.mediatheque'), icon: 'musical-notes-outline', key: 6, name: "Mediatheques" },
-    { label: t('common.app.sainte_cene'), name: "SainteScene", icon: 'restaurant-outline', key: 7 },
-    { label: t('common.app.rendez_vous'), name: "Rendezvous", icon: 'stopwatch-outline', key: 8 },
-    { label: t('common.app.activites'), icon: 'logo-react', key: 9, name: "Activites" },
-    { label: t('common.app.settings'), icon: 'cog-outline', key: 10, name: "Parametres" }
+    { label: t('common.app.my')+' '+t('common.app.my_bible'), icon: 'book-outline', key: 5, name: "TheBible" },
+    { label: t('common.app.lecture_biblic'), name: "LectureBiblique", icon: 'reader-outline', key: 6 },
+    { label: t('common.app.mediatheque'), icon: 'musical-notes-outline', key: 7, name: "Mediatheques" },
+    { label: t('common.app.sainte_cene'), name: "SainteScene", icon: 'restaurant-outline', key: 8 },
+    { label: t('common.app.rendez_vous'), name: "Rendezvous", icon: 'stopwatch-outline', key: 9 },
+    { label: t('common.app.activites'), icon: 'logo-react', key: 10, name: "Activites" },
+    { label: t('common.app.settings'), icon: 'cog-outline', key: 11, name: "Parametres" }
   ];
   const [drawerItemIndex, setDrawerItemIndex] = React.useState(0);
   const _setDrawerItem = (index) => setDrawerItemIndex(index);

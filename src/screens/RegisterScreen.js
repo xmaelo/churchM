@@ -13,7 +13,7 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { profil } from '../statefull/profil';
 import { login } from '../statefull/login';
-//import Walkthrough from '@lomelidev/react-native-walkthrough';
+import { useTranslation } from 'react-i18next';
 
 function Header({text}){
 	return(
@@ -82,6 +82,7 @@ const  _renderDoneButton = () => {
 
 export default function RegisterScreen({navigation}){
 
+	const {t} = useTranslation()
 	const [date, setDate] = useState(new Date());
 	const [selectedZone, setSelectedZone] = useState();
 	const [nom, setNom] = useState("");
@@ -181,54 +182,54 @@ export default function RegisterScreen({navigation}){
 		var err = '';
 		if (slideNumber == 1) {
       if (!nom) {
-        err = 'Le nom est requis';
+        err = t('common.app.required_name');
       } else if (!prenom) {
-        err = 'Le prenom est requis';
+        err = t('common.app.required_surname');
       } 
       // else if (!this.credentials.datenaiss) {
       //   err = 'La date de naissance est requise';
       // } 
       else if (!lieu) {
-        err = 'Le lieu de naissance est requis';
+        err = t('common.toast.required_place');
       } else if (!telephone1) {
-        err = 'Le numéro de telephone est requis';
+        err = t('common.toast.required_phone');
       } else if (!email) {
-        err = 'L\'email est requis';
+        err = t('common.toast.required_email');
       } else if (!regexp.test(email)) {
-        err = 'L\'email n\'est pas conforme';
+        err = t('common.toast.not_email');
       } 
     } else if (slideNumber == 2){
       if (!nomPere) {
-        err = 'Le nom du père est requis';
+        err = t('common.toast.required_father');
       } else if (!nomMere) {
-        err = 'Le nom de la mère est requis';
+        err = t('common.toast.required_mother');
       } else if (!mati) {
-        err = 'La situation matrimoniale est requise';
+        err = t('common.toast.required_matri');
       } else if (!region) {
-        err = 'La region d\'origine est requise';
+        err = t('common.toast.required_region');
       } else if (!departement) {
-        err = 'Le departement est requis';
+        err = t('common.toast.required_depart');
       } else if (!arrondis) {
-        err = 'L\'arrondissement est requis';
+        err = t('common.toast.required_arrondis');
       } else if (!ville) {
-        err = 'La ville est requise';
+        err = t('common.toast.required_ville');
       } 
       // else if (this.credentials.nbreEnfant == null) {
       //   err = 'Le nombre d\'enfants est requis';
       // } 
     } else if(slideNumber == 3) {
       if (!statutPro) {
-        err = 'L\'activité est requise';
+        err = t('common.toast.required_activity');
       } else {
         if(statutPro == "Etudiant/Elève") {
           if (!etabliss) {
-            err = 'L\'etablissement est requis';
+            err = t('common.toast.required_school');
           } else if (!serieFiliere) {
-            err = 'La Serie ou Filière est requise';
+            err = t('common.toast.required_branch');
           } else if (!classeNiveau) {
-            err = 'La classe ou niveau est requis';
+            err = t('common.toast.required_level');
           } else if (!statutParoi) {
-            err = 'Le statut paroisial est requis';
+            err = t('common.toast.required_parish');
           } 
           // else if (!this.credentials.malade) {
           //   err = 'Veuillez selectionner oui ou non';
@@ -239,15 +240,15 @@ export default function RegisterScreen({navigation}){
           // }
         } else if (statutPro == "Travailleur" || statutPro == "Activité Libérale") {
           if (!professsion) {
-            err = 'La profession est requise';
+            err = t('common.toast.required_pro');
           } else if (!employeur) {
-            err = 'L\'employeur est requis';
+            err = t('common.toast.required_employer');
           } else if (!dernierDiplome) {
-            err = 'Le dernier diplôme est requis';
+            err = t('common.toast.required_diploma');
           } else if (!domaine) {
-            err = 'Le domaine est requis';
+            err = t('common.toast.required_domain');
           } else if (!statutParoi) {
-            err = 'Le statut paroisial est requis';
+            err = t('common.toast.required_parish');
           } 
           // else if (!this.credentials.malade) {
           //   err = 'Veuillez selectionner oui ou non';
@@ -258,9 +259,9 @@ export default function RegisterScreen({navigation}){
           // }
         } else if (statutPro == "Sans emploi") {
           if (!dernierDiplome) {
-            err = 'Le dernier diplôme est requis';
+            err = t('common.toast.required_diploma');
           } else if (!statutParoi) {
-            err = 'Le statut paroisial est requis';
+            err = t('common.toast.required_parish');
           } 
           // else if (!this.credentials.malade) {
           //   err = 'Veuillez selectionner oui ou non';
@@ -325,9 +326,9 @@ export default function RegisterScreen({navigation}){
 				setLoan(true)
 				 profil.createPersonne(fidele).then(() => {
 					setLoan(false)
-					showToast('Enregistrement terminé avec succès');
+					showToast(t('common.toast.registration_finish'));
 					navigation.navigate('Login');
-				 }).catch(() => showToast("Erreur d'enregistrement"));
+				 }).catch(() => showToast(t('common.toast.error_registration')));
 			}
 		// } catch (e) {
 		// 	console.log('error==>>',e)
@@ -355,10 +356,10 @@ export default function RegisterScreen({navigation}){
 		<ScrollView contentContainerStyle={{flexGrow:1}}>
 			<View style={styles.container}>
 				<View style={styles.top}>
-					<Header text="Créer un compte"/>
+					<Header text={t('common.app.create_account')}/>
 					<View style={styles.form}>
 						<View style={styles.input}>
-							<Input placeholder="Votre nom"labelStyle={styles.thelabel} label="Nom(s) de Famille" value={nom}
+							<Input placeholder={t('common.app.your') +' '+ t('common.app.name')} labelStyle={styles.thelabel} label={t('common.app.your_name')} value={nom}
                         	onChangeText={value => setNom(value)} leftIcon={
 							<Ionicons
 								name={"person"}
@@ -366,7 +367,7 @@ export default function RegisterScreen({navigation}){
 							/>
 						   }/>
 
-							<Input placeholder="Prénom(s)"labelStyle={styles.thelabel} label="Prénom(s)" value={prenom}
+							<Input placeholder={t('common.app.surname')+'(s)'}labelStyle={styles.thelabel} label={t('common.app.surname')+'(s)'} value={prenom}
 							onChangeText={value => setPrenom(value)} leftIcon={
 							<Ionicons
 								name={"person"}
@@ -374,7 +375,7 @@ export default function RegisterScreen({navigation}){
 							/>
 						   }/>
 
-							<Input placeholder="Date de naissance" labelStyle={styles.thelabel} label="Date de naissance" value={dateNaiss}
+							<Input placeholder={t('common.app.date_naiss')} labelStyle={styles.thelabel} label={t('common.app.date_naiss')} value={dateNaiss}
 							onChangeText={value => setDateNaiss(value)} leftIcon={
 							<Ionicons
 								name={"calendar"}
@@ -394,7 +395,7 @@ export default function RegisterScreen({navigation}){
 								onCancel={()=>setShowPic1(false)}
 							/>
 
-						   <Input placeholder="Lieu" labelStyle={styles.thelabel} label="Lieu de Naissance" value={lieu}
+						   <Input placeholder={t('common.app.place')} labelStyle={styles.thelabel} label={t('common.app.lieu_naiss')} value={lieu}
 							onChangeText={value => setLieu(value)} leftIcon={
 							<Ionicons
 								name={"locate"}
@@ -402,7 +403,7 @@ export default function RegisterScreen({navigation}){
 							/>
 						   }/>
 
-							<Input placeholder="Email" labelStyle={styles.thelabel} label="Votre adresse email" value={email}
+							<Input placeholder={t('common.app.email')} labelStyle={styles.thelabel} label={t('common.app.your_email')} value={email}
 							onChangeText={value => setEmail(value)} leftIcon={
 							<Ionicons
 								name={"mail"}
@@ -411,8 +412,8 @@ export default function RegisterScreen({navigation}){
 						   }/>
 							
 							<Input
-	                           placeholder="Numéro 1"
-	                           label="Votre numéro de Téléphone"
+	                           placeholder={t('common.app.numero')+" 1"}
+	                           label={t('common.app.your_number')}
 							   labelStyle={styles.thelabel}
 							   onChangeText={value => setTelephone1(value)}
 							   value={telephone1}
@@ -426,8 +427,8 @@ export default function RegisterScreen({navigation}){
 	                        />
 
 							<Input
-	                           placeholder="Numéro 2"
-	                           label="Autre numéro de Téléphone"
+	                           placeholder={t('common.app.numero')+" 2"}
+	                           label={t('common.app.other_number')}
 							   labelStyle={styles.thelabel}
 							   onChangeText={value => setTelephone2(value)}
 							   value={telephone2}
@@ -441,8 +442,8 @@ export default function RegisterScreen({navigation}){
 	                        />
 
 							<Input
-	                           placeholder="Date d'Adhésion"
-	                           label="Date d'Adhésion"
+	                           placeholder={t('common.app.date_adhe')}
+	                           label={t('common.app.date_adhe')}
 							   labelStyle={styles.thelabel}
 							   value={dateAdhesion}
 							   onChangeText={value => setDateAdhesion(value)}
@@ -465,7 +466,7 @@ export default function RegisterScreen({navigation}){
 								   onCancel={()=>setShowPic2(false)}
 							   />
 							<Text style={styles.label}>
-	                    			Votre genre
+							{t('common.app.your')+ ' '+t('common.app.gender')}
 	                    	</Text>
 							<RadioButtonRN
                             data={sexe}
@@ -473,7 +474,7 @@ export default function RegisterScreen({navigation}){
                             />
 
 						<Text style={styles.label}>
-	                    			Zone d'habitation
+						{t('common.app.zone_habit')}
 	                    	</Text>
 						<Picker
 						selectedValue={zone}
@@ -489,7 +490,7 @@ export default function RegisterScreen({navigation}){
 						</View>
 	                       <View style={styles.button}>
 	                     	<Button
-							  title="Suivant"
+							  title={t('common.app.next')}
 							  onPress={()=>{if (checkForm(1)) {
 								//   setTheSlide(slide2);
 								//   AppIntroSlider.goToSlide(2);
@@ -500,13 +501,13 @@ export default function RegisterScreen({navigation}){
 	                    <View style={styles.end}>
 	                    	<TouchableOpacity style={styles.links}>
 	                    		<Text style={themes.secondary}>
-	                    			Avez-vous déjà un compte?
+								{t('common.app.have_account')}
 	                    		</Text>
 	                    	</TouchableOpacity>
 	                    	<TouchableOpacity style={styles.links}
 	                    		onPress={()=>navigation.navigate('Login')}
 	                    	>
-	                    		<Text style={themes.primary}>Connexion</Text>
+	                    		<Text style={themes.primary}>{t('common.app.signin')}</Text>
 	                    	</TouchableOpacity>
 	                    </View>
 					</View>
@@ -516,16 +517,16 @@ export default function RegisterScreen({navigation}){
   ;
 
   const slide2 = [
-	<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	<ScrollView contentContainerStyle={{flexGrow:1}}>
 	<View style={styles.container}>
 		<View style={styles.top}>
 
-			<Header text="État Civil"/>
+			<Header text={t('common.app.etat_civil')}/>
 			<View style={styles.form}>
 				<View style={styles.input}>
 					<Input
-					placeholder="Père"
-					label="Nom(s) du Père"
+					placeholder={t('common.app.father')}
+					label={t('common.app.nom_pere')}
 					labelStyle={styles.thelabel}
 					onChangeText={value => {setNomPere(value); console.log('Pere:', value)}}
 					value={nomPere}
@@ -539,8 +540,8 @@ export default function RegisterScreen({navigation}){
 					/>
 
 					<Input
-					placeholder="Mère"
-					label="Nom(s) de la Mère"
+					placeholder={t('common.app.mere')}
+					label={t('common.app.nom_mere')}
 					labelStyle={styles.thelabel}
 					onChangeText={value => setNomMere(value)}
 					value={nomMere}
@@ -554,7 +555,7 @@ export default function RegisterScreen({navigation}){
 					/>
 
 					<Text style={styles.label}>
-								Situation Matrimoniale
+					{t('common.app.statut_matri')}
 					</Text>
 					<Picker
 					selectedValue={mati}
@@ -568,7 +569,7 @@ export default function RegisterScreen({navigation}){
 					</Picker>
 
 					<Text style={styles.label}>
-								Region d'Origine
+						{t('common.app.region')}
 					</Text>
 					<Picker
 					selectedValue={region}
@@ -584,7 +585,7 @@ export default function RegisterScreen({navigation}){
 					</Picker>
 
 					<Text style={styles.label}>
-								Département d'origine
+					{t('common.app.departmt')}
 					</Text>
 					<Picker
 					selectedValue={departement}
@@ -600,7 +601,7 @@ export default function RegisterScreen({navigation}){
 					</Picker>
 
 					<Text style={styles.label}>
-								Arrondissement d'origine
+					{t('common.app.arrondis')}
 					</Text>
 					<Picker
 					selectedValue={arrondis}
@@ -616,8 +617,8 @@ export default function RegisterScreen({navigation}){
 					</Picker>
 
 					<Input
-					placeholder="Ville"
-					label="Ville de Résidence"
+					placeholder={t('common.app.ville')}
+					label={t('common.app.ville_residence')}
 					labelStyle={styles.thelabel}
 					value={ville}
 					onChangeText={value => setVille(value)}
@@ -631,8 +632,8 @@ export default function RegisterScreen({navigation}){
 					/>
 
 					<Input
-					placeholder="Combien d'enfants avez vous?"
-					label="Nombre d'enfants"
+					placeholder={t('common.app.children_num')}
+					label={t('common.app.nbre_enfants')}
 					labelStyle={styles.thelabel}
 					onChangeText={value => setNbreEnfant(value)}
 					value={nbreEnfant}
@@ -648,7 +649,7 @@ export default function RegisterScreen({navigation}){
 				</View>
 				<View style={styles.button}>
 					<Button
-					title="Suivant"
+					title={t('common.app.next')}
 					onPress={()=>{if (checkForm(2)) {
 						setChangeView1(3);
 					  //   AppIntroSlider.goToSlide(2);
@@ -664,15 +665,15 @@ export default function RegisterScreen({navigation}){
   ];
 
   const slide3 = [
-	<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	<ScrollView contentContainerStyle={{flexGrow:1}}>
 	<View style={styles.container}>
 		<View style={styles.top}>
-			<Header text="Statut professionnel et paroissial"/>
+			<Header text={t('common.app.statut_paroi_pro')+':'}/>
 			<View style={styles.form}>
 				<View style={styles.input}>
 
 					<Text style={styles.label}>
-					Statut Professionnel:
+					{t('common.app.statut_pro')+':'}
 					</Text>
 					<Picker
 					selectedValue={statutPro}
@@ -688,8 +689,8 @@ export default function RegisterScreen({navigation}){
 						(statutPro == "Etudiant/Elève")?
 						<View>
 							<Input
-							placeholder="Quel Etablissement fréquentez-vous?"
-							label="Etablissement:"
+							placeholder={t('common.app.which_school')}
+							label={t('common.app.school')+':'}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setEtabliss(value)}
 							value={etabliss}
@@ -703,8 +704,8 @@ export default function RegisterScreen({navigation}){
 							/>
 
 							<Input
-							placeholder="Quelle est votre Serie/Filière?"
-							label="Serie/Filiere:"
+							placeholder={t('common.app.which_branch')}
+							label={t('common.app.serie_filiere')+':'}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setSerieFilière(value)}
 							value={serieFiliere}
@@ -718,8 +719,8 @@ export default function RegisterScreen({navigation}){
 							/>
 
 							<Input
-							placeholder="Quelle Classe/Niveau faitez-vous?"
-							label="Classe/Niveau:"
+							placeholder={t('common.app.which_level')}
+							label={t('common.app.classe_niveau')+':'}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setClasseNiveau(value)}
 							value={classeNiveau}
@@ -736,8 +737,8 @@ export default function RegisterScreen({navigation}){
 						(statutPro == "Travailleur" || statutPro == "Activité Libérale")?
 						<View>
 							<Input
-							placeholder="Que faites-vous dans la vie?"
-							label="Profession:"
+							placeholder={t('common.app.which_work')}
+							label={t('common.app.profession')}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setProfesssion(value)}
 							value={professsion}
@@ -751,8 +752,8 @@ export default function RegisterScreen({navigation}){
 							/>
 
 							<Input
-							placeholder="Dans quel secteur d'activité?"
-							label="Domaine:"
+							placeholder={t('common.app.which_activity')}
+							label={t('common.app.domain')+":"}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setDomaine(value)}
 							value={domaine}
@@ -766,8 +767,8 @@ export default function RegisterScreen({navigation}){
 							/>
 
 							<Input
-							placeholder="Qui vous emploi?"
-							label="Employeur:"
+							placeholder={t('common.app.which_employer')}
+							label={t('common.app.employer')+':'}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setEmployeur(value)}
 							value={employeur}
@@ -781,8 +782,8 @@ export default function RegisterScreen({navigation}){
 							/>
 
 							<Input
-							placeholder="Dernier diplôme obtenu"
-							label="Dernier Diplôme:"
+							placeholder={t('common.app.last_degree')}
+							label={t('common.app.last_diploma')+':'}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setDernierDiplome(value)}
 							value={dernierDiplome}
@@ -797,8 +798,8 @@ export default function RegisterScreen({navigation}){
 						</View>:
 						<View>
 							<Input
-							placeholder="Dernier diplôme obtenu"
-							label="Dernier Diplôme:"
+							placeholder={t('common.app.last_degree')}
+							label={t('common.app.last_diploma')+':'}
 							labelStyle={styles.thelabel}
 							onChangeText={value => setDernierDiplome(value)}
 							value={dernierDiplome}
@@ -815,7 +816,7 @@ export default function RegisterScreen({navigation}){
 
 
 					<Text style={styles.label}>
-						Statut Paroissiale:
+						{t('common.app.statut_paroi')}
 						</Text>
 						<Picker
 						selectedValue={statutParoi}
@@ -835,7 +836,7 @@ export default function RegisterScreen({navigation}){
 					</Picker>
 
 					<Text style={styles.label}>
-							Malade ?
+					{t('common.app.malade')} ?
 					</Text>
 					<RadioButtonRN
 					data={ismalade}
@@ -844,7 +845,7 @@ export default function RegisterScreen({navigation}){
 
 
 					<Text style={styles.label}>
-					Chrétien Communiant ?
+					{t('common.app.communiant')} ?
 					</Text>
 					<RadioButtonRN
 					data={communuant}
@@ -852,7 +853,7 @@ export default function RegisterScreen({navigation}){
 					/>
 
 					<Text style={styles.label}>
-					Membre de Groupe ?
+					{t('common.app.groupe_member')} ?
 					</Text>
 					<RadioButtonRN
 					data={membre}
@@ -878,7 +879,7 @@ export default function RegisterScreen({navigation}){
 				   <View style={styles.button}>
 	
 					<Button
-						title="Terminer"
+						title={t('common.app.finish')}
 						mode="contained"
 						color={color.primary}
 						loading={loading}
