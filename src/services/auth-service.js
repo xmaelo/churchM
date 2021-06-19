@@ -49,7 +49,13 @@ class AuthService {
   }
 
   async signIn(params) {
-    const session = await ConnectyCube.createSession(params)
+    let session = null;
+    try {
+      session = await ConnectyCube.createSession(params)
+    } catch (e) {
+      session = await this.signUp(params)
+      console.log('-------------------ERROR LOGING---------', e)
+    }
     const currentUser = new User(session.user)
     session.user.avatar = getImageLinkFromUID(session.user.avatar)
     store.dispatch(setCurrentUser(session))
@@ -61,7 +67,7 @@ class AuthService {
   async signUp(params) {
     await ConnectyCube.createSession()
     await ConnectyCube.users.signup(params)
-    return this.signIn(params)
+    return;
   }
 
   async setUserSession(userSession) {

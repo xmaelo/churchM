@@ -35,7 +35,7 @@ class login_check{
       user.setUserId(userInfo.personne.id);
       user.setUserOjt(decode);
       user.setUserInfos(personne);
-      await AuthService.init({login: username+'@gmail.com', password: password+"__"+password})
+      await AuthService.init({login: username+'@gmail.com', password: password+"__"+password, full_name: personne?.nom})
       ChatService.setUpListeners()
       return personne;
     }catch(e){

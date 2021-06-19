@@ -133,6 +133,7 @@ export class Chat extends PureComponent {
   }
 
   render() {
+    console.log('render run ***********')
     const { history } = this.props
     const { messageText, activIndicator } = this.state
     return (
