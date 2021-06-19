@@ -10,10 +10,11 @@ import { themes, color } from '../color';
 import {login} from '../statefull/login'
 import { storeData } from '../statefull/asyncStorage'
 import Lang from '../components/Lang';
+import { useTranslation } from 'react-i18next';
 
 export default function LoginScreen({navigation}){
-
-	const [password, setPassword] = useState("password");
+		const {t} = useTranslation()
+		const [password, setPassword] = useState("password");
 		const [username, defineUsername] = useState("admin");
 		const [disabled, setDisabled] = useState(false);
 		const [pinSecure, setPinSecure] = useState(false);
@@ -56,13 +57,13 @@ export default function LoginScreen({navigation}){
 						<View style={styles.logo}>
 							<Image source={logo} style={styles.img}/>
 							<Text h4 style={themes.primary}>EEC</Text>
-							<Text style={{...themes.secondary, ...styles.subtitle}}>Paroise de soboum II</Text>
-							{/* <Lang/> */}
+							<Text style={{...themes.secondary, ...styles.subtitle}}>{t('common.app.parish_of')} soboum II</Text>
+							<Lang/>
 						</View>
 						<View style={styles.form}>
-							<Text h4>Connexion</Text>
+							<Text h4>{t('common.app.signin')}</Text>
 							<Text style={{...themes.secondary, ...styles.mt}}>
-								Bonjour ! Heureux de vous revoir.
+								{t('common.app.happy_1')}.
 							</Text>
 							<View style={styles.input}>
 								<Input
@@ -81,7 +82,7 @@ export default function LoginScreen({navigation}){
 
 														<Input
 															 placeholder="Mot de passe"
-															 label="Mot de passe"
+															 label={t('common.app.password')}
 															 labelStyle={themes.primary}
 															 leftIcon={
 																		<Ionicons
@@ -114,27 +115,26 @@ export default function LoginScreen({navigation}){
 														loading={loading}
 														onPress={()=>get_token()}
 													>
-														Connexion
+														{t('common.app.login')}
 	 												</Button>
 												</View>
 												<View style={{...styles.logo, ...styles.bottom}}>
-													<Text style={themes.secondary}>Votre paroise, votre maison</Text>
+													<Text style={themes.secondary}>{t('common.app.your_parish')}</Text>
 													<Text style={{...themes.secondary, ...styles.penser}}>
-														Confiez-vous en l'Eternel, votre Dieu, et vous serez affermis (...)
-														2 Chroniques 20.20
+													{t('common.app.passage')}
 													</Text>
 												</View>
 												<View style={styles.end}>
 													<TouchableOpacity>
 														<Text style={themes.secondary}
 														onPress={()=>navigation.navigate('Recovery')}>
-															Mot de passe oublié
+															{t('common.app.password_forget')}
 														</Text>
 													</TouchableOpacity>
 													<TouchableOpacity
 														onPress={()=>navigation.navigate('Register')}
 													>
-														<Text style={themes.primary}>S'incrire</Text>
+														<Text style={themes.primary}>{t('common.app.register')}</Text>
 													</TouchableOpacity>
 												</View>
 						</View>

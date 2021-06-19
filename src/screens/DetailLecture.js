@@ -71,7 +71,7 @@ export default function DetailLecture({route, navigation}){
         }, [data, changedLang])
 	return(
     <View style={{ flex: 1}}>
-      <Head screen={'Lecture du '+route.params?.day} n={navigation} second/>
+      <Head screen={t('common.app.text_of')+' '+route.params?.day} n={navigation} second/>
   		<ScrollView>
   			<View>
   				{/* <Head screen={data.title} n={navigation}/> */}
@@ -81,7 +81,7 @@ export default function DetailLecture({route, navigation}){
                               <Text style={styles.passage}>{t('common.bible.'+el.livre)} {el.chapitre}</Text>
                               <View style={styles.contenu}>
                                 {el.versets.map(e => 
-                                  <Text><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold'}}>verset {e.verse}:</Text> {e.text}</Text>)}
+                                  <Text><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold'}}>{t('common.app.verse')} {e.verse}:</Text> {e.text}</Text>)}
                               </View>
                           </View>
                       )

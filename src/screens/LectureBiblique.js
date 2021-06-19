@@ -11,110 +11,6 @@ import { useTranslation } from 'react-i18next';
 
 export default function LectureBiblique({navigation}){
 	const {t} = useTranslation();
-	const list = [
-		{
-			jour: "21/05/2021",
-			passages: [
-				{
-					passage:"Deuteuronome 2:5-7",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Psaumes 23",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Esaïe 17:12-22",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-			]
-		},
-		{
-			jour: "22/05/2021",
-			passages: [
-				{
-					passage:"Jean 2:5-7",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Marc 23",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Esaïe 17:12-22",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-			]
-		},
-		{
-			jour: "23/05/2021",
-			passages: [
-				{
-					passage:"Josée 2:5-7",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Psaumes 23",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Génèse 17",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-			]
-		},
-		{
-			jour: "24/05/2021",
-			passages: [
-				{
-					passage:"Josée 2:5-7",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Psaumes 23",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Génèse 17",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-			]
-		},
-		{
-			jour: "25/05/2021",
-			passages: [
-				{
-					passage:"Josée 2:5-7",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Psaumes 23",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Génèse 17",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-			]
-		},
-		{
-			jour: "26/05/2021",
-			passages: [
-				{
-					passage:"Josée 2:5-7",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Psaumes 23",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-				{
-					passage:"Génèse 17",
-					contenu:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				},
-			]
-		},
-	];
 	const [tabVerset, setTabVerset] = useState([]);
 	const dateDay = (data) => {
 		var days = [t("common.app.sunday"), t("common.app.monday"), t("common.app.tuesday"), t("common.app.wednesday"), t("common.app.thursday"), t("common.app.friday"), t("common.app.saturday")];
@@ -219,27 +115,29 @@ export default function LectureBiblique({navigation}){
 				left: 0
 			}}>
 				<ScrollView style={{ flex: 1}}>
-				{
-					tabVerset.map((l, i) => (
-					<ListItem style={{backgroundColor: 'transparent'}} key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l, day: normDate(l.jour.split("T")[0])})}>
-						<ListItem.Content>
-						<View style={styles.textStyle}>
-							<View style={styles.date}>
-								<Text>{dateDay(l.jour)}</Text>
-								<Text>{normDate(l.jour.split("T")[0])}</Text>
+					<View style={{backgroundColor: 'transparent'}}>
+					{
+						tabVerset.map((l, i) => (
+						<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l, day: normDate(l.jour.split("T")[0])})}>
+							<ListItem.Content>
+							<View style={styles.textStyle}>
+								<View style={styles.date}>
+									<Text>{dateDay(l.jour)}</Text>
+									<Text>{normDate(l.jour.split("T")[0])}</Text>
+								</View>
+								<View style={{marginLeft: 150}}>
+									{
+										l.passages && l.passages.map(el => <Text>{t('common.bible.'+el.livre)} {el.chapitre}. {(el.verset_debut != 0)?el.verset_debut +" - "+el.verset_fin:"" }</Text>)
+									}
+								</View>
 							</View>
-							<View style={{marginLeft: 150}}>
-								{
-									l.passages && l.passages.map(el => <Text>{t('common.bible.'+el.livre)} {el.chapitre}. {(el.verset_debut != 0)?el.verset_debut +" - "+el.verset_fin:"" }</Text>)
-								}
-							</View>
-						</View>
-						{/* <ListItem.Title>{l.title}</ListItem.Title> */}
-						{/* <ListItem.Subtitle>{l.description}</ListItem.Subtitle> */}
-						</ListItem.Content>
-					</ListItem>
-					))
-				}
+							{/* <ListItem.Title>{l.title}</ListItem.Title> */}
+							{/* <ListItem.Subtitle>{l.description}</ListItem.Subtitle> */}
+							</ListItem.Content>
+						</ListItem>
+						))
+					}
+					</View>
 				</ScrollView>
 			</ImageBackground>
 		</View>

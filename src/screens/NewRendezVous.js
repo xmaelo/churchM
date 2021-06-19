@@ -100,7 +100,6 @@ export default function NewRendezVous({navigation}) {
                         {t('common.app.pastor')}:
                         </Text>
                         <Picker style={{width: wp("65%")}}
-                            mode="dropdown"
                             selectedValue={selectedPasteur}
                             onValueChange={(itemValue, itemIndex) => {
                                 console.log('Pasteur: ', itemValue);
@@ -108,9 +107,9 @@ export default function NewRendezVous({navigation}) {
                             }          
                             }>
                                 {
-                                    pasteurs.map((pasteur, i) => {
-                                        return (<Picker.Item key={i} label={pasteur.nom+"   "+pasteur.prenom} value={pasteur['@id']} />)
-                                    }) 
+                                    pasteurs.map((pasteur, i) => (
+                                        <Picker.Item key={i} label={pasteur.nom+"   "+pasteur.prenom} value={pasteur['@id']} />
+                                    )) 
                                 }
                             {/* <Picker.Item label="Jean Bolveng" value="Jean Bolveng" />
                             <Picker.Item label="Tonga Georges" value="Tonga Georges" />
