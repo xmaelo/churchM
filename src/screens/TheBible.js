@@ -42,7 +42,7 @@ export default function TheBible({navigation}){
                         //     </ListItem.Content>
                         // </ListItem>
                         <TouchableOpacity onPress={()=>navigation.navigate('ChapBible', {param: l})}>
-                            <Card key={i} containerStyle={{borderColor: color.primary}}>
+                            <Card containerStyle={{borderColor: color.primary}}>
                                 <Card.Title h4>{t('common.bible.'+l.name)}</Card.Title>
                             </Card>
                         </TouchableOpacity>

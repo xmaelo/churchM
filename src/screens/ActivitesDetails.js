@@ -13,21 +13,14 @@ export default function ActivitesDetails({route, navigation}){
 const {t} = useTranslation();
 const [data, setA] =  useState({});
 
-(async()  => {
-  let acts = await activite.getDetailleActivity(route.params?.id);
-  setA(acts)
-  console.log("sx========>>>>", acts)
-})();
-/**
-  useEffect(() => {
-    (async()  => {
-      let acts = await activite.getDetailleActivity(route.params?.id);
-			setA(acts)
-			console.log("sx========>>>>", acts)
-    })();
-    return;
+useEffect(() => {
+  (async()  => {
+    let acts = await activite.getDetailleActivity(route.params?.id);
+    setA(acts)
+    console.log("sx========>>>>", acts)
+  })();
+  return;
   }, [])
-*/
 
 	return(
     <View>

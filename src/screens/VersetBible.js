@@ -22,7 +22,7 @@ export default function VersetBible({route, navigation}) {
                         //     <Card.Divider/>
                         //     <Text style={styles.text}>{l.text}</Text>
                         // </Card>
-                        <Text key={i} style={{paddingLeft: 15, paddingRight: 15}}><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold', color: color.primary}}>{t('common.app.verse')} {l.verse}:</Text> {l.text}</Text>
+                        <Text style={{paddingLeft: 15, paddingRight: 15}}><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold', color: color.primary}}>{t('common.app.verse')} {l.verse}:</Text> {l.text}</Text>
                     ))
                 }
             </ScrollView>

@@ -22,11 +22,15 @@ return(
 
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"person-circle-outline"} size={27} color={color.primary}/>
-		        			<Text>{" "+t('common.app.my2')+" "+t('common.app.account')}</Text>
+		        			<TouchableOpacity onPress={()=>navigation.navigate('Profil')}>
+		        			  <Text>{" "+t('common.app.my2')+" "+t('common.app.account')}</Text>
+		        			</TouchableOpacity>
 		        		</View>
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"log-out-outline"} size={27} color={color.primary}/>
-		        			<Text>{" "+t('common.app.logout')}</Text>
+		        			<TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+		        			  <Text>{" "+t('common.app.logout')}</Text>
+		        			</TouchableOpacity>
 		        		</View>
 		        	</View>
 		        </View>

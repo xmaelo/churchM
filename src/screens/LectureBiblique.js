@@ -114,11 +114,10 @@ export default function LectureBiblique({navigation}){
 				top: 0,
 				left: 0
 			}}>
-				<ScrollView style={{ flex: 1}}>
-					<View style={{backgroundColor: 'transparent'}}>
+				<ScrollView style={{ flex: 1, backgroundColor: 'transparent'}}>
 					{
 						tabVerset.map((l, i) => (
-						<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l, day: normDate(l.jour.split("T")[0])})}>
+						<ListItem bottomDivider onPress={()=>navigation.navigate('DetailLecture', {param: l, day: normDate(l.jour.split("T")[0])})}>
 							<ListItem.Content>
 							<View style={styles.textStyle}>
 								<View style={styles.date}>
@@ -131,28 +130,12 @@ export default function LectureBiblique({navigation}){
 									}
 								</View>
 							</View>
-<<<<<<< HEAD
 							{/* <ListItem.Title>{l.title}</ListItem.Title> */}
 							{/* <ListItem.Subtitle>{l.description}</ListItem.Subtitle> */}
 							</ListItem.Content>
 						</ListItem>
 						))
 					}
-					</View>
-=======
-							<View style={{marginLeft: 150}}>
-								{
-									l.passages && l.passages.map((el, k) => <Text key={k}>{t('common.bible.'+el.livre)} {el.chapitre}. {(el.verset_debut != 0)?el.verset_debut +" - "+el.verset_fin:"" }</Text>)
-								}
-							</View>
-						</View>
-						{/* <ListItem.Title>{l.title}</ListItem.Title> */}
-						{/* <ListItem.Subtitle>{l.description}</ListItem.Subtitle> */}
-						</ListItem.Content>
-					</ListItem>
-					))
-				}
->>>>>>> baaaf740e657dac458dd0f4c8b46fe75d5919ac0
 				</ScrollView>
 			</ImageBackground>
 		</View>

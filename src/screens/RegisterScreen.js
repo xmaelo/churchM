@@ -13,7 +13,7 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { profil } from '../statefull/profil';
 import { login } from '../statefull/login';
-//import Walkthrough from '@lomelidev/react-native-walkthrough';
+import { useTranslation } from 'react-i18next';
 
 function Header({text}){
 	return(
@@ -82,6 +82,7 @@ const  _renderDoneButton = () => {
 
 export default function RegisterScreen({navigation}){
 
+	const {t} = useTranslation()
 	const [date, setDate] = useState(new Date());
 	const [selectedZone, setSelectedZone] = useState();
 	const [nom, setNom] = useState("");
@@ -181,54 +182,54 @@ export default function RegisterScreen({navigation}){
 		var err = '';
 		if (slideNumber == 1) {
       if (!nom) {
-        err = 'Le nom est requis';
+        err = t('common.app.required_name');
       } else if (!prenom) {
-        err = 'Le prenom est requis';
+        err = t('common.app.required_surname');
       } 
       // else if (!this.credentials.datenaiss) {
       //   err = 'La date de naissance est requise';
       // } 
       else if (!lieu) {
-        err = 'Le lieu de naissance est requis';
+        err = t('common.toast.required_place');
       } else if (!telephone1) {
-        err = 'Le numéro de telephone est requis';
+        err = t('common.toast.required_phone');
       } else if (!email) {
-        err = 'L\'email est requis';
+        err = t('common.toast.required_email');
       } else if (!regexp.test(email)) {
-        err = 'L\'email n\'est pas conforme';
+        err = t('common.toast.not_email');
       } 
     } else if (slideNumber == 2){
       if (!nomPere) {
-        err = 'Le nom du père est requis';
+        err = t('common.toast.required_father');
       } else if (!nomMere) {
-        err = 'Le nom de la mère est requis';
+        err = t('common.toast.required_mother');
       } else if (!mati) {
-        err = 'La situation matrimoniale est requise';
+        err = t('common.toast.required_matri');
       } else if (!region) {
-        err = 'La region d\'origine est requise';
+        err = t('common.toast.required_region');
       } else if (!departement) {
-        err = 'Le departement est requis';
+        err = t('common.toast.required_depart');
       } else if (!arrondis) {
-        err = 'L\'arrondissement est requis';
+        err = t('common.toast.required_arrondis');
       } else if (!ville) {
-        err = 'La ville est requise';
+        err = t('common.toast.required_ville');
       } 
       // else if (this.credentials.nbreEnfant == null) {
       //   err = 'Le nombre d\'enfants est requis';
       // } 
     } else if(slideNumber == 3) {
       if (!statutPro) {
-        err = 'L\'activité est requise';
+        err = t('common.toast.required_activity');
       } else {
         if(statutPro == "Etudiant/Elève") {
           if (!etabliss) {
-            err = 'L\'etablissement est requis';
+            err = t('common.toast.required_school');
           } else if (!serieFiliere) {
-            err = 'La Serie ou Filière est requise';
+            err = t('common.toast.required_branch');
           } else if (!classeNiveau) {
-            err = 'La classe ou niveau est requis';
+            err = t('common.toast.required_level');
           } else if (!statutParoi) {
-            err = 'Le statut paroisial est requis';
+            err = t('common.toast.required_parish');
           } 
           // else if (!this.credentials.malade) {
           //   err = 'Veuillez selectionner oui ou non';
@@ -239,15 +240,15 @@ export default function RegisterScreen({navigation}){
           // }
         } else if (statutPro == "Travailleur" || statutPro == "Activité Libérale") {
           if (!professsion) {
-            err = 'La profession est requise';
+            err = t('common.toast.required_pro');
           } else if (!employeur) {
-            err = 'L\'employeur est requis';
+            err = t('common.toast.required_employer');
           } else if (!dernierDiplome) {
-            err = 'Le dernier diplôme est requis';
+            err = t('common.toast.required_diploma');
           } else if (!domaine) {
-            err = 'Le domaine est requis';
+            err = t('common.toast.required_domain');
           } else if (!statutParoi) {
-            err = 'Le statut paroisial est requis';
+            err = t('common.toast.required_parish');
           } 
           // else if (!this.credentials.malade) {
           //   err = 'Veuillez selectionner oui ou non';
@@ -258,9 +259,9 @@ export default function RegisterScreen({navigation}){
           // }
         } else if (statutPro == "Sans emploi") {
           if (!dernierDiplome) {
-            err = 'Le dernier diplôme est requis';
+            err = t('common.toast.required_diploma');
           } else if (!statutParoi) {
-            err = 'Le statut paroisial est requis';
+            err = t('common.toast.required_parish');
           } 
           // else if (!this.credentials.malade) {
           //   err = 'Veuillez selectionner oui ou non';
@@ -325,9 +326,9 @@ export default function RegisterScreen({navigation}){
 				setLoan(true)
 				 profil.createPersonne(fidele).then(() => {
 					setLoan(false)
-					showToast('Enregistrement terminé avec succès');
+					showToast(t('common.toast.registration_finish'));
 					navigation.navigate('Login');
-				 }).catch(() => showToast("Erreur d'enregistrement"));
+				 }).catch(() => showToast(t('common.toast.error_registration')));
 			}
 		// } catch (e) {
 		// 	console.log('error==>>',e)
@@ -358,7 +359,7 @@ export default function RegisterScreen({navigation}){
 					<Header text={t('common.app.create_account')}/>
 					<View style={styles.form}>
 						<View style={styles.input}>
-							<Input placeholder={t('common.app.your') +' '+ t('common.app.name')} labelStyle={styles.thelabel} label="Nom(s) de Famille" value={nom}
+							<Input placeholder={t('common.app.your') +' '+ t('common.app.name')} labelStyle={styles.thelabel} label={t('common.app.your_name')} value={nom}
                         	onChangeText={value => setNom(value)} leftIcon={
 							<Ionicons
 								name={"person"}
@@ -506,7 +507,7 @@ export default function RegisterScreen({navigation}){
 	                    	<TouchableOpacity style={styles.links}
 	                    		onPress={()=>navigation.navigate('Login')}
 	                    	>
-	                    		<Text style={themes.primary}>{t('common.app.sign_in')}</Text>
+	                    		<Text style={themes.primary}>{t('common.app.signin')}</Text>
 	                    	</TouchableOpacity>
 	                    </View>
 					</View>
@@ -516,7 +517,7 @@ export default function RegisterScreen({navigation}){
   ;
 
   const slide2 = [
-	<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	<ScrollView contentContainerStyle={{flexGrow:1}}>
 	<View style={styles.container}>
 		<View style={styles.top}>
 
@@ -664,7 +665,7 @@ export default function RegisterScreen({navigation}){
   ];
 
   const slide3 = [
-	<ScrollView contentContainerStyle={{flexGrow:1}} key={1}>
+	<ScrollView contentContainerStyle={{flexGrow:1}}>
 	<View style={styles.container}>
 		<View style={styles.top}>
 			<Header text={t('common.app.statut_paroi_pro')+':'}/>
