@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -21,98 +21,64 @@ import Avatar from '../../components/avatar'
 import ImagePicker from 'react-native-image-crop-picker'
 import { DIALOG_TYPE } from '../../../helpers/constants'
 import Head from '../../../components/Head'
+import { useIsFocused } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 
-export class Chat extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activIndicator: true,
-      messageText: ''
-    }
+function Chat(props) {
+  const [needToGetMoreMessage, setneedToGetMoreMessage] = useState(null)
+  const [activIndicator, setIndicator] = useState(true)
+  const [messageText, setMessageText] = useState('')
+  //const [history, setHistory] = useState([])
+  const isFocused = useIsFocused();
+
+  const feth  = async() =>{
+    console.log('props props props', props)
+    const { dialog } = props.route?.params
+    const m = await ChatService.getMessages(dialog)
+    m.amountMessages == 100 ? setneedToGetMoreMessage(true) : setneedToGetMoreMessage(false)
+    setIndicator(false)
+    //setHistory(m.messages)
+    console.log('mrrrmmrmrmrmrmrmmrmr==', m, props)
+
   }
 
-  needToGetMoreMessage = null
+  useEffect(() => {
+    (async()=>{
+      await feth()
+      //setHistory(props.history)
+    })()
+  }, [isFocused, ChatService.resetSelectedDialogs()])
 
-  /*static navigationOptions = (props) => {
-    let dialog = props.route?.params?.dialog
-    let dialogPhoto = ''
-    if (dialog.type === DIALOG_TYPE.PRIVATE) {
-      dialogPhoto = UsersService.getUsersAvatar(dialog.occupants_ids)
-    } else {
-      dialogPhoto = dialog.photo
-    }
-    return {
-      headerTitle: (
-        <Text numberOfLines={3} style={{ fontSize: 22, color: 'black' }}>
-          {props.route?.params?.dialog.name}
-        </Text>
-      ),
-      headerRight: (
-        <TouchableOpacity onPress={() => this.goToDetailsScreen(navigation)}>
-          <Avatar
-            photo={dialogPhoto}
-            name={props.route?.params?.dialog?.name}
-            iconSize="small"
-          />
-        </TouchableOpacity>
-      )
-    }
-  }*/
+  const history = useSelector(state => state.messages[props?.route?.params?.dialog.id]);
 
-  /*static goToDetailsScreen = (props) => {
-    const isNeedFetchUsers = props.route?.params?.isNeedFetchUsers ||false
-    if (props?.route?.params?.dialog?.type === DIALOG_TYPE.PRIVATE) {
-      props.navigate('ContactDetails', { dialog: props?.route?.params?.dialog })
-    } else {
-      props.navigate('GroupDetails', { dialog: props?.route?.params?.dialog, isNeedFetchUsers })
-    }
-  }*/
-
-  componentDidMount() {
-    console.log('this.props this.props this.props', this.props)
-    const { dialog } = this.props.route?.params
-    ChatService.getMessages(dialog)
-      .catch(e => alert(`Error.\n\n${JSON.stringify(e)}`))
-      .then(amountMessages => {
-        amountMessages === 100 ? this.needToGetMoreMessage = true : this.needToGetMoreMessage = false
-        this.setState({ activIndicator: false })
-      })
-  }
-
-  componentWillUnmount() {
-    ChatService.resetSelectedDialogs()
-  }
-
-
-  getMoreMessages = () => {
-    const { dialog } = this.props?.route.params
-    if (this.needToGetMoreMessage) {
-      this.setState({ activIndicator: true })
+  const getMoreMessages = () => {
+    const { dialog } = props?.route.params
+    if (needToGetMoreMessage) {
+      setIndicator(true)
       ChatService.getMoreMessages(dialog)
         .then(amountMessages => {
-          amountMessages === 100 ? this.needToGetMoreMessage = true : this.needToGetMoreMessage = false
-          this.setState({ activIndicator: false })
+          amountMessages === 100 ? setneedToGetMoreMessage(true) : setneedToGetMoreMessage(false)
+          setIndicator(false)
         })
     }
   }
 
-  onTypeMessage = messageText => this.setState({ messageText })
+  const onTypeMessage = messageText => setMessageText(messageText)
 
-  sendMessage = async () => {
-    const { dialog } = this.props?.route.params
-    const { messageText } = this.state
+  const sendMessage = async () => {
+    const { dialog } = props?.route.params
     if (messageText.length <= 0) return
     await ChatService.sendMessage(dialog, messageText)
-    this.setState({ messageText: '' })
+    setMessageText('')
   }
 
-  sendAttachment = async () => {
-    const { dialog } = this.props?.route.params
-    const img = await this.onPickImage()
+  const sendAttachment = async () => {
+    const { dialog } = props?.route.params
+    const img = await onPickImage()
     ChatService.sendMessage(dialog, '', img)
   }
 
-  onPickImage = () => {
+  const onPickImage = () => {
     return ImagePicker.openPicker({
       width: 300,
       height: 400,
@@ -122,23 +88,19 @@ export class Chat extends PureComponent {
     })
   }
 
-  _keyExtractor = (item, index) => index.toString()
+  const _keyExtractor = (item, index) => index.toString()
 
-  _renderMessageItem(message) {
-    const { user } = this.props.currentUser
+  function _renderMessageItem(message) {
+    const { user } = props.currentUser
     const isOtherSender = message.sender_id !== user.id ? true : false
     return (
       <Message otherSender={isOtherSender} message={message} key={message.id} />
     )
   }
 
-  render() {
-    console.log('render run ***********')
-    const { history } = this.props
-    const { messageText, activIndicator } = this.state
-    return (
+  return (
       <>
-        <Head screen={"Conversation"} n={this.props?.navigation} second isGroup dialog={this.props?.route?.params?.dialog} isNeedFetchUsers={this.props.route?.params?.isNeedFetchUsers}/>
+        <Head screen={"Conversation"} n={props?.navigation} second isGroup dialog={props?.route?.params?.dialog} isNeedFetchUsers={props.route?.params?.isNeedFetchUsers}/>
         <KeyboardAvoidingView
           style={{ flex: 1, backgroundColor: 'white' }}
           behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -154,10 +116,10 @@ export class Chat extends PureComponent {
           <FlatList
             inverted
             data={history}
-            keyExtractor={this._keyExtractor}
-            renderItem={({ item }) => this._renderMessageItem(item)}
+            keyExtractor={_keyExtractor}
+            renderItem={({ item }) => _renderMessageItem(item)}
             onEndReachedThreshold={5}
-            onEndReached={this.getMoreMessages}
+            onEndReached={getMoreMessages}
           />
           <View style={styles.container}>
             <View style={styles.inputContainer}>
@@ -166,23 +128,23 @@ export class Chat extends PureComponent {
                 placeholder="Type a message..."
                 placeholderTextColor="grey"
                 value={messageText}
-                onChangeText={this.onTypeMessage}
+                onChangeText={onTypeMessage}
                 maxHeight={170}
                 minHeight={50}
                 enableScrollToCaret
               />
               <TouchableOpacity style={styles.attachment}>
-                <AttachmentIcon name="attachment" size={22} color="#8c8c8c" onPress={this.sendAttachment} />
+                <AttachmentIcon name="attachment" size={22} color="#8c8c8c" onPress={sendAttachment} />
               </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.button}>
-              <Icon name="send" size={32} color="blue" onPress={this.sendMessage} />
+              <Icon name="send" size={32} color="blue" onPress={sendMessage} />
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </>
     )
-  }
+
 }
 
 const styles = StyleSheet.create({
@@ -243,9 +205,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state, props) => ({
-  history: state.messages[props?.route?.params?.dialog.id],
-  currentUser: state.currentUser
-})
+const mapStateToProps = (state, props) => {
+  console.log('mapStateToProps mapStateToPropsmapStateToProps', state.messages[props?.route?.params?.dialog.id])
+   return {
+    history: state.messages[props?.route?.params?.dialog.id],
+    currentUser: state.currentUser
+  }
+}
 
 export default connect(mapStateToProps)(Chat)

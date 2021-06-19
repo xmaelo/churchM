@@ -120,7 +120,7 @@ class ChatService {
     const user = this.currentUser
     const isAlredyUpdate = this.getMessagesByDialogId(dialog.id)
     let amountMessages = null
-
+    let messages = null;
     // If the first entry into the chat
 
     if (!dialog.isAlreadyMessageFetch || dialog.unread_messages_count > 0 && !dialog.isAlreadyMessageFetch) {
@@ -128,7 +128,7 @@ class ChatService {
         chat_dialog_id: dialog.id,
         sort_desc: 'date_sent'
       })
-      const messages = historyFromServer.items.map(elem => (
+      messages = historyFromServer.items.map(elem => (
         new Message(elem, user.id)
       ))
       const newObj = Object.assign(dialog, { isAlreadyMessageFetch: true })
@@ -145,7 +145,7 @@ class ChatService {
       // If the second entry into the chat
 
       if (dialog.unread_messages_count > 0) {
-        const messages = this.getMessagesByDialogId(dialog.id)
+        messages = this.getMessagesByDialogId(dialog.id)
         const firstUnreadMsg = messages[dialog.unread_messages_count - 1]
         this.readAllMessages(dialog.id)
         await this.sendReadStatus(firstUnreadMsg.id, firstUnreadMsg.sender_id, firstUnreadMsg.dialog_id)
@@ -153,7 +153,7 @@ class ChatService {
       }
       amountMessages = isAlredyUpdate.length
     }
-    return amountMessages
+    return {amountMessages: amountMessages,  messages: messages}
   }
 
   // Message loading if more than 100

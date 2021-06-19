@@ -18,16 +18,10 @@ const [data, setA] =  useState({});
   setA(acts)
   console.log("sx========>>>>", acts)
 })();
-/**
+
   useEffect(() => {
-    (async()  => {
-      let acts = await activite.getDetailleActivity(route.params?.id);
-			setA(acts)
-			console.log("sx========>>>>", acts)
-    })();
-    return;
+    console.log('________________________________________________________________________________________________________')
   }, [])
-*/
 
 	return(
     <View>

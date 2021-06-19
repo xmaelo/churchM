@@ -47,6 +47,7 @@ import DetailRdv from '../screens/DetailRdv';
 import TheBible from '../screens/TheBible';
 import ChapBible from '../screens/ChapBible';
 import VersetBible from '../screens/VersetBible';
+import { LogBox } from 'react-native';
 
 import AuthService from '../services/auth-service';
 
@@ -148,7 +149,8 @@ export default function Drawers() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [user, setUser] = useState({});
   const [initialRouteName, setInitialRoute] = useState(null);
-
+  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+  LogBox.ignoreAllLogs();//Ignore all log notifications
   const connect = async (u) => {
     const user = u || user
     let res = await login.auth(user.username, user.password);

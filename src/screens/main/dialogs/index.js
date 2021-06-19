@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, FlatList, Text, StatusBar, TouchableOpacity, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import store from '../../../store'
@@ -10,108 +10,89 @@ import { BTN_TYPE } from '../../../helpers/constants'
 import Avatar from '../../components/avatar'
 import PushNotificationService from '../../../services/push-notification'
 import Head from '../../../components/Head'
+import { useIsFocused } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 
-class Dialogs extends Component {
-  static currentUserInfo = ''
-  dialogs = []
+function Dialogs(props) {
+  const [currentUserInfo, setCurrentUserInfo] = useState('')
+  //const [dialogs, setDilaog] = useState([])
+  const isLoader = props.dialogs.length === 0 && true
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoader: props.dialogs.length === 0 && true,
-    }
-  }
 
-  static navigationOptions = ({ navigation }) => {
-    Dialogs.currentUserInfo = { ...store.getState().currentUser.user }
-    return {
-      headerTitle: (
-        <Text style={[
-          { fontSize: 22, color: 'black' },
-          Platform.OS === 'android' ?
-            { paddingLeft: 13 } :
-            { paddingLeft: 0 }]}>
-          {Dialogs.currentUserInfo.full_name}
-        </Text>
-      ),
-      headerRight: (
-        <TouchableOpacity onPress={() => this.goToSettingsScreen(navigation)}>
-          <Avatar
-            photo={Dialogs.currentUserInfo.avatar}
-            name={Dialogs.currentUserInfo.full_name}
-            iconSize="small"
-          />
-        </TouchableOpacity>
-      ),
-    }
-  }
-
-  componentDidMount() {
+  const feth  = async() =>{
     ChatService.fetchDialogsFromServer()
       .then(() => {
-        PushNotificationService.init(this.props.navigation)
+        PushNotificationService.init(props.navigation)
       })
-  }
 
-  static getDerivedStateFromProps(props, state) {
+  }
+  useEffect(() => {
+    (async()=>{
+      await feth()
+      //setHistory(props.history)
+    })()
+  }, [])
+
+  const dialogs = useSelector(state => state.dialogs);
+
+  const getDerivedStateFromProps = (props, state) => {
     if (props.currentUser.user.full_name !== Dialogs.currentUserInfo.full_name) {
       Dialogs.currentUserInfo = { ...props.currentUser.user }
       return true
     } return null
   }
-
+/*
   static goToSettingsScreen = (props) => {
     props.navigate('Settings', { user: Dialogs.currentUserInfo })
   }
-
+*/
+/**
   componentDidUpdate(prevProps) {
-    const { dialogs } = this.props
-    if (this.props.dialogs !== prevProps.dialogs) {
-      this.dialogs = dialogs
-      this.setState({ isLoader: false })
+    const { dialogs } = props
+    if (props.dialogs !== prevProps.dialogs) {
+      dialogs = dialogs
+      setState({ isLoader: false })
     }
   }
+*/
 
-  keyExtractor = (item, index) => index.toString()
+  const keyExtractor = (item, index) => index.toString()
 
-  _renderDialog = ({ item }) => {
+  const _renderDialog = ({ item }) => {
     return (
-      <Dialog dialog={item} navigation={this.props.navigation} />
+      <Dialog dialog={item} navigation={props.navigation} />
     )
   }
 
-  goToContactsScreen = () => {
-    const { navigation } = this.props
+  const goToContactsScreen = () => {
+    const { navigation } = props
     navigation.navigate('Contacts')
   }
 
-  render() {
-    const { isLoader } = this.state
-    return (
+  return (
       <>
-        <Head screen={"Groupes & Messages"} n={this.props.navigation}/>
+        <Head screen={"Groupes & Messages"} n={props.navigation}/>
         <View style={styles.container}>
           {isLoader ?
             (
               <Indicator color={'red'} size={40} />
-            ) : this.dialogs.length === 0 ?
+            ) : dialogs.length === 0 ?
               (<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontSize: 19 }}>No chats yet</Text>
               </View>
               ) :
               (
                 <FlatList
-                  data={this.dialogs}
-                  keyExtractor={this.keyExtractor}
-                  renderItem={(item) => this._renderDialog(item)}
+                  data={dialogs}
+                  keyExtractor={keyExtractor}
+                  renderItem={(item) => _renderDialog(item)}
                 />
               )
           }
-          <CreateBtn goToScreen={this.goToContactsScreen} type={BTN_TYPE.DIALOG} />
+          <CreateBtn goToScreen={goToContactsScreen} type={BTN_TYPE.DIALOG} />
         </View>
       </>
     )
-  }
 }
 
 const styles = StyleSheet.create({
