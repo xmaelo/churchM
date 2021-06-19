@@ -1,81 +1,104 @@
-import ConnectyCube from 'react-native-connectycube';
-import config from './config';
+import ConnectyCube from 'react-native-connectycube'
+import appConfig from '../../config.json'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import User from '../models/user'
 import store from '../store'
-import ChatService from './chat-service'
-class Auth{
-  init = () => ConnectyCube.init(...config);
+import { LogOut } from '../reducers/index'
+import { setCurrentUser, updateCurrentUser } from '../actions/currentUser'
+import { preparationUploadImg, getImageLinkFromUID } from '../helpers/file'
 
-  login = user => {
-    const pass = user.password+"__"+user.password
-    user = {full_name: user.username, login: user.username+'@gmail.com', password: pass}
-    return new Promise((resolve, reject) => {
-      ConnectyCube.createSession(user).then((reult) =>{
-          const filters = {}
-          const exist = false;
-          console.log('reult user=====>>> reult', reult)
-          const customSession = Object.assign({}, reult, { password: pass })
-          store.dispatch({type: "SET_USER", user: customSession})
-          ConnectyCube.chat.connect({ userId: customSession.id, password: customSession.password}).then((e) => {
-            console.log('connextionn===>>>', e)
-            ChatService.setUpListenners();
-          }).catch((error) => {});
-        }).then(resolve)
-      .catch(reject);
-    });
-  };
+class AuthService {
+  static CURRENT_USER_SESSION_KEY = 'CURRENT_USER_SESSION_KEY'
+  static DEVICE_SUBSCRIPTION_ID = 'DEVICE_SUBSCRIPTION_ID'
 
+  async init(user = null) {
+    await ConnectyCube.init(...appConfig.connectyCubeConfig)
+    return this.autologin(user)
+  }
 
-  logout = () => {
-    ConnectyCube.chat.disconnect();
-    ConnectyCube.destroySession();
-  };
-
-  check = (user) => {
-    const groupe = "undefined" //user.groupe
-    const connect = () => {
-      ConnectyCube.createSession().then((session) => {
-        user = {full_name: user.username, login: user.username+'@gmail.com', password: user.password+"__"+user.password}
-        ConnectyCube.users.signup(user).then((result) => {
-            ConnectyCube.login(user).then(()=>{
-              const filters = {}
-              const exist = false;
-              ConnectyCube.chat.dialog.list(filters).then((result) => {
-                result && result.items && result.items.map(dialog =>{
-                  if(dialog.name == groupe){
-                    exist = true;
-                  }
-                })
-                if (!exist) {
-                  const params = {
-                    type: 4,
-                    name: groupe,
-                  };
-                  ConnectyCube.chat.dialog.create(params)
-                    .then((dialog) => {console.log('after create chat')})
-                    .catch((error) => {});
-                  }
-                })
-              .catch((error) => {});
-            }).catch(()=>{});
-          })
-          .catch((error) => {console.log('error created', error)});
-      }).catch((error) => {console.log('error ======================>>>', error)});
-
+  async updateCurrentUser({ image, full_name, login }) {
+    const updateData = {}
+    if (full_name) {
+      updateData.full_name = full_name
     }
-    connect();
-  };
+    if (login) {
+      updateData.login = login
+    }
+    if (image) {
+      const file = preparationUploadImg(image)
+      const resultUploadImg = await ConnectyCube.storage.createAndUpload({ file })
+      updateData.avatar = resultUploadImg.uid
+    }
+    const responseUpdateUser = await ConnectyCube.users.update(updateData)
+    const prewSession = await this.getUserSession()
+    responseUpdateUser.user.avatar = getImageLinkFromUID(responseUpdateUser.user.avatar)
+    const newSession = Object.assign(JSON.parse(prewSession), responseUpdateUser.user)
+    await this.setUserSession(newSession)
+    store.dispatch(updateCurrentUser(responseUpdateUser.user))
+  }
+
+  async autologin(user) {
+    const checkUserSessionFromStore = await this.getUserSession()
+    await this.signIn(user)
+    /*if (checkUserSessionFromStore) {
+      const data = JSON.parse(checkUserSessionFromStore)
+      await this.signIn({ login: data.login, password: data.password })
+      return 'Dialogs'
+    } else { return 'Auth' }
+    */
+  }
+
+  async signIn(params) {
+    const session = await ConnectyCube.createSession(params)
+    const currentUser = new User(session.user)
+    session.user.avatar = getImageLinkFromUID(session.user.avatar)
+    store.dispatch(setCurrentUser(session))
+    const customSession = Object.assign({}, currentUser, { password: params.password })
+    this.setUserSession(customSession)
+    this.connect(customSession.id, customSession.password)
+  }
+
+  async signUp(params) {
+    await ConnectyCube.createSession()
+    await ConnectyCube.users.signup(params)
+    return this.signIn(params)
+  }
+
+  async setUserSession(userSession) {
+    return AsyncStorage.setItem(AuthService.CURRENT_USER_SESSION_KEY, JSON.stringify(userSession))
+  }
+
+  async getUserSession() {
+    return await AsyncStorage.getItem(AuthService.CURRENT_USER_SESSION_KEY)
+  }
+
+  async unsubscribePushNotifications() {
+    const subscriptionIdToDelete = await this.getStoreDeviceSubscriptionId()
+    ConnectyCube.pushnotifications.subscriptions.delete(subscriptionIdToDelete);
+  }
+
+  async getStoreDeviceSubscriptionId() {
+    return await AsyncStorage.getItem(AuthService.DEVICE_SUBSCRIPTION_ID)
+  }
+
+  async logout() {
+    await this.unsubscribePushNotifications()
+    await AsyncStorage.clear()
+    await ConnectyCube.logout()
+    store.dispatch(LogOut())
+  }
+
+  async connect(userId, password) {
+    await ConnectyCube.chat.connect({ userId, password })
+  }
+
+  get currentUser() {
+    return store.getState().currentUser
+  }
 }
 
-const AuthService = new Auth()
-export default AuthService
+const authService = new AuthService()
 
-/**
-result && result.items && result.items.map(dialog=>{
-  if (dialog.name === name) {
-    ConnectyCube.chat.dialog
-    .subscribe(dialog._id)
-    .then((dialog) => {})
-    .catch((error) => {});
-  }
-})
-*/
+Object.freeze(authService)
+
+export default authService

@@ -1,5 +1,7 @@
 import {request_get, request_post, user} from './query';
 import jwt_decode from "jwt-decode";
+import AuthService from '../services/auth-service'
+import ChatService from '../services/chat-service'
 
 class login_check{
 
@@ -33,6 +35,8 @@ class login_check{
       user.setUserId(userInfo.personne.id);
       user.setUserOjt(decode);
       user.setUserInfos(personne);
+      await AuthService.init({login: username+'@gmail.com', password: password+"__"+password})
+      ChatService.setUpListeners()
       return personne;
     }catch(e){
       //console.log('errrrrr log', e)

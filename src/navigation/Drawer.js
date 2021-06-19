@@ -11,7 +11,7 @@ import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import Preparation from '../screens/Preparation'
 import ContactEglise from '../screens/ContactEglise'
-import Chat from '../screens/Chat'
+//import Chat from '../screens/Chat'
 import Recovery from '../screens/Recovery';
 import AnnonceDetails from '../screens/AnnonceDetails';
 import DetailLecture from '../screens/DetailLecture';
@@ -27,7 +27,6 @@ import DetailsContribution from '../screens/DetailsContribution'
 import SainteScene from '../screens/SainteScene'
 import Profil from '../screens/Profil'
 import Parametres from '../screens/Parametres'
-import ListChatRoom from '../screens/ListChatRoom'
 import { Text, Input, Button, Badge } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { themes, color } from '../color';
@@ -51,6 +50,14 @@ import VersetBible from '../screens/VersetBible';
 
 import AuthService from '../services/auth-service';
 
+import Auth from '../screens/auth'
+import Dialogs from '../screens/main/dialogs'
+import Settings from '../screens/main/settings/index'
+import Chat from '../screens/main/chat/index'
+import Contacts from '../screens/main/contacts/index'
+import CreateDialog from '../screens/main/contacts/createDialog'
+import GroupDetails from '../screens/main/chat/groupDetails'
+import ContactDetails from '../screens/main/chat/contactDetails'
 
 import { useTranslation } from 'react-i18next';
 import { profil } from '../statefull/profil';
@@ -60,10 +67,15 @@ const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
 const DrawIcon = ({name, f}) => <Ionicons name={name} size={25} color={f ? color.primary : '#ccc'}/>
 
 const stacks = [
+  { composant: Auth, name: "Auth", swipe: true },
+  { composant: Dialogs, name: "Dialogs"},
+  { composant: Contacts, name: "Contacts", swipe: true },
+  { composant: CreateDialog, name: "CreateDialog", swipe: true },
+  { composant: GroupDetails, name: "GroupDetails", swipe: true },
+  { composant: ContactDetails, name: "ContactDetails", swipe: true },
   { composant: Accueil, name:"Accueil" },
   { composant: Finaces, name: "Finances"},
   { composant: Profil, name: "Profil" },
-  { composant: ListChatRoom,  name: "ChatRoom" },
   { composant: Annonces,  name: "Annonces" },
   { composant: LectureBiblique, name: "LectureBiblique" },
   { composant: Mediatheques, name: "Mediatheques" },
@@ -140,7 +152,7 @@ export default function Drawers() {
   const connect = async (u) => {
     const user = u || user
     let res = await login.auth(user.username, user.password);
-    AuthService.login(user);
+    //AuthService.login(user);
     if (res) {
       setIsLoaded(false)
     }else{
