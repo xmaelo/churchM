@@ -15,15 +15,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Dialogs(props) {
   const [currentUserInfo, setCurrentUserInfo] = useState('')
-  //const [dialogs, setDilaog] = useState([])
-  const isLoader = props.dialogs.length === 0 && true
-
+  const dialogs = useSelector(state => state.dialogs);
+  const isLoade = dialogs.length === 0 && true
+  const [isLoader, setIsLoaded] = useState(isLoade)
 
   const feth  = async() =>{
-    ChatService.fetchDialogsFromServer()
-      .then(() => {
-        PushNotificationService.init(props.navigation)
-      })
+    await ChatService.fetchDialogsFromServer()
+    PushNotificationService.init(props.navigation)
+    setIsLoaded(false)
 
   }
   useEffect(() => {
@@ -33,7 +32,7 @@ function Dialogs(props) {
     })()
   }, [])
 
-  const dialogs = useSelector(state => state.dialogs);
+
 
   const getDerivedStateFromProps = (props, state) => {
     if (props.currentUser.user.full_name !== Dialogs.currentUserInfo.full_name) {
@@ -45,8 +44,7 @@ function Dialogs(props) {
   static goToSettingsScreen = (props) => {
     props.navigate('Settings', { user: Dialogs.currentUserInfo })
   }
-*/
-/**
+
   componentDidUpdate(prevProps) {
     const { dialogs } = props
     if (props.dialogs !== prevProps.dialogs) {
@@ -55,6 +53,7 @@ function Dialogs(props) {
     }
   }
 */
+
 
   const keyExtractor = (item, index) => index.toString()
 
@@ -78,7 +77,7 @@ function Dialogs(props) {
               <Indicator color={'red'} size={40} />
             ) : dialogs.length === 0 ?
               (<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 19 }}>No chats yet</Text>
+                <Text style={{ fontSize: 19 }}>Aucune conversation !</Text>
               </View>
               ) :
               (

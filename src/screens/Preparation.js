@@ -197,11 +197,7 @@ export default function Preparation(props){
 		        		<View style={{...styles.end2, marginTop: hp('2%'), alignItems: 'center', justifyContent: 'center'}} >
 		        			<Button
 									  icon={() =>
-									    <Ionicons
-									      name="logo-usd"
-									      size={22}
-									      color={color.primary}
-									    />
+									    <Text style={{color: color.primary, fontWeight: 'bold'}}>XAF</Text>
 									  }
 										disabled={desabledXaf}
 									  //iconRight= {true}
@@ -210,7 +206,7 @@ export default function Preparation(props){
 										loading={loadingXAF}
 										onPress = {()=>onPayment('XAF')}
 									>
-										{"Mobile  "}
+										{"Mobile"}
 									</Button>
 
 									<Button
@@ -226,7 +222,7 @@ export default function Preparation(props){
 									  mode="outlined"
 										onPress = {()=>onPayment('USD')}
 									>
-										{"Carte / Paypal  "}
+										{"Carte / Paypal"}
 									</Button>
 		        		</View>
 		        	</View>

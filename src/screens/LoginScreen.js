@@ -14,8 +14,8 @@ import { useTranslation } from 'react-i18next';
 
 export default function LoginScreen({navigation}){
 		const {t} = useTranslation()
-		const [password, setPassword] = useState("password");
-		const [username, defineUsername] = useState("admin");
+		const [password, setPassword] = useState("");
+		const [username, defineUsername] = useState("");
 		const [disabled, setDisabled] = useState(false);
 		const [pinSecure, setPinSecure] = useState(false);
 		const [loading, setLoan] = useState(false);
