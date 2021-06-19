@@ -34,7 +34,7 @@ export default class Dialog extends Component {
           <View style={styles.border} >
             <DialogTitles
               name={dialog.name}
-              message={dialog.last_message}
+              message={dialog?.last_message}
             />
             <View style={styles.infoContainer}>
               <DialogLastDate

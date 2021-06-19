@@ -137,9 +137,9 @@ const {t} = useTranslation();
 									<Text>{t('common.app.annonce')}</Text>
 								</Surface>
 							</TouchableOpacity>
-						</View>
+						</View> 
 						<View style={styles.row}>
-							<TouchableOpacity onPress={()=>navigation.navigate('ChatRoom')}>
+							<TouchableOpacity onPress={()=>navigation.navigate('Dialogs')}>
 								<Surface style={styles.surface}>
 									<IconPart name='chatbubble-outline'/>
 									<Text>{t('common.app.message')}</Text>

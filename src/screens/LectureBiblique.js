@@ -27,7 +27,7 @@ export default function LectureBiblique({navigation}){
 		b = d[1];
 		c = d[2];
 		return c + '/' + b + '/' + a;
-	} 
+	}
 
 	useEffect(() => {
 		(async () => {
@@ -61,7 +61,7 @@ export default function LectureBiblique({navigation}){
 					tab.push(calendar.jours[i+2])
 					tab.push(calendar.jours[i+3])
 					tab.push(calendar.jours[i+4])
-					
+
 				} else if (dat == t("common.app.thursday") && dat2 == datNow) {
 					tab.push(calendar.jours[i-3])
 					tab.push(calendar.jours[i-2])
@@ -94,7 +94,7 @@ export default function LectureBiblique({navigation}){
 					tab.push(calendar.jours[i-2])
 					tab.push(calendar.jours[i-1])
 					tab.push(calendar.jours[i])
-				}	
+				}
 			}
 			console.log('New versets: ', tab);
 			setTabVerset(tab);
@@ -131,6 +131,7 @@ export default function LectureBiblique({navigation}){
 									}
 								</View>
 							</View>
+<<<<<<< HEAD
 							{/* <ListItem.Title>{l.title}</ListItem.Title> */}
 							{/* <ListItem.Subtitle>{l.description}</ListItem.Subtitle> */}
 							</ListItem.Content>
@@ -138,6 +139,20 @@ export default function LectureBiblique({navigation}){
 						))
 					}
 					</View>
+=======
+							<View style={{marginLeft: 150}}>
+								{
+									l.passages && l.passages.map((el, k) => <Text key={k}>{t('common.bible.'+el.livre)} {el.chapitre}. {(el.verset_debut != 0)?el.verset_debut +" - "+el.verset_fin:"" }</Text>)
+								}
+							</View>
+						</View>
+						{/* <ListItem.Title>{l.title}</ListItem.Title> */}
+						{/* <ListItem.Subtitle>{l.description}</ListItem.Subtitle> */}
+						</ListItem.Content>
+					</ListItem>
+					))
+				}
+>>>>>>> baaaf740e657dac458dd0f4c8b46fe75d5919ac0
 				</ScrollView>
 			</ImageBackground>
 		</View>

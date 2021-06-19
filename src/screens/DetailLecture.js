@@ -50,7 +50,7 @@ export default function DetailLecture({route, navigation}){
                           // tab = chapter.verses;
                           // lect.livre = passages[i].livre;
                           // lect.chapitre = passages[i].chapitre;
-                          // lect.versets = tab;  
+                          // lect.versets = tab;
                       }
                       lect.versets = tab;
                        // global.push(lect);
@@ -58,7 +58,7 @@ export default function DetailLecture({route, navigation}){
                        global.push(lect);
                       tab = [];
                       }
-                      
+
                     }
                   }
                 })
@@ -76,12 +76,17 @@ export default function DetailLecture({route, navigation}){
   			<View>
   				{/* <Head screen={data.title} n={navigation}/> */}
                   {
-                      lecture && lecture.map(el =>
-                          <View style={styles.texte}>
+                      lecture && lecture.map((el, k) =>
+                          <View style={styles.texte} key={k}>
                               <Text style={styles.passage}>{t('common.bible.'+el.livre)} {el.chapitre}</Text>
                               <View style={styles.contenu}>
+<<<<<<< HEAD
                                 {el.versets.map(e => 
                                   <Text><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold'}}>{t('common.app.verse')} {e.verse}:</Text> {e.text}</Text>)}
+=======
+                                {el.versets.map((e, i) =>
+                                  <Text key={i}><Text style={{textDecorationLine: 'underline', fontStyle: 'italic', fontWeight: 'bold'}}>verset {e.verse}:</Text> {e.text}</Text>)}
+>>>>>>> baaaf740e657dac458dd0f4c8b46fe75d5919ac0
                               </View>
                           </View>
                       )

@@ -12,13 +12,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Appbar } from 'react-native-paper';
 import { themes, color } from '../color';
 
-export default function Head({n, screen, second}){
+export default function Head({n, screen, second, dialog, isNeedFetchUsers, isGroup}){
 
   const _goBack = () =>n.toggleDrawer();
 
   const _handleSearch = () => console.log('Searching');
 
   const _handleMore = () => console.log('Shown more');
+
+  //props.navigate('GroupDetails', { dialog: props?.route?.params?.dialog, isNeedFetchUsers })
 
 	return(
     <Header
@@ -36,6 +38,12 @@ export default function Head({n, screen, second}){
         </TouchableOpacity>
       }
       centerComponent={()=><Text style={{fontSize: 18, fontWeight: 'bold', fontStyle: 'italic', color: "white"}}>{screen}</Text>}
+
+      rightComponent={isGroup ? ()=>
+          <TouchableOpacity onPress={()=>n.navigate('GroupDetails', { dialog: dialog, isNeedFetchUsers })}>
+            <Ionicons name={"cog-outline"} size={24} color={"#fff"}/>
+          </TouchableOpacity> : null
+      }
   />
 
 	)
