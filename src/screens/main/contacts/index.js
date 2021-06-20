@@ -12,6 +12,7 @@ import CreateBtn from '../../components/createBtn'
 import { BTN_TYPE } from '../../../helpers/constants'
 import ChatService from '../../../services/chat-service'
 //import { popToTop } from '../../../routing/init'
+import { StackActions } from '@react-navigation/native';
 import Head from '../../../components/Head'
 
 class Contacts extends PureComponent {
@@ -26,8 +27,10 @@ class Contacts extends PureComponent {
       keyword: '',
       isLoader: false,
       isUpdate: false,
+      listUsers: [],
       dialogType: this.isGroupDetails || false
     }
+    this.searchUsers()
   }
 
   listUsers = null
@@ -94,7 +97,7 @@ class Contacts extends PureComponent {
     if (!this.state.dialogType) {
       return ChatService.createPrivateDialog(user.id)
         .then((newDialog) => {
-          //this.props.navigation.dispatch(popToTop)
+          this.props.navigation.dispatch(StackActions.popToTop());
           this.props.navigation.navigate('Chat', { dialog: newDialog })
         })
     }
@@ -123,11 +126,12 @@ class Contacts extends PureComponent {
     const dialog = this.props.route?.dialog || false
     const { keyword } = this.state
     let str = keyword.trim()
-    if (str.length > 2) {
+    //if (str =  '' || str !== '' && str.length > 2) {
       this.setState({ isLoader: true })
       UsersService.listUsersByFullName(str, dialog?.occupants_ids)
         .then(users => {
           this.listUsers = users
+          this.setState({listUsers: users})
           this.userNotFound = false
           this.setState({ isLoader: false })
         })
@@ -135,9 +139,7 @@ class Contacts extends PureComponent {
           this.userNotFound = true
           this.setState({ isLoader: false })
         })
-    } else {
-      showAlert('Enter au-moins 3 carractères')
-    }
+
   }
 
   goToCreateDialogScreen = () => {
@@ -177,7 +179,7 @@ class Contacts extends PureComponent {
                 {dialogType ? <IconGroup name="group" size={25} color='#48A6E3' /> :
                   <IconGroup name="user" size={25} color='#48A6E3' />
                 }
-                <Text style={styles.dialogTypeText}>{dialogType ? `Create private chat` : `Create group chat`}</Text>
+                <Text style={styles.dialogTypeText}>{dialogType ? `Envoyer un message` : `Crée un groupe`}</Text>
               </TouchableOpacity>
             }
           </View>
@@ -190,7 +192,7 @@ class Contacts extends PureComponent {
             />
           </View>
           {this.userNotFound ?
-            (<Text style={styles.userNotFound}>Couldn't find user</Text>) :
+            (<Text style={styles.userNotFound}>Aucun utilisateur trouvé</Text>) :
             (
               <View style={{ flex: 1 }}>
                 <FlatList

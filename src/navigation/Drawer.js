@@ -108,7 +108,7 @@ function CustomDrawerContent(props) {
     { label: t('common.app.accueil'), icon: 'home-outline', key: 0, name:"Accueil" },
     { label: t('common.app.mys')+' '+t('common.app.finances'), icon: 'logo-usd', key: 1 , name: "Finances"},
     { label: t('common.app.my2')+' '+t('common.app.profil'), icon: 'person-circle-outline', key: 2, name: "Profil" },
-    { label: t('common.app.message'), icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
+    { label: t('common.app.message'), icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "Dialogs" },
     { label: t('common.app.annonce'), icon: 'newspaper-outline', key: 4, name: "Annonces" },
     { label: t('common.app.my')+' '+t('common.app.my_bible'), icon: 'book-outline', key: 5, name: "TheBible" },
     { label: t('common.app.lecture_biblic'), name: "LectureBiblique", icon: 'reader-outline', key: 6 },

@@ -13,7 +13,8 @@ class PushNotificationService {
   static DEVICE_SUBSCRIPTION_ID = 'DEVICE_SUBSCRIPTION_ID'
   static Navigation = null
 
-  init(navigation) {
+  async init(navigation) {
+    console.log("inside init ==============================>>>")
     PushNotificationService.Navigation = navigation
     const settings = {
       onRegister: this.subcribeToPushNotification,
@@ -30,10 +31,11 @@ class PushNotificationService {
         sound: true
       }
     }
-    PushNotification.configure(settings)
+    let res = await PushNotification.configure(settings)
   }
 
   async subcribeToPushNotification(token) {
+    console.log('token token token token', token)
     const DeviceInfo = require('react-native-device-info').default
     const params = {
       notification_channels: Platform.OS === 'ios' ? 'apns' : 'gcm',
@@ -47,14 +49,9 @@ class PushNotificationService {
       }
     }
 
-    ConnectyCube.pushnotifications.subscriptions.create(params)
-      .then(result => {
-        console.log('PushNotificationService - result', result)
-        AsyncStorage.setItem(PushNotificationService.DEVICE_SUBSCRIPTION_ID, `${result[0].subscription.id}`)
-      })
-      .catch(error => {
-        console.log('PushNotificationService - error', error)
-      })
+    let result  = await  ConnectyCube.pushnotifications.subscriptions.create(params)
+    console.log('result result result resultv', result)
+    AsyncStorage.setItem(PushNotificationService.DEVICE_SUBSCRIPTION_ID, `${result[0].subscription.id}`)
   }
 
   async onNotification(notification) {

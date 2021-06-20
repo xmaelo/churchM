@@ -21,7 +21,8 @@ function Dialogs(props) {
 
   const feth  = async() =>{
     await ChatService.fetchDialogsFromServer()
-    PushNotificationService.init(props.navigation)
+    console.log('after sunscription push notif ==============>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    await PushNotificationService.init(props.navigation)
     setIsLoaded(false)
 
   }
