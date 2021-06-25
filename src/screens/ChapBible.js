@@ -6,6 +6,8 @@ import {color } from '../color';
 import { useTranslation } from 'react-i18next';
 import { Card } from 'react-native-elements';
 
+const keyExtractor = (item, index) => index.toString()
+
 export default function ChapBible({route, navigation}){
     const {t} = useTranslation();
     const data = route.params.param
@@ -13,10 +15,11 @@ export default function ChapBible({route, navigation}){
         <View style={{ flex: 1}}>
             <Head screen={t('common.bible.'+data.name)} n={navigation} second/>
             <ScrollView>
-                <FlatList 
+                <FlatList
                 data={data.chapters}
                 numColumns={4}
-                renderItem={({ item }) => 
+                keyExtractor={keyExtractor}
+                renderItem={({ item }) =>
                 // <Text> {item.chapter}
                 // </Text>
                 <TouchableOpacity onPress={()=>navigation.navigate('VersetBible', {param: item, name: data.name})}>

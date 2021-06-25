@@ -7,7 +7,9 @@ import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
 import Head from '../components/Head'
 import Dialog from '../components/dialog'
-
+import ConnectyCube from "react-native-connectycube";
+import ChatService from '../services/chat-service'
+import { connect } from 'react-redux'
 let n = null;
 const dialogs = [
 	{name: 'Chorale', last_message: "Bonjour tout les monde! quoi de neuf.", last_message_date_sent: new Date(), updated_date: new Date(), unread_messages_count: 55}
@@ -18,23 +20,60 @@ const _renderDialog = ({ item }) => {
     )
 }
 
+
 const keyExtractor = (item, index) => index.toString()
 
-export default function ListChatRoom({navigation}){
-	n = navigation;
+function ListChatRoom(props){
+	n = props.navigation;
+	const [dialogs, setDialog] = useState([])
+
+	const listDialog = async (name="undefined") => {
+  	const filters = {}
+  	const res =  await ConnectyCube.chat.dialog.list(filters)
+    let dialogs = res && res.items && res.items.map(dialog =>{
+      if(dialog.name = name){
+        props.addDialog(dialog)
+        return dialog
+      }
+    })
+    console.log('dialogs dialogs******* TOTAL *********dialogs dialogs', dialogs)
+  	return dialogs
+  }
+
+	useEffect(() => {
+    (async()=>{
+			console.log('setDilago started here', props)
+			const res = await listDialog()
+       setDialog(res)
+			console.log('props dialog after ????????????', props)
+    })()
+    }, []);
+
 	return(
 		<View>
-			<Head screen={"Groupes && Messages"} n={navigation}/>
+			<Head screen={"Groupes & Messages"} n={n}/>
 			<View style={styles.content}>
 				<FlatList
-	                data={dialogs}
+	                data={props.dialogs}
 	                keyExtractor={keyExtractor}
-	                renderItem={(item) => _renderDialog(item)}
+	                renderItem={(item) => _renderDialog(item, n)}
 	             />
 			</View>
 		</View>
 	)
 }
+
+const mapStateToProps = (state) => {
+	return state
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    addDialog: async (dialog) => {
+      dispatch({type: "PUSH_DIALOG", dialog: dialog});
+    }
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ListChatRoom)
 
 const styles = StyleSheet.create({
   container: {

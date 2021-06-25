@@ -38,7 +38,7 @@ export function request_post(route, body, cle){
     (response) => response.json()
   ).then(
     (responseJson) => {
-      console.log('>>>>>>>>>> result api ', responseJson)
+      ////console.log('>>>>>>>>>> result api ', responseJson)
       return responseJson;
     }
   )
@@ -59,7 +59,7 @@ export function request_post_notkn(route, body, cle){
     (response) => response.json()
   ).then(
     (responseJson) => {
-      console.log('>>>>>>>>>> result api ', responseJson)
+      //console.log('>>>>>>>>>> result api ', responseJson)
       return responseJson;
     }
   )
@@ -81,7 +81,7 @@ export function request_put(body, route, cle){
     (response) => response.json()
   ).then(
     (responseJson) => {
-      console.log('>>>>>>>>>> result api ', responseJson)
+      //console.log('>>>>>>>>>> result api ', responseJson)
       return responseJson;
     }
   )
@@ -102,7 +102,7 @@ export function request_put_notkn(body, route, cle){
     (response) => response.json()
   ).then(
     (responseJson) => {
-      console.log('>>>>>>>>>> result api ', responseJson)
+      //console.log('>>>>>>>>>> result api ', responseJson)
       return responseJson;
     }
   )
@@ -124,7 +124,7 @@ export function request_file(body, route, cl=cle){
     (response) => response.json()
   ).then(
     (responseJson) => {
-      console.log('>>>>>>>>>> result api ', responseJson)
+      //console.log('>>>>>>>>>> result api ', responseJson)
       return responseJson;
     }
   )
@@ -132,7 +132,7 @@ export function request_file(body, route, cl=cle){
 }
 
 export function request_file2(body, route, cle) {
-  console.log('route route route', body)
+  //console.log('route route route', body)
   const r = RNFetchBlob.fetch('POST', apibaselink+route, {
     Authorization : 'Bearer '+user.getToken(),
     pass : "9afac0b31fb7c699ef123aaeefe18cafa7b40921",
@@ -143,10 +143,10 @@ export function request_file2(body, route, cle) {
     // custom content type
     body
   ]).then((resp) => {
-    console.log('>>>>>>> Réponse Photo', resp.json())
+    //console.log('>>>>>>> Réponse Photo', resp.json())
     return resp.json()
   }).catch((err) => {
-    console.log(err);
+    //console.log(err);
   })
   return r;
 }
@@ -154,8 +154,8 @@ export function request_file2(body, route, cle) {
 
 export function request_get(route, clx=cle){
   const authorization = clx ? 'Bearer '+user.getToken():  null;
-  console.log('route route route', route, clx)
-  console.log('route route route', authorization)
+  //console.log('route route route', route, clx)
+  //console.log('route route route', authorization)
   const r = fetch(apibaselink+route, {
        method: 'GET',
        headers: {
@@ -176,8 +176,8 @@ export function request_get(route, clx=cle){
 }
 
 export function request_get_notkn(route, clx=cle){
-  // console.log('route route route', route, clx)
-  // console.log('route route route', authorization)
+  // //console.log('route route route', route, clx)
+  // //console.log('route route route', authorization)
   const r = fetch(apibaselink+route, {
        method: 'GET',
        headers: {
@@ -197,8 +197,8 @@ export function request_get_notkn(route, clx=cle){
 }
 
 export function request_get_notkn2(route){
-  // console.log('route route route', route, clx)
-  // console.log('route route route', authorization)
+  // //console.log('route route route', route, clx)
+  // //console.log('route route route', authorization)
   const r = fetch(apibaselink+route, {
        method: 'GET',
        headers: {

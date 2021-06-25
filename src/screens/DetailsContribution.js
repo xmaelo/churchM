@@ -141,11 +141,7 @@ export default function DetailsContribution({navigation, route}){
          <View style={{...styles.end2, marginTop: hp('2%'), justifyContent: "center", paddingBottom: 20}} >
            <Button
              icon={() =>
-               <Ionicons
-                 name="logo-usd"
-                 size={22}
-                 color={color.primary}
-               />
+               <Text style={{color: color.primary, fontWeight: 'bold'}}>XAF</Text>
              }
              disabled={desabledXaf}
              //iconRight= {true}

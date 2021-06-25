@@ -56,6 +56,7 @@ export default class Message extends Component {
 
   render() {
     const { message, otherSender } = this.props
+    console.log('message message ===================>>><<<CHAt', message)
     const { isModal } = this.state
     const user = otherSender ? store.getState().users[message.sender_id] : '.'
     return (
@@ -66,7 +67,7 @@ export default class Message extends Component {
               width: fullWidth,
               height: fullHeight,
             }}>
-              
+
             </View>
           </Modal>
         }
@@ -84,7 +85,7 @@ export default class Message extends Component {
                   this.renderAttachment()
                 }
                 <Text style={[styles.messageText, (otherSender ? styles.selfToLeft : styles.selfToRight)]}>
-                  {message.body || ' '}
+                  {message.message || ' '}
                 </Text>
                 <Text style={styles.dateSent}>
                   {getTime(message.date_sent)}
@@ -99,7 +100,7 @@ export default class Message extends Component {
                   this.renderAttachment()
                 }
                 <Text style={[styles.messageText, styles.selfToRight]}>
-                  {message.body || ' '}
+                  {message.message || ' '}
                 </Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
                   <Text style={styles.dateSent}>

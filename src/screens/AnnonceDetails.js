@@ -8,10 +8,15 @@ import { Text, Input, ListItem, Avatar, Button } from 'react-native-elements';
 import { themes } from '../color';
 import Head from '../components/Head'
 import { useTranslation } from 'react-i18next';
+import { useIsFocused } from "@react-navigation/native";
 
 export default function AnnonceDetails({route, navigation}){
 const {t} = useTranslation();
+ const isFocused = useIsFocused();
 const data = route.params?.param;
+useEffect(() => {
+	console.log('_____________________________________________________________________')
+}, [isFocused])
 
 	return(
 		<View style={{ flex: 1}}>

@@ -10,9 +10,10 @@ import AppIntroSlider from '@lomelidev/react-native-walkthrough';
 import Head from '../components/Head';
 import { params } from '../statefull/params';
 import { profil } from '../statefull/profil';
-
+import { useTranslation } from 'react-i18next';
 
 export default function Recovery({navigation}) {
+		const {t} = useTranslation()
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [pinSecure, setPinSecure] = useState(false);
@@ -46,7 +47,7 @@ export default function Recovery({navigation}) {
                   setChangeView1(2);
                 } else {
                   // if (datas[1] == 'un compte est deja associer a ce code') {
-                    showToast("Ce code n'est pas associé à un compte");
+                    showToast(t('common.toast.code_associate'));
                     setLoan(false)
                   // } else {
                   //   showToast("Votre code Fidèle n'est pas correct", 'top');
@@ -55,7 +56,7 @@ export default function Recovery({navigation}) {
                 }
               }).catch(async err => {
                 console.log(err);
-                showToast("Erreur du serveur");
+                showToast(t('common.toast.server_error'));
                 setLoan(false)
               });
         }
@@ -80,7 +81,7 @@ export default function Recovery({navigation}) {
                     }
                   }).catch(async error => {
                     console.warn(error);
-                    showToast("Erreur d'envoi de SMS");
+                    showToast(t('common.toast.sms_error'));
                     setLoan(false);
                   });
             }
@@ -98,7 +99,7 @@ export default function Recovery({navigation}) {
                     }
                   }).catch(async error => {
                     console.warn(error);
-                    showToast("Erreur d'envoi de SMS");
+                    showToast(t('common.toast.sms_error'));
                     setLoan(false);
                 });
             }
@@ -116,14 +117,14 @@ export default function Recovery({navigation}) {
                     }
                   }).catch(async error => {
                     console.warn(error);
-                    showToast("Erreur d'envoi de SMS");
+                    showToast(t('common.toast.sms_error'));
                     setLoan(false);
                 });
             }
             
           }
         } else {
-          showToast("Ce numéro ne correspond pas");
+          showToast(t('common.toast.error_num'));
         }
       }
 
@@ -135,7 +136,7 @@ export default function Recovery({navigation}) {
                   changeView1(4);
                 } else {
                   setLoan(false);
-                  showToast('Code de Confirmation incorrect');
+                  showToast(t('common.toast.bad_code'));
                 }
               });
         }
@@ -146,12 +147,12 @@ export default function Recovery({navigation}) {
             profil.smsConfirm({password: password, id: userId, numero: null}).then(async res =>  {
                 console.log(res);
                 if(res[0] == true) {
-                  showToast('Mot de Passe modifié avec succès', 'top');
+                  showToast(t('common.toast.pass_success'));
                   setLoan(false);
                   navigation.navigate('Login');
                 } else {
                   setLoan(false);
-                  showToast('Erreur de modification du mot de passe');
+                  showToast(t('common.toast.pass_error'));
                 }
               }).catch( error => {
                 console.log(error);
@@ -185,8 +186,8 @@ export default function Recovery({navigation}) {
                 <View style={styles.form}>
                     <View style={styles.input}>
                         <Input
-                            placeholder="Quel est votre Code Fidèle ?"
-                            label="Code Fidèle:" 
+                            placeholder={t('common.app.which_code')}
+                            label={t('common.app.fidele_code')}
                             labelStyle={styles.thelabel}
                             leftIcon={
                             <Ionicons 
@@ -200,7 +201,7 @@ export default function Recovery({navigation}) {
                     </View>
                     <View style={styles.button}>
                         <Button
-                            title="Suivant"
+                            title={t('common.app.next')}
 						    loading={loading}
                             onPress={()=> codeVerification()}
                         />
@@ -221,8 +222,8 @@ export default function Recovery({navigation}) {
                 <View style={styles.form}>
                     <View style={styles.input}>
                         <Input
-                            placeholder="Votre Numéro de Téléphone"
-                            label="Numéro:" 
+                            placeholder={t('common.app.your number')}
+                            label={t('common.app.numero')+':'} 
                             labelStyle={styles.thelabel}
                             leftIcon={
                             <Ionicons 
@@ -236,7 +237,7 @@ export default function Recovery({navigation}) {
                     </View>
                     <View style={styles.button}>
                         <Button
-                            title="Suivant"
+                            title= {t('common.app.next')}
                             loading={loading}
                             onPress={()=>numberVerification()}
                         />
@@ -257,8 +258,8 @@ export default function Recovery({navigation}) {
                     <View style={styles.form}>
                     <View style={styles.input}>
                         <Input
-                            placeholder="Entrez le code evoyé"
-                            label="Code SMS" 
+                            placeholder={t('common.app.send_code')}
+                            label={t('common.app.sms_code')} 
                             labelStyle={styles.thelabel}
                             leftIcon={
                             <Ionicons 
@@ -272,7 +273,7 @@ export default function Recovery({navigation}) {
                     </View>
                     <View style={styles.button}>
                         <Button
-                            title="Suivant"
+                            title={t('common.app.next')}
                             loading={loading}
                             onPress={()=>smsVerification()}
                         />
@@ -293,8 +294,8 @@ export default function Recovery({navigation}) {
                 <View style={styles.form}>
                 <View style={styles.input}>
                     <Input
-                        placeholder="Entrez le mot de passe"
-                        label="Mot de passe"
+                        placeholder={t('common.app.password_change')}
+                        label={t('common.app.password')}
                         labelStyle={themes.primary}
                         leftIcon={
                             <Ionicons 
@@ -319,7 +320,7 @@ export default function Recovery({navigation}) {
                     />
 
                     <Input
-                        placeholder="Confirmez le mot de passe"
+                        placeholder={t('common.app.pass_confirm')}
                         label="Confirmation"
                         labelStyle={themes.primary}
                         leftIcon={
@@ -343,11 +344,11 @@ export default function Recovery({navigation}) {
                         }
                         secureTextEntry={!pinSecure}
                     />
-                    {(!checkPassword)?<Text style={{fontSize: 12, color: 'red', textAlign: Center}}>Les mots de passe ne correspondent pas!</Text>:<Text></Text>}
+                    {(!checkPassword)?<Text style={{fontSize: 12, color: 'red', textAlign: Center}}>{t('common.app.diff_pass')}</Text>:<Text></Text>}
                 </View>
                 <View style={styles.button}>
                     <Button
-                        title="Valider"
+                        title={t('common.app.validate')}
                         loading={loading}
                         onPress={()=>changePassword()}
                     />
@@ -375,7 +376,7 @@ export default function Recovery({navigation}) {
       
       return (
           <View style={{flex: 1}}>
-			<Head screen={"Récupération"} n={navigation} second/>
+			<Head screen={t('common.app.recup')} n={navigation} second/>
             {
                 (changeView1 == 1)?slide1:(changeView1 == 2)?slide2:(changeView1 == 3)?slide3:slide4
             }

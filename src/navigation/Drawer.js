@@ -11,7 +11,7 @@ import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import Preparation from '../screens/Preparation'
 import ContactEglise from '../screens/ContactEglise'
-import Chat from '../screens/Chat'
+//import Chat from '../screens/Chat'
 import Recovery from '../screens/Recovery';
 import AnnonceDetails from '../screens/AnnonceDetails';
 import DetailLecture from '../screens/DetailLecture';
@@ -27,7 +27,6 @@ import DetailsContribution from '../screens/DetailsContribution'
 import SainteScene from '../screens/SainteScene'
 import Profil from '../screens/Profil'
 import Parametres from '../screens/Parametres'
-import ListChatRoom from '../screens/ListChatRoom'
 import { Text, Input, Button, Badge } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { themes, color } from '../color';
@@ -48,17 +47,36 @@ import DetailRdv from '../screens/DetailRdv';
 import TheBible from '../screens/TheBible';
 import ChapBible from '../screens/ChapBible';
 import VersetBible from '../screens/VersetBible';
+import { LogBox } from 'react-native';
+
+import AuthService from '../services/auth-service';
+
+import Auth from '../screens/auth'
+import Dialogs from '../screens/main/dialogs'
+import Settings from '../screens/main/settings/index'
+import Chat from '../screens/main/chat/index'
+import Contacts from '../screens/main/contacts/index'
+import CreateDialog from '../screens/main/contacts/createDialog'
+import GroupDetails from '../screens/main/chat/groupDetails'
+import ContactDetails from '../screens/main/chat/contactDetails'
+
 import { useTranslation } from 'react-i18next';
+import { profil } from '../statefull/profil';
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
 const DrawIcon = ({name, f}) => <Ionicons name={name} size={25} color={f ? color.primary : '#ccc'}/>
 
 const stacks = [
+  { composant: Auth, name: "Auth", swipe: true },
+  { composant: Dialogs, name: "Dialogs"},
+  { composant: Contacts, name: "Contacts", swipe: true },
+  { composant: CreateDialog, name: "CreateDialog", swipe: true },
+  { composant: GroupDetails, name: "GroupDetails", swipe: true },
+  { composant: ContactDetails, name: "ContactDetails", swipe: true },
   { composant: Accueil, name:"Accueil" },
   { composant: Finaces, name: "Finances"},
   { composant: Profil, name: "Profil" },
-  { composant: ListChatRoom,  name: "ChatRoom" },
   { composant: Annonces,  name: "Annonces" },
   { composant: LectureBiblique, name: "LectureBiblique" },
   { composant: Mediatheques, name: "Mediatheques" },
@@ -90,15 +108,15 @@ function CustomDrawerContent(props) {
     { label: t('common.app.accueil'), icon: 'home-outline', key: 0, name:"Accueil" },
     { label: t('common.app.mys')+' '+t('common.app.finances'), icon: 'logo-usd', key: 1 , name: "Finances"},
     { label: t('common.app.my2')+' '+t('common.app.profil'), icon: 'person-circle-outline', key: 2, name: "Profil" },
-    { label: t('common.app.message'), icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "ChatRoom" },
+    { label: t('common.app.message'), icon: 'chatbubble-outline', key: 3, badge: ()=><Badge status="success" value="+55"/>, name: "Dialogs" },
     { label: t('common.app.annonce'), icon: 'newspaper-outline', key: 4, name: "Annonces" },
-    { label: t('common.app.my')+' '+t('common.app.my_bible'), icon: 'book-outline', key: 4, name: "TheBible" },
-    { label: t('common.app.lecture_biblic'), name: "LectureBiblique", icon: 'reader-outline', key: 5 },
-    { label: t('common.app.mediatheque'), icon: 'musical-notes-outline', key: 6, name: "Mediatheques" },
-    { label: t('common.app.sainte_cene'), name: "SainteScene", icon: 'restaurant-outline', key: 7 },
-    { label: t('common.app.rendez_vous'), name: "Rendezvous", icon: 'stopwatch-outline', key: 8 },
-    { label: t('common.app.activites'), icon: 'logo-react', key: 9, name: "Activites" },
-    { label: t('common.app.settings'), icon: 'cog-outline', key: 10, name: "Parametres" }
+    { label: t('common.app.my')+' '+t('common.app.my_bible'), icon: 'book-outline', key: 5, name: "TheBible" },
+    { label: t('common.app.lecture_biblic'), name: "LectureBiblique", icon: 'reader-outline', key: 6 },
+    { label: t('common.app.mediatheque'), icon: 'musical-notes-outline', key: 7, name: "Mediatheques" },
+    { label: t('common.app.sainte_cene'), name: "SainteScene", icon: 'restaurant-outline', key: 8 },
+    { label: t('common.app.rendez_vous'), name: "Rendezvous", icon: 'stopwatch-outline', key: 9 },
+    { label: t('common.app.activites'), icon: 'logo-react', key: 10, name: "Activites" },
+    { label: t('common.app.settings'), icon: 'cog-outline', key: 11, name: "Parametres" }
   ];
   const [drawerItemIndex, setDrawerItemIndex] = React.useState(0);
   const _setDrawerItem = (index) => setDrawerItemIndex(index);
@@ -107,7 +125,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <DrawerItem label={()=>
           <View style={styles.container} >
-            <Image source={logo} style={styles.img} />
+            <Image source={{uri: "https://api.church-digital.net/Uploads/profile/"+profil.userData().image}} style={styles.img} />
             <Text h4 style={styles.name}>
               EEC {t('common.app.cameroon')}
             </Text>
@@ -131,10 +149,12 @@ export default function Drawers() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [user, setUser] = useState({});
   const [initialRouteName, setInitialRoute] = useState(null);
-
+  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+  LogBox.ignoreAllLogs();//Ignore all log notifications
   const connect = async (u) => {
     const user = u || user
     let res = await login.auth(user.username, user.password);
+    //AuthService.login(user);
     if (res) {
       setIsLoaded(false)
     }else{

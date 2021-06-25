@@ -21,7 +21,7 @@ import {
 const onChrome = (url) => {
   CustomTabs.openURL(url, {
     toolbarColor: '#607D8B',
-    enableUrlBarHiding: true,
+    enableUrlBarHiding: false,
     showPageTitle: false,
     enableDefaultShare: false,
     animations: {
