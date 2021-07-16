@@ -1,7 +1,7 @@
-import { Picker } from "@react-native-picker/picker";
+//import { Picker } from "@react-native-picker/picker";
 import React, { ChangeEvent, useState } from "react"
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Picker } from "react-native";
 import { Language } from '../Language';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 

@@ -49,11 +49,6 @@ return(
 		        			<Ionicons name={"help-circle-outline"} size={27} color={color.primary}/>
 		        			<Text>{" "+t('common.app.about_church')}</Text>
 		        		</View>
-						<View style={{...styles.end2, marginTop: hp('1%')}} >
-		        			<Ionicons name={"language-outline"} size={27} color={color.primary}/>
-		        			{/* <Text>{" A Propos de l'application"}</Text> */}
-							<Lang/>
-		        		</View>
 		        	</View>
 		        </View>
 	  		</View>
