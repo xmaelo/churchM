@@ -60,6 +60,7 @@ import CreateDialog from '../screens/main/contacts/createDialog'
 import GroupDetails from '../screens/main/chat/groupDetails'
 import ContactDetails from '../screens/main/chat/contactDetails'
 
+import Oldrgister from '../screens/old/Oldrgister'
 import { useTranslation } from 'react-i18next';
 import { profil } from '../statefull/profil';
 const ARG__ = createDrawerNavigator();
@@ -100,6 +101,7 @@ const stacks = [
   { composant: ChapBible, name: "ChapBible", swipe: true },
   { composant: VersetBible, name: "VersetBible", swipe: true },
   { composant: DetailsContribution, name: "DetailsContribution", swipe: true },
+  { composant: Oldrgister, name: "Oldrgister", swipe: true },
 ];
 
 function CustomDrawerContent(props) {

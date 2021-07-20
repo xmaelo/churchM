@@ -28,9 +28,10 @@ class login_check{
     try{
       const response = await request_post('/login_check', {username: username, password: password}, 'user-show');
       const decode =  jwt_decode(response.token);
+      console.log('_____________TOKEN____________', decode)
       user.setToken(response.token);
       const userInfo = await this.getUserInfo(decode?.username);
-      //console.log('userInfo.id userInfo.id userInfo.id', userInfo.id)
+      user.setRole(userInfo?.apiRole?.intitule)
       const personne = await this.getPersonne(userInfo.personne.id);
       user.setUserId(userInfo.personne.id);
       user.setUserOjt(decode);

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, ScrollView, StyleSheet, StatusBar, Image, TouchableOpacity, BackHandler, ImageBackground } from 'react-native';
+import {Picker, View, ScrollView, StyleSheet, StatusBar, Image, TouchableOpacity, BackHandler, ImageBackground } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {logo, bible} from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button, ListItem } from 'react-native-elements';
 import { themes, color } from '../color';
 import Head from '../components/Head';
-import { Picker } from '@react-native-picker/picker';
+//import { Picker } from '@react-native-picker/picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { profil } from '../statefull/profil';
 import { rendezvous } from '../statefull/rendezvous';
@@ -92,29 +92,24 @@ export default function NewRendezVous({navigation}) {
     return (
         <View style={{ flex: 1}}>
 			<Head screen={t('common.app.newrendez_vous')} n={navigation} second/>
-            <View>
-                <Text style={{textAlign: 'center', fontSize: 23, marginBottom: wp("5%")}}>{t('common.app.make_appointment')}</Text>
-                <View>
-                    <View style={styles.horizontal}>
+            <View style={{paddingHorizontal: wp('6%')}}>
+                <View style={{paddingTop: hp('2%')}}>
+                    <View style={{...styles.horizontal , alignItems: 'center'}}>
                         <Text style={styles.label}>
                         {t('common.app.pastor')}:
                         </Text>
-                        <Picker style={{width: wp("65%")}}
+                        <Picker
+                            style={{width: wp('60%')}}
                             selectedValue={selectedPasteur}
                             onValueChange={(itemValue, itemIndex) => {
-                                console.log('Pasteur: ', itemValue);
-                                setSelectedPasteur(itemValue)
-                            }          
-                            }>
-                                {
-                                    pasteurs.map((pasteur, i) => (
-                                        <Picker.Item key={i} label={pasteur.nom+"   "+pasteur.prenom} value={pasteur['@id']} />
-                                    )) 
-                                }
-                            {/* <Picker.Item label="Jean Bolveng" value="Jean Bolveng" />
-                            <Picker.Item label="Tonga Georges" value="Tonga Georges" />
-                            <Picker.Item label="Bikat Stephane" value="Bikat Stephane" />
-                            <Picker.Item label="Faro Faro" value="Faro Faro" /> */}
+                                    console.log('Pasteur: ', itemValue);
+                                    setSelectedPasteur(itemValue)
+                                }          
+                            }
+                        >
+                            {pasteurs.map((p, i) =>
+                                <Picker.Item key={i} label={p.nom+"   "+p.prenom} value={p['@id']} />
+                            )}
                         </Picker>
                     </View>
                     <View>

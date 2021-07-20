@@ -5,11 +5,16 @@ const apibaselink = 'https://api.church-digital.net/api';
 let userId = null;
 let token = null;
 let userInfo = {};
+let role = ""
 const cle = 'user-show'
 let userObj = {};
 class user_class {
   getUserId = () => userId;
   setUserId = (id) =>{ userId = id};
+
+
+  getRole = () => role;
+  setRole = (rol) =>{ role = rol};
 
   getToken = () => token;
   setToken = (t) => {token = t};

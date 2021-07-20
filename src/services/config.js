@@ -5,6 +5,6 @@ export default [
     authSecret: "zLxuDxJhTqKE6eD"
   },
   {
-    debug: {mode: 1},
+    //debug: {mode: 1},
   },
 ];

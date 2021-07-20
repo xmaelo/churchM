@@ -2,20 +2,17 @@
   "name": "Church",
   "displayName": "Church",
   "senderID": "273623971549",
-  "connectyCubeConfig": [
+  "connectyCubeConfig": [ 
     {
       "appId": 5002,
       "authKey": "9mmUxO58paU7NAq",
       "authSecret": "zLxuDxJhTqKE6eD"
     },
     { "chat": {
-      "streamManagement": {
+      "streamManagement": { 
         "enable": true
       }
-    },
-      "debug": {
-        "mode": 1
-      }
+    }
     }
   ]
 }

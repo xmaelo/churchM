@@ -15,12 +15,14 @@ import ChatService from '../../../services/chat-service'
 import { StackActions } from '@react-navigation/native';
 import Head from '../../../components/Head'
 
+import {user} from '../../../statefull/query'
+
 class Contacts extends PureComponent {
   isGroupDetails = false
 
   constructor(props) {
     super(props)
-    console.log('  this.props.navigation  this.props.navigation',  this.props.navigation)
+    console.log('  this.props.navigation  this.props.navigation', user.getRole())
     this.isGroupDetails = this.props.route?.isGroupDetails
 
     this.state = {
@@ -174,7 +176,7 @@ class Contacts extends PureComponent {
             />
           </View>
           <View style={styles.dialogTypeContainer}>
-            {!this.isGroupDetails &&
+            {!this.isGroupDetails && ["SUPER", "ADMINISTRATEUR"].includes(user.getRole()) &&
               <TouchableOpacity style={styles.dialogType} onPress={this.changeTypeDialog}>
                 {dialogType ? <IconGroup name="group" size={25} color='#48A6E3' /> :
                   <IconGroup name="user" size={25} color='#48A6E3' />

@@ -9,11 +9,13 @@ import { themes } from '../color';
 import Head from '../components/Head'
 import { useTranslation } from 'react-i18next';
 import { useIsFocused } from "@react-navigation/native";
+import { WebView } from 'react-native-webview';
 
 export default function AnnonceDetails({route, navigation}){
 const {t} = useTranslation();
  const isFocused = useIsFocused();
-const data = route.params?.param;
+const link = route.params?.link;
+console.log('link link link link', link)
 useEffect(() => {
 	console.log('_____________________________________________________________________')
 }, [isFocused])
@@ -21,13 +23,7 @@ useEffect(() => {
 	return(
 		<View style={{ flex: 1}}>
       		<Head screen={t('common.app.details')} n={navigation} second/>
-			<ScrollView>
-				<View>
-					<View>
-
-	        		</View>
-				</View>
-			</ScrollView>
+			<WebView source={{ uri: link }} />
 		</View>
 	)
 }

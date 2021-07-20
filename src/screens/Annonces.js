@@ -15,11 +15,12 @@ import { ActivityIndicator, Divider} from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 
 export default function Annonces({navigation}){
-const [list, setlist] = useState([]);
+const [list, setlist] = useState(null);
 const {t} = useTranslation();
 
  useEffect(()=>{
 	 (async()  => {
+
 		 let list = await annonce.getAnnonce();
 		 //setlist(list)
 		 console.log('------------------->>>list', list)
@@ -58,7 +59,7 @@ const {t} = useTranslation();
 										style={null}
 										left={props => <Avatar source={l.img} />}
 									>
-										<TouchableOpacity onPress={()=>navigation.navigate('AnnonceDetails', {param: l.title})}>
+										<TouchableOpacity onPress={()=>navigation.navigate('AnnonceDetails', {link: l.link})}>
 											<Text style={{fontStyle: 'italic', textDecorationLine: 'underline', color: color.primary, paddingBottom: 8}}>lire l'annonce</Text>
 										</TouchableOpacity>
 									</List.Accordion>

@@ -41,7 +41,8 @@ return(
 
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"send-outline"} size={27} color={color.primary}/>
-		        			<TouchableOpacity onPress={()=>navigation.navigate('ContactEglise')}>
+		        			<TouchableOpacity //onPress={()=>navigation.navigate('ContactEglise')}
+                  >
 		        				<Text>{" "+t('common.app.contact_church')}</Text>
 		        			</TouchableOpacity>
 		        		</View>

@@ -67,76 +67,85 @@ export default function LoginScreen({navigation}){
 							</Text>
 							<View style={styles.input}>
 								<Input
-															 placeholder="Votre Identifiant"
-															 label="FIDELE ID / Nr. Tel"
-															 labelStyle={themes.primary}
-															 leftIcon={
-																<Ionicons
-																		name={"person"}
-																		size={24}
-																/>
-															 }
-															 value={username}
-															 onChangeText={value => defineUsername(value)}
-														/>
+									 placeholder="Votre Identifiant"
+									 label="FIDELE ID / Nr. Tel"
+									 labelStyle={themes.primary}
+									 leftIcon={
+										<Ionicons
+												name={"person"}
+												size={24}
+										/>
+									 }
+									 value={username}
+									 onChangeText={value => defineUsername(value)}
+								/>
 
-														<Input
-															 placeholder="Mot de passe"
-															 label={t('common.app.password')}
-															 labelStyle={themes.primary}
-															 leftIcon={
-																		<Ionicons
-																				name={"lock-closed"}
-																				size={24}
-																		/>
-																}
-																value={password}
-																onChangeText={value => setPassword(value)}
-																rightIcon={
-																	<TouchableOpacity
-																			style={{padding: 4}}
-																			onPress={()=>setPinSecure(!pinSecure)}
-																	>
-																			<Ionicons
-																					name={pinSecure ? "eye": "eye-off"}
-																					size={24}
-																			/>
-																	</TouchableOpacity>
-																}
-																secureTextEntry={!pinSecure}
-														/>
-												</View>
-												<View style={styles.button}>
-													<Button
-														//title="Connexion"
-														icon={()=><Ionicons name="log-in-outline" size={30} color={'white'}/> }
-														mode="contained"
-														color={color.primary}
-														loading={loading}
-														onPress={()=>get_token()}
-													>
-														{t('common.app.login')}
-	 												</Button>
-												</View>
-												<View style={{...styles.logo, ...styles.bottom}}>
-													<Text style={themes.secondary}>{t('common.app.your_parish')}</Text>
-													<Text style={{...themes.secondary, ...styles.penser}}>
-													{t('common.app.passage')}
-													</Text>
-												</View>
-												<View style={styles.end}>
-													<TouchableOpacity>
-														<Text style={themes.secondary}
-														onPress={()=>navigation.navigate('Recovery')}>
-															{t('common.app.password_forget')}
-														</Text>
-													</TouchableOpacity>
-													<TouchableOpacity
-														onPress={()=>navigation.navigate('Register')}
-													>
-														<Text style={themes.primary}>{t('common.app.register')}</Text>
-													</TouchableOpacity>
-												</View>
+								<Input
+									 placeholder="Mot de passe"
+									 label={t('common.app.password')}
+									 labelStyle={themes.primary}
+									 leftIcon={
+												<Ionicons
+														name={"lock-closed"}
+														size={24}
+												/>
+										}
+										value={password}
+										onChangeText={value => setPassword(value)}
+										rightIcon={
+											<TouchableOpacity
+													style={{padding: 4}}
+													onPress={()=>setPinSecure(!pinSecure)}
+											>
+													<Ionicons
+															name={pinSecure ? "eye": "eye-off"}
+															size={24}
+													/>
+											</TouchableOpacity>
+										}
+										secureTextEntry={!pinSecure}
+								/>
+						</View>
+						<View style={styles.button}>
+							<Button
+								//title="Connexion"
+								icon={()=><Ionicons name="log-in-outline" size={30} color={'white'}/> }
+								mode="contained"
+								color={color.primary}
+								loading={loading}
+								onPress={()=>get_token()}
+							>
+								{t('common.app.login')}
+								</Button>
+						</View>
+
+						<View style={{...styles.logo, ...styles.bottom}}>
+							<TouchableOpacity
+								onPress={()=>navigation.navigate('Oldrgister')}
+							>
+
+								<Text style={themes.secondary}>
+									{t('Déjà inscrit à la Paroisse?')}
+								</Text>
+
+							</TouchableOpacity>
+							<Text style={{...themes.secondary, ...styles.penser}}>
+							{t('common.app.passage')}
+							</Text>
+						</View>
+						<View style={{...styles.end, paddingBottom: 30}}>
+							<TouchableOpacity>
+								<Text style={themes.secondary}
+								onPress={()=>navigation.navigate('Recovery')}>
+									{t('common.app.password_forget')}
+								</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								onPress={()=>navigation.navigate('Register')}
+							>
+								<Text style={themes.primary}>{t('common.app.register')}</Text>
+							</TouchableOpacity>
+						</View>
 						</View>
 					</View>
 				</View>
