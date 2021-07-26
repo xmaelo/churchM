@@ -577,7 +577,7 @@ export default function RegisterScreen({navigation}){
 						{setRegion(itemValue['@id']); setLesDepartements(itemValue.departements); console.log('Regions: ', lesDepartements)}
 					}>
 						{
-							lesRegions.map((l,i) => (
+							lesRegions && lesRegions.map((l,i) => (
 
 							<Picker.Item key={i} label={l.nom} value={l} />
 							))
