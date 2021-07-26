@@ -6,13 +6,10 @@ import {logo} from "../assets"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
 import { themes, color } from '../color';
-import { CheckBox } from 'react-native-elements'
-import AppIntroSlider from '@lomelidev/react-native-walkthrough';
 import { params } from '../statefull/params';
 import RadioButtonRN from 'radio-buttons-react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { profil } from '../statefull/profil';
-import { login } from '../statefull/login';
 import { useTranslation } from 'react-i18next';
 
 function Header({text}){
@@ -475,18 +472,21 @@ export default function RegisterScreen({navigation}){
 
 						<Text style={styles.label}>
 						{t('common.app.zone_habit')}
-	                    	</Text>
-						<Picker
-						selectedValue={zone}
-						onValueChange={(itemValue, itemIndex) =>
-							setZone(itemValue)
-						}>
-						{
-							lesZones.map((l,i) => (
-								<Picker.Item key={i} label={l.nom} value={l.nom} />
-								))
-						}
-						</Picker>
+	                    </Text>
+						<View>
+							<Picker
+							selectedValue={zone}
+							onValueChange={(itemValue, itemIndex) =>
+								setZone(itemValue)
+							}>
+							{
+								lesZones.map((l,i) => (
+									<Picker.Item key={i} label={l.nom} value={l.nom} />
+									))
+							}
+							</Picker>
+							<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+						</View>
 						</View>
 	                       <View style={styles.button}>
 	                     	<Button
@@ -576,8 +576,7 @@ export default function RegisterScreen({navigation}){
 					onValueChange={(itemValue, itemIndex) =>
 						{setRegion(itemValue['@id']); setLesDepartements(itemValue.departements); console.log('Regions: ', lesDepartements)}
 					}>
-						{
-							lesRegions && lesRegions.map((l,i) => (
+						{lesRegions && lesRegions.map((l,i) => (
 
 							<Picker.Item key={i} label={l.nom} value={l} />
 							))

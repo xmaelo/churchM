@@ -1,17 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {Picker, View, ScrollView, StyleSheet, StatusBar, Image, TouchableOpacity, BackHandler, ImageBackground } from 'react-native';
+import {View, StyleSheet  } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {logo, bible} from "../assets"
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Text, Input, Button, ListItem } from 'react-native-elements';
-import { themes, color } from '../color';
+import { Text, Input, Button } from 'react-native-elements';
 import Head from '../components/Head';
-//import { Picker } from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { profil } from '../statefull/profil';
 import { rendezvous } from '../statefull/rendezvous';
-import { RadioButton } from 'react-native-paper/lib/typescript/components/RadioButton/RadioButton';
 import RadioButtonRN from 'radio-buttons-react-native';
 import { user } from '../statefull/query';
 import { useTranslation } from 'react-i18next';
@@ -87,7 +83,7 @@ export default function NewRendezVous({navigation}) {
                 // console.log("Pasteurs: ", pasto)
         })();
         return;
-      }, [])
+      }, []) 
     
     return (
         <View style={{ flex: 1}}>
@@ -105,12 +101,13 @@ export default function NewRendezVous({navigation}) {
                                     console.log('Pasteur: ', itemValue);
                                     setSelectedPasteur(itemValue)
                                 }          
-                            }
+                            } 
                         >
                             {pasteurs.map((p, i) =>
                                 <Picker.Item key={i} label={p.nom+"   "+p.prenom} value={p['@id']} />
                             )}
                         </Picker>
+                        <Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
                     </View>
                     <View>
                         <Input

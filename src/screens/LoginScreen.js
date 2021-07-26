@@ -30,6 +30,8 @@ export default function LoginScreen({navigation}){
 		}, [])
 
 		const get_token =  async() => {
+			// navigation.navigate('Accueil', {personne: null});
+			// return
 			 try {
 				 if(!loading){
 					 setLoan(true)
