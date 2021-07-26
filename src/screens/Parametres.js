@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { View, ScrollView, StyleSheet, StatusBar, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {logo} from "../assets"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
@@ -50,7 +49,12 @@ return(
 		        			<Ionicons name={"help-circle-outline"} size={27} color={color.primary}/>
 		        			<Text>{" "+t('common.app.about_church')}</Text>
 		        		</View>
-		        	</View>
+
+                <View style={{...styles.end2, marginTop: hp('1%')}}>
+                    <Ionicons name={"language-outline"} size={27} color={color.primary}/>
+                    <Lang/>
+		        	  </View>
+                </View>
 		        </View>
 	  		</View>
 		</View>
