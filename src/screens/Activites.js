@@ -11,7 +11,7 @@ import { themes, color } from '../color';
 import Head from '../components/Head'
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import {activite} from '../statefull/activites'
+import {activite} from '../statefull/activites' 
 import { List } from 'react-native-paper';
 import { ActivityIndicator, Divider} from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -54,7 +54,7 @@ const [acts, setA] =  useState(null);
 									//left={props => <Avatar source={logo} />}
 								>
 									{a.supActivity&&a.supActivity.map((sub, k) =>
-										<TouchableOpacity key={k} onPress={()=>navigation.navigate('ActivitesDetails', {id: sub.id})} style={{flexDirection: 'row'}}>
+										<TouchableOpacity key={k} onPress={()=>navigation.navigate('ActivitesDetails', {act: sub})} style={{flexDirection: 'row'}}>
 											<Ionicons name="arrow-forward-outline" size={23} />
 											<Text style={{fontStyle: 'italic', color: color.primary, paddingBottom: 8}}>{sub.intitule}</Text>
 										</TouchableOpacity>

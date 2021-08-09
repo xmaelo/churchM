@@ -8,6 +8,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 var changedLang = false;
 const Lang = () => {
     const { i18n } = useTranslation();
+    const {t} = useTranslation()
     const [lang, setLang] = useState<Language>(i18n.language as Language);
  
     let changeLanguage = (event) => {
@@ -34,9 +35,9 @@ const Lang = () => {
             selectedValue={lang}
             onValueChange={(itemValue, itemIndex) =>
                 changeLanguage(itemValue)
-            }>
-                <Picker.Item label="Français" value={Language.FR} />
-                <Picker.Item label="English" value={Language.EN} />
+            }> 
+                <Picker.Item label={t('common.app.French')} value={Language.FR} />
+                <Picker.Item label={t('common.app.English')} value={Language.EN} />
             </Picker>
         </View>
         // <div>

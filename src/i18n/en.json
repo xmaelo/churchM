@@ -10,6 +10,7 @@
             "Deuteronomy": "Deuteronomy",
             "Joshua": "Joshua",
             "Judges": "Judges",
+            "part": "Member",
             "Ruth": "Ruth",
             "1_Samuel": "1 Samuel",
             "2_Samuel": "2 Samuel",
@@ -71,6 +72,10 @@
             "Revelation": "Revelation"
         },
         "app": {
+            "mere":"Mother",
+            "resp": "Owner",
+            "French": "French",
+            "English": "English",
             "verse": "Verse",
             "my_bible":"Holy Bible",
             "annonce":"Announcements",
