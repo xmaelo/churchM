@@ -1,8 +1,9 @@
 //import { Picker } from "@react-native-picker/picker";
-import React, { ChangeEvent, useState } from "react"
+import React, { useState } from "react"
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, Picker } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { Language } from '../Language';
+import { Picker } from '@react-native-picker/picker';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 var changedLang = false;
@@ -39,15 +40,8 @@ const Lang = () => {
                 <Picker.Item label={t('common.app.French')} value={Language.FR} />
                 <Picker.Item label={t('common.app.English')} value={Language.EN} />
             </Picker>
+            <Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
         </View>
-        // <div>
-        //     <div>
-        //         <select value={lang} name="language" onChange={changeLanguage}>
-        //             <option value={Language.FR}>FR</option>
-        //             <option value={Language.EN}>EN</option>
-        //         </select>
-        //     </div>
-        // </div>
     )
 }
 

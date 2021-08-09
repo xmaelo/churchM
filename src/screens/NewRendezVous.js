@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, StyleSheet, Image  } from 'react-native';
+import {View, StyleSheet  } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {logo, bible} from "../assets"
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, Input, Button } from 'react-native-elements';
-import { themes, color } from '../color';
 import Head from '../components/Head';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -86,7 +83,7 @@ export default function NewRendezVous({navigation}) {
                 // console.log("Pasteurs: ", pasto)
         })();
         return;
-      }, [])
+      }, []) 
     
     return (
         <View style={{ flex: 1}}>
@@ -110,6 +107,7 @@ export default function NewRendezVous({navigation}) {
                                 <Picker.Item key={i} label={p.nom+"   "+p.prenom} value={p['@id']} />
                             )}
                         </Picker>
+                        <Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
                     </View>
                     <View>
                         <Input

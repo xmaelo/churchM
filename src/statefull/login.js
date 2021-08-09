@@ -9,7 +9,7 @@ class login_check{
       try {
         //console.log('starting get user', username)
         let res = await request_get("/users?username="+username, "user-show")
-        //console.log('>>> result getUser', res['hydra:member'][0].id)
+        //console.log('>>> result getUser', res)
         return res['hydra:member'][0];
       } catch (error) {
         console.error(error);

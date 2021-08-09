@@ -1,6 +1,7 @@
 import RNFetchBlob from "react-native-fetch-blob";
 
-const apibaselink = 'https://api.church-digital.net/api';
+const apibaselink = 'https://api.church-digital.net/api';//https://api.eecsoboum.org/api
+const database = "churchv3M2_2021" //churchv3m4_2021
 
 let userId = null;
 let token = null;
@@ -34,7 +35,7 @@ export function request_post(route, body, cle){
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
         'cle': cle,
-        'database': 'churchv3M2_2021',
+        'database': database,
         'authorization': 'Bearer '+user.getToken(),
         'Content-Type': 'application/json'
     },
@@ -56,7 +57,7 @@ export function request_post_notkn(route, body, cle){
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
         'cle': cle,
-        'database': 'churchv3M2_2021',
+        'database': database,
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
@@ -77,7 +78,7 @@ export function request_put(body, route, cle){
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
         'cle': cle ? cle : 'user-show',
-        'database': 'churchv3M2_2021',
+        'database': database,
         'authorization': 'Bearer '+user.getToken(),
         'Content-Type': 'application/json'
     },
@@ -99,7 +100,7 @@ export function request_put_notkn(body, route, cle){
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
         'cle': cle ? cle : 'user-show',
-        'database': 'churchv3M2_2021',
+        'database': database,
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
@@ -120,7 +121,7 @@ export function request_file(body, route, cl=cle){
        headers: {
         'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
         'cle': cl,
-        'database': 'churchv3M2_2021',
+        'database': database,
         'authorization': 'Bearer '+user.getToken(),
         // 'Content-Type': 'multipart/form-data'
     },
@@ -142,7 +143,7 @@ export function request_file2(body, route, cle) {
     Authorization : 'Bearer '+user.getToken(),
     pass : "9afac0b31fb7c699ef123aaeefe18cafa7b40921",
     cle : cle,
-    database : "churchv3M2_2021",
+    database : "churchv3m4_2021",
     'Content-Type' : 'multipart/form-data',
   }, [
     // custom content type
@@ -166,7 +167,7 @@ export function request_get(route, clx=cle){
        headers: {
          'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
          'cle': clx,
-         'database': 'churchv3M2_2021',
+         'database': database,
          'authorization': authorization,
          'Content-Type': 'application/json'
     }
@@ -188,7 +189,7 @@ export function request_get_notkn(route, clx=cle){
        headers: {
          'pass': '9afac0b31fb7c699ef123aaeefe18cafa7b40921',
          'cle': clx,
-         'database': 'churchv3M2_2021',
+         'database': database,
          'Content-Type': 'application/json'
     }
   }).then(

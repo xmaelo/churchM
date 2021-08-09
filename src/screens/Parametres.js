@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Text, Input, Button } from 'react-native-elements';
-import { themes, color} from '../color';
+import { Text } from 'react-native-elements';
+import { color} from '../color';
 import Head from '../components/Head'
 import Lang from '../components/Lang';
 import { useTranslation } from 'react-i18next';
