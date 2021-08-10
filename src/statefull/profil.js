@@ -81,7 +81,9 @@ class onInfos{
   }
 
   createPersonne = async (data) => {
+    console.log('data data', data)
       var res = await request_post_notkn("/fidele/inscription", data, 'inscription-save');
+      console.log('data data', res)
       return res;
   }
 

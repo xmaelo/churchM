@@ -196,11 +196,7 @@ export default function RegisterScreen({navigation}){
         err = t('common.toast.not_email');
       } 
     } else if (slideNumber == 2){
-      if (!nomPere) {
-        err = t('common.toast.required_father');
-      } else if (!nomMere) {
-        err = t('common.toast.required_mother');
-      } else if (!mati) {
+      if (!mati) {
         err = t('common.toast.required_matri');
       } else if (!region) {
         err = t('common.toast.required_region');
@@ -215,7 +211,7 @@ export default function RegisterScreen({navigation}){
       //   err = 'Le nombre d\'enfants est requis';
       // } 
     } else if(slideNumber == 3) {
-      if (!statutPro) {
+      if (false) {//(!statutPro)
         err = t('common.toast.required_activity');
       } else {
         if(statutPro == "Etudiant/Elève") {
@@ -546,7 +542,7 @@ export default function RegisterScreen({navigation}){
 					onChangeText={value => setNomMere(value)}
 					value={nomMere}
 					leftIcon={
-						<Ionicons
+						<Ionicons 
 							name={"woman"}
 							size={18}
 						/>
@@ -557,20 +553,23 @@ export default function RegisterScreen({navigation}){
 					<Text style={styles.label}>
 					{t('common.app.statut_matri')}
 					</Text>
-					<Picker
-					selectedValue={mati}
-					onValueChange={(itemValue, itemIndex) =>
-						setMatri(itemValue)
-					}>
-					<Picker.Item label="Célibataire" value="celibataire" />
-					<Picker.Item label="Marié(e)" value="marie" />
-					<Picker.Item label="Fiancé(e)" value="fiance" />
-					<Picker.Item label="Divorcé(e)" value="divorce" />
-					</Picker>
-
+					<View style={styles.thewdth}>
+						<Picker
+						selectedValue={mati}
+						onValueChange={(itemValue, itemIndex) =>
+							setMatri(itemValue)
+						}>
+						<Picker.Item label="Célibataire" value="celibataire" />
+						<Picker.Item label="Marié(e)" value="marie" />
+						<Picker.Item label="Fiancé(e)" value="fiance" />
+						<Picker.Item label="Divorcé(e)" value="divorce" />
+						</Picker>
+						<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+					</View>
 					<Text style={styles.label}>
 						{t('common.app.region')}
 					</Text>
+					<View>
 					<Picker
 					selectedValue={region}
 					onValueChange={(itemValue, itemIndex) =>
@@ -582,38 +581,47 @@ export default function RegisterScreen({navigation}){
 							))
 						}
 					</Picker>
+					<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+					</View>
 
 					<Text style={styles.label}>
 					{t('common.app.departmt')}
 					</Text>
-					<Picker
-					selectedValue={departement}
-					onValueChange={(itemValue, itemIndex) =>
-						{setDepartement(itemValue['@id']); setLesArrondis(itemValue.arrondissements);}
-					}>
-						{
-							lesDepartements.map((l,i) => (
+					<View>
+						<Picker
+						selectedValue={departement}
+						onValueChange={(itemValue, itemIndex) =>
+							{setDepartement(itemValue['@id']); setLesArrondis(itemValue.arrondissements);}
+						}>
+							{
+								lesDepartements.map((l,i) => (
 
-							<Picker.Item key={i} label={l.nom} value={l} />
-							))
-						}
-					</Picker>
+								<Picker.Item key={i} label={l.nom} value={l} />
+								))
+							}
+						</Picker>
 
+					<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+					</View>
 					<Text style={styles.label}>
 					{t('common.app.arrondis')}
 					</Text>
-					<Picker
-					selectedValue={arrondis}
-					onValueChange={(itemValue, itemIndex) =>
-						setArrondis(itemValue)
-					}>
-						{
-							lesArrondis.map((l,i) => (
+					<View>
+						<Picker
+						selectedValue={arrondis}
+						onValueChange={(itemValue, itemIndex) =>
+							setArrondis(itemValue)
+						}>
+							{
+								lesArrondis.map((l,i) => (
 
-							<Picker.Item key={i} label={l.nom} value={l['@id']} />
-							))
-						}
-					</Picker>
+								<Picker.Item key={i} label={l.nom} value={l['@id']} />
+								))
+							}
+						</Picker>
+					
+					<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+					</View>
 
 					<Input
 					placeholder={t('common.app.ville')}
@@ -636,6 +644,7 @@ export default function RegisterScreen({navigation}){
 					labelStyle={styles.thelabel}
 					onChangeText={value => setNbreEnfant(value)}
 					value={nbreEnfant}
+					keyboardType = 'numeric'
 					leftIcon={
 						<Ionicons
 							name={"people"}
@@ -674,6 +683,7 @@ export default function RegisterScreen({navigation}){
 					<Text style={styles.label}>
 					{t('common.app.statut_pro')+':'}
 					</Text>
+					<View>
 					<Picker
 					selectedValue={statutPro}
 					onValueChange={(itemValue, itemIndex) =>
@@ -684,6 +694,9 @@ export default function RegisterScreen({navigation}){
 					<Picker.Item label="Travailleur" value="Travailleur" />
 					<Picker.Item label="Activité Libérale" value="Activité Libérale" />
 					</Picker>
+					<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+					</View>
+
 					{
 						(statutPro == "Etudiant/Elève")?
 						<View>
@@ -817,22 +830,25 @@ export default function RegisterScreen({navigation}){
 					<Text style={styles.label}>
 						{t('common.app.statut_paroi')}
 						</Text>
-						<Picker
-						selectedValue={statutParoi}
-						onValueChange={(itemValue, itemIndex) =>
-							setstatutParoi(itemValue)
-						}>
-						<Picker.Item label="FIDELE" value="FIDELE" />
-						<Picker.Item label="ANCIEN" value="ANCIEN" />
-						<Picker.Item label="ANCIEN HONORAIRE" value="ANCIEN HONORAIRE" />
-						<Picker.Item label="CONSEILLER" value="CONSEILLER" />
-						<Picker.Item label="DIACRE" value="DIACRE" />
-						<Picker.Item label="MONITEUR" value="MONITEUR" />
-						<Picker.Item label="DIASPORA" value="DIASPORA" />
-						<Picker.Item label="CATECHUMENE" value="CATECHUMENE" />
-						<Picker.Item label="CULTE D'ENFANT" value="CULTE D'ENFANT" />
-						<Picker.Item label="PERSONNEL EMPLOYE" value="PERSONNEL EMPLOYE" />
-					</Picker>
+						<View style={styles.thewdth}>
+							<Picker
+							selectedValue={statutParoi}
+							onValueChange={(itemValue, itemIndex) =>
+								setstatutParoi(itemValue)
+							}>
+								<Picker.Item label="FIDELE" value="FIDELE" />
+								<Picker.Item label="ANCIEN" value="ANCIEN" />
+								<Picker.Item label="ANCIEN HONORAIRE" value="ANCIEN HONORAIRE" />
+								<Picker.Item label="CONSEILLER" value="CONSEILLER" />
+								<Picker.Item label="DIACRE" value="DIACRE" />
+								<Picker.Item label="MONITEUR" value="MONITEUR" />
+								<Picker.Item label="DIASPORA" value="DIASPORA" />
+								<Picker.Item label="CATECHUMENE" value="CATECHUMENE" />
+								<Picker.Item label="CULTE D'ENFANT" value="CULTE D'ENFANT" />
+								<Picker.Item label="PERSONNEL EMPLOYE" value="PERSONNEL EMPLOYE" />
+							</Picker>
+							<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+        				</View>
 
 					<Text style={styles.label}>
 					{t('common.app.malade')} ?
@@ -860,18 +876,21 @@ export default function RegisterScreen({navigation}){
 					/>
 					{
 						(membreGroupe)?
+					<View style={styles.thewdth}>
 						<Picker
-					selectedValue={groupes}
-					onValueChange={(itemValue, itemIndex) =>
-						setGroupes([itemValue])
-					}>
-						{
-							zonesGroupes.map((l,i) => (
+						selectedValue={groupes}
+						onValueChange={(itemValue, itemIndex) =>
+							setGroupes([itemValue])
+						}>
+							{
+								zonesGroupes.map((l,i) => (
 
-							<Picker.Item key={i} label={l.nom} value={l['@id']} />
-							))
-						}
-					</Picker>:
+								<Picker.Item key={i} label={l.nom} value={l['@id']} />
+								))
+							}
+						</Picker>
+						<Text style={{width: '100%', height: 60, position: 'absolute', bottom: 0, left: 0}}>{' '}</Text>
+	        			</View>:
 						<View></View>
 					}
 				   </View>
@@ -983,4 +1002,7 @@ const styles = StyleSheet.create({
     width: 320,
     height: 320,
   },
+  thewdth: {
+        //width: wp('50%')
+    }
   });

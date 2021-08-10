@@ -127,7 +127,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <DrawerItem label={()=>
           <View style={styles.container} >
-            <Image source={{uri: "https://api.church-digital.net/Uploads/profile/"+profil.userData().image}} style={styles.img} />
+            <Image source={{uri: "https://i.ytimg.com/vi/uC3vwBGkSDQ/hqdefault.jpg"}} style={styles.img} />
             <Text h4 style={styles.name}>
               EEC {t('common.app.cameroon')}
             </Text>

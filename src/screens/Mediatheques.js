@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 export default function Mediatheques({navigation}){
 const {t} = useTranslation();
 const [mainVideo, setMainVideo] = useState("");
-	const [videoList, setVideoList] = useState([]);
+	const [videoList, setVideoList] = useState([]); 
 	const [modalVisible, setModalVisible] = useState(false);
 	const [modalLink, setModalLink] = useState("");
 
@@ -72,7 +72,8 @@ const [mainVideo, setMainVideo] = useState("");
 				{
 					videoList.map((l, i) => (
 					<ListItem key={i} bottomDivider onPress={() => { setModalLink(l.id.videoId.toString());setModalVisible(true)}}>
-						<Avatar source={l.snippet.thumbnails.high.url} />
+						
+						<Image source={{uri: l.snippet.thumbnails.high.url}} style={styles.img} />
 						<ListItem.Content>
 						<ListItem.Title>{l.snippet.title}</ListItem.Title>
 						<ListItem.Subtitle>{l.snippet.description}</ListItem.Subtitle>
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22
   },
+  img: {width: 60, height: 60, borderWidth: 6},
   modalView: {
     margin: 20,
     backgroundColor: "white",
