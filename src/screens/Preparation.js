@@ -55,8 +55,8 @@ export default function Preparation(props){
       console.log('>>>> YESYEYEYSYSY ', auth.getUserInfo());
 
         let datas = await prepas.getActualPrepa()
-        console.log(datas);
-				let finalContributions = []
+        console.log("**************mont***************", datas);
+		let finalContributions = []
         if(datas[0]) {
             setC(datas);
             setIdPrepa(datas[0].idpreparation);
@@ -64,7 +64,7 @@ export default function Preparation(props){
             //for(let contribution of datas) contribution['montant'] = 0;
 	          let id, number;
 	          datas.forEach(contrib => {
-							console.log('_______________', contrib.nom)
+							console.log('_______________', contrib)
 	            if (contrib.nom != "Offrandes des Corps d'Elites(Anciens, Diacres, Conseillers)" && contrib.nom != 'Offrandes des Hommes' && contrib.nom != 'Offrandes des Femmes' && contrib.nom != 'Offrandes des Jeunes(Elèves et Etudiants)') {
 	              console.log('>>>>> Nouvelles contribution', contrib.nom);
 	              finalContributions.push(contrib);
