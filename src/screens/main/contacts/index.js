@@ -11,7 +11,7 @@ import { showAlert } from '../../../helpers/alert'
 import CreateBtn from '../../components/createBtn'
 import { BTN_TYPE } from '../../../helpers/constants'
 import ChatService from '../../../services/chat-service'
-//import { popToTop } from '../../../routing/init'
+//import { popToTop } from '../.isGroupDetails./../routing/init'
 import { StackActions } from '@react-navigation/native';
 import Head from '../../../components/Head'
 
@@ -22,8 +22,8 @@ class Contacts extends PureComponent {
 
   constructor(props) {
     super(props)
-    console.log('  this.props.navigation  this.props.navigation', user.getRole())
-    this.isGroupDetails = this.props.route?.isGroupDetails
+    console.log('  this.props.navigation  this.props.navigation', user.getRole(), props, this.props)
+    this.isGroupDetails = props.route?.params?.isGroupDetails
 
     this.state = {
       keyword: '',
@@ -34,7 +34,7 @@ class Contacts extends PureComponent {
     }
     this.searchUsers()
   }
-
+//679261371
   listUsers = null
 
   selectedUsers = []
@@ -93,7 +93,7 @@ class Contacts extends PureComponent {
   }
 
   selectUsers = (user) => {
-    const dialog = this.props?.route.dialog
+    const dialog = this.props?.route?.params?.dialog
     const str = dialog ? dialog.occupants_ids.length : 1
     // False - Private dialog
     if (!this.state.dialogType) {
@@ -125,7 +125,7 @@ class Contacts extends PureComponent {
   }
 
   searchUsers = () => {
-    const dialog = this.props.route?.dialog || false
+    const dialog = this.props.route?.params?.dialog || false
     const { keyword } = this.state
     let str = keyword.trim()
     //if (str =  '' || str !== '' && str.length > 2) {
@@ -146,8 +146,10 @@ class Contacts extends PureComponent {
 
   goToCreateDialogScreen = () => {
     const { navigation } = this.props
+    console.log('this.isGroupDetails ', this.isGroupDetails)
+
     if (this.isGroupDetails) {
-      const addParticipant = this.props.route?.addParticipant || false
+      const addParticipant = this.props.route?.params.addParticipant || false
       navigation.goBack(null)
       addParticipant(this.selectedUsers)
       return

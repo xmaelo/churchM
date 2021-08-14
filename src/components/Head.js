@@ -38,13 +38,12 @@ export default function Head({n, screen, second, dialog, isNeedFetchUsers, isGro
         </TouchableOpacity>
       }
       centerComponent={()=><Text style={{fontSize: 18, fontWeight: 'bold', fontStyle: 'italic', color: "white"}}>{screen}</Text>}
-      /*
+     
       rightComponent={isGroup ? ()=>
           <TouchableOpacity onPress={()=>n.navigate('GroupDetails', { dialog: dialog, isNeedFetchUsers })}>
             <Ionicons name={"cog-outline"} size={24} color={"#fff"}/>
           </TouchableOpacity> : null
       }
-      */
   />
 
 	)

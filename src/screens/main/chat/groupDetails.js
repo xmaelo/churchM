@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   TextInput,
-  FlatList,
+  FlatList, 
   Alert
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -19,7 +19,7 @@ import ChatService from '../../../services/chat-service'
 import Avatar from '../../components/avatar'
 import { SIZE_SCREEN } from '../../../helpers/constants'
 import Indicator from '../../components/indicator'
-import { showAlert } from '../../../helpers/alert'
+import { showAlert } from '../../../helpers/alert' 
 //import { popToTop } from '../../../routing/init'
 
 export default class GroupDetails extends Component {
@@ -57,6 +57,7 @@ export default class GroupDetails extends Component {
 
   updateDialog = () => {
     const dialog = this.props.route?.params?.dialog || false
+    console.log('dialog dialog dialog', dialog)
     const { dialogName, isPickImage } = this.state
     const updateInfo = {}
     if (dialogName !== dialog.name) {
@@ -93,13 +94,16 @@ export default class GroupDetails extends Component {
           onPress: () => {
             this.setState({ isLoader: true })
             ChatService.deleteDialog(dialog.id)
-              .then(() => {
+              .then(() => { 
                 this.setState({ isLoader: false })
                 //this.props.navigation.dispatch(popToTop)
+                this.props.navigation.navigate('Dialogs')
+
               })
               .catch((error) => {
                 this.setState({ isLoader: false })
                 //this.props.navigation.dispatch(popToTop)
+                this.props.navigation.navigate('Dialogs')
               })
           }
         },

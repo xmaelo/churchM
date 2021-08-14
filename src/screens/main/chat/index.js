@@ -30,7 +30,6 @@ function Chat(props) {
   const [messageText, setMessageText] = useState('')
   //const [history, setHistory] = useState([])
   const isFocused = useIsFocused();
-
   const feth  = async() =>{
     console.log('props props props', props)
     const { dialog } = props.route?.params
@@ -100,7 +99,7 @@ function Chat(props) {
 
   return (
       <>
-        <Head screen={"Conversation"} n={props?.navigation} second isGroup dialog={props?.route?.params?.dialog} isNeedFetchUsers={props.route?.params?.isNeedFetchUsers}/>
+        <Head screen={"Conversation"} n={props?.navigation} second isGroup={props?.route?.params?.dialog?.type==2} dialog={props?.route?.params?.dialog} isNeedFetchUsers={props.route?.params?.isNeedFetchUsers}/>
         <KeyboardAvoidingView
           style={{ flex: 1, backgroundColor: 'white' }}
           behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -114,7 +113,7 @@ function Chat(props) {
             )
           }
           <FlatList
-            inverted
+            inverted 
             data={history}
             keyExtractor={_keyExtractor}
             renderItem={({ item }) => _renderMessageItem(item)}
