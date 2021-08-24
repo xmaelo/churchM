@@ -28,43 +28,46 @@ export default function Rendezvous({navigation}){
 		<View style={{ flex: 1}}>
 			<Head screen={t('common.app.rendez_vous')} n={navigation}/>
 				<ScrollView style={{ flex: 1}}>
-				{   (!rdzvous)? <View><Text style={{fontSize: 20}}> {t('common.app.no_appointment')}</Text></View>:
-					rdzvous.map((l, i) => (
-					<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailRdv', {param: l})}>
-						<ListItem.Content>
-						<View style={styles.textStyle}>
-							<View>
-                  {(l.etat == "EN ATTENTE")? <Text style={{fontWeight: 'bold', color: 'blue'}}>{l.etat}</Text>:(l.etat == "ACCEPTER")?<Text style={{fontWeight: 'bold', color: 'green'}}>{l.etat}</Text>: 
-				  (l.etat == "REPORTER")?<Text style={{fontWeight: 'bold', color: 'rgb(255, 94, 0)'}}>{l.etat}</Text>: <Text style={{fontWeight: 'bold', color: 'red'}}>{l.etat}</Text>}
-                  <Text>{l.raison}</Text>
-							</View>
-							<View style={{marginLeft: 300, position: 'absolute'}}>
-                                {
-                                    (l.etat == "EN ATTENTE")?<Ionicons
-									name={"time-outline"}
-                                    size={30}
-                                    color={color.primary}
-								/> : (l.etat == "ACCEPTER")? <Ionicons
-                                name={"checkmark-done-sharp"}
-                                size={30}
-                                color={color.green}
-                            />: (l.etat == "REPORTER")? <Ionicons
-								name={"calendar-outline"}
-								size={30}
-								color={color.green}
-							/>: <Ionicons
-								name={"close-circle-outline"}
-								size={30}
-								color={color.green}
-							/>
-                                }
+					<View style={{ paddingHorizontal: wp('3%')}}>
+						{   (!rdzvous)? <View><Text style={{fontSize: 20}}> {t('common.app.no_appointment')}</Text></View>:
+							rdzvous.map((l, i) => (
+							<ListItem key={i} bottomDivider onPress={()=>navigation.navigate('DetailRdv', {param: l})}>
+								<ListItem.Content>
+								<View style={styles.textStyle}>
+									<View>
+						{(l.etat == "EN ATTENTE")? <Text style={{fontWeight: 'bold', color: 'blue'}}>{l.etat}</Text>:(l.etat == "ACCEPTER")?<Text style={{fontWeight: 'bold', color: 'green'}}>{l.etat}</Text>: 
+						(l.etat == "REPORTER")?<Text style={{fontWeight: 'bold', color: 'rgb(255, 94, 0)'}}>{l.etat}</Text>: <Text style={{fontWeight: 'bold', color: 'red'}}>{l.etat}</Text>}
+						<Text>{l.raison}</Text>
+									</View>
+									
+								</View>
+								</ListItem.Content>
+								<View>
+										{
+											(l.etat == "EN ATTENTE")?<Ionicons
+											name={"time-outline"}
+											size={30}
+											color={color.primary}
+										/> : (l.etat == "ACCEPTER")? <Ionicons
+										name={"checkmark-done-sharp"}
+										size={30}
+										color={color.green}
+									/>: (l.etat == "REPORTER")? <Ionicons
+										name={"calendar-outline"}
+										size={30}
+										color={color.green}
+									/>: <Ionicons
+										name={"close-circle-outline"}
+										size={30}
+										color={color.green}
+									/>
+										}
 
-							</View>
-						</View>
-						</ListItem.Content>
-					</ListItem>
-					))
-				}
+									</View>
+							</ListItem>
+							))
+						}
+					</View>
 				</ScrollView>
 
                 <FAB buttonColor={color.primary}

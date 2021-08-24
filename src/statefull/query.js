@@ -1,7 +1,10 @@
 import RNFetchBlob from "react-native-fetch-blob";
 
-const apibaselink = 'https://api.church-digital.net/api';//https://api.eecsoboum.org/api
-const database = "churchv3M2_2021" //churchv3m4_2021
+//const apibaselink = 'https://api.church-digital.net/api';//https://api.eecsoboum.org/api
+//const database = "churchv3M2_2021" //churchv3m4_2021
+
+const apibaselink = 'https://api.eecsoboum.org/api';//https://api.eecsoboum.org/api
+const database = "churchv3m4_2021" //churchv3m4_2021
 
 let userId = null;
 let token = null;
@@ -9,6 +12,8 @@ let userInfo = {};
 let role = ""
 const cle = 'user-show'
 let userObj = {};
+
+let egliseInfos = {};
 class user_class {
   getUserId = () => userId;
   setUserId = (id) =>{ userId = id};
@@ -25,6 +30,9 @@ class user_class {
 
   setUserOjt = (u) => {userObj = u};
   get = () => userObj;
+
+  setEinfos = (i) => {egliseInfos = i};
+  getEinfos = () => egliseInfos;
 }
 
 export const user = new user_class();

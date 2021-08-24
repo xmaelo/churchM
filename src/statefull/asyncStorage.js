@@ -8,12 +8,23 @@ export const storeData = async (user) => {
     console.log('error saving data', e)
   }
 }
-export const getData = async () => {
+
+const getData1 = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('@user')
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch(e) {
     console.log('errr reading data', e)
     return null;
+  }
+}
+
+export const getData = getData1
+
+export const storeDataNull = async () => {
+  try {
+    await AsyncStorage.removeItem('@user')
+  } catch (e) {
+    console.log('error saving data', e)
   }
 }

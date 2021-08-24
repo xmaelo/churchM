@@ -7,9 +7,11 @@ import { color} from '../color';
 import Head from '../components/Head'
 import Lang from '../components/Lang';
 import { useTranslation } from 'react-i18next';
+import { storeDataNull } from '../statefull/asyncStorage';
 
 export default function Parametres({navigation}){
 const {t} = useTranslation();
+
 return(
 		<View>
 			<Head screen={t('common.app.settings')} n={navigation}/>
@@ -26,7 +28,10 @@ return(
 		        		</View>
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"log-out-outline"} size={27} color={color.primary}/>
-		        			<TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+		        			<TouchableOpacity onPress={()=>{
+                      storeDataNull()
+                      navigation.navigate('Login')
+                    }}>
 		        			  <Text>{" "+t('common.app.logout')}</Text>
 		        			</TouchableOpacity>
 		        		</View>
@@ -39,7 +44,7 @@ return(
 
 		        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 		        			<Ionicons name={"send-outline"} size={27} color={color.primary}/>
-		        			<TouchableOpacity //onPress={()=>navigation.navigate('ContactEglise')}
+		        			<TouchableOpacity onPress={()=>navigation.navigate('ContactEglise')}
                   >
 		        				<Text>{" "+t('common.app.contact_church')}</Text>
 		        			</TouchableOpacity>

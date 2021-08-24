@@ -24,6 +24,29 @@ class login_check{
        console.error(error);
      }
   }
+  
+  send = async(ob, text) => {
+    try{
+      const i =  await request_post("/mail/sendmail", {email: 'email@emaim.com', objet: ob, content: text});
+      console.log('i i i i', i)
+      return i;
+    }catch(e){
+      console.log('error')
+    }
+  }
+  getInfo = async() => {
+    try{
+      const i =  await request_get("/egliseparams", 'parametre-index');
+      console.log('i i i i', i)
+      if(i && i['hydra:member']){
+        user.setEinfos(i['hydra:member'][0])
+        return i['hydra:member'][0]
+      } 
+      return
+    }catch(e){
+      console.log('error')
+    }
+  }
   auth = async (username, password) => {
     try{
       const response = await request_post('/login_check', {username: username, password: password}, 'user-show');

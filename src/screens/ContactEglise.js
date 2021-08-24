@@ -9,25 +9,33 @@ import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 import Head from '../components/Head'
 import Head2 from '../components/Head'
 import { useTranslation } from 'react-i18next';
-
+import { login } from '../statefull/login';
+import { user } from '../statefull/query'
 export default function ContactEglise({navigation}){
 	const {t} = useTranslation();
+	const [objec, setOb] = useState('')
+	const [text, setText] = useState('')
+	async function onSend(){
+		console.log('onsend reun')
+		let res = await login.send(objec, text)
+		console.log('erul send mail', res)
+	}
 	return(
 		<View>
 			<Head screen={t('common.app.contact_church')} n={navigation} second/>
 			<ScrollView>
 				<View style={styles.container}>
 					<View style={{...styles.end2, marginTop: hp('2%')}} >
-	        			<Ionicons name={"logo-facebook"} size={24} color={color.primary}/>
-	        			<Text>{" facebook@eglise.com"}</Text>
+	        			<Ionicons name={"globe-outline"} size={24} color={color.primary}/>
+	        			<Text>{user.getEinfos()&&" "+user.getEinfos()[0].siteweb}</Text>
 	        		</View>
 	        		<View style={{...styles.end2, marginTop: hp('2%')}} >
-	        			<Ionicons name={"logo-twitter"} size={24} color={color.primary}/>
-	        			<Text>{" tweeter eec cameroon"}</Text>
+	        			<Ionicons name={"call"} size={24} color={color.primary}/> 
+	        			<Text>{user.getEinfos()&&" "+user.getEinfos()[0].telephone}</Text>
 	        		</View>
 	        		<View style={{...styles.end2, marginTop: hp('2%')}} >
 	        			<Ionicons name={"mail"} size={24} color={color.primary}/>
-	        			<Text>{" info@ecc.comaroon"}</Text>
+	        			<Text>{user.getEinfos()&&" "+user.getEinfos()[0].email}</Text>
 	        		</View>
 	        		<Divider style={{ backgroundColor: "#898A8F", marginTop: hp('1%'), height: 3 }} />
 
@@ -35,13 +43,14 @@ export default function ContactEglise({navigation}){
 			        	<View style={styles.container_all_dec}>
 			        		<Input
 		                      label={t('common.app.object')}
+							  onChangeText={(e)=> setOb(e)}
 							/>
 							<AutoGrowingTextInput
 				              style={styles.textInput}
 				              placeholder="Message..."
 				              //placeholderTextColor="grey"
 				              //value={messageText}
-				              //onChangeText={this.onTypeMessage}
+				              onChangeText={(e)=> setText(e)}
 				              maxHeight={170}
 				              minHeight={70}
 				              enableScrollToCaret
@@ -50,6 +59,7 @@ export default function ContactEglise({navigation}){
 				            <Button
 							  title={t('common.app.send')}
 							  type="outline"
+							  onPress={()=> onSend()}
 							/>
 			        	</View>
 			        </View>

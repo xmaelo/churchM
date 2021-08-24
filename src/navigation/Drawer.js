@@ -63,6 +63,7 @@ import ContactDetails from '../screens/main/chat/contactDetails'
 import Oldrgister from '../screens/old/Oldrgister'
 import { useTranslation } from 'react-i18next';
 import { profil } from '../statefull/profil';
+import { user } from '../statefull/query'
 const ARG__ = createDrawerNavigator();
 
 const Title = ({display}) => <Text style={themes.menuStyle}>{display}</Text>
@@ -129,7 +130,7 @@ function CustomDrawerContent(props) {
           <View style={styles.container} >
             <Image source={{uri: "https://i.ytimg.com/vi/uC3vwBGkSDQ/hqdefault.jpg"}} style={styles.img} />
             <Text h4 style={styles.name}>
-              EEC {t('common.app.cameroon')}
+            {user.getEinfos()? " "+user.getEinfos()[0]?.nom : null}
             </Text>
           </View>
         }/>
@@ -173,6 +174,7 @@ export default function Drawers() {
   useEffect(() => {
     (async()=>{
       let user = await getData();
+      console.log('user user userv user', user)
       setUser(user);
       if(user){
         setInitialRoute('Accueil')

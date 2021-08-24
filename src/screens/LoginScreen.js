@@ -20,13 +20,21 @@ export default function LoginScreen({navigation}){
 		const [pinSecure, setPinSecure] = useState(false);
 		const [loading, setLoan] = useState(false);
 		const [visible, setVisible] = useState(false);
+		const [infos, setI] = useState({});
 
 		const onToggleSnackBar = () => setVisible(!visible);
   	const onDismissSnackBar = () => setVisible(false);
 
 		useEffect(() => {
-			BackHandler.addEventListener('hardwareBackPress', () => true)
-			return () => BackHandler.removeEventListener('hardwareBackPress', () => true)
+			//BackHandler.addEventListener('hardwareBackPress', () => true)
+			(async()=> {
+				const d = await login.getInfo()
+				if(d){
+					setI(d[0])
+				}
+				console.log('ersul get infos', d)
+			})()
+			//return () => BackHandler.removeEventListener('hardwareBackPress', () => true)
 		}, [])
 
 		const get_token =  async() => {
@@ -59,7 +67,7 @@ export default function LoginScreen({navigation}){
 						<View style={styles.logo}>
 							<Image source={logo} style={styles.img}/>
 							<Text h4 style={themes.primary}>EEC</Text>
-							<Text style={{...themes.secondary, ...styles.subtitle}}>{t('common.app.parish_of')} soboum II</Text>
+							<Text style={{...themes.secondary, ...styles.subtitle}}>{infos.nom}</Text>
 							<Lang/>
 						</View>
 						<View style={styles.form}>
