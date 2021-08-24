@@ -77,7 +77,7 @@ const FirstRoute = ({prepas}) => {
         					      			color: color.primary
         					      		}}
         					      	>
-        					      		{allprepa.intitule}
+        					      		{allprepa?.preparation?.intitule}
         					      	</Text>
         					    </View>
         				    </DataTable.Row>
@@ -93,20 +93,20 @@ const FirstRoute = ({prepas}) => {
         				      	</DataTable.Title>
         				    </DataTable.Header>
 
-                    {allprepa.entreePreparation && allprepa.entreePreparation.map((entreePrepa, k)=>
+                    {allprepa?.entreePreparationdetails?.map((entreePrepa, k)=>
           				    <DataTable.Row key={k}>
           				      	<DataTable.Cell>{entreePrepa.createdAt? new Date(entreePrepa.createdAt).getDate() : ''}</DataTable.Cell>
-          				      	<DataTable.Cell numeric>{entreePrepa?.intitule}</DataTable.Cell>
+          				      	<DataTable.Cell numeric>{entreePrepa?.typecontribution?.intitule}</DataTable.Cell>
           				      	<DataTable.Cell numeric>{entreePrepa?.montant} fcfa</DataTable.Cell>
           				    </DataTable.Row>
                     )}
         				    <DataTable.Pagination
         				      page={1}
-        				      numberOfPages={allprepa.entreePreparation ? (allprepa.entreePreparation.length / 5) : 1}
+        				      numberOfPages={1}
         				      onPageChange={page => {
         				        console.log(page);
         				      }}
-        				      label={"1-1 of "+1}
+        				      label={"1-"+allprepa?.entreePreparationdetails?.length+" of "+1}
         				    />
         				  </DataTable>
         	  		</View>
@@ -127,29 +127,75 @@ const FirstRoute = ({prepas}) => {
 
 const SecondRoute = ({chart1}) => {
 	const [percent, setPercent] = useState(0)
+  const [percentY, setPercentY] = useState(0)
+  const [percentD, setPercentD] = useState(0)
+  const [prepaM, setPrepaM] = useState(0)
+  const [prepaY, setPrepaY] = useState(0)
+  const [already, setAL] = useState(false)
 	//setPercent(0)
 	useEffect(()=>{
-		setPercent((parseInt(new Date(Date.now()).getMonth())/12))
-    console.log('personne widthPercentageToDP====>>>', percent)
-	}, [])
+		
+    (async()=>{
+      setPercent((parseInt(new Date(Date.now()).getMonth())/12))
+      const getEntreePrepa = await finance.getEntreePrepa();
+      const h = getEntreePrepa['hydra:member']
+      let last_mont = h[h.length-1]
+      let s = 0
+      let m = 0
+      let data = [];
+
+      last_mont.entreePreparationdetails && last_mont.entreePreparationdetails.map(p => {s = s+parseInt(p.montant)})
+      //const percent = new Date().getDate() / 30
+      setPercentD(new Date().getDate() / 30)
+      setPercentY((new Date().getMonth()+1)/ 12)
+      setPrepaM(s)
+      h&&h.map(p =>{
+        let loc = 0
+        p&&p.entreePreparationdetails&&p.entreePreparationdetails.map(i=>
+          {
+            m = m+parseInt(i.montant)
+            loc = loc+parseInt(i.montant)
+          }
+        )
+        data.push({x: p?.preparation?.intitule, y: loc})
+      })
+      sampleData[0].data = data
+      setPrepaY(m)
+      setAL(true)
+      console.log('getEntreePrepagetEntreePrepagetEntreePrepa', data)
+    })()
+  }, [])
 	return(
 	  <View style={{ flex: 1}}>
-	  		<View style={styles.progressCircle} >
-	  			<Text style={styles.titleP}>{t('common.app.prepared_month')}</Text>
-		  		<Progress.Circle
-					size={123}
-					progress={percent}
-					showsText
-					formatText={(val) =>  parseInt(val*100) +"%"}
-					color={color.primary}
-				/>
-		    </View>
+	  		<View style={styles.circle}>
+          <View style={styles.progressCircle} >
+              <Text style={{...styles.titleP, fontSize: 12}}>{t('common.app.mois_actuel')} : {prepaM+" FCFA"}</Text>
+              <Progress.Circle
+              size={wp('25%')}
+              progress={percentD}
+              showsText
+              formatText={(val) =>  parseInt(val*100) +"%"}
+              color={color.green}
+            />
+            </View>
+            <View style={styles.progressCircle} >
+              <Text style={{...styles.titleP, fontSize: 12}}>{t('common.app.annee_cours')}: {prepaY+" FCFA"}</Text>
+              <Progress.Circle
+              size={wp('25%')}
+              progress={percentY}
+              showsText
+              formatText={(val) =>  parseInt(val*100) +"%"}
+              color={color.primary}
+            />
+            </View>
+        </View>
+
 
 		    <View style={styles.progressCircle} >
 		    	<Text style={styles.titleP}>{t('common.app.progress_prepa')}</Text>
 		    	<Progress.Bar progress={percent} width={220} />
 		    	<View style={{paddingHorizontal: wp('6%')}}>
-					<PureChart data={chart1} type='bar' height={hp('30%')} />
+					{already&&<PureChart data={sampleData} type='bar' height={hp('30%')} />}
 		    	</View>
 		    </View>
 	  </View>
@@ -196,24 +242,9 @@ const renderTabBar = props => (
 
     useEffect(() => {
       (async()  => {
-        const preparations = await finance.getIdPreparations();
-        if(preparations){
-          let rangePrepa = [];
-          for (let i = 0; i < preparations.length; i++) {
-               let historique = await finance.getHistorique(preparations[i].id);
-               //historique = !historique ? [{intitule: '', montant: 0, createAt: new Date(Date.now())}] : historique;
-               rangePrepa.push({
-                    'id': preparations[i].id,
-                    'intitule': preparations[i].intitule,
-                    'entreePreparation': historique
-                });
-            }
-            prepas = rangePrepa;
-						console.log(' prepas prepas prepas prepas =========>>>>>>>>>>>>>>>>>>>', prepas)
-            setPrepa(prepas);
-            sampleData = showChart(rangePrepa);
-            setChart1(sampleData);
-        }
+        const getEntreePrepa = await finance.getEntreePrepa();
+        const h = getEntreePrepa['hydra:member']
+        setPrepa(h);
       })();
       return;
     }, [])
@@ -237,6 +268,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp('8%'),
     flex: 1
   },
+  circle: {
+     flexDirection: 'row',
+     alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingTop: hp('2%')
+   },
   titleP: { fontSize: 18, color: color.textSeconday, paddingBottom: hp('2%') },
   progressCircle: {
   	alignItems: 'center',

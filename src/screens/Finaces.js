@@ -45,9 +45,10 @@ const [percent1, setPercent1] = useState(0)
 
   useEffect(() => {
     (async()  => {
+      
       const autreFinaces = await finance.getAutreEntreeUser();
       console.log('autreFinaces autreFinacesautreFinaces', autreFinaces)
-      const d = showChart2(autreFinaces);
+      const d = showChart2(autreFinaces["hydra:member"]);
       console.log('chart chart', d)
       setChart(d.chart);
       setP1(d.p1);
