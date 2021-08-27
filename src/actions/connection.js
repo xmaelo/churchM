@@ -1,6 +1,6 @@
 export const CHAT_DISCONNECTED = 'CHAT_DISCONNECTED'
 export const CHAT_CONNECTING = 'CHAT_CONNECTING'
-export const CHAT_CONNECTED = 'CHAT_CONNECTED'
+export const CHAT_CONNECTED = 'CHAT_ED'
 
 export const DISCONNECTED = 0
 export const CONNECTING = 1

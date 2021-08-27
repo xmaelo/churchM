@@ -169,22 +169,22 @@ const SecondRoute = ({chart1}) => {
 	  <View style={{ flex: 1}}>
 	  		<View style={styles.circle}>
           <View style={styles.progressCircle} >
-              <Text style={{...styles.titleP, fontSize: 12}}>{t('common.app.mois_actuel')} : {prepaM+" FCFA"}</Text>
+              <Text style={{...styles.titleP, fontSize: 15}}>{t('common.app.mois_actuel')}</Text>
               <Progress.Circle
               size={wp('25%')}
               progress={percentD}
               showsText
-              formatText={(val) =>  parseInt(val*100) +"%"}
+              formatText={(val) => <Text style={{...styles.titleP, fontSize: 12}}>{prepaM+" FCFA"}</Text>}
               color={color.green}
             />
             </View>
             <View style={styles.progressCircle} >
-              <Text style={{...styles.titleP, fontSize: 12}}>{t('common.app.annee_cours')}: {prepaY+" FCFA"}</Text>
+              <Text style={{...styles.titleP, fontSize: 15}}>{t('common.app.annee_cours')}</Text>
               <Progress.Circle
               size={wp('25%')}
               progress={percentY}
               showsText
-              formatText={(val) =>  parseInt(val*100) +"%"}
+              formatText={(val) =>  <Text style={{...styles.titleP, fontSize: 12}}>{prepaY+" FCFA"}</Text>}
               color={color.primary}
             />
             </View>

@@ -14,13 +14,14 @@ import { useTranslation } from 'react-i18next';
 
 export default function LoginScreen({navigation}){
 		const {t} = useTranslation()
-		const [password, setPassword] = useState("admin#2021");
-		const [username, defineUsername] = useState("adminchurchsoboum");
+		const [password, setPassword] = useState("");//admin#2021
+		const [username, defineUsername] = useState("");//simplice0911 adminchurchsoboum
 		const [disabled, setDisabled] = useState(false);
 		const [pinSecure, setPinSecure] = useState(false);
 		const [loading, setLoan] = useState(false);
 		const [visible, setVisible] = useState(false);
 		const [infos, setI] = useState({});
+		const [message, setMessage] = useState(null);
 
 		const onToggleSnackBar = () => setVisible(!visible);
   	const onDismissSnackBar = () => setVisible(false);
@@ -40,20 +41,33 @@ export default function LoginScreen({navigation}){
 		const get_token =  async() => {
 			// navigation.navigate('Accueil', {personne: null});
 			// return
+			console.log('started connct')
 			 try {
 				 if(!loading){
 					 setLoan(true)
 				 	 const personne = await login.auth(username, password);
+					  console.log('end connct', personne)
 					 setLoan(false)
 					 if (personne) {
- 						 navigation.navigate('Accueil', {personne: personne});
-						 storeData({username: username, password: password})
+						if(personne.code == 401){
+							setVisible(true)
+							setMessage(personne.message)
+							setLoan(false)
+						}else{
+							setMessage(null)
+							navigation.navigate('Accueil', {personne: personne});
+							storeData({username: username, password: password})
+						}
 					 }else{
+						 setMessage(null)
 						 setVisible(true)
 						 setLoan(false)
+						 
 					 }
+					 console.log('end connc*****************************t')
 				 }
 			 } catch (e) {
+				setMessage(null)
 				 console.log('error==>>',e)
 				 setVisible(true)
 				 setLoan(false)
@@ -169,7 +183,7 @@ export default function LoginScreen({navigation}){
 						// Do something
 					},
 				}}>
-				Problème de connexion ou identifiant incorrect !
+				{message ? message : "Problème de connexion ou identifiant incorrect !"}
 			</Snackbar>
 		</View>
 	)

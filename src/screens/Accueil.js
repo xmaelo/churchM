@@ -139,18 +139,18 @@ const {t} = useTranslation();
 							</TouchableOpacity>
 						</View> 
 						<View style={styles.row}>
-							<TouchableOpacity onPress={()=>navigation.navigate('Dialogs')}>
+							{/* <TouchableOpacity onPress={()=>navigation.navigate('Dialogs')}>
 								<Surface style={styles.surface}>
 									<IconPart name='chatbubble-outline'/>
 									<Text>{t('common.app.message')}</Text>
 								</Surface>
-							</TouchableOpacity>
-							<TouchableOpacity onPress={()=>navigation.navigate('TheBible')}>
+							</TouchableOpacity> */}
+							{/* <TouchableOpacity onPress={()=>navigation.navigate('TheBible')}>
 								<Surface style={styles.surface}>
 									<IconPart name='book-outline'/>
 									<Text>{t('common.app.my_bible')}</Text>
 								</Surface>
-							</TouchableOpacity>
+							</TouchableOpacity> */}
 						</View>
 					</View>
 				</View>
